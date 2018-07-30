@@ -7,10 +7,13 @@ import { AppRoutes } from './app.routes';
 
 // Modules
 import { MaterialModule } from './shared/modules/material.module';
+// components
+import { ProjectsComponent } from './projects/projects.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule,
