@@ -4,6 +4,10 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routes';
 
+
+// Modules
+import { MaterialModule } from './shared/modules/material.module';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -12,8 +16,10 @@ import { AppRoutes } from './app.routes';
     BrowserModule,
     AppRoutes,
     HttpModule,
+    MaterialModule
   ],
   providers: [],
+  entryComponents: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
