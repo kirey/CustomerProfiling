@@ -1,4 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
 
 @Component({
   selector: 'app-edit-project',
@@ -8,8 +10,12 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class EditProjectComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialogRef: MatDialogRef<EditProjectComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
+    cancel(): void {
+      this.dialogRef.close();
+    }
   ngOnInit() {
   }
 

@@ -23,6 +23,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { EditProjectComponent } from './dialogs/edit-project/edit-project.component';
 import { DeleteComponent } from './dialogs/delete/delete.component';
+import { CopyComponent } from './dialogs/copyProject/copy.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { DeleteComponent } from './dialogs/delete/delete.component';
     DashboardComponent,
     AddComponent,
     EditProjectComponent,
-    DeleteComponent
+    DeleteComponent,
+    CopyComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,7 @@ import { DeleteComponent } from './dialogs/delete/delete.component';
     MaterialModule
   ],
   providers: [AuthService, AuthGuard, ProjectsService],
-  entryComponents: [AddComponent, EditProjectComponent, DeleteComponent],
+  entryComponents: [AddComponent, EditProjectComponent, DeleteComponent, CopyComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
