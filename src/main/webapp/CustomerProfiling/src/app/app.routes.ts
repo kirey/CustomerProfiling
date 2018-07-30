@@ -1,5 +1,8 @@
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './login/login.component';
 import { AppComponent } from './app.component';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 // components
 import { ProjectsComponent } from './projects/projects.component';
@@ -7,8 +10,9 @@ import { ProjectsComponent } from './projects/projects.component';
 
 
 const routes: Routes = [
-  { path: 'home', component: AppComponent },
   { path: 'projects', component: ProjectsComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent,canActivate:[AuthGuard] },
   { path: '**', component: AppComponent }
 ];
 
