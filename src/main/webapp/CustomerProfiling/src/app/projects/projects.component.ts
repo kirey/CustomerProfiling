@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectsService } from './projects.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-
+// dialogs
 import { AddComponent } from '../dialogs/addProject/add.component';
+import { EditProjectComponent } from '../dialogs/edit-project/edit-project.component';
 
 @Component({
   selector: 'app-projects',
@@ -20,6 +21,21 @@ export class ProjectsComponent implements OnInit {
   // open add dialog
   openAddDialog() {
     const dialogRef = this.dialog.open(AddComponent, {
+      width: '800px',
+      // data: this.data
+    });
+    // console.log(obj);
+
+    // dialogRef.afterClosed().subscribe(res => {
+    //   this.getList();
+    //   console.log(res);
+    //   console.log('uspesno');
+    // });
+  }
+
+  // open edit dialog
+  openEditDialog() {
+    const dialogRef = this.dialog.open(EditProjectComponent, {
       width: '800px',
       // data: this.data
     });

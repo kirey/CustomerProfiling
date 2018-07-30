@@ -21,6 +21,7 @@ import { AddComponent } from './dialogs/addProject/add.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { EditProjectComponent } from './dialogs/edit-project/edit-project.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AuthGuard } from './shared/guards/auth.guard';
     ProjectsComponent,
     LoginComponent,
     DashboardComponent,
-    AddComponent
+    AddComponent,
+    EditProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,7 @@ import { AuthGuard } from './shared/guards/auth.guard';
     MaterialModule
   ],
   providers: [AuthService, AuthGuard, ProjectsService],
-  entryComponents: [AddComponent],
+  entryComponents: [AddComponent, EditProjectComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
