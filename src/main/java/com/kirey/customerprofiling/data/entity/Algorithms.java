@@ -26,7 +26,7 @@ public class Algorithms implements Serializable {
 	private String algorithmName;
 	private String description;
 	private String library;
-	private List<Algorithms> algorithms = new ArrayList<>();
+	private List<ProjectsAlgorithms> projectAlgorithamsList = new ArrayList<>();
 	private List<Parameters> parameters = new ArrayList<>();
 	
 	
@@ -64,22 +64,21 @@ public class Algorithms implements Serializable {
 	public void setLibrary(String library) {
 		this.library = library;
 	}
-	
-	
-	@OneToMany(mappedBy = "algorithm")
-	public List<Algorithms> getAlgorithms() {
-		return algorithms;
-	}
-	public void setAlgorithms(List<Algorithms> algorithms) {
-		this.algorithms = algorithms;
-	}
-	
+
 	@OneToMany(mappedBy = "algorithm")
 	public List<Parameters> getParameters() {
 		return parameters;
 	}
 	public void setParameters(List<Parameters> parameters) {
 		this.parameters = parameters;
+	}
+	
+	@OneToMany(mappedBy = "algorithm")
+	public List<ProjectsAlgorithms> getProjectAlgorithamsList() {
+		return projectAlgorithamsList;
+	}
+	public void setProjectAlgorithamsList(List<ProjectsAlgorithms> projectAlgorithamsList) {
+		this.projectAlgorithamsList = projectAlgorithamsList;
 	}
 	
 

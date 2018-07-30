@@ -25,8 +25,6 @@ public class ProjectsAlgorithms implements Serializable {
 	private Algorithms algorithm;
 
 	
-	
-	
 	@Id
 	@SequenceGenerator(name = "seq_project_algorithms_gen", sequenceName = "seq_project_algorithms", allocationSize=1, initialValue=1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_project_algorithms_gen")

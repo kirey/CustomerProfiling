@@ -35,7 +35,7 @@ public class Projects implements Serializable{
 	private Date lastOpened;
 	private String status;
 	private String description;
-	private List<Projects> projects = new ArrayList<>();
+	private List<ProjectsAlgorithms> projectsAlgorithmsList = new ArrayList<>();
 	private List<Datasets> datasets = new ArrayList<>();
 	
 	@Id
@@ -98,19 +98,19 @@ public class Projects implements Serializable{
 
 	@OneToMany(mappedBy = "project")
 	@LazyCollection(LazyCollectionOption.FALSE)
-	public List<Projects> getProjects() {
-		return projects;
+	public List<ProjectsAlgorithms> getProjectsAlgorithmsList() {
+		return projectsAlgorithmsList;
 	}
 
-	public void setProjects(List<Projects> projects) {
-		this.projects = projects;
+	public void setProjectsAlgorithmsList(List<ProjectsAlgorithms> projectsAlgorithmsList) {
+		this.projectsAlgorithmsList = projectsAlgorithmsList;
 	}
-
 	
 	@OneToMany(mappedBy = "project")
 	public List<Datasets> getDatasets() {
 		return datasets;
 	}
+
 
 	public void setDatasets(List<Datasets> datasets) {
 		this.datasets = datasets;

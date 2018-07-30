@@ -36,7 +36,7 @@ public class Variables implements Serializable{
 	private boolean leaveAsItIs;
 	private boolean distinct;
 	private Variables originalVariable;
-	private List<Variables> variables = new ArrayList<>();
+	private List<Variables> derivedVariables = new ArrayList<>();
 	private List<DerivedVariableValue> derivedVariableValues = new ArrayList<>();
 	
 	@Id
@@ -136,21 +136,20 @@ public class Variables implements Serializable{
 	
 	
 	@OneToMany(mappedBy = "originalVariable")
-	public List<Variables> getVariables() {
-		return variables;
+	public List<Variables> getDerivedVariables() {
+		return derivedVariables;
 	}
-	public void setVariables(List<Variables> variables) {
-		this.variables = variables;
+	public void setDerivedVariables(List<Variables> derivedVariables) {
+		this.derivedVariables = derivedVariables;
 	}
-	
 	
 	
 	@ManyToOne()
 	@JoinColumn(name = "original_variable")
-	public Variables getVariable() {
+	public Variables getOriginalVariable() {
 		return originalVariable;
 	}
-	public void setVariable(Variables originalVariable) {
+	public void setOriginalVariable(Variables originalVariable) {
 		this.originalVariable = originalVariable;
 	}
 	
@@ -159,6 +158,7 @@ public class Variables implements Serializable{
 	public List<DerivedVariableValue> getDerivedVariableValues() {
 		return derivedVariableValues;
 	}
+	
 	public void setDerivedVariableValues(List<DerivedVariableValue> derivedVariableValues) {
 		this.derivedVariableValues = derivedVariableValues;
 	}

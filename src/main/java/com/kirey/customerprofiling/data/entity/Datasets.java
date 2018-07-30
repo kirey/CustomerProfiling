@@ -31,7 +31,7 @@ public class Datasets implements Serializable{
 	private String schema;
 	private String dbQuerry;
 	private Datasets originalDataset;
-	private List<Datasets> datasets = new ArrayList<>();
+	private List<Datasets> derivedDatasets = new ArrayList<>();
 	private Projects project;
 	private List<Variables> variables = new ArrayList<>();
 	
@@ -107,19 +107,20 @@ public class Datasets implements Serializable{
 		this.project = project;
 	}
 	
-	
 	@OneToMany(mappedBy = "originalDataset")
-	public List<Datasets> getDatasets() {
-		return datasets;
+	public List<Datasets> getDerivedDatasets() {
+		return derivedDatasets;
 	}
-	public void setDatasets(List<Datasets> datasets) {
-		this.datasets = datasets;
+	public void setDerivedDatasets(List<Datasets> derivedDatasets) {
+		this.derivedDatasets = derivedDatasets;
 	}
 	
-	@OneToMany(mappedBy = "variable")
+	@OneToMany(mappedBy = "dataset")
 	public List<Variables> getVariables() {
 		return variables;
 	}
+	
+	
 	public void setVariables(List<Variables> variables) {
 		this.variables = variables;
 	}
