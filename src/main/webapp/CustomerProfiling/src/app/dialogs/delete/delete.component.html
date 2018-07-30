@@ -1,0 +1,8 @@
+<div id="deleteDialog">
+    <h2 class="dialog-title">Delete </h2>
+    <mat-dialog-content>Are you sure you want to delete?</mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button mat-dialog-close (click)="cancel()">Cancel</button>
+      <button mat-raised-button color="warn" [mat-dialog-close]="true">Yes</button>
+    </mat-dialog-actions>
+  </div>

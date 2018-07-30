@@ -22,6 +22,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { EditProjectComponent } from './dialogs/edit-project/edit-project.component';
+import { DeleteComponent } from './dialogs/delete/delete.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { EditProjectComponent } from './dialogs/edit-project/edit-project.compon
     LoginComponent,
     DashboardComponent,
     AddComponent,
-    EditProjectComponent
+    EditProjectComponent,
+    DeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,7 @@ import { EditProjectComponent } from './dialogs/edit-project/edit-project.compon
     MaterialModule
   ],
   providers: [AuthService, AuthGuard, ProjectsService],
-  entryComponents: [AddComponent, EditProjectComponent],
+  entryComponents: [AddComponent, EditProjectComponent, DeleteComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

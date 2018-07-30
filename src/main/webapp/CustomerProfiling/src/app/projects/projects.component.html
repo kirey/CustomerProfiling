@@ -1,6 +1,7 @@
 <div id="projects">
   <button mat-mini-fab color="primary" matTooltip="Add Project" matTooltipPosition="above" (click)="openAddDialog()"><i class="material-icons">add</i></button>
   <button mat-mini-fab color="accent" matTooltip="Edit Project" matTooltipPosition="above" (click)="openEditDialog()"><i class="material-icons">edit</i></button>
+  <button mat-mini-fab color="accent" matTooltip="Delete Project" matTooltipPosition="above" (click)="openDeleteDialog()"><i class="material-icons">delete</i></button>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- Name Column -->
     <ng-container matColumnDef="name">
