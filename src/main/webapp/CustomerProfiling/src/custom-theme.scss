@@ -2,9 +2,9 @@
 
 @include mat-core();
 
-  $primary: mat-palette($mat-teal, 500);
-  $accent: mat-palette($mat-teal, A200);
-  $warn: mat-palette($mat-deep-orange, A400);
+  $primary: mat-palette($mat-deep-purple, 500);
+  $accent: mat-palette($mat-light-green, A200);
+  $warn: mat-palette($mat-pink, 700);
 
   $theme: mat-light-theme($primary, $accent, $warn);
 
