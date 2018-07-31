@@ -1,5 +1,7 @@
 package com.kirey.customerprofiling.data.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kirey.customerprofiling.common.constants.AppConstants;
 import com.kirey.customerprofiling.common.constants.DataType;
@@ -63,5 +66,22 @@ public class DatasetService {
 			
 		}
 		
+	}
+	
+	public String uploadCSVFile(MultipartFile csvFile) throws IllegalStateException, IOException {
+		
+		String uploadDir = "C:\\Temp";
+		if(! new File(uploadDir).exists())
+        {
+            new File(uploadDir).mkdir();
+        }
+
+		String orgName = csvFile.getOriginalFilename();
+        String filePath = uploadDir + orgName;
+        
+        File dest = new File(filePath);
+        csvFile.transferTo(dest);
+		
+        return filePath;
 	}
 }
