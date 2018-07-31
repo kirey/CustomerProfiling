@@ -1,15 +1,21 @@
 package com.kirey.customerprofiling.data.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * 
@@ -17,21 +23,24 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="projects")
+@Table(name = "projects")
 public class Projects implements Serializable{
 
-	private static final long serialVersionUID = 1L;
-
+	
+	private static final long serialVersionUID = -565919285485939231L;
+	
 	private Integer id;
 	private String projectName;
 	private Date creationDate; 
 	private Date lastOpened;
 	private String status;
 	private String description;
+	private List<ProjectsAlgorithms> projectsAlgorithmsList = new ArrayList<>();
+	private List<Datasets> datasets = new ArrayList<>();
 	
 	@Id
-	@SequenceGenerator(name = "seq_projects_gen_gen", sequenceName = "seq_projects_gen", allocationSize = 1, initialValue = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_projects_gen_gen")
+	@SequenceGenerator(name = "seq_project_gen", sequenceName = "seq_projects", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_projects_gen")
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
 	public Integer getId() {
 		return id;
@@ -41,7 +50,7 @@ public class Projects implements Serializable{
 		this.id = id;
 	}
 	
-	@Column(name = "project_name")
+	@Column(name = "project_name", nullable=false)
 	public String getProjectName() {
 		return projectName;
 	}
@@ -82,8 +91,29 @@ public class Projects implements Serializable{
 		return description;
 	}
 	
+	
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	@OneToMany(mappedBy = "project")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	public List<ProjectsAlgorithms> getProjectsAlgorithmsList() {
+		return projectsAlgorithmsList;
+	}
+
+	public void setProjectsAlgorithmsList(List<ProjectsAlgorithms> projectsAlgorithmsList) {
+		this.projectsAlgorithmsList = projectsAlgorithmsList;
+	}
+	
+	@OneToMany(mappedBy = "project")
+	public List<Datasets> getDatasets() {
+		return datasets;
+	}
+
+
+	public void setDatasets(List<Datasets> datasets) {
+		this.datasets = datasets;
 	}
 	
 }
