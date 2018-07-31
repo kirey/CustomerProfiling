@@ -15,6 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.kirey.customerprofiling.common.constants.ColumnType;
+import com.kirey.customerprofiling.common.constants.DataType;
+
 
 
 @Entity
@@ -27,8 +30,8 @@ public class Variables implements Serializable{
 	private Integer id;
 	private String variableName;
 	private Integer columnNumber;
-	private String typeOfVariable;
-	private String typeOfData;
+	private ColumnType typeOfVariable;
+	private DataType typeOfData;
 	private double scaleMax;
 	private double scaleMin;
 	private Datasets dataset;
@@ -68,19 +71,19 @@ public class Variables implements Serializable{
 	
 	
 	@Column(name = "type_of_variable")
-	public String getTypeOfVariable() {
+	public ColumnType getTypeOfVariable() {
 		return typeOfVariable;
 	}
-	public void setTypeOfVariable(String typeOfVariable) {
+	public void setTypeOfVariable(ColumnType typeOfVariable) {
 		this.typeOfVariable = typeOfVariable;
 	}
 	
 	
 	@Column(name = "type_of_data")
-	public String getTypeOfData() {
+	public DataType getTypeOfData() {
 		return typeOfData;
 	}
-	public void setTypeOfData(String typeOfData) {
+	public void setTypeOfData(DataType typeOfData) {
 		this.typeOfData = typeOfData;
 	}
 	

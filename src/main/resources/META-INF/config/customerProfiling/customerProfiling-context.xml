@@ -12,6 +12,7 @@
 	<context:component-scan base-package="com.kirey.customerprofiling.data.dao" />
 	<context:component-scan base-package="com.kirey.customerprofiling.api.pagemappers" />
 	<context:component-scan base-package="com.kirey.customerprofiling.validations" />
+	<context:component-scan base-package="com.kirey.customerprofiling.data.service" />
 
 
 	<!-- AOP logging config 

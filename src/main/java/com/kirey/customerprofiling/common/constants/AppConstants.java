@@ -251,6 +251,13 @@ public class AppConstants {
 	
 	
 	/**
+	 * VARIABLES
+	 */
+	public static final String VARIABLE_TYPE_NUMERIC = "numeric";
+	public static final String VARIABLE_TYPE_TEXT = "text";
+	
+	
+	/**
 	 * Constructor from superClass.
 	 */
 	public AppConstants() {
