@@ -17,8 +17,19 @@ export class ProjectsComponent implements OnInit {
   name: string;
   displayedColumns: string[] = [ 'name', 'editing'];
 
-  constructor(publicprojectsService: ProjectsService, public dialog: MatDialog) { }
+  constructor(public projectsService: ProjectsService, public dialog: MatDialog) { }
 
+ // Get Projects
+ getProjects() {
+  this.projectsService.getProjects().subscribe(
+    res => {
+      console.log(res);
+      // this.jobHistory = res.data;
+      console.log(res);
+    },
+    err => console.log(err)
+  );
+}
 
   // open add dialog
   openAddDialog() {
@@ -78,6 +89,7 @@ export class ProjectsComponent implements OnInit {
     // });
   }
   ngOnInit() {
+    this.getProjects();
   }
 
 }

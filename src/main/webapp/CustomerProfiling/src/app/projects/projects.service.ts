@@ -8,11 +8,11 @@ export class ProjectsService {
 
     constructor(private _http: HttpClient) { }
 
-    // baseUrl = '/wscm/rest/scheduler/';
+     baseUrl = '/CustomerProfiling/rest/';
 
-    // getJobs(): Observable<any> {
-    //     return this._http.get(this.baseUrl + 'events');
-    // }
+    getProjects(): Observable<any> {
+        return this._http.get(this.baseUrl + 'projects');
+    }
 
     // startJob(id): Observable<any> {
     //     return this._http.post(this.baseUrl + 'startJob/event/' + id, null);

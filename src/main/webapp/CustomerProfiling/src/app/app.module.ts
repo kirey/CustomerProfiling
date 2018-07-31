@@ -13,7 +13,6 @@ import { MaterialModule } from './shared/modules/material.module';
 
 // services
 import { ProjectsService } from './projects/projects.service';
-import { DataTabService } from './data-tab/data-tab.service';
 
 // components
 import { ProjectsComponent } from './projects/projects.component';
@@ -25,8 +24,9 @@ import { EditProjectComponent } from './dialogs/edit-project/edit-project.compon
 import { DeleteComponent } from './dialogs/delete/delete.component';
 import { CopyComponent } from './dialogs/copyProject/copy.component';
 import { DatasetComponent } from './dataset/dataset.component';
-// import { ProjectOverviewComponent } from './project-overview/project-overview.component';
 import { DataTabComponent } from './data-tab/data-tab.component';
+
+// import { ProjectOverviewComponent } from './project-overview/project-overview.component';
 
 @NgModule({
   declarations: [
@@ -38,9 +38,9 @@ import { DataTabComponent } from './data-tab/data-tab.component';
     EditProjectComponent,
     DeleteComponent,
     CopyComponent,
-    DatasetComponent
-    // ProjectOverviewComponent
+    DatasetComponent,
     DataTabComponent
+    // ProjectOverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +53,7 @@ import { DataTabComponent } from './data-tab/data-tab.component';
     HttpClientModule,
     MaterialModule
   ],
-  providers: [AuthService, AuthGuard, ProjectsService, DataTabService],
+  providers: [AuthService, AuthGuard, ProjectsService],
   entryComponents: [AddComponent, EditProjectComponent, DeleteComponent, CopyComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
