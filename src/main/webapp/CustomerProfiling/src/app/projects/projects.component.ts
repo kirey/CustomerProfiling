@@ -66,7 +66,7 @@ export class ProjectsComponent implements OnInit {
   }
   openCopyDialog() {
     const dialogRef = this.dialog.open(CopyComponent, {
-      // width: '800px',
+      width: '800px'
       // data: this.data
     });
     // console.log(obj);
