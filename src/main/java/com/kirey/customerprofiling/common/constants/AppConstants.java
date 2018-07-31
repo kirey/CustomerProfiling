@@ -255,6 +255,10 @@ public class AppConstants {
 	 */
 	public static final String VARIABLE_TYPE_NUMERIC = "numeric";
 	public static final String VARIABLE_TYPE_TEXT = "text";
+	public static final String OPERATION_TYPE_SCALING_OPERATION = "Scaling operation";
+	public static final String OPERATION_TYPE_BINNING_OPERATION = "Binning operation";
+	public static final String OPERATION_TYPE_UNFOLDING_DISTINCT = "Unfolding with distinct categories";
+	public static final String OPERATION_TYPE_LIVE_AS_IT_IS = "Live as it is";
 	
 	
 	/**

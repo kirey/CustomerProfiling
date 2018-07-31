@@ -55,8 +55,13 @@ public class DatasetService {
 		return listVariables;
 	}
 
-	public void createDerivedFromOriginal(InputStream is, List<Variables> variables) {
-		// TODO Auto-generated method stub
+	public void createDerivedFromOriginal(InputStream csvFile, List<Variables> variables) {
+		CSVParser parser = new CSVParser();
+		RowListProcessor processor = parser.parceFile(csvFile);
+		
+		for (Variables variable : variables) {
+			
+		}
 		
 	}
 }
