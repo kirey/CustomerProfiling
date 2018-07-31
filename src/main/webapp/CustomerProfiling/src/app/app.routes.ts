@@ -1,3 +1,4 @@
+import { DatasetComponent } from './dataset/dataset.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'projects', component: ProjectsComponent},
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent,canActivate:[AuthGuard] },
+  { path: 'datasets', component: DatasetComponent,canActivate:[AuthGuard] },
   { path: '**', component: AppComponent }
 ];
 

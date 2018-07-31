@@ -1,0 +1,36 @@
+table {
+    width: 70%;
+    margin-left: 15%;
+}
+
+.aboveTable {
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-bottom: 1%;
+}
+
+button {
+    margin-left: 95%;
+}
+
+h1 {
+    margin-left: 4%;
+}
+
+@media (max-width: 1400px) {
+    button {
+        margin-left: 92%;
+    }
+}
+
+@media (max-width: 750px) {
+    button {
+        margin-left: 87%;
+    }
+}
+
+@media (max-width: 500px) {
+    button {
+        margin-left: 83%;
+    }
+}

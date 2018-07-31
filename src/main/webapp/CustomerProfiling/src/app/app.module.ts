@@ -24,6 +24,7 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { EditProjectComponent } from './dialogs/edit-project/edit-project.component';
 import { DeleteComponent } from './dialogs/delete/delete.component';
 import { CopyComponent } from './dialogs/copyProject/copy.component';
+import { DatasetComponent } from './dataset/dataset.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CopyComponent } from './dialogs/copyProject/copy.component';
     AddComponent,
     EditProjectComponent,
     DeleteComponent,
-    CopyComponent
+    CopyComponent,
+    DatasetComponent
   ],
   imports: [
     BrowserModule,
