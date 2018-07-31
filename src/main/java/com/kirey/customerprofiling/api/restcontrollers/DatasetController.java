@@ -115,7 +115,7 @@ public class DatasetController {
 	
 	
 	
-	@RequestMapping(value = "/preprocessing/view", method = RequestMethod.GET)
+	@RequestMapping(value = "/preprocessing/view", method = RequestMethod.POST)
 	public ResponseEntity<RestResponseDto> getPreprocessingView(@RequestBody List<Variables> variables) throws FileNotFoundException{//
 		
 		
@@ -143,6 +143,7 @@ public class DatasetController {
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
+
 	@RequestMapping(value = "/addNewDataset", method = RequestMethod.POST)
 	public ResponseEntity<RestResponseDto> uploadCsvDataset(@RequestPart MultipartFile csvFile, String datasetName, String datasetDesc) throws IllegalStateException, IOException{
 		
