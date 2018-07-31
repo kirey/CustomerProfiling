@@ -1,6 +1,30 @@
-$primary: #009688;
-$accent: #64FFDA;
-$warn: #FF3D00;
+$primary: #673AB7;
+$accent: #B2FF59;
+$warn: #C2185B;
+$gray: #757575;
+
+
+// Flexbox classes
+.flex {
+    display: flex;
+}
+.center {
+    align-items: center;
+    justify-content: center;
+}
+.space-around {
+    justify-content: space-around;
+}
+.wrap {
+    flex-wrap: wrap;
+}
+
+// Helper classes
+.subtitle {
+    color: $gray;
+}
+
+
 .navContainer {
     width: 100%;
     height: 88vh;

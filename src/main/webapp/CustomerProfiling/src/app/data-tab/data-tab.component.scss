@@ -1,0 +1,35 @@
+@import '../app.component.scss';
+
+#data-tab {
+    margin: 50px;
+
+    .border {
+        border: 1px solid #E0E0E0;
+    }
+
+    .info-box {
+        padding: 50px;
+        width: 400px;
+        margin: 50px;
+    }
+    .processing-container {
+        padding: 50px;
+    }
+    .processing-column {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .processing-text {
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        height: 70px;
+    }
+    .mat-form-field-infix {
+        width: 140px!important;
+    }
+    .row-title {
+        color: $primary;
+    }
+}

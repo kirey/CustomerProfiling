@@ -13,6 +13,7 @@ import { MaterialModule } from './shared/modules/material.module';
 
 // services
 import { ProjectsService } from './projects/projects.service';
+import { DataTabService } from './data-tab/data-tab.service';
 
 // components
 import { ProjectsComponent } from './projects/projects.component';
@@ -25,6 +26,7 @@ import { DeleteComponent } from './dialogs/delete/delete.component';
 import { CopyComponent } from './dialogs/copyProject/copy.component';
 import { DatasetComponent } from './dataset/dataset.component';
 // import { ProjectOverviewComponent } from './project-overview/project-overview.component';
+import { DataTabComponent } from './data-tab/data-tab.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { DatasetComponent } from './dataset/dataset.component';
     CopyComponent,
     DatasetComponent
     // ProjectOverviewComponent
+    DataTabComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,7 @@ import { DatasetComponent } from './dataset/dataset.component';
     HttpClientModule,
     MaterialModule
   ],
-  providers: [AuthService, AuthGuard, ProjectsService],
+  providers: [AuthService, AuthGuard, ProjectsService, DataTabService],
   entryComponents: [AddComponent, EditProjectComponent, DeleteComponent, CopyComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
