@@ -14,11 +14,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 
 
 @Entity
-@Table(name = "datasets")
+@Table(name = "datasets", uniqueConstraints = {
+	      @UniqueConstraint(
+	              columnNames = {"name", "project"},
+	              name="datasets_name_project_uk"
+	          )
+	       })
 public class Datasets implements Serializable{
 
 	
@@ -33,6 +39,7 @@ public class Datasets implements Serializable{
 	private Datasets originalDataset;
 	private List<Datasets> derivedDatasets = new ArrayList<>();
 	private Projects project;
+	private String description;
 	private List<Variables> variables = new ArrayList<>();
 	
 	
@@ -56,7 +63,7 @@ public class Datasets implements Serializable{
 		this.name = name;
 	}
 	
-	@Column(name = "filename")
+	@Column(name = "filename", nullable = false)
 	public String getFilename() {
 		return filename;
 	}
@@ -99,7 +106,7 @@ public class Datasets implements Serializable{
 	}
 	
 	@ManyToOne()
-	@JoinColumn(name = "project")
+	@JoinColumn(name = "project", nullable = false)
 	public Projects getProject() {
 		return project;
 	}
@@ -123,6 +130,14 @@ public class Datasets implements Serializable{
 	
 	public void setVariables(List<Variables> variables) {
 		this.variables = variables;
+	}
+	
+	@Column(name = "description")
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	

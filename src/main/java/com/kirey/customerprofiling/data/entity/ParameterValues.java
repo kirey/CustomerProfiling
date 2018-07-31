@@ -11,10 +11,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 
 @Entity
-@Table(name = "parameter_values")
+@Table(name = "parameter_values", uniqueConstraints = {
+	      @UniqueConstraint(
+	              columnNames = {"parameter", "project_algorithm"},
+	              name="parameter_values_parameter_project_algorithm_uk"
+	          )
+	       })
 public class ParameterValues implements Serializable{
 
 
@@ -47,7 +53,7 @@ public class ParameterValues implements Serializable{
 	}
 	
 	@ManyToOne
-	@JoinColumn(name = "parameter")
+	@JoinColumn(name = "parameter", nullable=false)
 	public Parameters getParameter() {
 		return parameter;
 	}
@@ -56,7 +62,7 @@ public class ParameterValues implements Serializable{
 	}
 	
 	@ManyToOne
-	@JoinColumn( name = "project_algorithms")
+	@JoinColumn( name = "project_algorithm", nullable=false)
 	public ProjectsAlgorithms getProjectAlgorithms() {
 		return projectAlgorithms;
 	}

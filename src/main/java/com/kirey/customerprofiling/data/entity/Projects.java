@@ -50,7 +50,7 @@ public class Projects implements Serializable{
 		this.id = id;
 	}
 	
-	@Column(name = "project_name", nullable=false)
+	@Column(name = "name", nullable=false, unique = true)
 	public String getProjectName() {
 		return projectName;
 	}
@@ -59,7 +59,7 @@ public class Projects implements Serializable{
 		this.projectName = projectName;
 	}
 	
-	@Column(name = "creation_date")
+	@Column(name = "creation_date", nullable=false)
 	public Date getCreationDate() {
 		return creationDate;
 	}
@@ -77,7 +77,7 @@ public class Projects implements Serializable{
 		this.lastOpened = lastOpened;
 	}
 	
-	@Column(name = "status")
+	@Column(name = "status", nullable=false)
 	public String getStatus() {
 		return status;
 	}
