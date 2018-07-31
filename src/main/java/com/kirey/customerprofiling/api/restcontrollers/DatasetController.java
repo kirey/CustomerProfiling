@@ -4,19 +4,24 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kirey.customerprofiling.api.dto.RestResponseDto;
+import com.kirey.customerprofiling.common.constants.AppConstants;
 import com.kirey.customerprofiling.common.constants.ColumnType;
 import com.kirey.customerprofiling.common.constants.DataType;
+import com.kirey.customerprofiling.data.dao.DatasetsDao;
+import com.kirey.customerprofiling.data.dao.VariablesDao;
+import com.kirey.customerprofiling.data.entity.Datasets;
 import com.kirey.customerprofiling.data.entity.Variables;
 import com.kirey.customerprofiling.data.service.DatasetService;
 
@@ -33,16 +38,35 @@ public class DatasetController {
 	@Autowired
 	private DatasetService datasetService;
 	
+	@Autowired
+	private DatasetsDao datasetsDao;
+	
+	@Autowired
+	private VariablesDao variablesDao;
+	
 	/**
 	 * Method for getting list of {@link Variables}  used for pre processing data
 	 * @return ResponseEntity containing the list of {@link Variables} along with HTTP status
 	 * @throws FileNotFoundException
 	 */
+	//TEMPORARY CONTROLLER
 	@RequestMapping(value = "/preprocessing", method = RequestMethod.GET)
 	public ResponseEntity<RestResponseDto> getPreProcessingInfo() throws FileNotFoundException {
 		File file = new File("C:\\Temp\\testCSV.csv"); //Or upload from application (@RequestPart MultipartFile csvFile)
 		InputStream is = new FileInputStream(file);
 		List<Variables> listVariables = datasetService.getVariablesFromCSV(is);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(listVariables, HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	/**
+	 * Method for getting list of {@link Variables} for given {@link Datasets} used for pre processing data
+	 * @param datasetId - of {@link Datasets}
+	 * @return ResponseEntity containing the list of {@link Variables} along with HTTP status
+	 */
+	@RequestMapping(value = "/preprocessing/dataset", method = RequestMethod.GET)
+	public ResponseEntity<RestResponseDto> getPreProcessingInfo(@RequestParam Integer datasetId) {
+		Datasets dataset = datasetsDao.findById(datasetId);
+		List<Variables> listVariables = variablesDao.findByDataset(dataset);
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(listVariables, HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
@@ -65,6 +89,28 @@ public class DatasetController {
 		Object[] possibleValues = ColumnType.values();
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(possibleValues, HttpStatus.OK.value()), HttpStatus.OK);
 	}
+	
+	/**
+	 * Method for getting types of operation for given data type
+	 * @param dataType 
+	 * @return ResponseEntity containing the types of operation along with HTTP status
+	 */
+	@RequestMapping(value = "/operationTypes", method = RequestMethod.GET)
+	public ResponseEntity<RestResponseDto> getOperationTypes(@RequestParam DataType dataType) {
+		List<String> possibleValues = new ArrayList<>();
+		
+		if(dataType.equals(DataType.NUMERIC)) {
+			possibleValues.add(AppConstants.OPERATION_TYPE_SCALING_OPERATION);
+			possibleValues.add(AppConstants.OPERATION_TYPE_BINNING_OPERATION);
+		}else if(dataType.equals(DataType.TEXT)) {
+			possibleValues.add(AppConstants.OPERATION_TYPE_UNFOLDING_DISTINCT);
+			possibleValues.add(AppConstants.OPERATION_TYPE_LIVE_AS_IT_IS);
+		}
+		
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(possibleValues, HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	
 	
 	@RequestMapping(value = "/preprocessing/view", method = RequestMethod.GET)
 	public ResponseEntity<RestResponseDto> getPreprocessingView(@RequestBody List<Variables> variables) throws FileNotFoundException{//
