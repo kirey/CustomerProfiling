@@ -3,6 +3,7 @@ package com.kirey.customerprofiling.api.restcontrollers;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kirey.customerprofiling.api.dto.RestResponseDto;
 import com.kirey.customerprofiling.common.constants.AppConstants;
@@ -140,7 +143,17 @@ public class DatasetController {
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
-	
+	@RequestMapping(value = "/addNewDataset", method = RequestMethod.POST)
+	public ResponseEntity<RestResponseDto> uploadCsvDataset(@RequestPart MultipartFile csvFile, String datasetName, String datasetDesc) throws IllegalStateException, IOException{
+		
+		Datasets dataset = new Datasets();
+	    dataset.setFilename(datasetService.uploadCSVFile(csvFile));
+	    dataset.setName(datasetName);
+	    //dataset.setdesc.....todo
+	    datasetsDao.attachDirty(dataset);
+	    		
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Dataset successfully created", HttpStatus.OK.value()), HttpStatus.OK);
+	}
 	
 
 }
