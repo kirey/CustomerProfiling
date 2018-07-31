@@ -1,3 +1,54 @@
+<<<<<<< Updated upstream
 $primary: #009688;
 $accent: #64FFDA;
 $warn: #FF3D00;
+=======
+.navContainer {
+    width: 100%;
+    height: 88vh;
+}
+
+.sideContent {
+    width: 20%;
+}
+
+.mainContent {
+    width: 80%;
+    margin-left: 20%!important;
+}
+
+mat-nav-list a mat-icon {
+    padding-left: 25px;
+}
+
+.userDetail {
+    padding-left: 40px;
+    margin-bottom: 40px;
+}
+
+.logout {
+    margin-top: 43vh;
+}
+
+.header {
+    overflow: hidden;
+    background-color: #f1f1f1;
+    padding: 20px 10px;
+}
+
+.header a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+}
+
+.header a.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+>>>>>>> Stashed changes

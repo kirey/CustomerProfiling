@@ -1,0 +1,31 @@
+.dashboardPanel {
+    width: 98%;
+    margin-left: 2%;
+}
+
+.flex-grid {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1%;
+}
+
+.col {
+    width: 49%;
+    height: 250px;
+    border-style: outset;
+}
+
+mat-card {
+    background: #E8E8E8;
+}
+
+//responsive for smaller screens
+@media (max-width: 400px) {
+    .flex-grid {
+        display: block;
+    }
+    .col {
+        margin-top: 1%;
+        width: 100%;
+    }
+}

@@ -15,17 +15,17 @@ export class LoginComponent implements OnInit {
   private username;
   private password;
 
-  constructor(private _formBuilder: FormBuilder, private _router: Router,private _auth:AuthService) { }
-
-  ngOnInit() {
+  constructor(private _formBuilder: FormBuilder, private _router: Router, private _auth: AuthService) {
     if (this._auth.isLoggedIn()) {
       this._router.navigate(['/dashboard']);
-    } else {
-      this.loginForm = this._formBuilder.group({
-        username: ['', Validators.required],
-        password: ['', Validators.required],
-      });
     }
+  }
+
+  ngOnInit() {
+    this.loginForm = this._formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+    });
   }
 
   login() {
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       },
       err => {
         console.log(err);
-      },()=>{
+      }, () => {
         localStorage.setItem('username', loginObj.username);
         this._router.navigate(['/dashboard']);
       });
