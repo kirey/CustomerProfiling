@@ -73,6 +73,9 @@ export class DataTabComponent implements OnInit {
           );
         break;
     }
+    if (this.variables[index]['params']) {
+      delete this.variables[index]['params'];
+    }
   }
 
   test() {
@@ -107,5 +110,5 @@ export class DataTabComponent implements OnInit {
     this.getVariables();
     this.getDataTypes();
     this.getVariableTypes();
-
   }
+}

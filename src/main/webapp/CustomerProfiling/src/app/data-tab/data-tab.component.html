@@ -13,79 +13,86 @@
   </div>
   <!-- Pre Processing -->
   <h2 class="subtitle">DATASET - Pre Processing</h2>
-  <!-- Titles -->
-  <div class="flex space-around title-bar" *ngIf="variables">
-    <span class="processing-title">
-      Variable Name
-    </span>
-    <span class="processing-title">
-      Type of Variable
-    </span>
-    <span class="processing-title">
-      Type of Data
-    </span>
-    <span class="processing-title">
-      Type of Operation
-    </span>
-    <span class="processing-title">
-      Parameters
-    </span>
-  </div>
-  <!-- Data -->
-  <div class="flex column">
-    <div *ngFor="let variable of variables; let i = index" class="flex space-around variable-items">
-      <!-- Variable Name -->
-      <span>{{variable.variableName}}</span>
+  <div class="border">
+    <!-- Titles -->
+    <div class="flex space-around title-bar" *ngIf="variables">
+      <span class="processing-title">
+        Variable Name
+      </span>
+      <span class="processing-title">
+        Type of Variable
+      </span>
+      <span class="processing-title">
+        Type of Data
+      </span>
+      <span class="processing-title">
+        Type of Operation
+      </span>
+      <span class="processing-title">
+        Parameters
+      </span>
+    </div>
+    <!-- Data -->
+    <div class="flex column">
+      <div *ngFor="let variable of variables; let i = index" class="flex space-around variable-items">
+        <!-- Variable Name -->
+        <span>{{variable.variableName}}</span>
 
-      <!-- Variable Type -->
-      <mat-form-field>
-        <mat-select (selectionChange)="selectionChanged($event, i, 'typeOfVariable')" placeholder="Variable Type">
-          <mat-option *ngFor="let type of variableTypes" [value]="type">
-            {{type}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+        <!-- Variable Type -->
+        <mat-form-field>
+          <mat-select (selectionChange)="selectionChanged($event, i, 'typeOfVariable')" placeholder="Variable Type">
+            <mat-option *ngFor="let type of variableTypes" [value]="type">
+              {{type}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-      <!-- Data Type -->
-      <mat-form-field>
-        <mat-select (selectionChange)="selectionChanged($event, i, 'typeOfData')" placeholder="Data Type">
-          <mat-option *ngFor="let type of dataTypes" [value]="type">
-            {{type}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+        <!-- Data Type -->
+        <mat-form-field>
+          <mat-select (selectionChange)="selectionChanged($event, i, 'typeOfData')" placeholder="Data Type">
+            <mat-option *ngFor="let type of dataTypes" [value]="type">
+              {{type}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-      <!-- Operation Type -->
-      <mat-form-field>
-        <mat-select (selectionChange)="setParams($event, i)" placeholder="Operations Type">
-          <mat-option *ngFor="let type of variables[i]['operationTypes']" [value]="type">
-            {{type}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+        <!-- Operation Type -->
+        <mat-form-field>
+          <mat-select (selectionChange)="setParams($event, i)" placeholder="Operations Type">
+            <mat-option *ngFor="let type of variables[i]['operationTypes']" [value]="type">
+              {{type}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-      <!--  P A R A M S -->
-      <span class="params">
-        <!-- Min & Max -->
-        <div *ngIf="variables[i]['params']; else noData">
-          <span *ngIf="variables[i]['params']['minmax'] == true">
-            <mat-form-field class="small-input">
-              <input (change)="test()" matInput placeholder="Min">
-            </mat-form-field>
-            <mat-form-field class="small-input">
-              <input (change)="test()" matInput placeholder="Max">
-            </mat-form-field>
-          </span>
-          <!-- Bin -->
-          <span *ngIf="variables[i]['params']['bin'] == true">
-            <mat-form-field class="small-input">
-              <input (change)="test2()" matInput placeholder="Bin">
-            </mat-form-field>
-          </span>
-        </div>
-        <ng-template #noData>
-          No parameters.
-        </ng-template>
+        <!--  P A R A M S -->
+        <span class="params">
+          <!-- Min & Max -->
+          <div *ngIf="variables[i]['params']; else noData">
+            <span *ngIf="variables[i]['params']['minmax'] == true">
+              <mat-form-field class="small-input">
+                <input (change)="test()" matInput placeholder="Min">
+              </mat-form-field>
+              <mat-form-field class="small-input">
+                <input (change)="test()" matInput placeholder="Max">
+              </mat-form-field>
+            </span>
+            <!-- Bin -->
+            <span *ngIf="variables[i]['params']['bin'] == true">
+              <mat-form-field class="small-input">
+                <input (change)="test2()" matInput placeholder="Bin">
+              </mat-form-field>
+            </span>
+          </div>
+          <ng-template #noData>
+            No parameters.
+          </ng-template>
+        </span>
+      </div>
+      <!-- Buttons -->
+      <span class="buttons">
+        <button mat-raised-button color="warn" (click)=submit()>Save</button>
+        <button mat-stroked-button color="primary">View</button>
       </span>
     </div>
   </div>
