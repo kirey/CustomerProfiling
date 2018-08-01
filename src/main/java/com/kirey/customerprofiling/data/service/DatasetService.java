@@ -21,6 +21,7 @@ import com.kirey.customerprofiling.common.constants.AppConstants;
 import com.kirey.customerprofiling.common.constants.DataType;
 import com.kirey.customerprofiling.data.dao.DatasetsDao;
 import com.kirey.customerprofiling.data.entity.Datasets;
+import com.kirey.customerprofiling.data.entity.Projects;
 import com.kirey.customerprofiling.data.entity.Variables;
 import com.univocity.parsers.common.processor.RowListProcessor;
 
@@ -307,9 +308,11 @@ public class DatasetService {
 		InputStream is = new FileInputStream(file);
 		List<Variables> listVariables = getVariablesFromCSV(is);
 		
+		is = new FileInputStream(file);
 		datasetDto.setNumberOfVariables(listVariables.size());
 		datasetDto.setNumberOfColumns(getNumberOfColumnsCSV(is));
 		datasetDto.setDatasetSize(150);  //TODO prepraviti posle kad se razjasni sta je to
+		datasetDto.setProject(dataset.getProject());
 		
 		return datasetDto;
 	}

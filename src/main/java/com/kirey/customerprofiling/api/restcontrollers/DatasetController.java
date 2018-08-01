@@ -180,16 +180,16 @@ public class DatasetController {
 	}
 	
 	@RequestMapping(value = "/datasets/{datasetId}", method = RequestMethod.GET)
-	public ResponseEntity<RestResponseDto> findDataset(@PathVariable Integer datasetId) throws FileNotFoundException{
+	public ResponseEntity<RestResponseDto> datasetDetails(@PathVariable Integer datasetId) throws FileNotFoundException{
 				
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetService.getDatasetDetails(datasetId), HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/datasets/{datasetName}", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/datasets/{datasetName}", method = RequestMethod.GET)
 	public ResponseEntity<RestResponseDto> findDatasetBynName(@PathVariable String datasetName){
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetsDao.findByName(datasetName), HttpStatus.OK.value()), HttpStatus.OK);
-	}
+	}*/
 	
 	@RequestMapping(value = "/datasets/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<RestResponseDto> deleteDataset(@PathVariable Integer datasetId){
