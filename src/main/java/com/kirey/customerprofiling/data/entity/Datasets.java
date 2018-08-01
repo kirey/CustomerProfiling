@@ -107,7 +107,7 @@ public class Datasets implements Serializable{
 	}
 	
 	@ManyToOne()
-	@JoinColumn(name = "project", nullable = false)
+	@JoinColumn(name = "project")
 	public Projects getProject() {
 		return project;
 	}
