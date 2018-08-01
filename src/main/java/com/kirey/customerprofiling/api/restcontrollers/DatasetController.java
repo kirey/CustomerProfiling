@@ -125,29 +125,11 @@ public class DatasetController {
 	@RequestMapping(value = "/preprocessing/view", method = RequestMethod.POST)
 	public ResponseEntity<RestResponseDto> getPreprocessingView(@RequestBody List<Variables> variables) throws FileNotFoundException{//
 		
-		
 		File originalFile = new File("C:\\Temp\\testCSV.csv"); //Or get from somewhere else
 		InputStream is = new FileInputStream(originalFile);
-		
-		datasetService.createDerivedFromOriginal(is, variables);
-		
-		
-//		String[] headers = {"nesto1", "nesto2"}; 
-//		List<String[]> list = new ArrayList<>();
-//		for(int i = 0; i < 5; i++) {
-//			String[] values = {"value1", "value2"};
-//			list.add(values);
-//		}
-//		
-//		String[][] matrix = new String[2][5];
-//		for(int i = 0; i < headers.length; i ++) {
-//			for (int j = 0; j < list.size(); j++) {
-//				matrix[i] = headers;
-//				matrix[j] = list.get(j);
-//			}
-//		}
-		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("", HttpStatus.OK.value()), HttpStatus.OK);
+		String csv = datasetService.createDerivedFromOriginal(is, variables, false);
+
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(csv, HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
 
