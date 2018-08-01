@@ -15,6 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.kirey.customerprofiling.common.constants.ColumnType;
+import com.kirey.customerprofiling.common.constants.DataType;
+
 
 
 @Entity
@@ -27,10 +30,10 @@ public class Variables implements Serializable{
 	private Integer id;
 	private String variableName;
 	private Integer columnNumber;
-	private String typeOfVariable;
-	private String typeOfData;
-	private double scaleMax;
-	private double scaleMin;
+	private ColumnType typeOfVariable;
+	private DataType typeOfData;
+	private Double scaleMax;
+	private Double scaleMin;
 	private Datasets dataset;
  	private Integer bins;
 	private boolean leaveAsItIs;
@@ -66,37 +69,40 @@ public class Variables implements Serializable{
 		this.columnNumber = columnNumber;
 	}
 	
-	
+
+
 	@Column(name = "type_of_variable")
-	public String getTypeOfVariable() {
+	public ColumnType getTypeOfVariable() {
 		return typeOfVariable;
 	}
-	public void setTypeOfVariable(String typeOfVariable) {
+	
+	public void setTypeOfVariable(ColumnType typeOfVariable) {
 		this.typeOfVariable = typeOfVariable;
 	}
 	
 	
+
 	@Column(name = "type_of_data", nullable = false)
-	public String getTypeOfData() {
+	public DataType getTypeOfData() {
 		return typeOfData;
 	}
-	public void setTypeOfData(String typeOfData) {
+	public void setTypeOfData(DataType typeOfData) {
 		this.typeOfData = typeOfData;
 	}
 	
 	@Column(name = "scale_max")
-	public double getScaleMax() {
+	public Double getScaleMax() {
 		return scaleMax;
 	}
-	public void setScaleMax(double scaleMax) {
+	public void setScaleMax(Double scaleMax) {
 		this.scaleMax = scaleMax;
 	}
 	
 	@Column(name = "scale_min")
-	public double getScaleMin() {
+	public Double getScaleMin() {
 		return scaleMin;
 	}
-	public void setScaleMin(double scaleMin) {
+	public void setScaleMin(Double scaleMin) {
 		this.scaleMin = scaleMin;
 	}
 	
@@ -110,7 +116,7 @@ public class Variables implements Serializable{
 		this.dataset = dataset;
 	}
 	
-	@Column(name = "bins", nullable = false)
+	@Column(name = "bins")
 	public Integer getBins() {
 		return bins;
 	}

@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -113,7 +114,7 @@ public class Projects implements Serializable{
 		this.projectsAlgorithmsList = projectsAlgorithmsList;
 	}
 	
-	@OneToMany(mappedBy = "project", fetch=FetchType.LAZY)
+	@OneToOne(mappedBy = "project", fetch=FetchType.LAZY)
 	public List<Datasets> getDatasets() {
 		return datasets;
 	}
