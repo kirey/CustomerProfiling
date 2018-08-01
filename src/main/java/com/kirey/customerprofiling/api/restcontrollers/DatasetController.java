@@ -178,10 +178,10 @@ public class DatasetController {
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetsDao.findAll(), HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/datasets/{id}", method = RequestMethod.GET)
-	public ResponseEntity<RestResponseDto> getAllDatasets(@PathVariable Integer datasetId){
-		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetsDao.findById(datasetId), HttpStatus.OK.value()), HttpStatus.OK);
+	@RequestMapping(value = "/datasets/{datasetId}", method = RequestMethod.GET)
+	public ResponseEntity<RestResponseDto> getAllDatasets(@PathVariable Integer datasetId) throws FileNotFoundException{
+				
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetService.getDatasetDetails(datasetId), HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/datasets/{datasetName}", method = RequestMethod.GET)
