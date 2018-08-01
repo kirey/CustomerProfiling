@@ -1,5 +1,7 @@
 package com.kirey.customerprofiling.data.dao;
 
+import javax.transaction.Transactional;
+
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import com.kirey.customerprofiling.data.entity.Projects;
  *
  */
 @Repository(value = "projectsDao")
+@Transactional
 public class ProjectsDao extends KjcBaseDao{
 
 	@Autowired SessionFactory sessionFactory;
