@@ -2,6 +2,7 @@
 
 #projectOverview {
   margin-left: 20%;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 mat-dialog-content {
   width: 60%;
   display: flex;
@@ -15,8 +16,16 @@ mat-dialog-content {
 .details div {
   margin-right: 10px;
   text-transform: uppercase;
-  border: 1px solid $accent;
   padding: 10px 20px;
+}
+.box1 {
+  border: 2px inset  $accent;
+}
+.box2 {
+  border: 2px inset  $warn;
+}
+.box3 {
+  border: 2px inset  $primary;
 }
 .buttons {
   float: right;
