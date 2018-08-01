@@ -25,8 +25,9 @@ import { DeleteComponent } from './dialogs/delete/delete.component';
 import { CopyComponent } from './dialogs/copyProject/copy.component';
 import { DatasetComponent } from './dataset/dataset.component';
 import { DataTabComponent } from './data-tab/data-tab.component';
+import { ProjectOverviewComponent } from './project-overview/project-overview.component';
 
-// import { ProjectOverviewComponent } from './project-overview/project-overview.component';
+
 
 @NgModule({
   declarations: [
@@ -39,9 +40,8 @@ import { DataTabComponent } from './data-tab/data-tab.component';
     DeleteComponent,
     CopyComponent,
     DatasetComponent,
-    // ProjectOverviewComponent
-    DataTabComponent
-    // ProjectOverviewComponent
+    DataTabComponent,
+    ProjectOverviewComponent
   ],
   imports: [
     BrowserModule,

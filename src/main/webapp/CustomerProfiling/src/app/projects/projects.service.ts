@@ -8,7 +8,7 @@ export class ProjectsService {
 
     constructor(private _http: HttpClient) { }
 
-     baseUrl = '/CustomerProfiling/rest/';
+     baseUrl = '/CustomerProfiling/';
 
     getProjects(): Observable<any> {
         return this._http.get(this.baseUrl + 'projects');
