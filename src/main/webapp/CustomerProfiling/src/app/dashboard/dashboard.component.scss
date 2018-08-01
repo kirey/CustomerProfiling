@@ -1,3 +1,4 @@
+@import '../app.component.scss';
 .dashboardPanel {
     width: 98%;
     margin-left: 2%;
@@ -12,11 +13,13 @@
 .col {
     width: 49%;
     height: 250px;
-    border-style: outset;
+    border-width: 1px;
+    border-style: groove;
+    border-color: #E1F5FE;
 }
 
 mat-card {
-    background: #E8E8E8;
+    background: linear-gradient( $primary, $accent);
 }
 
 //responsive for smaller screens

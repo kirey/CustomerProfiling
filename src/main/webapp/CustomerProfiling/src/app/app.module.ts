@@ -26,8 +26,8 @@ import { CopyComponent } from './dialogs/copyProject/copy.component';
 import { DatasetComponent } from './dataset/dataset.component';
 import { DataTabComponent } from './data-tab/data-tab.component';
 import { ProjectOverviewComponent } from './project-overview/project-overview.component';
-
-
+import { AddDatasetComponent } from './dialogs/add-dataset/add-dataset.component';
+import { DatasetDetailComponent } from './dialogs/dataset-detail/dataset-detail.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,9 @@ import { ProjectOverviewComponent } from './project-overview/project-overview.co
     CopyComponent,
     DatasetComponent,
     DataTabComponent,
-    ProjectOverviewComponent
+    ProjectOverviewComponent,
+    AddDatasetComponent,
+    DatasetDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,7 @@ import { ProjectOverviewComponent } from './project-overview/project-overview.co
     MaterialModule
   ],
   providers: [AuthService, AuthGuard, ProjectsService],
-  entryComponents: [AddComponent, EditProjectComponent, DeleteComponent, CopyComponent],
+  entryComponents: [AddComponent, EditProjectComponent, DeleteComponent, CopyComponent,AddDatasetComponent,DatasetDetailComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

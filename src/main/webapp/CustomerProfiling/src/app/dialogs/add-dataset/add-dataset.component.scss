@@ -1,0 +1,50 @@
+#addDataset {
+    display: flex;
+    flex-direction: column;
+    .mat-form-field {
+        width: 100%;
+        padding: 10px 10px;
+    }
+    .mat-dialog-content {
+        height: 300px;
+    }
+    .buttons {
+        float: right;
+    }
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+        background: rgba(2, 137, 209, 0.836);
+        margin-right: 10px;
+        color: white;
+        padding: 15px;
+    }
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        color: white;
+        background: rgba(2, 137, 209, 0.836);
+        cursor: inherit;
+        display: block;
+    }
+    button {
+        background: rgba(2, 137, 209, 0.836);
+        color: white;
+    }
+    button:disabled,
+    button[disabled] {
+        background-color: #cccccc;
+        color: black;
+    }
+    h1 {
+        text-align: center;
+    }
+}
