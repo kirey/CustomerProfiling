@@ -1,6 +1,8 @@
 package com.kirey.customerprofiling.data.service;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -10,11 +12,15 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kirey.customerprofiling.api.dto.DatasetDto;
 import com.kirey.customerprofiling.common.constants.AppConstants;
 import com.kirey.customerprofiling.common.constants.DataType;
+import com.kirey.customerprofiling.data.dao.DatasetsDao;
+import com.kirey.customerprofiling.data.entity.Datasets;
 import com.kirey.customerprofiling.data.entity.Variables;
 import com.univocity.parsers.common.processor.RowListProcessor;
 
@@ -26,6 +32,9 @@ import com.univocity.parsers.common.processor.RowListProcessor;
 
 @Service
 public class DatasetService {
+	
+	@Autowired
+	private DatasetsDao datasetsDao;
 
 	/**
 	 * Method for getting List of {@link Variables} from csv file
@@ -58,6 +67,14 @@ public class DatasetService {
 		}
 		
 		return listVariables;
+	}
+	
+	public int getNumberOfColumnsCSV(InputStream csvFile) {
+		CSVParser parser = new CSVParser();
+		RowListProcessor processor = parser.parceFile(csvFile);
+		String[] headers = processor.getHeaders();
+		
+		return headers.length;
 	}
 
 	public void createDerivedFromOriginal(InputStream csvFile, List<Variables> variables) {
@@ -276,5 +293,24 @@ public class DatasetService {
         csvFile.transferTo(dest);
 		
         return filePath;
+	}
+	
+	public DatasetDto getDatasetDetails(Integer datasetId) throws FileNotFoundException {
+		
+		Datasets dataset = datasetsDao.findById(datasetId);
+		
+		DatasetDto datasetDto = new DatasetDto();
+		datasetDto.setDatasetDesc(dataset.getDescription());
+		datasetDto.setDatasetName(dataset.getName());
+		
+		File file = new File(dataset.getFilename());
+		InputStream is = new FileInputStream(file);
+		List<Variables> listVariables = getVariablesFromCSV(is);
+		
+		datasetDto.setNumberOfVariables(listVariables.size());
+		datasetDto.setNumberOfColumns(getNumberOfColumnsCSV(is));
+		datasetDto.setDatasetSize(150);  //TODO prepraviti posle kad se razjasni sta je to
+		
+		return datasetDto;
 	}
 }
