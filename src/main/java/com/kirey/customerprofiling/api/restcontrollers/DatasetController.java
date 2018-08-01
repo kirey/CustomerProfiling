@@ -202,11 +202,11 @@ public class DatasetController {
 	@RequestMapping(value = "/linkDataset", method = RequestMethod.GET)
 	public ResponseEntity<RestResponseDto> findDatasetBynName(@RequestParam Integer projectId, @RequestParam Integer datasetId){
 		
-		Projects project = projectDao.findById(projectId);
+		/*Projects project = projectDao.findById(projectId);
 		Datasets dataset = datasetsDao.findById(datasetId);
-		project.getDatasets().add(dataset);
-		projectDao.attachDirty(project);
+		project.setDatasets(dataset);
+		projectDao.attachDirty(project);*/
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto(null, HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto("OK", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 }

@@ -44,7 +44,7 @@ public class Projects implements Serializable{
 	@JsonBackReference
 	private List<ProjectsAlgorithms> projectsAlgorithmsList = new ArrayList<>();
 	@JsonIgnore
-	private List<Datasets> datasets = new ArrayList<>();
+	private Datasets datasets;
 	
 	@Id
 	@SequenceGenerator(name = "seq_projects_gen", sequenceName = "seq_projects", allocationSize = 1, initialValue = 1)
@@ -99,7 +99,6 @@ public class Projects implements Serializable{
 		return description;
 	}
 	
-	
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -115,12 +114,11 @@ public class Projects implements Serializable{
 	}
 	
 	@OneToOne(mappedBy = "project", fetch=FetchType.LAZY)
-	public List<Datasets> getDatasets() {
+	public Datasets getDatasets() {
 		return datasets;
 	}
 
-
-	public void setDatasets(List<Datasets> datasets) {
+	public void setDatasets(Datasets datasets) {
 		this.datasets = datasets;
 	}
 	

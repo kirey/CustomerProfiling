@@ -18,6 +18,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -128,7 +131,8 @@ public class Datasets implements Serializable{
 		this.derivedDatasets = derivedDatasets;
 	}
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "dataset")
+	@OneToMany(mappedBy = "dataset")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<Variables> getVariables() {
 		return variables;
 	}
