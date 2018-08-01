@@ -17,6 +17,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Entity
@@ -37,6 +39,7 @@ public class Datasets implements Serializable{
 	private String database;
 	private String schema;
 	private String dbQuery;
+	@JsonIgnore
 	private Datasets originalDataset;
 	private List<Datasets> derivedDatasets = new ArrayList<>();
 	private Projects project;

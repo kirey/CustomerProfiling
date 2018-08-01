@@ -1,5 +1,7 @@
 package com.kirey.customerprofiling.data.dao;
 
+import java.util.List;
+
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,13 @@ public class DatasetsDao extends KjcBaseDao {
 		
 		String hql = "from Datasets ds where ds.name = :name";
 		Datasets  dataset = (Datasets) sessionFactory.getCurrentSession().createQuery(hql).setParameter("name", name).uniqueResult();
+		return dataset;
+	} 
+	
+	public List<Datasets> findAllOriginal() {
+		
+		String hql = "from Datasets ds where ds.originalDataset is null";
+		List<Datasets>  dataset = (List<Datasets>) sessionFactory.getCurrentSession().createQuery(hql).list();
 		return dataset;
 	} 
 

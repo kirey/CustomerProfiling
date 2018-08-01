@@ -176,19 +176,27 @@ public class DatasetController {
 	@RequestMapping(value = "/datasets", method = RequestMethod.GET)
 	public ResponseEntity<RestResponseDto> getAllDatasets(){
 				
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetsDao.findAll(), HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetsDao.findAllOriginal(), HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/datasets/{datasetId}", method = RequestMethod.GET)
-	public ResponseEntity<RestResponseDto> getAllDatasets(@PathVariable Integer datasetId) throws FileNotFoundException{
+	public ResponseEntity<RestResponseDto> datasetDetails(@PathVariable Integer datasetId) throws FileNotFoundException{
 				
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetService.getDatasetDetails(datasetId), HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/datasets/{datasetName}", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/datasets/{datasetName}", method = RequestMethod.GET)
 	public ResponseEntity<RestResponseDto> findDatasetBynName(@PathVariable String datasetName){
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetsDao.findByName(datasetName), HttpStatus.OK.value()), HttpStatus.OK);
+	}*/
+	
+	@RequestMapping(value = "/datasets/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<RestResponseDto> deleteDataset(@PathVariable Integer datasetId){
+		
+		
+		
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Dataset successfully deleted!", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/linkDataset", method = RequestMethod.GET)

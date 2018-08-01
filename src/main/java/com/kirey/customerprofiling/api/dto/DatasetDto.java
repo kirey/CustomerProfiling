@@ -14,7 +14,7 @@ public class DatasetDto implements Serializable {
 	private int numberOfVariables;
 	private int datasetSize;
 	private String datasetDesc;
-	private List<Projects> projectList;
+	private Projects project;
 	
 	
 	public String getDatasetName() {
@@ -47,11 +47,11 @@ public class DatasetDto implements Serializable {
 	public void setDatasetDesc(String datasetDesc) {
 		this.datasetDesc = datasetDesc;
 	}
-	public List<Projects> getProjectList() {
-		return projectList;
+	public Projects getProject() {
+		return project;
 	}
-	public void setProjectList(List<Projects> projectList) {
-		this.projectList = projectList;
+	public void setProject(Projects project) {
+		this.project = project;
 	}
 	
 	
