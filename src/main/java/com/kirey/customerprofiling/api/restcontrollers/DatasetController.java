@@ -10,6 +10,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,8 +24,10 @@ import com.kirey.customerprofiling.common.constants.AppConstants;
 import com.kirey.customerprofiling.common.constants.ColumnType;
 import com.kirey.customerprofiling.common.constants.DataType;
 import com.kirey.customerprofiling.data.dao.DatasetsDao;
+import com.kirey.customerprofiling.data.dao.ProjectsDao;
 import com.kirey.customerprofiling.data.dao.VariablesDao;
 import com.kirey.customerprofiling.data.entity.Datasets;
+import com.kirey.customerprofiling.data.entity.Projects;
 import com.kirey.customerprofiling.data.entity.Variables;
 import com.kirey.customerprofiling.data.service.DatasetService;
 
@@ -46,6 +49,9 @@ public class DatasetController {
 	
 	@Autowired
 	private VariablesDao variablesDao;
+	
+	@Autowired
+	private ProjectsDao projectDao;
 	
 	/**
 	 * Method for getting list of {@link Variables}  used for pre processing data
@@ -145,16 +151,53 @@ public class DatasetController {
 	
 
 	@RequestMapping(value = "/addNewDataset", method = RequestMethod.POST)
-	public ResponseEntity<RestResponseDto> uploadCsvDataset(@RequestPart MultipartFile csvFile, String datasetName, String datasetDesc) throws IllegalStateException, IOException{
+	public ResponseEntity<RestResponseDto> uploadCsvDataset(@RequestPart MultipartFile csvFile, @RequestParam String datasetName, @RequestParam String datasetDesc) throws IllegalStateException, IOException{
 		
+		String filePath = datasetService.uploadCSVFile(csvFile);
 		Datasets dataset = new Datasets();
-	    dataset.setFilename(datasetService.uploadCSVFile(csvFile));
+	    dataset.setFilename(filePath);
 	    dataset.setName(datasetName);
-	    //dataset.setdesc.....todo
+	    dataset.setDescription(datasetDesc);
 	    datasetsDao.attachDirty(dataset);
+	    
+	    File file = new File(filePath); 
+		InputStream is = new FileInputStream(file);
+		List<Variables> listVariables = datasetService.getVariablesFromCSV(is);
+		for (Variables variable : listVariables) {
+			variable.setDataset(dataset);
+			variablesDao.attachDirty(variable);
+		}
 	    		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Dataset successfully created", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
-
+	
+	@RequestMapping(value = "/datasets", method = RequestMethod.GET)
+	public ResponseEntity<RestResponseDto> getAllDatasets(){
+				
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetsDao.findAll(), HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/datasets/{id}", method = RequestMethod.GET)
+	public ResponseEntity<RestResponseDto> getAllDatasets(@PathVariable Integer datasetId){
+		
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetsDao.findById(datasetId), HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/datasets/{datasetName}", method = RequestMethod.GET)
+	public ResponseEntity<RestResponseDto> findDatasetBynName(@PathVariable String datasetName){
+		
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetsDao.findByName(datasetName), HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/linkDataset", method = RequestMethod.GET)
+	public ResponseEntity<RestResponseDto> findDatasetBynName(@RequestParam Integer projectId, @RequestParam Integer datasetId){
+		
+		Projects project = projectDao.findById(projectId);
+		Datasets dataset = datasetsDao.findById(datasetId);
+		project.getDatasets().add(dataset);
+		projectDao.attachDirty(project);
+		
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(null, HttpStatus.OK.value()), HttpStatus.OK);
+	}
 }

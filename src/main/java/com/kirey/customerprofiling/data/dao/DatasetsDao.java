@@ -18,5 +18,12 @@ public class DatasetsDao extends KjcBaseDao {
 		log = LogFactory.getLog(DatasetsDao.class);
 		entityClass = Datasets.class;
 	}
+	
+	public Datasets findByName(String name) {
+		
+		String hql = "from Datasets ds where ds.name = :name";
+		Datasets  dataset = (Datasets) sessionFactory.getCurrentSession().createQuery(hql).setParameter("name", name).uniqueResult();
+		return dataset;
+	} 
 
 }
