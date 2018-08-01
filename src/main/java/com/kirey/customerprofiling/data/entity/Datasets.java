@@ -105,7 +105,7 @@ public class Datasets implements Serializable{
 		this.originalDataset = originalDataset;
 	}
 	
-	@ManyToOne()
+	@OneToOne()
 	@JoinColumn(name = "project", unique = true)
 	public Projects getProject() {
 		return project;

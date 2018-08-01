@@ -40,6 +40,14 @@ public class ProjectsController {
 		
 	}
 	
+	
+	
+	/**
+	 * Returns project by id 
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/projectDetails/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> getProjectDetails(@PathVariable Integer id) {	
 		
@@ -47,18 +55,26 @@ public class ProjectsController {
 		
 	}
 	
-	
+	/**
+	 * Add new project to db 
+	 * 
+	 * @return
+	 */
 	@RequestMapping(value = "/addProjectDetail", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> addProjectDetail(@RequestBody Projects project) {
 		
 		project.setCreationDate(new Date());
 		
-		projectsDao.attachDirty(project);
+		projectsDao.persist(project);
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Successfully added", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
-	
+	/**
+	 * Edit existing project 
+	 * 
+	 * @return
+	 */
 	@RequestMapping(value = "/editProjectDetail", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> editProjectDetail(@RequestBody Projects project) {
 	
@@ -67,7 +83,12 @@ public class ProjectsController {
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Successfully edited", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
-	
+	/**
+	 * Delete project by id 
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/deleteProjectDetail/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> deleteProjectDetail(@PathVariable Integer id) {
 		
@@ -77,7 +98,12 @@ public class ProjectsController {
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Successfully deleted", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
-	
+	/**
+	 * Copy existing project(find existing project by Id) and copy to new project
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/copyProjectDetail/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RestResponseDto> copyProjectDetail(@PathVariable Integer id, @RequestBody Projects project) {
 		

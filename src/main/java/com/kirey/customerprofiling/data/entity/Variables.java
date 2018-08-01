@@ -67,7 +67,7 @@ public class Variables implements Serializable{
 	}
 	
 	
-	@Column(name = "type_of_variable", nullable = false)
+	@Column(name = "type_of_variable")
 	public String getTypeOfVariable() {
 		return typeOfVariable;
 	}
