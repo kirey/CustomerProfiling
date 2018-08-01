@@ -76,21 +76,21 @@ public class ProjectsController {
 	}
 	
 	
-	@RequestMapping(value = "/copyProjectDetail/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<RestResponseDto> copyProjectDetail(@PathVariable Integer id) {
+	@RequestMapping(value = "/copyProjectDetail/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<RestResponseDto> copyProjectDetail(@PathVariable Integer id, @RequestBody Projects project) {
 		
 		Projects oldProject = (Projects)projectsDao.findById(id);
 		
 		Projects newProject = new Projects();
 		
-		newProject.setId(oldProject.getId());
-		newProject.setProjectName(oldProject.getProjectName());
+
+		newProject.setProjectName(project.getProjectName());
 		newProject.setCreationDate(new Date());
-		newProject.setStatus(oldProject.getStatus());
-		newProject.setDatasets(oldProject.getDatasets());
-		newProject.setDescription(oldProject.getDescription());
-		newProject.setLastOpened(oldProject.getLastOpened());
-		newProject.setProjectsAlgorithmsList(oldProject.getProjectsAlgorithmsList());
+		newProject.setStatus("COPIED");
+//		newProject.setDatasets(project.getDatasets());
+		newProject.setDescription(project.getDescription());
+		newProject.setLastOpened(new Date());
+//		newProject.setProjectsAlgorithmsList(project.getProjectsAlgorithmsList());
 		
 		
 		projectsDao.attachDirty(newProject);
