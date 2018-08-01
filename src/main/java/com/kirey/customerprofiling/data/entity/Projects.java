@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,8 +16,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+
 
 /**
  * 
@@ -35,11 +40,13 @@ public class Projects implements Serializable{
 	private Date lastOpened;
 	private String status;
 	private String description;
+	@JsonBackReference
 	private List<ProjectsAlgorithms> projectsAlgorithmsList = new ArrayList<>();
+	@JsonIgnore
 	private List<Datasets> datasets = new ArrayList<>();
 	
 	@Id
-	@SequenceGenerator(name = "seq_project_gen", sequenceName = "seq_projects", allocationSize = 1, initialValue = 1)
+	@SequenceGenerator(name = "seq_projects_gen", sequenceName = "seq_projects", allocationSize = 1, initialValue = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_projects_gen")
 	@Column(name = "ID", unique = true, nullable = false, precision = 10, scale = 0)
 	public Integer getId() {
@@ -96,8 +103,8 @@ public class Projects implements Serializable{
 		this.description = description;
 	}
 
-	@OneToMany(mappedBy = "project")
-	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy = "project", fetch=FetchType.LAZY)
+//	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<ProjectsAlgorithms> getProjectsAlgorithmsList() {
 		return projectsAlgorithmsList;
 	}
@@ -106,7 +113,7 @@ public class Projects implements Serializable{
 		this.projectsAlgorithmsList = projectsAlgorithmsList;
 	}
 	
-	@OneToMany(mappedBy = "project")
+	@OneToMany(mappedBy = "project", fetch=FetchType.LAZY)
 	public List<Datasets> getDatasets() {
 		return datasets;
 	}
