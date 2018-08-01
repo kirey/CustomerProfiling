@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -35,7 +38,8 @@ public class Datasets implements Serializable{
 	private String filename;
 	private String database;
 	private String schema;
-	private String dbQuerry;
+	private String dbQuery;
+	@JsonIgnore
 	private Datasets originalDataset;
 	private List<Datasets> derivedDatasets = new ArrayList<>();
 	private Projects project;
@@ -88,16 +92,16 @@ public class Datasets implements Serializable{
 	}
 	
 	
-	@Column(name = "db_querry")
-	public String getDbQuerry() {
-		return dbQuerry;
+	@Column(name = "db_query")
+	public String getDbQuery() {
+		return dbQuery;
 	}
-	public void setDbQuerry(String dbQuerry) {
-		this.dbQuerry = dbQuerry;
+	public void setDbQuery(String dbQuery) {
+		this.dbQuery = dbQuery;
 	}
 	
 	@ManyToOne()
-	@JoinColumn(name = "origina_dataset")
+	@JoinColumn(name = "original_dataset")
 	public Datasets getOriginalDataset() {
 		return originalDataset;
 	}
@@ -106,7 +110,7 @@ public class Datasets implements Serializable{
 	}
 	
 	@ManyToOne()
-	@JoinColumn(name = "project", nullable = false)
+	@JoinColumn(name = "project")
 	public Projects getProject() {
 		return project;
 	}
@@ -114,7 +118,7 @@ public class Datasets implements Serializable{
 		this.project = project;
 	}
 	
-	@OneToMany(mappedBy = "originalDataset")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "originalDataset")
 	public List<Datasets> getDerivedDatasets() {
 		return derivedDatasets;
 	}
@@ -122,7 +126,7 @@ public class Datasets implements Serializable{
 		this.derivedDatasets = derivedDatasets;
 	}
 	
-	@OneToMany(mappedBy = "dataset")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "dataset")
 	public List<Variables> getVariables() {
 		return variables;
 	}

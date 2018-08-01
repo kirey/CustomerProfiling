@@ -10,13 +10,16 @@ $gray: #757575;
 .column {
     flex-direction: column;
 }
+
 .center {
     align-items: center;
     justify-content: center;
 }
+
 .space-around {
     justify-content: space-around;
 }
+
 .wrap {
     flex-wrap: wrap;
 }
@@ -26,10 +29,9 @@ $gray: #757575;
     color: $gray;
 }
 
-
 .navContainer {
     width: 100%;
-    height: 88vh;
+    height: 89vh;
 }
 
 .sideContent {
@@ -45,6 +47,10 @@ mat-nav-list a mat-icon {
     padding-left: 25px;
 }
 
+mat-card {
+    color: white;
+}
+
 .userDetail {
     padding-left: 40px;
     margin-bottom: 40px;
@@ -56,13 +62,13 @@ mat-nav-list a mat-icon {
 
 .header {
     overflow: hidden;
-    background-color: #f1f1f1;
+    background: linear-gradient( $primary, $accent);
     padding: 20px 10px;
 }
 
 .header a {
     float: left;
-    color: black;
+    color: white;
     text-align: center;
     padding: 12px;
     text-decoration: none;
@@ -74,4 +80,8 @@ mat-nav-list a mat-icon {
 .header a.logo {
     font-size: 25px;
     font-weight: bold;
+}
+
+.mat-nav-list a.active {
+    background: #EAFFD1;
 }

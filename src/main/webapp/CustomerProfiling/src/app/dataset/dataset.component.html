@@ -1,7 +1,7 @@
 <div id="datasets">
     <h1>My Datasets </h1>
     <div class="aboveTable">
-        <button matTooltip="Add Dataset" matTooltipPosition="above" mat-mini-fab>
+        <button class="addBtn" (click)="addDataset()" matTooltip="Add Dataset" matTooltipPosition="above" mat-mini-fab>
             <i class="material-icons plus">add</i>
         </button>
     </div>
@@ -15,7 +15,7 @@
                 <th mat-header-cell *matHeaderCellDef> Actions</th>
                 <td mat-cell *matCellDef="let dataset">
                     <i matTooltip="Delete dateset" matTooltipPosition="above" class="material-icons table-icons"> delete </i>
-                    <i matTooltip="Show dateset" matTooltipPosition="above" class="material-icons table-icons"> visibility </i>
+                    <i matTooltip="Show dateset" (click)="showDatasetDetail()" matTooltipPosition="above" class="material-icons table-icons"> visibility </i>
                 </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

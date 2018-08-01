@@ -1,5 +1,5 @@
 <div class="header">
-    <a routerLink="/dashboard" class="logo">LOGO</a>
+    <a routerLink="/dashboard" class="logo">Customer Profiling</a>
 </div>
 <mat-sidenav-container class="navContainer">
     <mat-sidenav class="sideContent" *ngIf="_auth.isLoggedIn()" mode="side" opened>
@@ -19,11 +19,11 @@
                 <mat-icon>router</mat-icon>Datasets</a>
         </mat-nav-list>
         <mat-nav-list>
-            <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
+            <a mat-list-item href="javascript:void(0)" routerLinkActive="active">
                 <mat-icon>developer_board</mat-icon>Algorithm</a>
         </mat-nav-list>
         <mat-nav-list>
-            <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
+            <a mat-list-item href="javascript:void(0)" routerLinkActive="active">
                 <mat-icon>computer</mat-icon>System monitor</a>
         </mat-nav-list>
         <mat-nav-list class="logout">

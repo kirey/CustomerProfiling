@@ -1,3 +1,4 @@
+@import '../app.component.scss';
 table {
     width: 70%;
     margin-left: 15%;
@@ -33,4 +34,22 @@ h1 {
     button {
         margin-left: 83%;
     }
+}
+
+tr.mat-header-row {
+    background: linear-gradient( $primary, $accent);
+}
+
+th.mat-header-cell {
+    text-align: center;
+    color: white;
+}
+
+td {
+    text-align: center;
+}
+
+.addBtn {
+    background: $accent;
+    color: white;
 }

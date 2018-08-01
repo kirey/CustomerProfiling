@@ -1,0 +1,45 @@
+@import '../app.component.scss';
+#projectOverview {
+  margin-left: 20%;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  mat-dialog-content {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+  }
+  .box1::selection {
+    background-color: $primary;
+    color: white;
+  }
+  .box2::selection {
+    background-color: $primary;
+    color: white;
+  }
+  .box3::selection {
+    background-color: $primary;
+    color: white;
+  }
+  .details {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .details div {
+    margin-right: 15px;
+    text-transform: uppercase;
+    padding: 10px 20px;
+  }
+  .box1 {
+    border: 2px inset $accent;
+  }
+  .box2 {
+    border: 2px inset $warn;
+  }
+  .box3 {
+    border: 2px inset $primary;
+  }
+  .buttons {
+    float: right;
+    margin-right: 40%;
+  }
+}
