@@ -44,6 +44,7 @@ public class Datasets implements Serializable{
 	private List<Datasets> derivedDatasets = new ArrayList<>();
 	private Projects project;
 	private String description;
+	@JsonIgnore
 	private List<Variables> variables = new ArrayList<>();
 	
 	
