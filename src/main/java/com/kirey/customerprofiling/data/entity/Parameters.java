@@ -14,10 +14,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 
 @Entity
-@Table(name = "parameters")
+@Table(name = "parameters", uniqueConstraints = {
+	      @UniqueConstraint(
+	              columnNames = {"name", "algorithm"},
+	              name="parameters_name_value_type_uk"
+	          )
+	       })
 public class Parameters implements Serializable{
 
 	private static final long serialVersionUID = -5624897424117953346L;
@@ -42,7 +48,7 @@ public class Parameters implements Serializable{
 		this.id = id;
 	}
 	
-	@Column(name = "parameter_name", nullable=false)
+	@Column(name = "name", nullable=false)
 	public String getParameterName() {
 		return parameterName;
 	}
@@ -50,7 +56,7 @@ public class Parameters implements Serializable{
 		this.parameterName = parameterName;
 	}
 	
-	@Column(name = "parameter_value_type")
+	@Column(name = "value_type", nullable=false)
 	public String getParameterValueType() {
 		return parameterValueType;
 	}

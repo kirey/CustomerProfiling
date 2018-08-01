@@ -53,7 +53,7 @@ public class Variables implements Serializable{
 		this.id = id;
 	}
 	
-	@Column(name = "variable_name", nullable = false)
+	@Column(name = "name", nullable = false)
 	public String getVariableName() {
 		return variableName;
 	}
@@ -61,7 +61,7 @@ public class Variables implements Serializable{
 		this.variableName = variableName;
 	}
 	
-	@Column(name = "column_number")
+	@Column(name = "column_number", nullable = false)
 	public Integer getColumnNumber() {
 		return columnNumber;
 	}
@@ -69,17 +69,19 @@ public class Variables implements Serializable{
 		this.columnNumber = columnNumber;
 	}
 	
-	
-	@Column(name = "type_of_variable")
+
+	@Column(name = "type_of_variable", nullable = false)
 	public ColumnType getTypeOfVariable() {
 		return typeOfVariable;
 	}
+	
 	public void setTypeOfVariable(ColumnType typeOfVariable) {
 		this.typeOfVariable = typeOfVariable;
 	}
 	
 	
-	@Column(name = "type_of_data")
+
+	@Column(name = "type_of_data", nullable = false)
 	public DataType getTypeOfData() {
 		return typeOfData;
 	}
@@ -87,7 +89,7 @@ public class Variables implements Serializable{
 		this.typeOfData = typeOfData;
 	}
 	
-	@Column(name = "scale_max", nullable = false)
+	@Column(name = "scale_max")
 	public double getScaleMax() {
 		return scaleMax;
 	}
@@ -95,7 +97,7 @@ public class Variables implements Serializable{
 		this.scaleMax = scaleMax;
 	}
 	
-	@Column(name = "scale_min", nullable = false)
+	@Column(name = "scale_min")
 	public double getScaleMin() {
 		return scaleMin;
 	}
@@ -121,7 +123,7 @@ public class Variables implements Serializable{
 		this.bins = bins;
 	}
 	
-	@Column(name = "leave_as_it_is", nullable = false)
+	@Column(name = "fl_leave_as_it_is")
 	public boolean isLeaveAsItIs() {
 		return leaveAsItIs;
 	}
@@ -129,7 +131,7 @@ public class Variables implements Serializable{
 		this.leaveAsItIs = leaveAsItIs;
 	}
 	
-	@Column(name = "distinct", nullable = false)
+	@Column(name = "fl_distinct")
 	public boolean isDistinct() {
 		return distinct;
 	}

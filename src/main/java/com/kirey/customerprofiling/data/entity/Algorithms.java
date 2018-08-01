@@ -41,7 +41,7 @@ public class Algorithms implements Serializable {
 		this.id = id;
 	}
 	
-	@Column(name = "algorithm_name", nullable = false)
+	@Column(name = "algorithm_name", nullable = false, unique = true)
 	public String getAlgorithmName() {
 		return algorithmName;
 	}
@@ -57,7 +57,7 @@ public class Algorithms implements Serializable {
 		this.description = description;
 	}
 	
-	@Column(name = "library")
+	@Column(name = "library", nullable = false)
 	public String getLibrary() {
 		return library;
 	}

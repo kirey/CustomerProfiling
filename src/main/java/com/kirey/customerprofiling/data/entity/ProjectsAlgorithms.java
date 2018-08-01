@@ -11,9 +11,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "project_algorithms")
+@Table(name = "project_algorithms", uniqueConstraints = {
+	      @UniqueConstraint(
+	              columnNames = {"project", "algorithm"},
+	              name="project_algorithm_project_algorithm_uk"
+	          )
+	       })
 public class ProjectsAlgorithms implements Serializable {
 
 	
