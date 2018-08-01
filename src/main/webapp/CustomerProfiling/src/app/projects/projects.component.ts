@@ -15,7 +15,9 @@ import { CopyComponent } from '../dialogs/copyProject/copy.component';
 export class ProjectsComponent implements OnInit {
   dataSource: any;
   name: string;
-  displayedColumns: string[] = [ 'name', 'editing'];
+  data: any;
+  displayedColumns: string[] = [ 'id', 'name', 'creationDate', 'lastOpened', 'status', 'description', 'editing'];
+  projects: any;
 
   constructor(public projectsService: ProjectsService, public dialog: MatDialog) { }
 
@@ -24,8 +26,8 @@ export class ProjectsComponent implements OnInit {
   this.projectsService.getProjects().subscribe(
     res => {
       console.log(res);
-      // this.jobHistory = res.data;
-      console.log(res);
+      this.projects = res.data;
+      console.log(this.projects);
     },
     err => console.log(err)
   );
@@ -47,12 +49,12 @@ export class ProjectsComponent implements OnInit {
   }
 
   // open edit dialog
-  openEditDialog() {
+  openEditDialog(obj) {
     const dialogRef = this.dialog.open(EditProjectComponent, {
       width: '800px',
-      // data: this.data
+      data: obj
     });
-    // console.log(obj);
+    console.log(obj);
 
     // dialogRef.afterClosed().subscribe(res => {
     //   this.getList();
@@ -60,6 +62,7 @@ export class ProjectsComponent implements OnInit {
     //   console.log('uspesno');
     // });
   }
+
 
    // open delete dialog
    openDeleteDialog() {

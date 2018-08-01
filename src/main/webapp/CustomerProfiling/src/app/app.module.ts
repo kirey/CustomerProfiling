@@ -13,6 +13,8 @@ import { MaterialModule } from './shared/modules/material.module';
 
 // services
 import { ProjectsService } from './projects/projects.service';
+import { EditProjectsService } from './dialogs/edit-project/edit.project.service';
+
 
 // components
 import { ProjectsComponent } from './projects/projects.component';
@@ -59,7 +61,7 @@ import { DatasetDetailComponent } from './dialogs/dataset-detail/dataset-detail.
     HttpClientModule,
     MaterialModule
   ],
-  providers: [AuthService, AuthGuard, ProjectsService, DataTabService],
+  providers: [AuthService, AuthGuard, ProjectsService, EditProjectsService, DataTabService],
   entryComponents: [AddComponent, EditProjectComponent, DeleteComponent, CopyComponent, AddDatasetComponent, DatasetDetailComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

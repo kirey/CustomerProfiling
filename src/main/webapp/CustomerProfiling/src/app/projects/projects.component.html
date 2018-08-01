@@ -1,26 +1,45 @@
 <div id="projects">
-  <button mat-mini-fab color="primary" matTooltip="Create Project" matTooltipPosition="above" (click)="openAddDialog()"><i class="material-icons">add</i></button>
-  <button mat-mini-fab color="accent" matTooltip="Edit Project" matTooltipPosition="above" (click)="openEditDialog()"><i class="material-icons">edit</i></button>
-  <button mat-mini-fab color="warn" matTooltip="Delete Project" matTooltipPosition="above" (click)="openDeleteDialog()"><i class="material-icons">delete</i></button>
-  <button mat-mini-fab color="warn" matTooltip="Copy Project" matTooltipPosition="above" (click)="openCopyDialog() "><i class="material-icons">file_copy</i></button>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <button mat-mini-fab color="primary" matTooltip="Create Project" matTooltipPosition="above" (click)="openAddDialog()">
+    <i class="material-icons">add</i>
+  </button>
+  <table mat-table [dataSource]="projects" class="mat-elevation-z8">
     <!-- Name Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> Project Name </td>
+      <td mat-cell *matCellDef="let element"> {{element.projectName}} </td>
     </ng-container>
-     <!-- Actions -->
-     <ng-container matColumnDef="editing">
+    <ng-container matColumnDef="creationDate">
+      <th mat-header-cell *matHeaderCellDef> Creation Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.creationDate | date}} </td>
+    </ng-container>
+    <ng-container matColumnDef="lastOpened">
+      <th mat-header-cell *matHeaderCellDef> Last Opened </th>
+      <td mat-cell *matCellDef="let element"> {{element.lastOpened | date}} </td>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+    <!-- Actions -->
+    <ng-container matColumnDef="editing">
       <th mat-header-cell *matHeaderCellDef> Editing</th>
       <td mat-cell *matCellDef="let element">
         <span class="flex">
-          <i matTooltip="Edit Project" matTooltipPosition="above" class="material-icons table-icons">
+          <i matTooltip="Edit Project" matTooltipPosition="above" class="material-icons table-icons" (click)="openEditDialog(element)">
             edit
           </i>
-          <i matTooltip="Copy Project" matTooltipPosition="above" class="material-icons table-icons">
-            copy
+          <i matTooltip="Copy Project" matTooltipPosition="above" class="material-icons table-icons" (click)="openCopyDialog()">
+            file_copy
           </i>
-          <i matTooltip="Delete Poject" matTooltipPosition="above" class="material-icons table-icons">
+          <i color="warn" matTooltip="Delete Project" matTooltipPosition="above" class="material-icons table-icons" (click)="openDeleteDialog()">
             delete
           </i>
         </span>

@@ -1,19 +1,26 @@
 <div id="editProject">
-    <h1>Edit Project</h1>
+    <h1>Edit Project {{data.id}}</h1>
+    <form #editProjectForm="ngForm">
       <mat-dialog-content>
     <mat-form-field>
-      <input matInput placeholder=" Project name">
+      <input matInput name="projectName" type="text" [(ngModel)]="data.projectName" placeholder=" Project name">
     </mat-form-field><br>
-    <mat-form-field>
-        <input matInput placeholder=" Project date">
-      </mat-form-field><br>
+    <!-- <mat-form-field>
+        <input matInput  name="creationDate" type="text" [(ngModel)]="data.creationDate" placeholder=" Project date">
+      </mat-form-field><br> -->
       <mat-form-field>
-          <input matInput placeholder=" Project status">
+          <input matInput name="creationDate" #creationDate="ngModel" ngModel [matDatepicker]="pickerInit" placeholder="Project date" [value]="date.value">
+          <mat-datepicker-toggle matSuffix [for]="pickerInit"></mat-datepicker-toggle>
+          <mat-datepicker #pickerInit></mat-datepicker>
+        </mat-form-field><br>
+      <mat-form-field>
+          <input matInput name="status" type="text" [(ngModel)]="data.status" placeholder=" Project status">
         </mat-form-field>
   </mat-dialog-content>
   <mat-dialog-actions class="buttons">
-      <button mat-button mat-dialog-close (click)="cancel()">Cancel</button>
-      <button type="submit" color="warn" mat-raised-button>Save</button>
+      <!-- <button mat-button mat-dialog-close (click)="cancel()">Cancel</button> -->
+      <button type="submit" color="warn" mat-raised-button (click)="editJob(editProjectForm.value)">Save</button>
   </mat-dialog-actions>
+</form>
   </div>
 
