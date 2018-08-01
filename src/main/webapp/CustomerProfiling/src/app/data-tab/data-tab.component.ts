@@ -127,10 +127,18 @@ export class DataTabComponent implements OnInit {
   }
 
   viewObject() {
-
+    for (let i = 0; i < this.variables.length; i++) {
+      delete this.variables[i]['operationTypes'];
+      delete this.variables[i]['params'];
+    }
   }
 
   submit() {
+    for (let i = 0; i < this.variables.length; i++) {
+      delete this.variables[i]['operationTypes'];
+      delete this.variables[i]['params'];
+    }
+    console.log(this.variables);
   }
 
   ngOnInit() {
