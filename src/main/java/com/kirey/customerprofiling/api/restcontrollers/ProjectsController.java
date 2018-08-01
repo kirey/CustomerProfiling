@@ -51,6 +51,8 @@ public class ProjectsController {
 	@RequestMapping(value = "/addProjectDetail", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> addProjectDetail(@RequestBody Projects project) {
 		
+		project.setCreationDate(new Date());
+		
 		projectsDao.attachDirty(project);
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Successfully added", HttpStatus.OK.value()), HttpStatus.OK);
