@@ -58,7 +58,7 @@
 
         <!-- Operation Type -->
         <mat-form-field>
-          <mat-select (selectionChange)="setParams($event, i)" placeholder="Operations Type">
+          <mat-select (selectionChange)="setParams($event, i)" placeholder="Operation Type">
             <mat-option *ngFor="let type of variables[i]['operationTypes']" [value]="type">
               {{type}}
             </mat-option>
@@ -71,16 +71,16 @@
           <div *ngIf="variables[i]['params']; else noData">
             <span *ngIf="variables[i]['params']['minmax'] == true">
               <mat-form-field class="small-input">
-                <input (change)="test()" matInput placeholder="Min">
+                <input (change)="paramsChanged($event, i, 'scaleMin')" matInput placeholder="Min">
               </mat-form-field>
               <mat-form-field class="small-input">
-                <input (change)="test()" matInput placeholder="Max">
+                <input (change)="paramsChanged($event, i, 'scaleMax')" matInput placeholder="Max">
               </mat-form-field>
             </span>
-            <!-- Bin -->
-            <span *ngIf="variables[i]['params']['bin'] == true">
+            <!-- Bins -->
+            <span *ngIf="variables[i]['params']['bins'] == true">
               <mat-form-field class="small-input">
-                <input (change)="test2()" matInput placeholder="Bin">
+                <input (change)="paramsChanged($event, i, 'bins')" matInput placeholder="Bins">
               </mat-form-field>
             </span>
           </div>
@@ -92,7 +92,7 @@
       <!-- Buttons -->
       <span class="buttons">
         <button mat-raised-button color="warn" (click)=submit()>Save</button>
-        <button mat-stroked-button color="primary">View</button>
+        <button mat-stroked-button color="primary" (click)="viewObject()">View</button>
       </span>
     </div>
   </div>

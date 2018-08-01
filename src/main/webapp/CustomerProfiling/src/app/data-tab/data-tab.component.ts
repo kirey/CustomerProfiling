@@ -73,34 +73,61 @@ export class DataTabComponent implements OnInit {
           );
         break;
     }
-    if (this.variables[index]['params']) {
+
+    if (type == 'typeOfData' && ev.value == 'TEXT') {
+      if (this.variables[index]['scaleMin']) this.variables[index]['scaleMin'] = null;
+      if (this.variables[index]['scaleMax']) this.variables[index]['scaleMax'] = null;
+      if (this.variables[index]['bins']) this.variables[index]['bins'] = null;
+    }
+
+    if (type == 'typeOfData' && this.variables[index]['params']) {
       delete this.variables[index]['params'];
     }
+    console.log(this.variables);
   }
 
-  test() {
-    console.log('Test passed');
-  }
-  test2() {
-    console.log('Test2  passed');
+  paramsChanged(ev, index, type) {
+    this.variables[index][type] = ev.target.value;
+
+    // console.log(this.variables);
   }
 
   setParams(ev, index) {
     switch (ev.value) {
       case 'Scaling operation':
-        this.variables[index]['params'] = { 'minmax': true, 'bin': false };
+        this.variables[index]['params'] = { 'minmax': true, 'bins': false };
+        if (this.variables[index]['bins']) this.variables[index]['bins'] = null;
+        this.variables[index]['distinct'] = false;
+        this.variables[index]['leaveAsItIs'] = false;
         break;
       case 'Binning operation':
-        this.variables[index]['params'] = { 'minmax': false, 'bin': true };
+        this.variables[index]['params'] = { 'minmax': false, 'bins': true };
+        if (this.variables[index]['scaleMin']) this.variables[index]['scaleMin'] = null;
+        if (this.variables[index]['scaleMax']) this.variables[index]['scaleMax'] = null;
+        this.variables[index]['distinct'] = false;
+        this.variables[index]['leaveAsItIs'] = false;
         break;
       case 'Unfolding with distinct categories':
-        this.variables[index]['distinct '] = true;
+        this.variables[index]['distinct'] = true;
+        this.variables[index]['leaveAsItIs'] = false;
+
+        if (this.variables[index]['bins']) this.variables[index]['bins'] = null;
+        if (this.variables[index]['scaleMin']) this.variables[index]['scaleMin'] = null;
+        if (this.variables[index]['scaleMax']) this.variables[index]['scaleMax'] = null;
         break;
       case 'Live as it is':
-        this.variables[index]['liveAsItIs'] = true;
+        this.variables[index]['leaveAsItIs'] = true;
+        this.variables[index]['distinct'] = false;
+        if (this.variables[index]['bins']) this.variables[index]['bins'] = null;
+        if (this.variables[index]['scaleMin']) this.variables[index]['scaleMin'] = null;
+        if (this.variables[index]['scaleMax']) this.variables[index]['scaleMax'] = null;
         break;
     }
     console.log(this.variables);
+  }
+
+  viewObject() {
+
   }
 
   submit() {
