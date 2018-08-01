@@ -13,4 +13,16 @@ export class DataTabService {
     getVariables() {
         return this._http.get(this.baseUrl + 'preprocessing');
     }
+
+    getDataTypes() {
+        return this._http.get(this.baseUrl + 'dataTypes');
+    }
+
+    getVariableTypes() {
+        return this._http.get(this.baseUrl + 'columnTypes');
+    }
+
+    getOperationTypes(type) {
+        return this._http.get(this.baseUrl + 'operationTypes?=' + type);
+    }
 }

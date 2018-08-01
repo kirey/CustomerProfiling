@@ -39,6 +39,7 @@ import { DataTabComponent } from './data-tab/data-tab.component';
     DeleteComponent,
     CopyComponent,
     DatasetComponent,
+    // ProjectOverviewComponent
     DataTabComponent
     // ProjectOverviewComponent
   ],
