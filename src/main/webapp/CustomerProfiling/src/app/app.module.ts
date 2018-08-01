@@ -25,6 +25,7 @@ import { DeleteComponent } from './dialogs/delete/delete.component';
 import { CopyComponent } from './dialogs/copyProject/copy.component';
 import { DatasetComponent } from './dataset/dataset.component';
 import { DataTabComponent } from './data-tab/data-tab.component';
+import { DataTabService } from './data-tab/data-tab.service';
 
 // import { ProjectOverviewComponent } from './project-overview/project-overview.component';
 
@@ -54,7 +55,7 @@ import { DataTabComponent } from './data-tab/data-tab.component';
     HttpClientModule,
     MaterialModule
   ],
-  providers: [AuthService, AuthGuard, ProjectsService],
+  providers: [AuthService, AuthGuard, ProjectsService, DataTabService],
   entryComponents: [AddComponent, EditProjectComponent, DeleteComponent, CopyComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

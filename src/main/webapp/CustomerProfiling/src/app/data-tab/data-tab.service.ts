@@ -23,6 +23,6 @@ export class DataTabService {
     }
 
     getOperationTypes(type) {
-        return this._http.get(this.baseUrl + 'operationTypes?=' + type);
+        return this._http.get(this.baseUrl + 'operationTypes?dataType=' + type);
     }
 }

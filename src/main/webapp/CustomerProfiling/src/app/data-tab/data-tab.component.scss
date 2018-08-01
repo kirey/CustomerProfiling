@@ -12,24 +12,35 @@
         width: 400px;
         margin: 50px;
     }
-    .processing-container {
-        padding: 50px;
+
+    .title-bar {
+        margin-bottom: 20px;
     }
-    .processing-column {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
+
+    // Processing Classes
+    .processing-title{
+        color: purple;
+        margin-top: 20px;
+        font-size: 20px;
+        width: 158px;
+        font-weight: bold;
     }
-    .processing-text {
+    .variable-items>span {
+        width: 150px;
+        padding: 20px 0;
         font-size: 18px;
+    }
+    .params {
+        padding:  0!important;
+        font-size: 16px!important;
         display: flex;
         align-items: center;
-        height: 70px;
     }
     .mat-form-field-infix {
-        width: 140px!important;
+        width: 150px!important;
     }
-    .row-title {
-        color: $primary;
+    .small-input {
+        width: 45px!important;
+        margin-right: 10px;
     }
 }

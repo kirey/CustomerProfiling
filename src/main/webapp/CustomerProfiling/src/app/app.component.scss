@@ -3,10 +3,12 @@ $accent: #B2FF59;
 $warn: #C2185B;
 $gray: #757575;
 
-
 // Flexbox classes
 .flex {
     display: flex;
+}
+.column {
+    flex-direction: column;
 }
 .center {
     align-items: center;
