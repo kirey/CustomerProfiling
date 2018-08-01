@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -150,21 +151,21 @@ public class DatasetController {
 	}
 	
 
-	@RequestMapping(value = "/addNewDataset", method = RequestMethod.POST)
-	public ResponseEntity<RestResponseDto> uploadCsvDataset(@RequestPart MultipartFile csvFile, @RequestParam String datasetName, @RequestParam String datasetDesc) throws IllegalStateException, IOException{
+	@RequestMapping(value = "/addNewDataset", method = RequestMethod.POST,consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RestResponseDto> uploadCsvDataset(@RequestPart(name="csvFile") MultipartFile csvFile, @RequestPart(name="dataset") Datasets dataset) throws IllegalStateException, IOException{
 		
 		String filePath = datasetService.uploadCSVFile(csvFile);
-		Datasets dataset = new Datasets();
-	    dataset.setFilename(filePath);
-	    dataset.setName(datasetName);
-	    dataset.setDescription(datasetDesc);
-	    datasetsDao.attachDirty(dataset);
+		Datasets newDataset = new Datasets();
+		newDataset.setFilename(filePath);
+		newDataset.setName(dataset.getName());
+		newDataset.setDescription(dataset.getDescription());
+	    datasetsDao.attachDirty(newDataset);
 	    
 	    File file = new File(filePath); 
 		InputStream is = new FileInputStream(file);
 		List<Variables> listVariables = datasetService.getVariablesFromCSV(is);
 		for (Variables variable : listVariables) {
-			variable.setDataset(dataset);
+			variable.setDataset(newDataset);
 			variablesDao.attachDirty(variable);
 		}
 	    		
