@@ -15,6 +15,7 @@ import { MaterialModule } from './shared/modules/material.module';
 // Services
 import { ProjectsService } from './projects/projects.service';
 import { EditProjectsService } from './dialogs/edit-project/edit.project.service';
+import { AlgorithmsService } from './algorithms/algorithms.service';
 
 
 // Components
@@ -65,7 +66,14 @@ import { AlgorithmsComponent } from './algorithms/algorithms.component';
     HttpClientModule,
     MaterialModule
   ],
-  providers: [AuthService, AuthGuard, ProjectsService, EditProjectsService, DataTabService],
+  providers: [
+    AuthService,
+    AuthGuard,
+    ProjectsService,
+    EditProjectsService,
+    DataTabService,
+    AlgorithmsService
+  ],
   entryComponents: [
     AddComponent,
     EditProjectComponent,
