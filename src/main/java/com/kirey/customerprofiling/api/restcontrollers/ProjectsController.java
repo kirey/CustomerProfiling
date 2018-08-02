@@ -23,7 +23,7 @@ import com.kirey.customerprofiling.data.entity.Projects;
  *
  */
 @RestController
-@RequestMapping("/projects")  //posle postaviti na /rest/projects
+@RequestMapping("/rest/projects")  //posle postaviti na /rest/projects
 public class ProjectsController {
 
 	@Autowired ProjectsDao projectsDao;
@@ -48,7 +48,7 @@ public class ProjectsController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/projectDetails/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> getProjectDetails(@PathVariable Integer id) {	
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(projectsDao.findById(id), HttpStatus.OK.value()), HttpStatus.OK);
@@ -60,10 +60,11 @@ public class ProjectsController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/addProjectDetail", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> addProjectDetail(@RequestBody Projects project) {
 		
 		project.setCreationDate(new Date());
+		project.setStatus("CREATED");
 		
 		projectsDao.persist(project);
 		
@@ -75,9 +76,11 @@ public class ProjectsController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/editProjectDetail", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> editProjectDetail(@RequestBody Projects project) {
 	
+		project.setStatus("EDITED");
+		
 		projectsDao.attachDirty(project);
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Successfully edited", HttpStatus.OK.value()), HttpStatus.OK);
@@ -89,9 +92,8 @@ public class ProjectsController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/deleteProjectDetail/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> deleteProjectDetail(@PathVariable Integer id) {
-		
 		
 		projectsDao.delete(projectsDao.findById(id));
 		
@@ -104,14 +106,11 @@ public class ProjectsController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/copyProjectDetail/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<RestResponseDto> copyProjectDetail(@PathVariable Integer id, @RequestBody Projects project) {
-		
-		Projects oldProject = (Projects)projectsDao.findById(id);
+	@RequestMapping(value = "/copy", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<RestResponseDto> copyProjectDetail( @RequestBody Projects project) {
 		
 		Projects newProject = new Projects();
 		
-
 		newProject.setProjectName(project.getProjectName());
 		newProject.setCreationDate(new Date());
 		newProject.setStatus("COPIED");
