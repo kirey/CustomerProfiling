@@ -1,3 +1,4 @@
+import { DatasetService } from './dataset.service';
 import { DatasetDetailComponent } from './../dialogs/dataset-detail/dataset-detail.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -11,12 +12,15 @@ import { AddDatasetComponent } from '../dialogs/add-dataset/add-dataset.componen
 })
 export class DatasetComponent implements OnInit {
 
-  constructor(private _dialog: MatDialog) { }
+  constructor(private _dialog: MatDialog, private _datasetService: DatasetService) { }
 
-  private datasets = [{ name: "jedan" }, { name: "dva" }, { name: "tri" }, { name: "cetiri" }];
-  private displayedColumns: string[] = ['datasetName', 'deleting'];
+  private datasets;
+  private displayedColumns: string[] = ['datasetName', 'actions'];
 
   ngOnInit() {
+    this._datasetService.getDatasets().subscribe(res => {
+      this.datasets = JSON.parse(res.text()).data;
+    });
   }
 
   addDataset() {
@@ -24,15 +28,23 @@ export class DatasetComponent implements OnInit {
       width: '800px'
     });
     dialogRef.afterClosed().subscribe(results => {
-      console.log("closed!")
+      this._datasetService.getDatasets().subscribe(res => {
+        this.datasets = JSON.parse(res.text()).data;
+      });
     });
   }
-  showDatasetDetail(){
-    const dialogRef = this._dialog.open(DatasetDetailComponent, {
-      width: '800px'
-    });
-    dialogRef.afterClosed().subscribe(results => {
-      console.log("closed!")
+  showDatasetDetail(id) {
+    let objToShow;
+    this._datasetService.getDataset(id).subscribe(res=>{
+      objToShow = JSON.parse(res.text()).data;
+    },err=>{},()=>{
+      const dialogRef = this._dialog.open(DatasetDetailComponent, {
+        width: '800px',
+        data:objToShow
+      });
+      dialogRef.afterClosed().subscribe(results => {
+        console.log("closed!")
+      });
     });
   }
 

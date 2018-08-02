@@ -47,4 +47,17 @@
     h1 {
         text-align: center;
     }
+    .mat-error {
+        padding-left: 10px;
+        margin-top: -20px;
+    }
+    .mat-dialog-content {
+        margin-top: 50px;
+        margin-bottom: 20px;
+        display: block;
+        padding: 0 24px;
+        max-height: 65vh;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+    }
 }
