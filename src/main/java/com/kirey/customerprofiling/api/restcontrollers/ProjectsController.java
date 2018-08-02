@@ -23,17 +23,19 @@ import com.kirey.customerprofiling.data.entity.Projects;
  *
  */
 @RestController
-@RequestMapping("/rest/projects")  //posle postaviti na /rest/projects
+@RequestMapping("/rest/projects")
 public class ProjectsController {
 
 	@Autowired ProjectsDao projectsDao;
+	
 	
 	/**
 	 * Returns all projects from db
 	 * @return
 	 */
-//	@RequestMapping(value = "", method = RequestMethod.GET)
-	@GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+	
+//	@GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> getAllProjects() {	
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(projectsDao.findAll(), HttpStatus.OK.value()), HttpStatus.OK);
