@@ -28,18 +28,32 @@ public class AlgorithmsController {
 	@Autowired 
 	private ParametersDao parametersDao;
 
+	/**
+	 * Get list of all algorithms
+	 * @return
+	 */
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> getAllAlgorithms(){
 				
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(algorithmsDao.findAll(), HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
+	/**
+	 * Get Algorithm details
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> getAlgorithmDetails(@PathVariable Integer id){
 			
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(algorithmsDao.findById(id), HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
+	/**
+	 * Add new algorithm with parameters
+	 * @param algorithm
+	 * @return
+	 */
 	@RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> addAlgorithm(@RequestBody Algorithms algorithm){
 		
