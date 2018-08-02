@@ -13,7 +13,9 @@ export class ProjectsService {
     getProjects(): Observable<any> {
         return this._http.get(this.baseUrl + 'projects');
     }
-
+    deleteProject(id): Observable<any> {
+      return this._http.delete(this.baseUrl + 'projects/' + id);
+  }
 
 
 }
