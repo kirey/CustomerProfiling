@@ -62,3 +62,13 @@ table i {
 h1 {
     color: $gray;
 }
+
+.mat-paginator,
+.mat-paginator-page-size .mat-select-trigger {
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.filterInput {
+    margin-left: 15%;
+}
