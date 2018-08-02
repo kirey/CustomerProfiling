@@ -13,6 +13,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "parameter_values", uniqueConstraints = {
@@ -29,6 +31,7 @@ public class ParameterValues implements Serializable{
 	
 	private Integer id;
 	private String value;
+	@JsonIgnore
 	private Parameters parameter;
 	private ProjectsAlgorithms projectAlgorithms;
 	

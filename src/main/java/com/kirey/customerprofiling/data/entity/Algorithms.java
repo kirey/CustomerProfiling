@@ -6,12 +6,17 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 
@@ -26,6 +31,7 @@ public class Algorithms implements Serializable {
 	private String algorithmName;
 	private String description;
 	private String library;
+	@JsonIgnore
 	private List<ProjectsAlgorithms> projectAlgorithamsList = new ArrayList<>();
 	private List<Parameters> parameters = new ArrayList<>();
 	
@@ -65,7 +71,7 @@ public class Algorithms implements Serializable {
 		this.library = library;
 	}
 
-	@OneToMany(mappedBy = "algorithm")
+	@OneToMany(mappedBy = "algorithm", fetch = FetchType.EAGER)
 	public List<Parameters> getParameters() {
 		return parameters;
 	}
@@ -80,11 +86,6 @@ public class Algorithms implements Serializable {
 	public void setProjectAlgorithamsList(List<ProjectsAlgorithms> projectAlgorithamsList) {
 		this.projectAlgorithamsList = projectAlgorithamsList;
 	}
-	
 
-	
-	
-	
-	
 
 }
