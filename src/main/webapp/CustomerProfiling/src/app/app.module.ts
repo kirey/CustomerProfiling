@@ -12,12 +12,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Modules
 import { MaterialModule } from './shared/modules/material.module';
 
-// services
+// Services
 import { ProjectsService } from './projects/projects.service';
 import { EditProjectsService } from './dialogs/edit-project/edit.project.service';
 
 
-// components
+// Components
 import { ProjectsComponent } from './projects/projects.component';
 import { AddComponent } from './dialogs/addProject/add.component';
 import { LoginComponent } from './login/login.component';
@@ -34,6 +34,7 @@ import { ProjectOverviewComponent } from './project-overview/project-overview.co
 import { AddDatasetComponent } from './dialogs/add-dataset/add-dataset.component';
 import { DatasetDetailComponent } from './dialogs/dataset-detail/dataset-detail.component';
 import { DataTabViewComponent } from './dialogs/data-tab-view/data-tab-view.component';
+import { AlgorithmsComponent } from './algorithms/algorithms.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { DataTabViewComponent } from './dialogs/data-tab-view/data-tab-view.comp
     ProjectOverviewComponent,
     AddDatasetComponent,
     DatasetDetailComponent,
-    DataTabViewComponent
+    DataTabViewComponent,
+    AlgorithmsComponent
   ],
   imports: [
     BrowserModule,
