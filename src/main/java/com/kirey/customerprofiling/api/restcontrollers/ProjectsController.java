@@ -104,14 +104,11 @@ public class ProjectsController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/copyProjectDetail/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<RestResponseDto> copyProjectDetail(@PathVariable Integer id, @RequestBody Projects project) {
-		
-		Projects oldProject = (Projects)projectsDao.findById(id);
+	@RequestMapping(value = "/copyProjectDetail", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<RestResponseDto> copyProjectDetail( @RequestBody Projects project) {
 		
 		Projects newProject = new Projects();
 		
-
 		newProject.setProjectName(project.getProjectName());
 		newProject.setCreationDate(new Date());
 		newProject.setStatus("COPIED");
