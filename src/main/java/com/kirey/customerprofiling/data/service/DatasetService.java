@@ -17,16 +17,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.commons.math3.stat.descriptive.moment.Variance;
+import org.bouncycastle.crypto.DerivationFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kirey.customerprofiling.api.dto.DatasetDto;
+import com.kirey.customerprofiling.api.dto.VariableDto;
 import com.kirey.customerprofiling.common.constants.AppConstants;
 import com.kirey.customerprofiling.common.constants.DataType;
 import com.kirey.customerprofiling.data.dao.DatasetsDao;
+import com.kirey.customerprofiling.data.dao.DerivedVariableValuesDao;
+import com.kirey.customerprofiling.data.dao.VariablesDao;
 import com.kirey.customerprofiling.data.entity.Datasets;
+import com.kirey.customerprofiling.data.entity.DerivedVariableValue;
 import com.kirey.customerprofiling.data.entity.Projects;
 import com.kirey.customerprofiling.data.entity.Variables;
 import com.univocity.parsers.common.processor.RowListProcessor;
@@ -44,7 +51,13 @@ public class DatasetService {
 	
 	@Autowired
 	private DatasetsDao datasetsDao;
-
+	
+	@Autowired
+	private DerivedVariableValuesDao derivedVariableValuesDao;
+	
+	@Autowired
+	private VariablesDao variablesDao;
+	
 	/**
 	 * Method for getting List of {@link Variables} from csv file
 	 * @param csvFile - {@link InputStream} of csv file
@@ -95,10 +108,12 @@ public class DatasetService {
 	 * @param save - true/false flag
 	 * @return String transformed csv file
 	 */
-	public String createDerivedFromOriginal(InputStream csvFile, List<Variables> variables, boolean save) {
+	public String createDerivedFromOriginal(InputStream csvFile, List<Variables> variables, boolean save, Datasets originalDataset) {
 		CSVParser parser = new CSVParser();
 		RowListProcessor processor = parser.parceFile(csvFile);
 		List<String> derivedHeaders = new ArrayList<>();
+		//remove all variables from holder
+		DerivedVariablesHolder.getInstance().removeAll();
 		
 		List<List<String[]>> listRows = new ArrayList<>();
 		for (Variables variable : variables) {
@@ -111,9 +126,12 @@ public class DatasetService {
 					//add to headers
 					derivedHeaders.addAll(distinctHeaders);
 				}else if(variable.isLeaveAsItIs()) {
-					List<String> allValues = this.findAllValuesFromCSV(variable, processor);
+					List<String> allHeaders = this.findAllValuesFromCSV(variable, processor);
 					//add to headers
-					derivedHeaders.addAll(allValues);
+					derivedHeaders.addAll(allHeaders);
+					List<String[]> values = this.getValuesDistinctTransformed(variable, processor, allHeaders);
+					listRows.add(values);
+					
 				}
 			} else if(variable.getTypeOfData().equals(DataType.NUMERIC)) {
 				if(variable.getBins() != null) {
@@ -121,7 +139,7 @@ public class DatasetService {
 					HashMap<String, Object> binningMap = this.binningOperation(variable, processor);
 					derivedHeaders.addAll((Collection<? extends String>) binningMap.get(AppConstants.HEADERS_KEY));
 					listRows.add((List<String[]>) binningMap.get(AppConstants.ROWS_KEY));
-				} else {
+				} else if(variable.getScaleMin() != null && variable.getScaleMax() != null) {
 					//scaling operation
 					List<Double> values = this.scalingOperation(variable, processor);
 					
@@ -134,6 +152,8 @@ public class DatasetService {
 					}
 					//add to headers
 					derivedHeaders.add(variable.getVariableName());
+					//add to holder
+					this.createDerivedVariableAndPutInHolder(variable, variable.getVariableName());
 					listRows.add(stringValues);
 					
 				}
@@ -151,27 +171,27 @@ public class DatasetService {
 			sizes = sizes + first.length;
 		}
 
-		List<String[]> listNzma = new ArrayList<>();
+		List<String[]> listFullRows = new ArrayList<>();
 		
 		int global = 0;
 		for(int s = 0; s < processor.getRows().size(); s++) {
-			String[] nzm = new String[sizes];
+			String[] rullRow = new String[sizes];
 			int i = 0;
 			int k = 0;
 			for (List<String[]> list : listRows) {
 				for (int j = 0; j < list.get(k).length; j++) {
-					nzm[i] = list.get(global)[j];
+					rullRow[i] = list.get(global)[j];
 					i++;
 				}
 				k++;
 
 			}
-			listNzma.add(nzm);
+			listFullRows.add(rullRow);
 			global++;
 		}
 		
 		//write csv
-		String csv = writeSimpleCsv(headers, listNzma, save);
+		String csv = writeSimpleCsv(headers, listFullRows, save, originalDataset);
 		return csv;
 		
 	}
@@ -196,9 +216,15 @@ public class DatasetService {
 		
 		//get headers
 		List<String> headers = new ArrayList<>();
+		
 		for(int i = 0; i < variable.getBins(); i++) {
 			String header = variable.getVariableName() + i;
 			headers.add(header);
+		}
+		
+		//Add variables to holder
+		for (String header : headers) {
+			this.createDerivedVariableAndPutInHolder(variable, header);
 		}
 		
 		returnMap.put(AppConstants.HEADERS_KEY, headers);
@@ -335,6 +361,11 @@ public class DatasetService {
 				}
 			}
 		}
+		
+		for (String header : listAllValues) {
+			this.createDerivedVariableAndPutInHolder(variable, header);
+		}
+		
 		return listAllValues;
 	}
 
@@ -358,9 +389,27 @@ public class DatasetService {
 		}
 		
 		List<String> distinctList = listAllValues.stream().distinct().collect(Collectors.toList());
+		for (String header : distinctList) {
+			this.createDerivedVariableAndPutInHolder(variable, header);
+		}
+		
 		return distinctList;
 	}
 	
+	private void createDerivedVariableAndPutInHolder(Variables variable, String header) {
+		
+		Variables derivedVariable = new Variables();
+		derivedVariable.setOriginalVariable(variable);
+		derivedVariable.setBins(variable.getBins());
+		derivedVariable.setDistinct(variable.isDistinct());
+		derivedVariable.setLeaveAsItIs(variable.isLeaveAsItIs());
+		derivedVariable.setScaleMax(variable.getScaleMax());
+		derivedVariable.setScaleMin(variable.getScaleMin());
+		derivedVariable.setTypeOfVariable(variable.getTypeOfVariable());
+		derivedVariable.setVariableName(header);
+		DerivedVariablesHolder.getInstance().addToDerivedVariables(derivedVariable);
+	}
+
 	public String uploadCSVFile(MultipartFile csvFile) throws IllegalStateException, IOException {
 		
 		String uploadDir = "C:\\Temp";
@@ -381,19 +430,22 @@ public class DatasetService {
 	public DatasetDto getDatasetDetails(Integer datasetId) throws FileNotFoundException {
 		
 		Datasets dataset = datasetsDao.findById(datasetId);
-		
+
 		DatasetDto datasetDto = new DatasetDto();
 		datasetDto.setDatasetDesc(dataset.getDescription());
 		datasetDto.setDatasetName(dataset.getName());
 		
 		File file = new File(dataset.getFilename());
+		
 		InputStream is = new FileInputStream(file);
 		List<Variables> listVariables = getVariablesFromCSV(is);
 		
 		is = new FileInputStream(file);
+		CSVParser parser = new CSVParser();
+		RowListProcessor processor = parser.parceFile(is);
 		datasetDto.setNumberOfVariables(listVariables.size());
-		datasetDto.setNumberOfColumns(getNumberOfColumnsCSV(is));
-		datasetDto.setDatasetSize(150);  //TODO prepraviti posle kad se razjasni sta je to
+		datasetDto.setNumberOfRows(processor.getRows().size());
+		datasetDto.setDatasetSize(150);  //TODO prepraviti posle kad se razjasni sta je to //double kilobytes = (file.length() / 1024);
 		datasetDto.setProject(dataset.getProject());
 		
 		return datasetDto;
@@ -405,9 +457,10 @@ public class DatasetService {
 	 * @param headers - headers for csv file
 	 * @param rows - rows for csv file
 	 * @param save - true/false
+	 * @param originalDataset - original {@link Datasets}
 	 * @return String csvFile
 	 */
-	public String writeSimpleCsv(String[] headers, List<String[]> rows, boolean save) {
+	public String writeSimpleCsv(String[] headers, List<String[]> rows, boolean save, Datasets originalDataset) {
 
 		// Writing to an in-memory byte array. This will be printed out to the standard output so you can easily see the result.
 		ByteArrayOutputStream csvResult = new ByteArrayOutputStream();
@@ -434,7 +487,10 @@ public class DatasetService {
 
 			if (save) {
 				// Write from byte array to CSV file somewhere on local disk.
-				OutputStream outputStream = new FileOutputStream("C:\\Temp\\testCSV1.csv");
+				String originalFilename = originalDataset.getFilename();
+				String extension = originalFilename.substring(originalFilename.length()-4, originalFilename.length());
+				String derivedFilename = originalFilename.substring(0, originalFilename.length()-4) + AppConstants.DERIVED + extension;
+				OutputStream outputStream = new FileOutputStream(derivedFilename);//"C:\\Temp\\testCSVDerived.csv"
 				csvResult.writeTo(outputStream);
 			}
 			return csv;
@@ -443,5 +499,131 @@ public class DatasetService {
 			throw new RuntimeException(e);
 		}
 
+	}
+
+	
+	/**
+	 * Method for saving derived variable and derived variable values
+	 * @param derivedIs - {@link InputStream} built from derived CSV file
+	 * @param derivedDataset - derived {@link Datasets}
+	 */
+	public void saveDerivedVariableAndValues(InputStream derivedIs, Datasets derivedDataset) {
+		CSVParser parser = new CSVParser();
+		RowListProcessor processor = parser.parceFile(derivedIs);
+		List<String[]> rows = processor.getRows();
+		String[] headers = processor.getHeaders();
+		
+		List<Variables> derivedFromHolder = DerivedVariablesHolder.getInstance().getDerivedVariables();
+		
+		for(int i = 0; i < headers.length; i++) {
+			for (Variables derivedVariablefromHolder : derivedFromHolder) {
+				if(derivedVariablefromHolder.getVariableName().equals(headers[i])) {
+					String[] firstRow = processor.getRows().get(0);
+					String firstValue = firstRow[i];
+					if(NumberUtils.isCreatable(firstValue)) {
+						derivedVariablefromHolder.setTypeOfData(DataType.NUMERIC);
+					}else {
+						derivedVariablefromHolder.setTypeOfData(DataType.TEXT);
+					}
+					derivedVariablefromHolder.setColumnNumber(i);
+					derivedVariablefromHolder.setDataset(derivedDataset);
+					derivedVariablefromHolder = (Variables) variablesDao.merge(derivedVariablefromHolder);
+					for (String[] row : rows) {
+						for(int j = 0; j < row.length; j++) {
+							if(derivedVariablefromHolder.getColumnNumber() == j) {
+								//save derived variable value
+								DerivedVariableValue variableValue = new DerivedVariableValue();
+								variableValue.setValue(row[j]);
+								variableValue.setVariable(derivedVariablefromHolder);
+								derivedVariableValuesDao.attachDirty(variableValue);
+							}
+						}
+					}
+				}
+			}	
+		}
+		DerivedVariablesHolder.getInstance().removeAll();
+	}
+
+	/**
+	 * Method used for saving derived dataset based given on original dataset
+	 * @param originalDataset - original {@link Datasets}
+	 * @return saved derived {@link Datasets}
+	 */
+	public Datasets saveDerivedDatasetFromOriginal(Datasets originalDataset, Projects project) {
+		Datasets derivedDataset = new Datasets();
+		derivedDataset.setName(originalDataset.getName() + AppConstants.DERIVED);
+		
+		String originalFilename = originalDataset.getFilename();
+		String extension = originalFilename.substring(originalFilename.length()-4, originalFilename.length());
+		String derivedFilename = originalFilename.substring(0, originalFilename.length()-4) + AppConstants.DERIVED + extension;
+		
+		derivedDataset.setFilename(derivedFilename);
+		derivedDataset.setOriginalDataset(originalDataset);
+		derivedDataset.setProject(project);
+		Datasets savedDerivedDataset = (Datasets) datasetsDao.merge(derivedDataset);//new Datasets()
+		return savedDerivedDataset;
+	}
+
+	/**
+	 * Method for getting statistics fro given variable
+	 * @param variable - {@link Variables} object
+	 * @return VariableDto
+	 */
+	public VariableDto getVariableStatistics(Variables variable) {
+		VariableDto variableDto = new VariableDto();
+		try {
+			Datasets dataset = datasetsDao.findByVariable(variable);
+
+			//get values for variable from CSV file
+			File file = new File(dataset.getFilename());
+			InputStream is = new FileInputStream(file);
+			CSVParser parser = new CSVParser();
+			RowListProcessor processor = parser.parceFile(is);
+			List<String> variableValues = new ArrayList<>();
+			List<String[]> rows = processor.getRows();
+			for (String[] row : rows) {
+				for(int i = 0; i < row.length; i++) {
+					if(variable.getColumnNumber() == i) {
+						variableValues.add(row[i]);
+					}
+				}
+			}
+			
+			if(!variableValues.isEmpty()) {
+				if(NumberUtils.isCreatable(variableValues.get(0))) {
+					//convert do double
+					List<Double> doubleList = variableValues.stream().map(Double::valueOf).collect(Collectors.toList());
+					
+					//find min
+					Double min = doubleList.stream().mapToDouble(v -> v).min().getAsDouble();
+					variableDto.setMin(min);
+					
+					//find max
+					Double max = doubleList.stream().mapToDouble(v -> v).max().getAsDouble();
+					variableDto.setMax(max);
+					
+					//find average
+					Double average = doubleList.stream().mapToDouble(a -> a).average().getAsDouble();
+					variableDto.setAverage(average);
+					
+					//find variance
+					Variance variance = new Variance();
+					Double[] valuesArr = new Double[doubleList.size()];
+					valuesArr = doubleList.toArray(valuesArr);
+					double[] valuesArrPrimitive = ArrayUtils.toPrimitive(valuesArr);
+					double varianceValue = variance.evaluate(valuesArrPrimitive);
+					variableDto.setVarience(varianceValue);
+				}else {
+					//find distinct count
+					List<String> distinctList = variableValues.stream().distinct().collect(Collectors.toList());
+					variableDto.setDistinctCount(distinctList.size());
+				}
+			}
+			
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException(e);
+		}
+		return variableDto;
 	}
 }
