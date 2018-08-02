@@ -33,7 +33,6 @@ public class Algorithms implements Serializable {
 	private String library;
 	@JsonIgnore
 	private List<ProjectsAlgorithms> projectAlgorithamsList = new ArrayList<>();
-	@JsonBackReference
 	private List<Parameters> parameters = new ArrayList<>();
 	
 	
