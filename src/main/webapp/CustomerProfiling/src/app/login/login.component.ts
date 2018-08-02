@@ -2,6 +2,7 @@ import { AuthService } from './../shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SnackBarService } from '../shared/services/snackbar.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   private username;
   private password;
 
-  constructor(private _formBuilder: FormBuilder, private _router: Router, private _auth: AuthService) {
+  constructor(private _formBuilder: FormBuilder, private _router: Router, private _auth: AuthService,private _snackBarService: SnackBarService) {
     if (this._auth.isLoggedIn()) {
       this._router.navigate(['/dashboard']);
     }
@@ -35,10 +36,9 @@ export class LoginComponent implements OnInit {
     };
     this._auth.login(loginObj).subscribe(
       res => {
-        console.log(res);
       },
       err => {
-        console.log(err);
+        this._snackBarService.openSnackBar('Error', 'Wrong username or password!');
       }, () => {
         localStorage.setItem('username', loginObj.username);
         this._router.navigate(['/dashboard']);
