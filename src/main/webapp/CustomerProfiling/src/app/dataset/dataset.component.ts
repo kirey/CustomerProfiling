@@ -27,7 +27,7 @@ export class DatasetComponent implements OnInit {
 
   addDataset() {
     const dialogRef = this._dialog.open(AddDatasetComponent, {
-      width: '800px'
+      width: '850px'
     });
     dialogRef.afterClosed().subscribe(results => {
       this._datasetService.getDatasets().subscribe(res => {

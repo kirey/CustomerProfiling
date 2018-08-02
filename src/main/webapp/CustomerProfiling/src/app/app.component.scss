@@ -2,11 +2,11 @@ $primary: #311B92;
 $accent: #7C4DFF;
 $warn: #FF3D00;
 $gray: #757575;
-
 // Flexbox classes
 .flex {
     display: flex;
 }
+
 .column {
     flex-direction: column;
 }
@@ -34,7 +34,6 @@ $gray: #757575;
     margin-top: 30px;
     font-size: 18px;
 }
-
 
 //Nav & Sidebar
 .navContainer {
@@ -65,7 +64,7 @@ mat-card {
 }
 
 .logout {
-    margin-top: 43vh;
+    margin-top: 45vh;
 }
 
 .header {
@@ -92,4 +91,12 @@ mat-card {
 
 .mat-nav-list a.active {
     background: #EAFFD1;
+}
+
+.mat-nav-list a span {
+    padding-left: 12px;
+}
+
+mat-icon {
+    color: $primary;
 }

@@ -13,7 +13,7 @@ export class DatasetService {
   baseUrl = 'rest/dataset/';
 
   getDatasets() {
-    return this._http.get(this.baseUrl + 'datasets');
+    return this._http.get(this.baseUrl);
   }
 
   addDataset(formData: FormData) {
@@ -21,11 +21,11 @@ export class DatasetService {
   }
 
   getDataset(id){
-    return this._http.get(this.baseUrl + 'datasets/' + id);
+    return this._http.get(this.baseUrl + id);
   }
 
   deleteDataset(id){
-    return this._http.delete(this.baseUrl + 'datasets/' + id);
+    return this._http.delete(this.baseUrl + id);
   }
 
 

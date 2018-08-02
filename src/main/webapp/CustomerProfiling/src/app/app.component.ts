@@ -15,11 +15,6 @@ export class AppComponent {
 
   constructor(private _auth: AuthService, private _router: Router) {
   }
-
-  setUser() {
-    this.user = localStorage.getItem("username");
-  }
-
   logout() {
     this._auth.logout()
       .subscribe(

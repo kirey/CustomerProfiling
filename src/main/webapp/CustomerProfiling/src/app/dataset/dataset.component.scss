@@ -50,6 +50,15 @@ td {
 }
 
 .addBtn {
-    background: $accent;
-    color: black;
+    background: $primary;
+    color: white!important;
+}
+
+table i {
+    color: $primary;
+    font-size: 22px;
+}
+
+h1 {
+    color: $gray;
 }
