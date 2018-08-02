@@ -1,3 +1,4 @@
+import { DatasetService } from './dataset/dataset.service';
 import { AuthService } from './shared/services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +14,8 @@ import { MaterialModule } from './shared/modules/material.module';
 
 // services
 import { ProjectsService } from './projects/projects.service';
+import { EditProjectsService } from './dialogs/edit-project/edit.project.service';
+
 
 // components
 import { ProjectsComponent } from './projects/projects.component';
@@ -60,7 +63,7 @@ import { DataTabViewComponent } from './dialogs/data-tab-view/data-tab-view.comp
     HttpClientModule,
     MaterialModule
   ],
-  providers: [AuthService, AuthGuard, ProjectsService, DataTabService],
+  providers: [AuthService, AuthGuard, ProjectsService, EditProjectsService, DataTabService],
   entryComponents: [
     AddComponent,
     EditProjectComponent,

@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,8 +34,8 @@ public class Variables implements Serializable{
 	private Integer columnNumber;
 	private ColumnType typeOfVariable;
 	private DataType typeOfData;
-	private double scaleMax;
-	private double scaleMin;
+	private Double scaleMax;
+	private Double scaleMin;
 	private Datasets dataset;
  	private Integer bins;
 	private boolean leaveAsItIs;
@@ -70,7 +72,8 @@ public class Variables implements Serializable{
 	}
 	
 
-	@Column(name = "type_of_variable", nullable = false)
+
+	@Column(name = "type_of_variable")
 	public ColumnType getTypeOfVariable() {
 		return typeOfVariable;
 	}
@@ -82,6 +85,7 @@ public class Variables implements Serializable{
 	
 
 	@Column(name = "type_of_data", nullable = false)
+	@Enumerated(EnumType.STRING)
 	public DataType getTypeOfData() {
 		return typeOfData;
 	}
@@ -90,18 +94,18 @@ public class Variables implements Serializable{
 	}
 	
 	@Column(name = "scale_max")
-	public double getScaleMax() {
+	public Double getScaleMax() {
 		return scaleMax;
 	}
-	public void setScaleMax(double scaleMax) {
+	public void setScaleMax(Double scaleMax) {
 		this.scaleMax = scaleMax;
 	}
 	
 	@Column(name = "scale_min")
-	public double getScaleMin() {
+	public Double getScaleMin() {
 		return scaleMin;
 	}
-	public void setScaleMin(double scaleMin) {
+	public void setScaleMin(Double scaleMin) {
 		this.scaleMin = scaleMin;
 	}
 	
@@ -115,7 +119,7 @@ public class Variables implements Serializable{
 		this.dataset = dataset;
 	}
 	
-	@Column(name = "bins", nullable = false)
+	@Column(name = "bins")
 	public Integer getBins() {
 		return bins;
 	}

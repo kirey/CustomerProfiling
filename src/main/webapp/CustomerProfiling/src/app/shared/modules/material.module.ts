@@ -25,6 +25,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatChipsModule } from '@angular/material/chips';
 import { MAT_DIALOG_DATA } from '@angular/material';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule, DateAdapter} from '@angular/material';
 
 
 @NgModule({
@@ -52,7 +54,10 @@ import { MAT_DIALOG_DATA } from '@angular/material';
         MatPaginatorModule,
         MatMenuModule,
         MatTreeModule,
-        MatChipsModule
+        MatChipsModule,
+        MatDatepickerModule,
+        MatNativeDateModule
+
     ],
     exports: [
         MatButtonModule,
@@ -77,12 +82,14 @@ import { MAT_DIALOG_DATA } from '@angular/material';
         MatPaginatorModule,
         MatMenuModule,
         MatTreeModule,
-        MatChipsModule
+        MatChipsModule,
+        MatDatepickerModule,
+        MatNativeDateModule
 
     ],
     declarations: [],
     providers: [
-      { provide: MAT_DIALOG_DATA, useValue: [] }
+      { provide: MAT_DIALOG_DATA, useValue: [] }, MatDatepickerModule
     ]
 })
 export class MaterialModule { }

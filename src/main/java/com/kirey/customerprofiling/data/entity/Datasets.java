@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,9 +14,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -44,6 +49,7 @@ public class Datasets implements Serializable{
 	private List<Datasets> derivedDatasets = new ArrayList<>();
 	private Projects project;
 	private String description;
+	@JsonIgnore
 	private List<Variables> variables = new ArrayList<>();
 	
 	
@@ -109,8 +115,8 @@ public class Datasets implements Serializable{
 		this.originalDataset = originalDataset;
 	}
 	
-	@ManyToOne()
-	@JoinColumn(name = "project")
+	@OneToOne()
+	@JoinColumn(name = "project", unique = true)
 	public Projects getProject() {
 		return project;
 	}
@@ -126,7 +132,8 @@ public class Datasets implements Serializable{
 		this.derivedDatasets = derivedDatasets;
 	}
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "dataset")
+	@OneToMany(mappedBy = "dataset", cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	public List<Variables> getVariables() {
 		return variables;
 	}
