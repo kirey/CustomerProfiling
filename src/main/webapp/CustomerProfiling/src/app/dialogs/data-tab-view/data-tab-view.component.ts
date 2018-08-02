@@ -12,6 +12,5 @@ export class DataTabViewComponent implements OnInit {
     constructor(public dialogRef: MatDialogRef<DataTabViewComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
     ngOnInit() {
-
     }
 }

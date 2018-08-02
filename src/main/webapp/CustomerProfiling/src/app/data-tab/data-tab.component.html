@@ -49,7 +49,7 @@
 
         <!-- Data Type -->
         <mat-form-field>
-          <mat-select (selectionChange)="selectionChanged($event, i, 'typeOfData')" placeholder="Data Type">
+          <mat-select [(ngModel)]="variables[i].typeOfData" (selectionChange)="selectionChanged($event, i, 'typeOfData')" placeholder="Data Type">
             <mat-option *ngFor="let type of dataTypes" [value]="type">
               {{type}}
             </mat-option>
@@ -57,13 +57,24 @@
         </mat-form-field>
 
         <!-- Operation Type -->
-        <mat-form-field>
-          <mat-select (selectionChange)="setParams($event, i)" placeholder="Operation Type">
-            <mat-option *ngFor="let type of variables[i]['operationTypes']" [value]="type">
-              {{type}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        <div>
+          <!-- Numeric -->
+          <mat-form-field *ngIf="variables[i].typeOfData == 'NUMERIC'">
+            <mat-select (selectionChange)="setParams($event, i)" placeholder="Operation Type">
+              <mat-option *ngFor="let type of numericOperationTypes" [value]="type">
+                {{type}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- Text -->
+          <mat-form-field *ngIf="variables[i].typeOfData == 'TEXT'">
+            <mat-select (selectionChange)="setParams($event, i)" placeholder="Operation Type">
+              <mat-option *ngFor="let type of textOperationTypes" [value]="type">
+                {{type}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
 
         <!--  P A R A M S -->
         <span class="params">
@@ -89,10 +100,11 @@
           </ng-template>
         </span>
       </div>
+      <div class="warn-message"> {{message}}</div>
       <!-- Buttons -->
       <span class="buttons">
-        <button mat-raised-button color="warn" (click)=submit()>Save</button>
-        <button mat-stroked-button color="primary" (click)="viewObject()">View</button>
+        <button mat-raised-button color="primary" (click)=submit()>Save</button>
+        <button mat-stroked-button color="warn" (click)="viewObject()">View</button>
       </span>
     </div>
   </div>

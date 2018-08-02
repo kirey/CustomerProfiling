@@ -1,0 +1,61 @@
+<div id="data-tab-view">
+    <h2 mat-dialog-title class="subtitle">DATASET - Pre Processing VIEW</h2>
+    <mat-divider></mat-divider>
+    <mat-dialog-content *ngIf="data">
+        <!-- Titles -->
+        <div class="flex space-around title-bar">
+            <span class="processing-title">
+                Variable Name
+            </span>
+            <span class="processing-title">
+                Type of Variable
+            </span>
+            <span class="processing-title">
+                Type of Data
+            </span>
+            <span class="processing-title">
+                Parameters
+            </span>
+        </div>
+        <!-- Data -->
+        <div class="flex column">
+            <div *ngFor="let item of data; let i = index" class="flex space-around variable-items">
+                <!-- Variable Name -->
+                <span>
+                    <strong>{{item.variableName}}</strong>
+                </span>
+                <!-- Variable Type -->
+                <span>
+                    {{item.typeOfVariable}}
+                </span>
+                <!-- Data Type -->
+                <span>
+                    {{item.typeOfData}}
+                </span>
+                <!-- Operation Type -->
+                <!-- <span>
+                    {{data}}
+                </span> -->
+                <!--  P A R A M S -->
+                <span *ngIf="item.leaveAsItIs == true">
+                    Leave as it is
+                </span>
+                <span *ngIf="item.distinct == true">
+                    Unfolding with distinct categories
+                </span>
+                <span *ngIf="item.scaleMin && item.scaleMax" class="minmax">
+                    <span>
+                        <strong>Min: </strong>{{item.scaleMin}} </span>
+                    <span>
+                        <strong>Max:</strong> {{item.scaleMax}}</span>
+                </span>
+                <span *ngIf="item.bins">
+                    <strong> Bins:</strong> {{item.bins}}
+                </span>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-stroked-button color="primary" mat-dialog-close>Close</button>
+    </mat-dialog-actions>
+</div>

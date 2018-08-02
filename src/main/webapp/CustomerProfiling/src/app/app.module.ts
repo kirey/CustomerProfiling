@@ -26,11 +26,11 @@ import { CopyComponent } from './dialogs/copyProject/copy.component';
 import { DatasetComponent } from './dataset/dataset.component';
 import { DataTabComponent } from './data-tab/data-tab.component';
 import { DataTabService } from './data-tab/data-tab.service';
-
 // import { ProjectOverviewComponent } from './project-overview/project-overview.component';
 import { ProjectOverviewComponent } from './project-overview/project-overview.component';
 import { AddDatasetComponent } from './dialogs/add-dataset/add-dataset.component';
 import { DatasetDetailComponent } from './dialogs/dataset-detail/dataset-detail.component';
+import { DataTabViewComponent } from './dialogs/data-tab-view/data-tab-view.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,8 @@ import { DatasetDetailComponent } from './dialogs/dataset-detail/dataset-detail.
     DataTabComponent,
     ProjectOverviewComponent,
     AddDatasetComponent,
-    DatasetDetailComponent
+    DatasetDetailComponent,
+    DataTabViewComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +61,15 @@ import { DatasetDetailComponent } from './dialogs/dataset-detail/dataset-detail.
     MaterialModule
   ],
   providers: [AuthService, AuthGuard, ProjectsService, DataTabService],
-  entryComponents: [AddComponent, EditProjectComponent, DeleteComponent, CopyComponent, AddDatasetComponent, DatasetDetailComponent],
+  entryComponents: [
+    AddComponent,
+    EditProjectComponent,
+    DeleteComponent,
+    CopyComponent,
+    AddDatasetComponent,
+    DatasetDetailComponent,
+    DataTabViewComponent
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
