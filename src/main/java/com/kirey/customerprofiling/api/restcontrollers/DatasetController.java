@@ -173,7 +173,14 @@ public class DatasetController {
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Derived dataset successfully saved with derived variables and values", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
-
+	/**
+	 * Creates new dataset from uploaded CSV file
+	 * @param csvFile
+	 * @param dataset
+	 * @return
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/addNewDataset", method = RequestMethod.POST,consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> uploadCsvDataset(@RequestPart(name="csvFile") MultipartFile csvFile, @RequestPart(name="dataset") Datasets dataset) throws IllegalStateException, IOException{
 		
@@ -216,13 +223,7 @@ public class DatasetController {
 				
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetService.getDatasetDetails(datasetId), HttpStatus.OK.value()), HttpStatus.OK);
 	}
-	
-	/*@RequestMapping(value = "/datasets/{datasetName}", method = RequestMethod.POST)
-	public ResponseEntity<RestResponseDto> findDatasetBynName(@PathVariable String datasetName){
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetsDao.findByName(datasetName), HttpStatus.OK.value()), HttpStatus.OK);
-	}*/
-	
 	/**
 	 * Delete selected dataset
 	 * @param id
@@ -246,20 +247,18 @@ public class DatasetController {
 	}
 	
 	/**
-	 * Link selected project with selected dataset
+	 * Check if project is linked to some derived dataset 
+	 * if true link button on ONE PROJECT PAGE - Overview is disabled, othervise is enabled
 	 * @param projectId
 	 * @param datasetId
 	 * @return
 	 */
-	@RequestMapping(value = "/linkDataset", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/linkDataset", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> findDatasetBynName(@RequestParam Integer projectId, @RequestParam Integer datasetId){
 		//Proveriti s Vladom
-		/*Projects project = projectDao.findById(projectId);
-		Datasets dataset = datasetsDao.findById(datasetId);
-		project.setDatasets(dataset);
-		projectDao.attachDirty(project);*/
-		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("OK", HttpStatus.OK.value()), HttpStatus.OK);
+		@SuppressWarnings("unused")
+		Projects project = projectDao.findById(projectId);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetsDao.isDatasetLinkedToProject(projectId), HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
 	/**

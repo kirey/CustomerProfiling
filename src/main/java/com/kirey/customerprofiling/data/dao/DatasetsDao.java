@@ -7,9 +7,9 @@ import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.kirey.customerprofiling.data.entity.Datasets;
 import com.kirey.customerprofiling.data.entity.Variables;
+import com.kirey.customerprofiling.data.entity.Projects;
 
 
 @Repository(value = "datasetsDao")
@@ -45,6 +45,25 @@ public class DatasetsDao extends KjcBaseDao {
 	public Datasets findByVariable(Variables variable) {
 		Hibernate.initialize(variable.getDataset());
 		return variable.getDataset();
+		
+    }
+
+	/**
+	 * Method for checking if exists derived dataset for selected project
+	 * @param projectId
+	 * @param datasetId
+	 * @return
+	 */
+	public boolean isDatasetLinkedToProject(Integer projectId) {
+		String hql = "from Datasets ds where ds.originalDataset is not null and ds.project.id = :projectId";
+		List<Datasets>  datasetsList = (List<Datasets>) sessionFactory.getCurrentSession().createQuery(hql)
+				.setParameter("projectId", projectId)
+				.list();
+		
+		if(datasetsList.isEmpty())
+			return false;
+		else return true;
+
 	} 
 
 }
