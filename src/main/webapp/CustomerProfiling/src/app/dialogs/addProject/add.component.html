@@ -1,15 +1,17 @@
 <div id="addProject">
-  <h1>Add Project</h1>
+  <h1>Create New Project</h1>
+  <form [formGroup]="addProjectForm" (ngSubmit)="addProject()" autocomplete="off">
     <mat-dialog-content>
   <mat-form-field>
-    <input matInput placeholder="Name">
+    <input matInput formControlName="projectName" placeholder="Name">
   </mat-form-field><br>
   <mat-form-field>
-    <textarea matInput placeholder="Description"></textarea>
+    <textarea matInput formControlName="description" placeholder="Description"></textarea>
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions class="buttons">
     <button mat-button mat-dialog-close (click)="cancel()">Cancel</button>
-    <button type="submit" color="warn" mat-raised-button>Add project</button>
+    <button type="submit" color="warn" mat-raised-button >Create project</button>
 </mat-dialog-actions>
+</form>
 </div>

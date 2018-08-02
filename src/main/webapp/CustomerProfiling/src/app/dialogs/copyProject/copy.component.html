@@ -1,16 +1,17 @@
 <div id="copyProject">
-  <h1>Copy Project</h1>
+  <h1>Copy Project  {{data.projectName}}</h1>
+  <form #copyProjectForm="ngForm">
   <mat-dialog-content>
     <mat-form-field>
-      <input matInput placeholder="Project name">
+      <input matInput name="projectName" type="text" [(ngModel)]="data.projectName" placeholder="Project name">
     </mat-form-field>
     <br>
     <mat-form-field>
-      <input matInput placeholder="New project name">
+      <input matInput name="newProjectName" type="text" [(ngModel)]="data.newProjectName" placeholder="New project name">
     </mat-form-field>
     <br>
     <mat-form-field>
-      <textarea matInput placeholder="Project description"></textarea>
+      <textarea matInput name="description" type="text" [(ngModel)]="data.description" placeholder="Project description"></textarea>
     </mat-form-field>
     <br>
     <mat-form-field>
@@ -24,6 +25,7 @@
   </mat-dialog-content>
   <mat-dialog-actions class="buttons">
     <button mat-button mat-dialog-close (click)="cancel()">Cancel</button>
-    <button type="submit" color="warn" mat-raised-button>Create project</button>
+    <button type="submit" color="warn" mat-raised-button (click)="copyProject(copyProjectForm.value)">Create project</button>
   </mat-dialog-actions>
+  </form>
 </div>

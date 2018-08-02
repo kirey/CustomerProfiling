@@ -19,7 +19,9 @@ projects: any;
     date = new FormControl(new Date());
     serializedDate = new FormControl((new Date()).toISOString());
 
-    editJob(obj) {
+    editProject(obj) {
+      obj['id'] = this.data.id;
+      console.log(obj);
       this.editProjectService.editProjects(obj).subscribe(
         res => {
           console.log(res);
@@ -32,9 +34,12 @@ projects: any;
         }
       );
     }
-
+    cancel(): void {
+      this.dialogRef.close();
+    }
   ngOnInit() {
   console.log(this.data);
+
   }
 
 }

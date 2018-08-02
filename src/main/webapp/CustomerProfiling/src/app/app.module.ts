@@ -17,7 +17,6 @@ import { ProjectsService } from './projects/projects.service';
 import { EditProjectsService } from './dialogs/edit-project/edit.project.service';
 import { AlgorithmsService } from './algorithms/algorithms.service';
 
-
 // Components
 import { ProjectsComponent } from './projects/projects.component';
 import { AddComponent } from './dialogs/addProject/add.component';
@@ -36,6 +35,8 @@ import { AddDatasetComponent } from './dialogs/add-dataset/add-dataset.component
 import { DatasetDetailComponent } from './dialogs/dataset-detail/dataset-detail.component';
 import { DataTabViewComponent } from './dialogs/data-tab-view/data-tab-view.component';
 import { AlgorithmsComponent } from './algorithms/algorithms.component';
+import { AddProjectService } from './dialogs/addProject/addProject.service';
+import { CopyProjectService } from './dialogs/copyProject/copyProject.service';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,9 @@ import { AlgorithmsComponent } from './algorithms/algorithms.component';
     ProjectsService,
     EditProjectsService,
     DataTabService,
-    AlgorithmsService
+    AlgorithmsService,
+    AddProjectService,
+    CopyProjectService
   ],
   entryComponents: [
     AddComponent,
@@ -81,7 +84,8 @@ import { AlgorithmsComponent } from './algorithms/algorithms.component';
     CopyComponent,
     AddDatasetComponent,
     DatasetDetailComponent,
-    DataTabViewComponent
+    DataTabViewComponent,
+    CopyComponent
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
