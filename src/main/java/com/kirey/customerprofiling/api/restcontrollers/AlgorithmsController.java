@@ -10,13 +10,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kirey.customerprofiling.api.dto.RestResponseDto;
 import com.kirey.customerprofiling.data.dao.AlgorithmsDao;
 import com.kirey.customerprofiling.data.dao.ParametersDao;
+import com.kirey.customerprofiling.data.dao.ProjectAlgorithmsDao;
 import com.kirey.customerprofiling.data.entity.Algorithms;
 import com.kirey.customerprofiling.data.entity.Parameters;
+import com.kirey.customerprofiling.data.entity.Projects;
+import com.kirey.customerprofiling.data.entity.ProjectsAlgorithms;
 
 @RestController
 @RequestMapping("/rest/algorithms")
@@ -24,6 +28,9 @@ public class AlgorithmsController {
 
 	@Autowired 
 	private AlgorithmsDao algorithmsDao;
+	
+	@Autowired 
+	private ProjectAlgorithmsDao projectAlgorithmsDao;
 	
 	@Autowired 
 	private ParametersDao parametersDao;
@@ -67,4 +74,17 @@ public class AlgorithmsController {
 				
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Algorithm added", HttpStatus.OK.value()), HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/addAlgorithmToProject", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RestResponseDto> addAlgorithmToProject(@RequestBody Projects project, @RequestParam Integer algorithmId){
+		
+		ProjectsAlgorithms projectAlgorithm = new ProjectsAlgorithms();
+		projectAlgorithm.setProject(project);
+		projectAlgorithm.setAlgorithm(algorithmsDao.findById(algorithmId));
+		projectAlgorithmsDao.attachDirty(projectAlgorithm);
+		
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Algorithm added to project", HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	
 }
