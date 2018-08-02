@@ -75,6 +75,12 @@ public class AlgorithmsController {
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Algorithm added", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
+	/**
+	 * Add selected algorithm to project
+	 * @param project
+	 * @param algorithmId
+	 * @return
+	 */
 	@RequestMapping(value = "/addAlgorithmToProject", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> addAlgorithmToProject(@RequestBody Projects project, @RequestParam Integer algorithmId){
 		
@@ -87,4 +93,11 @@ public class AlgorithmsController {
 	}
 	
 	
+	@RequestMapping(value = "/getAlgorithmsForProject/{projectId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RestResponseDto> getAlgorithmsForProject(@PathVariable Integer projectId){
+		
+		
+		
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Ok", HttpStatus.OK.value()), HttpStatus.OK);
+	}
 }
