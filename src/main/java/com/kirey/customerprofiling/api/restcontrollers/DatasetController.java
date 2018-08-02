@@ -154,14 +154,23 @@ public class DatasetController {
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Dataset successfully created", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
-	
-	@RequestMapping(value = "/datasets", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	/**
+	 * Retrieve all original datasets
+	 * @return
+	 */
+	@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> getAllDatasets(){
 				
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetsDao.findAllOriginal(), HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/datasets/{datasetId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	/**
+	 * Get datastet details
+	 * @param datasetId
+	 * @return
+	 * @throws FileNotFoundException
+	 */
+	@RequestMapping(value = "/{datasetId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> datasetDetails(@PathVariable Integer datasetId) throws FileNotFoundException{
 				
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetService.getDatasetDetails(datasetId), HttpStatus.OK.value()), HttpStatus.OK);
@@ -173,7 +182,12 @@ public class DatasetController {
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetsDao.findByName(datasetName), HttpStatus.OK.value()), HttpStatus.OK);
 	}*/
 	
-	@RequestMapping(value = "/datasets/{id}", method = RequestMethod.DELETE,produces = MediaType.APPLICATION_JSON_VALUE)
+	/**
+	 * Delete selected dataset
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE,produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> deleteDataset(@PathVariable Integer id){
 		
 		Datasets dataset = datasetsDao.findById(id);
@@ -190,9 +204,15 @@ public class DatasetController {
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Dataset successfully deleted!", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
+	/**
+	 * Link selected project with selected dataset
+	 * @param projectId
+	 * @param datasetId
+	 * @return
+	 */
 	@RequestMapping(value = "/linkDataset", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> findDatasetBynName(@RequestParam Integer projectId, @RequestParam Integer datasetId){
-		
+		//Proveriti s Vladom
 		/*Projects project = projectDao.findById(projectId);
 		Datasets dataset = datasetsDao.findById(datasetId);
 		project.setDatasets(dataset);
