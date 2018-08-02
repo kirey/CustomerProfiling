@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kirey.customerprofiling.api.dto.RestResponseDto;
+import com.kirey.customerprofiling.api.dto.VariableDto;
 import com.kirey.customerprofiling.common.constants.AppConstants;
 import com.kirey.customerprofiling.common.constants.ColumnType;
 import com.kirey.customerprofiling.common.constants.DataType;
@@ -149,10 +150,10 @@ public class DatasetController {
 	 * @throws FileNotFoundException
 	 */
 	@RequestMapping(value = "/preprocessing/save", method = RequestMethod.POST)
-	public ResponseEntity<RestResponseDto> saveTransformedCSV(@RequestBody List<Variables> originalVariables, @RequestParam Integer datasetId) throws FileNotFoundException{
+	public ResponseEntity<RestResponseDto> saveTransformedCSV(@RequestBody List<Variables> originalVariables, @RequestParam Integer datasetId, @RequestParam Integer projectId) throws FileNotFoundException{
 		
 		Datasets originalDataset = datasetsDao.findById(datasetId);
-		
+		Projects project = projectDao.findById(projectId);
 		//update original variables
 		for (Variables variable : originalVariables) {
 			variable.setDataset(originalDataset);
@@ -160,7 +161,7 @@ public class DatasetController {
 		}
 		
 		//save derived dataset
-		Datasets derivedDataset = datasetService.saveDerivedDatasetFromOriginal(originalDataset);
+		Datasets derivedDataset = datasetService.saveDerivedDatasetFromOriginal(originalDataset, project);
 		
 		File originalFile = new File(originalDataset.getFilename()); //"C:\\Temp\\testCSV.csv"
 		InputStream is = new FileInputStream(originalFile);
@@ -260,4 +261,21 @@ public class DatasetController {
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("OK", HttpStatus.OK.value()), HttpStatus.OK);
 	}
+	
+	/**
+	 * Method for getting statistics for given variable
+	 * @param id - of variable
+	 * @return ResponseEntity containing the variable statistics along with HTTP status
+	 */
+	@RequestMapping(value = "/variable/{id}", method = RequestMethod.GET)
+	public ResponseEntity<RestResponseDto> variableDetails(@PathVariable Integer id){
+		
+		Variables variable = variablesDao.findById(id);
+		
+		VariableDto variableDto = datasetService.getVariableStatistics(variable);
+		
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(variableDto, HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	
 }

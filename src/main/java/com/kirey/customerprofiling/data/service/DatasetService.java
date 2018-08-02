@@ -17,13 +17,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.commons.math3.stat.descriptive.moment.Variance;
 import org.bouncycastle.crypto.DerivationFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kirey.customerprofiling.api.dto.DatasetDto;
+import com.kirey.customerprofiling.api.dto.VariableDto;
 import com.kirey.customerprofiling.common.constants.AppConstants;
 import com.kirey.customerprofiling.common.constants.DataType;
 import com.kirey.customerprofiling.data.dao.DatasetsDao;
@@ -427,19 +430,22 @@ public class DatasetService {
 	public DatasetDto getDatasetDetails(Integer datasetId) throws FileNotFoundException {
 		
 		Datasets dataset = datasetsDao.findById(datasetId);
-		
+
 		DatasetDto datasetDto = new DatasetDto();
 		datasetDto.setDatasetDesc(dataset.getDescription());
 		datasetDto.setDatasetName(dataset.getName());
 		
 		File file = new File(dataset.getFilename());
+		
 		InputStream is = new FileInputStream(file);
 		List<Variables> listVariables = getVariablesFromCSV(is);
 		
 		is = new FileInputStream(file);
+		CSVParser parser = new CSVParser();
+		RowListProcessor processor = parser.parceFile(is);
 		datasetDto.setNumberOfVariables(listVariables.size());
-		datasetDto.setNumberOfColumns(getNumberOfColumnsCSV(is));
-		datasetDto.setDatasetSize(150);  //TODO prepraviti posle kad se razjasni sta je to
+		datasetDto.setNumberOfRows(processor.getRows().size());
+		datasetDto.setDatasetSize(150);  //TODO prepraviti posle kad se razjasni sta je to //double kilobytes = (file.length() / 1024);
 		datasetDto.setProject(dataset.getProject());
 		
 		return datasetDto;
@@ -544,7 +550,7 @@ public class DatasetService {
 	 * @param originalDataset - original {@link Datasets}
 	 * @return saved derived {@link Datasets}
 	 */
-	public Datasets saveDerivedDatasetFromOriginal(Datasets originalDataset) {
+	public Datasets saveDerivedDatasetFromOriginal(Datasets originalDataset, Projects project) {
 		Datasets derivedDataset = new Datasets();
 		derivedDataset.setName(originalDataset.getName() + AppConstants.DERIVED);
 		
@@ -554,7 +560,70 @@ public class DatasetService {
 		
 		derivedDataset.setFilename(derivedFilename);
 		derivedDataset.setOriginalDataset(originalDataset);
+		derivedDataset.setProject(project);
 		Datasets savedDerivedDataset = (Datasets) datasetsDao.merge(derivedDataset);//new Datasets()
 		return savedDerivedDataset;
+	}
+
+	/**
+	 * Method for getting statistics fro given variable
+	 * @param variable - {@link Variables} object
+	 * @return VariableDto
+	 */
+	public VariableDto getVariableStatistics(Variables variable) {
+		VariableDto variableDto = new VariableDto();
+		try {
+			Datasets dataset = datasetsDao.findByVariable(variable);
+
+			//get values for variable from CSV file
+			File file = new File(dataset.getFilename());
+			InputStream is = new FileInputStream(file);
+			CSVParser parser = new CSVParser();
+			RowListProcessor processor = parser.parceFile(is);
+			List<String> variableValues = new ArrayList<>();
+			List<String[]> rows = processor.getRows();
+			for (String[] row : rows) {
+				for(int i = 0; i < row.length; i++) {
+					if(variable.getColumnNumber() == i) {
+						variableValues.add(row[i]);
+					}
+				}
+			}
+			
+			if(!variableValues.isEmpty()) {
+				if(NumberUtils.isCreatable(variableValues.get(0))) {
+					//convert do double
+					List<Double> doubleList = variableValues.stream().map(Double::valueOf).collect(Collectors.toList());
+					
+					//find min
+					Double min = doubleList.stream().mapToDouble(v -> v).min().getAsDouble();
+					variableDto.setMin(min);
+					
+					//find max
+					Double max = doubleList.stream().mapToDouble(v -> v).max().getAsDouble();
+					variableDto.setMax(max);
+					
+					//find average
+					Double average = doubleList.stream().mapToDouble(a -> a).average().getAsDouble();
+					variableDto.setAverage(average);
+					
+					//find variance
+					Variance variance = new Variance();
+					Double[] valuesArr = new Double[doubleList.size()];
+					valuesArr = doubleList.toArray(valuesArr);
+					double[] valuesArrPrimitive = ArrayUtils.toPrimitive(valuesArr);
+					double varianceValue = variance.evaluate(valuesArrPrimitive);
+					variableDto.setVarience(varianceValue);
+				}else {
+					//find distinct count
+					List<String> distinctList = variableValues.stream().distinct().collect(Collectors.toList());
+					variableDto.setDistinctCount(distinctList.size());
+				}
+			}
+			
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException(e);
+		}
+		return variableDto;
 	}
 }
