@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectOverviewService } from './project.overview.service';
 
 @Component({
   selector: 'app-project-overview',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectOverviewComponent implements OnInit {
   selected = 'option2';
-  constructor() { }
+  constructor(public projectOverviewService: ProjectOverviewService) { }
 
   ngOnInit() {
   }

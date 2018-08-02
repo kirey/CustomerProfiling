@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProjectsService } from './projects.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatPaginator, PageEvent, MatTableDataSource  } from '@angular/material';
 // dialogs
 import { AddComponent } from '../dialogs/addProject/add.component';
 import { EditProjectComponent } from '../dialogs/edit-project/edit-project.component';
@@ -15,14 +15,20 @@ import { SnackBarService } from './../shared/services/snackbar.service';
   styleUrls: ['./projects.component.scss']
 })
 export class ProjectsComponent implements OnInit {
-  dataSource: any;
+  // dataSource: any;
   name: string;
   data: any;
   displayedColumns: string[] = [ 'id', 'name', 'creationDate', 'lastOpened', 'status', 'description', 'editing'];
   projects: any;
 
   constructor(public projectsService: ProjectsService, public dialog: MatDialog, public snackbar: SnackBarService) { }
-
+  private dataSource: MatTableDataSource<any> = new MatTableDataSource([]);
+  paginator: MatPaginator;
+  @ViewChild(MatPaginator)
+  set datasourcePaginator(paginator: MatPaginator) {
+    this.paginator = paginator;
+    this.dataSource.paginator = this.paginator;
+  }
  // Get Projects
  getProjects() {
   this.projectsService.getProjects().subscribe(
@@ -93,5 +99,4 @@ export class ProjectsComponent implements OnInit {
   ngOnInit() {
     this.getProjects();
   }
-
 }
