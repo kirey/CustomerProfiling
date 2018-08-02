@@ -8,10 +8,10 @@ export class EditProjectsService {
 
     constructor(private _http: HttpClient) { }
 
-     baseUrl = '/CustomerProfiling/';
+     baseUrl = '/CustomerProfiling/rest/';
 
 
      editProjects(obj): Observable<any> {
-      return this._http.put(this.baseUrl + 'editProjectDetail', obj);
+      return this._http.put(this.baseUrl + 'projects', obj);
     }
 }

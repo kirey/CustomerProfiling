@@ -3,6 +3,7 @@ import {FormControl} from '@angular/forms';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { EditProjectsService } from './edit.project.service';
+import { SnackBarService } from './../../shared/services/snackbar.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class EditProjectComponent implements OnInit {
 // data: any;
 projects: any;
   constructor(public editProjectService: EditProjectsService, public dialogRef: MatDialogRef<EditProjectComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, ) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, public snackBarService: SnackBarService ) { }
     date = new FormControl(new Date());
     serializedDate = new FormControl((new Date()).toISOString());
 
@@ -25,12 +26,12 @@ projects: any;
       this.editProjectService.editProjects(obj).subscribe(
         res => {
           console.log(res);
-          // this.snackbar.openSnackBar(res['data'], 'Success');
-          // this.dialogRef.close();
+          this.snackBarService.openSnackBar(res['data'], 'Success');
+          this.dialogRef.close();
         },
         err => {
           console.log(err);
-          // this.snackbar.openSnackBar('Something went wrong.', 'Error');
+          this.snackBarService.openSnackBar('Something went wrong.', 'Error');
         }
       );
     }
