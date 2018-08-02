@@ -1,16 +1,22 @@
 package com.kirey.customerprofiling.data.service;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +30,8 @@ import com.kirey.customerprofiling.data.entity.Datasets;
 import com.kirey.customerprofiling.data.entity.Projects;
 import com.kirey.customerprofiling.data.entity.Variables;
 import com.univocity.parsers.common.processor.RowListProcessor;
+import com.univocity.parsers.csv.CsvWriter;
+import com.univocity.parsers.csv.CsvWriterSettings;
 
 /**
  * 
@@ -78,110 +86,184 @@ public class DatasetService {
 		return headers.length;
 	}
 
-	public void createDerivedFromOriginal(InputStream csvFile, List<Variables> variables) {
+	
+	/**
+	 * Method for transforming variables from original csv file and original dataset and saves transformed csv file
+	 * to local disk if flag save is true
+	 * @param csvFile - original csvFile
+	 * @param variables - {@link List} of {@link Variables}
+	 * @param save - true/false flag
+	 * @return String transformed csv file
+	 */
+	public String createDerivedFromOriginal(InputStream csvFile, List<Variables> variables, boolean save) {
 		CSVParser parser = new CSVParser();
 		RowListProcessor processor = parser.parceFile(csvFile);
 		List<String> derivedHeaders = new ArrayList<>();
 		
-		
-		
+		List<List<String[]>> listRows = new ArrayList<>();
 		for (Variables variable : variables) {
 			if(variable.getTypeOfData().equals(DataType.TEXT)) {
 				if(variable.isDistinct()) {
-					List<String> distinctValues = this.findDistinctFromCSV(variable, processor);
-					List<Integer> values = this.getValuesDistinctTransformed(variable, processor);
-					derivedHeaders.addAll(distinctValues);
+					List<String> distinctHeaders = this.findDistinctFromCSV(variable, processor);
+					List<String[]> values = this.getValuesDistinctTransformed(variable, processor, distinctHeaders);
+					listRows.add(values);
+//					distinctValues = this.getValuesDistinctTransformed(variable, processor, distinctHeaders);
+					//add to headers
+					derivedHeaders.addAll(distinctHeaders);
 				}else if(variable.isLeaveAsItIs()) {
 					List<String> allValues = this.findAllValuesFromCSV(variable, processor);
+					//add to headers
 					derivedHeaders.addAll(allValues);
 				}
 			} else if(variable.getTypeOfData().equals(DataType.NUMERIC)) {
 				if(variable.getBins() != null) {
 					//binning operation
-					
+					HashMap<String, Object> binningMap = this.binningOperation(variable, processor);
+					derivedHeaders.addAll((Collection<? extends String>) binningMap.get(AppConstants.HEADERS_KEY));
+					listRows.add((List<String[]>) binningMap.get(AppConstants.ROWS_KEY));
 				} else {
 					//scaling operation
 					List<Double> values = this.scalingOperation(variable, processor);
+					
+					//transform to string
+					List<String[]> stringValues = new ArrayList<>();
+					for(int i = 0; i < values.size(); i++) {
+						String[] s = new String[1];
+						s[0] = String.valueOf(values.get(i));
+						stringValues.add(s);
+					}
+					//add to headers
 					derivedHeaders.add(variable.getVariableName());
+					listRows.add(stringValues);
+					
 				}
 			}
 			
 		}
+		//get all headers
+		String[] headers = new String[derivedHeaders.size()];
+		headers = derivedHeaders.toArray(headers);
 		
-		/*//////////////////////////
-		String matrix[][] = new String[5][derivedHeaders.size()];
+		//build rows
+		int sizes = 0;
+		for(List<String[]> list : listRows) {
+			String[] first = list.get(0);
+			sizes = sizes + first.length;
+		}
 
-		for (int i = 0; i < 5; i++) {
-
-			for (int j = 0; j < derivedHeaders.size(); j++) {
-				if(i==0) {
-					matrix[i][j] = derivedHeaders.get(j);	
-				}else {
-					matrix[i][j] = String.valueOf(j);
+		List<String[]> listNzma = new ArrayList<>();
+		
+		int global = 0;
+		for(int s = 0; s < processor.getRows().size(); s++) {
+			String[] nzm = new String[sizes];
+			int i = 0;
+			int k = 0;
+			for (List<String[]> list : listRows) {
+				for (int j = 0; j < list.get(k).length; j++) {
+					nzm[i] = list.get(global)[j];
+					i++;
 				}
-				
-			}
-		}
-		
-		for (int i = 0; i < matrix.length; i++) {
-		    for (int j = 0; j < matrix[i].length; j++) {
-		        System.out.print(matrix[i][j] + " ");
-		    }
-		    System.out.println();
-		}
-		
-		String matrix2[][] = new String[5][1];
-		for(int i = 0; i < 5; i++) {
-			for(int j = 0; j < 1; j++) {
-				if(i == 0) {
-					matrix2[i][j] = "novi header";
-				}else {
-					matrix2[i][j] = String.valueOf(j);	
-				}
-				
-			}
-		}
-		
-		System.out.println("--------------------------------------------");
-		for (int i = 0; i < matrix2.length; i++) {
-		    for (int j = 0; j < matrix2[i].length; j++) {
-		        System.out.print(matrix2[i][j] + " ");
-		    }
-		    System.out.println();
-		}
-		
-		
-		
-//		String joined[][] = (String [][])ArrayUtils.addAll(matrix, matrix2);
+				k++;
 
+			}
+			listNzma.add(nzm);
+			global++;
+		}
 		
-		String joined[][] = new String[matrix.length+matrix2.length][];
-		System.arraycopy(matrix, 0, joined, 0, matrix.length);
-		System.arraycopy(matrix2, 0, joined, matrix.length, matrix2.length);
-		
-		System.out.println("--------------------------------------------");
-		for (int i = 0; i < joined.length; i++) {
-		    for (int j = 0; j < joined[i].length; j++) {
-		        System.out.print(joined[i][j] + " ");
-		    }
-		    System.out.println();
-		}		
-		
-
-		*//////////////////////////
+		//write csv
+		String csv = writeSimpleCsv(headers, listNzma, save);
+		return csv;
 		
 	}
 	
-	private List<Integer> getValuesDistinctTransformed(Variables variable, RowListProcessor processor) {
-		List<String[]> listRows = processor.getRows();
-		for (String[] rows : listRows) {
-			for(int i = 0; i < rows.length; i++) {
-				if(i == variable.getColumnNumber()) {
-					//TODO find if row[i] equals to header -> write 0 or 1
-				}
+	/**
+	 * Method used for getting headers and values for given variable by performing binning operation on given CSV file
+	 * @param variable - {@link Variables} object
+	 * @param processor - {@link RowListProcessor} parsed CSV file
+	 * @return {@link HashMap} containing list of headers as "headers" and list of values as "rows" key
+	 */
+	private HashMap<String, Object> binningOperation(Variables variable, RowListProcessor processor) {
+		HashMap<String, Object> returnMap = new HashMap<>();
+		List<String[]> rows = new ArrayList<>();
+		List<Double> listValues = this.getNumericValuesFromCSVByVariable(variable, processor);
+		for (Double value : listValues) {
+			String[] row = new String[variable.getBins()];
+			for(int i = 0; i < variable.getBins(); i++) {
+				row[i] = this.performBinningOperation(value, variable.getBins(), i);
 			}
+			rows.add(row);
 		}
-		return null;
+		
+		//get headers
+		List<String> headers = new ArrayList<>();
+		for(int i = 0; i < variable.getBins(); i++) {
+			String header = variable.getVariableName() + i;
+			headers.add(header);
+		}
+		
+		returnMap.put(AppConstants.HEADERS_KEY, headers);
+		returnMap.put(AppConstants.ROWS_KEY, rows);
+		
+		return returnMap;
+	}
+
+	/**
+	 * Method for finding range in which value belongs. 
+	 * <p>Range is defined from
+	 * <p> <code>bins * increment</code>
+	 * <p> to 
+	 * <p><code>bins * (increment+1)</code>
+	 * @param x - the value for which the range should be found
+	 * @param bins - for defining range
+	 * @param increment - value can be from 0 to bins
+	 * @return "1" if value x belongs to given range or "0" if not.
+	 */
+	private String performBinningOperation(double x, Integer bins, int increment) {
+		int min = bins* increment;
+		int max = bins*(increment+1);
+		
+		if(x >= min && x < max) {
+			return "1";
+		}else {
+			return "0";
+		}
+	}
+
+	/**
+	 * Method for calculating values from CSV file for given variable by unfolding distinct headers
+	 * @param variable - {@link Variables} object
+	 * @param processor - {@link RowListProcessor} parsed CSV file
+	 * @param distinctHeaders - {@link List} of distinct headers form CSV file
+	 * @return List<String[]> fulfilled with "1" and "0" depends on position in CSV file
+	 */
+	private List<String[]> getValuesDistinctTransformed(Variables variable, RowListProcessor processor, List<String> distinctHeaders) {
+		List<String[]> matrixList = new ArrayList<>();
+		List<String[]> listRows = processor.getRows();
+		//matrix value is unused but calculated
+		String[][] matrix = new String[listRows.size()][distinctHeaders.size()];
+		int k = 0;
+		for (String[] rows : listRows) {
+			String[] derivedRows = new String[distinctHeaders.size()];
+			for(int i = 0; i < rows.length; i++) {//rows
+				
+				for(int j = 0; j < distinctHeaders.size(); j++) {//columns
+					if(i == variable.getColumnNumber()) {
+						if(rows[i].equals(distinctHeaders.get(j))) {
+							derivedRows[j] = "1 ";
+							matrix[k][j] = "1 ";
+						}else {
+							derivedRows[j] = "0 ";
+							matrix[k][j] = "0 ";
+						}
+					}
+				}
+				
+			}
+			k++;
+			matrixList.add(derivedRows);
+		}
+		
+		return matrixList;
 	}
 
 	/**
@@ -315,5 +397,51 @@ public class DatasetService {
 		datasetDto.setProject(dataset.getProject());
 		
 		return datasetDto;
+	}
+	
+	
+	/**
+	 * Method for generating csv file from given headers and rows. If flag save is true then csv file will be saved to local disk. 
+	 * @param headers - headers for csv file
+	 * @param rows - rows for csv file
+	 * @param save - true/false
+	 * @return String csvFile
+	 */
+	public String writeSimpleCsv(String[] headers, List<String[]> rows, boolean save) {
+
+		// Writing to an in-memory byte array. This will be printed out to the standard output so you can easily see the result.
+		ByteArrayOutputStream csvResult = new ByteArrayOutputStream();
+
+		// CsvWriter (and all other file writers) work with an instance of java.io.Writer
+		Writer outputWriter = new OutputStreamWriter(csvResult);
+
+		// All you need is to create an instance of CsvWriter with the default CsvWriterSettings.
+		// By default, only values that contain a field separator are enclosed within quotes.
+		// If quotes are part of the value, they are escaped automatically as well. Empty rows are discarded automatically.
+		CsvWriter writer = new CsvWriter(outputWriter, new CsvWriterSettings());
+
+		// Write the record headers of this file
+		writer.writeHeaders(headers);
+
+		// Here we just tell the writer to write everything and close the given output Writer instance.
+		writer.writeStringRowsAndClose(rows);
+
+		System.out.println(csvResult.toString());
+
+		try {
+
+			String csv = new String(csvResult.toByteArray(), "UTF-8");
+
+			if (save) {
+				// Write from byte array to CSV file somewhere on local disk.
+				OutputStream outputStream = new FileOutputStream("C:\\Temp\\testCSV1.csv");
+				csvResult.writeTo(outputStream);
+			}
+			return csv;
+
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+
 	}
 }
