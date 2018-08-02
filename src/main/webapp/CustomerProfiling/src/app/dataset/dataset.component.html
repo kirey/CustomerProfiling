@@ -14,7 +14,7 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef> Actions</th>
                 <td mat-cell *matCellDef="let dataset">
-                    <i matTooltip="Delete dateset" matTooltipPosition="above" class="material-icons table-icons"> delete </i>
+                    <i matTooltip="Delete dateset" (click)="deleteDataset(dataset)" matTooltipPosition="above" class="material-icons table-icons"> delete </i>
                     <i matTooltip="Show dateset" (click)="showDatasetDetail(dataset.id)" matTooltipPosition="above" class="material-icons table-icons"> visibility </i>
                 </td>
             </ng-container>

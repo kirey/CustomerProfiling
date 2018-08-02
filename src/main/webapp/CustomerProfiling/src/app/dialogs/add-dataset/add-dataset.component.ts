@@ -2,6 +2,7 @@ import { DatasetService } from './../../dataset/dataset.service';
 import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { SnackBarService } from '../../shared/services/snackbar.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AddDatasetComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<AddDatasetComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private _formBuilder: FormBuilder
-    , private _datasetService: DatasetService) { }
+    , private _datasetService: DatasetService, private _snackBarService: SnackBarService) { }
 
   private name;
   private description;
@@ -54,9 +55,11 @@ export class AddDatasetComponent implements OnInit {
         type: "application/json"
       }));
     this._datasetService.addDataset(formData).subscribe(res => {
-      console.log(res);
-    }, err => { console.log(err) });
-    this.dialogRef.close();
+    }, err => { 
+     },()=>{
+      this.dialogRef.close();
+      this._snackBarService.openSnackBar('Success', 'You have successfuly added dataset!');
+     });
   }
 
 }

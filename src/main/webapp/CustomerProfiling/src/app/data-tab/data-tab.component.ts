@@ -109,3 +109,4 @@ export class DataTabComponent implements OnInit {
     this.getVariableTypes();
 
   }
+}

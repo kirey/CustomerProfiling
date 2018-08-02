@@ -24,5 +24,9 @@ export class DatasetService {
     return this._http.get(this.baseUrl + 'datasets/' + id);
   }
 
+  deleteDataset(id){
+    return this._http.delete(this.baseUrl + 'datasets/' + id);
+  }
+
 
 }
