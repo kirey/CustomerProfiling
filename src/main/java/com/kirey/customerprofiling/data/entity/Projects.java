@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -43,7 +44,7 @@ public class Projects implements Serializable{
 	@JsonBackReference
 	private List<ProjectsAlgorithms> projectsAlgorithmsList = new ArrayList<>();
 	@JsonIgnore
-	private List<Datasets> datasets = new ArrayList<>();
+	private Datasets datasets;
 	
 	@Id
 	@SequenceGenerator(name = "seq_projects_gen", sequenceName = "seq_projects", allocationSize = 1, initialValue = 1)
@@ -98,7 +99,6 @@ public class Projects implements Serializable{
 		return description;
 	}
 	
-	
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -113,13 +113,12 @@ public class Projects implements Serializable{
 		this.projectsAlgorithmsList = projectsAlgorithmsList;
 	}
 	
-	@OneToMany(mappedBy = "project", fetch=FetchType.LAZY)
-	public List<Datasets> getDatasets() {
+	@OneToOne(mappedBy = "project", fetch=FetchType.LAZY)
+	public Datasets getDatasets() {
 		return datasets;
 	}
 
-
-	public void setDatasets(List<Datasets> datasets) {
+	public void setDatasets(Datasets datasets) {
 		this.datasets = datasets;
 	}
 	

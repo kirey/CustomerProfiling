@@ -125,29 +125,11 @@ public class DatasetController {
 	@RequestMapping(value = "/preprocessing/view", method = RequestMethod.POST)
 	public ResponseEntity<RestResponseDto> getPreprocessingView(@RequestBody List<Variables> variables) throws FileNotFoundException{//
 		
-		
 		File originalFile = new File("C:\\Temp\\testCSV.csv"); //Or get from somewhere else
 		InputStream is = new FileInputStream(originalFile);
-		
-		datasetService.createDerivedFromOriginal(is, variables);
-		
-		
-//		String[] headers = {"nesto1", "nesto2"}; 
-//		List<String[]> list = new ArrayList<>();
-//		for(int i = 0; i < 5; i++) {
-//			String[] values = {"value1", "value2"};
-//			list.add(values);
-//		}
-//		
-//		String[][] matrix = new String[2][5];
-//		for(int i = 0; i < headers.length; i ++) {
-//			for (int j = 0; j < list.size(); j++) {
-//				matrix[i] = headers;
-//				matrix[j] = list.get(j);
-//			}
-//		}
-		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("", HttpStatus.OK.value()), HttpStatus.OK);
+		String csv = datasetService.createDerivedFromOriginal(is, variables, false);
+
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(csv, HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
 
@@ -173,40 +155,49 @@ public class DatasetController {
 	}
 	
 	
-	@RequestMapping(value = "/datasets", method = RequestMethod.GET)
+	@RequestMapping(value = "/datasets", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> getAllDatasets(){
 				
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetsDao.findAllOriginal(), HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/datasets/{datasetId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/datasets/{datasetId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> datasetDetails(@PathVariable Integer datasetId) throws FileNotFoundException{
 				
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetService.getDatasetDetails(datasetId), HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
-	/*@RequestMapping(value = "/datasets/{datasetName}", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/datasets/{datasetName}", method = RequestMethod.POST)
 	public ResponseEntity<RestResponseDto> findDatasetBynName(@PathVariable String datasetName){
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetsDao.findByName(datasetName), HttpStatus.OK.value()), HttpStatus.OK);
 	}*/
 	
-	@RequestMapping(value = "/datasets/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<RestResponseDto> deleteDataset(@PathVariable Integer datasetId){
+	@RequestMapping(value = "/datasets/{id}", method = RequestMethod.DELETE,produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RestResponseDto> deleteDataset(@PathVariable Integer id){
 		
+		Datasets dataset = datasetsDao.findById(id);
+		
+		if(dataset.getProject() != null) {
+			Projects project = projectDao.findById(dataset.getProject().getId());				
+			project.setDatasets(null);
+			projectDao.attachDirty(project);
+		}
+		
+		datasetsDao.delete(dataset);
 		
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Dataset successfully deleted!", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/linkDataset", method = RequestMethod.GET)
+	@RequestMapping(value = "/linkDataset", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> findDatasetBynName(@RequestParam Integer projectId, @RequestParam Integer datasetId){
 		
-		Projects project = projectDao.findById(projectId);
+		/*Projects project = projectDao.findById(projectId);
 		Datasets dataset = datasetsDao.findById(datasetId);
-		project.getDatasets().add(dataset);
-		projectDao.attachDirty(project);
+		project.setDatasets(dataset);
+		projectDao.attachDirty(project);*/
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto(null, HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto("OK", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 }
