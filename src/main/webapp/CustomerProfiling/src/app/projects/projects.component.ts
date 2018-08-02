@@ -78,10 +78,10 @@ export class ProjectsComponent implements OnInit {
     //   console.log('uspesno');
     // });
   }
-  openCopyDialog() {
+  openCopyDialog(obj) {
     const dialogRef = this.dialog.open(CopyComponent, {
-      width: '800px'
-      // data: this.data
+      width: '800px',
+      data: obj
     });
     // console.log(obj);
 

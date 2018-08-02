@@ -31,12 +31,12 @@
     <!-- Actions -->
     <ng-container matColumnDef="editing">
       <th mat-header-cell *matHeaderCellDef> Editing</th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element; let i = index">
         <span class="flex">
           <i matTooltip="Edit Project" matTooltipPosition="above" class="material-icons table-icons" (click)="openEditDialog(element)">
             edit
           </i>
-          <i matTooltip="Copy Project" matTooltipPosition="above" class="material-icons table-icons" (click)="openCopyDialog()">
+          <i matTooltip="Copy Project" matTooltipPosition="above" class="material-icons table-icons" (click)="openCopyDialog(element, element.id)">
             file_copy
           </i>
           <i color="warn" matTooltip="Delete Project" matTooltipPosition="above" class="material-icons table-icons" (click)="openDeleteDialog()">

@@ -15,7 +15,8 @@ import { MaterialModule } from './shared/modules/material.module';
 // services
 import { ProjectsService } from './projects/projects.service';
 import { EditProjectsService } from './dialogs/edit-project/edit.project.service';
-
+import { AddProjectService } from './dialogs/addProject/addProject.service';
+import { CopyProjectService } from './dialogs/copyProject/copyProject.service';
 
 // components
 import { ProjectsComponent } from './projects/projects.component';
@@ -63,7 +64,15 @@ import { DataTabViewComponent } from './dialogs/data-tab-view/data-tab-view.comp
     HttpClientModule,
     MaterialModule
   ],
-  providers: [AuthService, AuthGuard, ProjectsService, EditProjectsService, DataTabService],
+  providers: [
+    AuthService,
+    AuthGuard,
+    ProjectsService,
+    EditProjectsService,
+    DataTabService,
+    AddProjectService,
+    CopyProjectService
+  ],
   entryComponents: [
     AddComponent,
     EditProjectComponent,
@@ -71,9 +80,10 @@ import { DataTabViewComponent } from './dialogs/data-tab-view/data-tab-view.comp
     CopyComponent,
     AddDatasetComponent,
     DatasetDetailComponent,
-    DataTabViewComponent
+    DataTabViewComponent,
+    CopyComponent
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule { }
+export class AppModule {}
