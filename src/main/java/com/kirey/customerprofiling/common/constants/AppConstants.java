@@ -1,5 +1,7 @@
 package com.kirey.customerprofiling.common.constants;
 
+import com.kirey.customerprofiling.data.entity.Datasets;
+
 /**
  * Constants for application.
  *
@@ -261,6 +263,7 @@ public class AppConstants {
 	public static final String OPERATION_TYPE_LIVE_AS_IT_IS = "Live as it is";
 	public static final String HEADERS_KEY = "headers";
 	public static final String ROWS_KEY = "rows";
+	public static final String DERIVED = "Derived";
 	
 	
 	/**

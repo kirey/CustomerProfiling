@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.kirey.customerprofiling.common.constants.ColumnType;
 import com.kirey.customerprofiling.common.constants.DataType;
 
@@ -41,7 +42,9 @@ public class Variables implements Serializable{
 	private boolean leaveAsItIs;
 	private boolean distinct;
 	private Variables originalVariable;
+	@JsonBackReference("variablesDerivedVariables")
 	private List<Variables> derivedVariables = new ArrayList<>();
+	@JsonBackReference("variablesDerivedVariablesValues")
 	private List<DerivedVariableValue> derivedVariableValues = new ArrayList<>();
 	
 	@Id

@@ -1,5 +1,6 @@
 package com.kirey.customerprofiling.api.restcontrollers;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,6 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -121,15 +124,52 @@ public class DatasetController {
 	}
 	
 	
-	
+	/**
+	 * Method for displaying transformed (derived) CSV file
+	 * @param variables List of {@link Variables}
+	 * @param datasetId - id of selected {@link Datasets}
+	 * @return ResponseEntity containing the transformed CSV file along with HTTP status
+	 * @throws FileNotFoundException
+	 */
 	@RequestMapping(value = "/preprocessing/view", method = RequestMethod.POST)
-	public ResponseEntity<RestResponseDto> getPreprocessingView(@RequestBody List<Variables> variables) throws FileNotFoundException{//
-		
-		File originalFile = new File("C:\\Temp\\testCSV.csv"); //Or get from somewhere else
+	public ResponseEntity<RestResponseDto> getPreprocessingView(@RequestBody List<Variables> variables, @RequestParam Integer datasetId) throws FileNotFoundException{//
+		Datasets dataset = datasetsDao.findById(datasetId);
+		File originalFile = new File(dataset.getFilename());//new File("C:\\Temp\\testCSV.csv"); //dataset.getFilename();
 		InputStream is = new FileInputStream(originalFile);
-		String csv = datasetService.createDerivedFromOriginal(is, variables, false);
+		String csv = datasetService.createDerivedFromOriginal(is, variables, false, dataset);
 
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(csv, HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	/**
+	 * Method for saving transformed CSV file, derived Dataset, derived Variables and derived variable values
+	 * @param originalVariables List of {@link Variables}
+	 * @param datasetId - id of selected {@link Datasets}
+	 * @return ResponseEntity containing the status message along with HTTP status
+	 * @throws FileNotFoundException
+	 */
+	@RequestMapping(value = "/preprocessing/save", method = RequestMethod.POST)
+	public ResponseEntity<RestResponseDto> saveTransformedCSV(@RequestBody List<Variables> originalVariables, @RequestParam Integer datasetId) throws FileNotFoundException{
+		
+		Datasets originalDataset = datasetsDao.findById(datasetId);
+		
+		//update original variables
+		for (Variables variable : originalVariables) {
+			variable.setDataset(originalDataset);
+			variablesDao.merge(variable);
+		}
+		
+		//save derived dataset
+		Datasets derivedDataset = datasetService.saveDerivedDatasetFromOriginal(originalDataset);
+		
+		File originalFile = new File(originalDataset.getFilename()); //"C:\\Temp\\testCSV.csv"
+		InputStream is = new FileInputStream(originalFile);
+		String derivedCSV = datasetService.createDerivedFromOriginal(is, originalVariables, true, originalDataset);
+		
+		InputStream derivedIs = new ByteArrayInputStream(derivedCSV.getBytes());
+		datasetService.saveDerivedVariableAndValues(derivedIs, derivedDataset);
+		
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Derived dataset successfully saved with derived variables and values", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
 
