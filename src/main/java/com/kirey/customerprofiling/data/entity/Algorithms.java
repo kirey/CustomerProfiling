@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -32,7 +33,7 @@ public class Algorithms implements Serializable {
 	private String library;
 	@JsonIgnore
 	private List<ProjectsAlgorithms> projectAlgorithamsList = new ArrayList<>();
-	//@JsonManagedReference
+	@JsonBackReference
 	private List<Parameters> parameters = new ArrayList<>();
 	
 	
