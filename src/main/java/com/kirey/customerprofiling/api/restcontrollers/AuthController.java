@@ -59,12 +59,32 @@ public class AuthController {
 	}
 	
 	/**
-	 * Method to check if app works and returns response
+	 * Method to check if app works and returns response (security = perimitAll())
 	 * @return
 	 */
 	@RequestMapping(value = "/test", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> test() {
 		
 		return new ResponseEntity<Object>("Test ok", HttpStatus.OK);
+	}
+	
+	/**
+	 * Method for testing security (permit role ROLE_ADMIN)
+	 * @return
+	 */
+	@RequestMapping(value = "/test/admin", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> testAdmin() {
+		
+		return new ResponseEntity<Object>("Test ok admin", HttpStatus.OK);
+	}
+	
+	/**
+	 * Method for testing security (permit role ROLE_USER)
+	 * @return
+	 */
+	@RequestMapping(value = "/test/user", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> testUser() {
+		
+		return new ResponseEntity<Object>("Test ok user", HttpStatus.OK);
 	}
 }
