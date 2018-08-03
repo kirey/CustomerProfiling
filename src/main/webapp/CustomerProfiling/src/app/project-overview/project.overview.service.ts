@@ -17,7 +17,7 @@ export class ProjectOverviewService {
   }
   getAlgorithms(id): Observable<any> {
     return this._http.get(
-      this.baseUrl + 'algorithms/getAlgorithmsForProject/' + id
+      this.baseUrl + 'algorithms/project/' + id
     );
   }
   getProject(id): Observable<any> {

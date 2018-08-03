@@ -3,13 +3,11 @@
   margin: 5% 15%;
 
   mat-dialog-content {
-    width: 60%;
     display: flex;
     flex-direction: column;
   }
   .buttons button{
     float: right;
-    // margin-right: 40%;
   }
   .buttonsFirst button {
     float: right;
@@ -22,6 +20,15 @@
   }
   mat-card {
     margin: 10px;
+  }
+  mat-card-content {
+    margin-top: 10px;
+  }
+  mat-divider {
+    margin: 10px 0;
+  }
+  h4 {
+    color: $primary;
   }
 
 }

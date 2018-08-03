@@ -20,9 +20,11 @@
   <!-- Select dataset -->
   <mat-dialog-content>
     <h4 class="subtitle">Dataset details</h4>
-    <mat-form-field>
-      <mat-select (change)="selectedDataset($event.value)">
-        <mat-option *ngFor="let data of dataset; let i = index" [value]="data.id">{{data.name}}</mat-option>
+
+    <!-- za selektovanje dataseta -  nije zavrseno -->
+    <mat-form-field >
+      <mat-select (selectionChange)="selectedDataset($event,id)">
+        <mat-option  *ngFor="let data of dataset; let i = index" >{{data.name}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
@@ -36,18 +38,17 @@
   <mat-divider></mat-divider>
   <!-- Projects Properties -->
   <h4 class="subtitle">Project properties</h4>
-  <div class="cards">
-    <mat-card class="example-card">
+  <div class="cards" >
+    <mat-card *ngIf="algorithms">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>Algorithms</mat-card-title>
       </mat-card-header>
       <mat-divider></mat-divider>
-      <mat-card-content>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes
-          very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
-        </p>
+      <mat-card-content *ngFor="let algorithm of algorithms">
+        <span><strong>Algorithm Name:</strong> {{algorithm.algorithmName}}</span><br>
+        <span><strong>Algorithm Description:</strong> {{algorithm.description}}</span><br>
+        <span><strong>Algorithm Library:</strong> {{algorithm.library}}</span>
       </mat-card-content>
     </mat-card>
     <mat-card class="example-card">
