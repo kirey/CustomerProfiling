@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProjectsService } from './projects.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatPaginator, PageEvent, MatTableDataSource  } from '@angular/material';
@@ -21,7 +22,7 @@ export class ProjectsComponent implements OnInit {
   displayedColumns: string[] = [ 'id', 'name', 'creationDate', 'lastOpened', 'status', 'description', 'editing'];
   projects: any;
 
-  constructor(public projectsService: ProjectsService, public dialog: MatDialog, public snackbar: SnackBarService) { }
+  constructor(public projectsService: ProjectsService, public dialog: MatDialog, public snackbar: SnackBarService,private _router: Router) { }
   private dataSource: MatTableDataSource<any> = new MatTableDataSource([]);
   paginator: MatPaginator;
   @ViewChild(MatPaginator)
@@ -39,6 +40,11 @@ export class ProjectsComponent implements OnInit {
     },
     err => console.log(err)
   );
+}
+
+openProject(id){
+  localStorage.setItem("projectID",id);
+  this._router.navigate(['/project-overview']);
 }
 
   // open add dialog
