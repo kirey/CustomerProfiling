@@ -127,6 +127,33 @@ public class AlgorithmsController {
 	}
 	
 	/**
+	 * Method for getting List of algorithms which are not assigned to given project
+	 * @param projectId - of {@link Projects}
+	 * @return ResponseEntity containing the list of algorithms along with HTTP status
+	 */
+	@RequestMapping(value = "/filtered/project/{projectId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RestResponseDto> getFilteredAlgorithmsForProject(@PathVariable Integer projectId){
+		List<Algorithms> listAlgorithms = algorithmsDao.findAll();
+		
+		List<Algorithms> listFilteredAlgorithms = new ArrayList<>();
+		List<ProjectsAlgorithms> listProjectsAlgorithms = projectAlgorithmsDao.findByProject(projectId);
+		for (Algorithms algorithm : listAlgorithms) {
+			boolean flag = true;
+			for (ProjectsAlgorithms projectsAlgorithm : listProjectsAlgorithms) {
+				if(algorithm.getId().equals(projectsAlgorithm.getAlgorithm().getId())) {
+					flag = false;
+				}
+			}
+			if(flag) {
+				listFilteredAlgorithms.add(algorithm);
+			}
+		}
+			
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(listFilteredAlgorithms, HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	
+	/**
 	 * Method for analyzing given algorithm
 	 * @param algorithm - {@link Algorithms} object with parameters and values
 	 * @return ResponseEntity containing the analyzed algorithm along with HTTP status
