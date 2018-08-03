@@ -1,5 +1,6 @@
 package com.kirey.customerprofiling.api.restcontrollers;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,6 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kirey.customerprofiling.api.dto.RestResponseDto;
+import com.kirey.customerprofiling.api.dto.VariableDto;
 import com.kirey.customerprofiling.common.constants.AppConstants;
 import com.kirey.customerprofiling.common.constants.ColumnType;
 import com.kirey.customerprofiling.common.constants.DataType;
@@ -121,18 +125,62 @@ public class DatasetController {
 	}
 	
 	
-	
+	/**
+	 * Method for displaying transformed (derived) CSV file
+	 * @param variables List of {@link Variables}
+	 * @param datasetId - id of selected {@link Datasets}
+	 * @return ResponseEntity containing the transformed CSV file along with HTTP status
+	 * @throws FileNotFoundException
+	 */
 	@RequestMapping(value = "/preprocessing/view", method = RequestMethod.POST)
-	public ResponseEntity<RestResponseDto> getPreprocessingView(@RequestBody List<Variables> variables) throws FileNotFoundException{//
-		
-		File originalFile = new File("C:\\Temp\\testCSV.csv"); //Or get from somewhere else
+	public ResponseEntity<RestResponseDto> getPreprocessingView(@RequestBody List<Variables> variables, @RequestParam Integer datasetId) throws FileNotFoundException{//
+		Datasets dataset = datasetsDao.findById(datasetId);
+		File originalFile = new File(dataset.getFilename());//new File("C:\\Temp\\testCSV.csv"); //dataset.getFilename();
 		InputStream is = new FileInputStream(originalFile);
-		String csv = datasetService.createDerivedFromOriginal(is, variables, false);
+		String csv = datasetService.createDerivedFromOriginal(is, variables, false, dataset);
 
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(csv, HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
-
+	/**
+	 * Method for saving transformed CSV file, derived Dataset, derived Variables and derived variable values
+	 * @param originalVariables List of {@link Variables}
+	 * @param datasetId - id of selected {@link Datasets}
+	 * @return ResponseEntity containing the status message along with HTTP status
+	 * @throws FileNotFoundException
+	 */
+	@RequestMapping(value = "/preprocessing/save", method = RequestMethod.POST)
+	public ResponseEntity<RestResponseDto> saveTransformedCSV(@RequestBody List<Variables> originalVariables, @RequestParam Integer datasetId, @RequestParam Integer projectId) throws FileNotFoundException{
+		
+		Datasets originalDataset = datasetsDao.findById(datasetId);
+		Projects project = projectDao.findById(projectId);
+		//update original variables
+		for (Variables variable : originalVariables) {
+			variable.setDataset(originalDataset);
+			variablesDao.merge(variable);
+		}
+		
+		//save derived dataset
+		Datasets derivedDataset = datasetService.saveDerivedDatasetFromOriginal(originalDataset, project);
+		
+		File originalFile = new File(originalDataset.getFilename()); //"C:\\Temp\\testCSV.csv"
+		InputStream is = new FileInputStream(originalFile);
+		String derivedCSV = datasetService.createDerivedFromOriginal(is, originalVariables, true, originalDataset);
+		
+		InputStream derivedIs = new ByteArrayInputStream(derivedCSV.getBytes());
+		datasetService.saveDerivedVariableAndValues(derivedIs, derivedDataset);
+		
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Derived dataset successfully saved with derived variables and values", HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	/**
+	 * Creates new dataset from uploaded CSV file
+	 * @param csvFile
+	 * @param dataset
+	 * @return
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/addNewDataset", method = RequestMethod.POST,consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> uploadCsvDataset(@RequestPart(name="csvFile") MultipartFile csvFile, @RequestPart(name="dataset") Datasets dataset) throws IllegalStateException, IOException{
 		
@@ -175,13 +223,7 @@ public class DatasetController {
 				
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetService.getDatasetDetails(datasetId), HttpStatus.OK.value()), HttpStatus.OK);
 	}
-	
-	/*@RequestMapping(value = "/datasets/{datasetName}", method = RequestMethod.POST)
-	public ResponseEntity<RestResponseDto> findDatasetBynName(@PathVariable String datasetName){
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetsDao.findByName(datasetName), HttpStatus.OK.value()), HttpStatus.OK);
-	}*/
-	
 	/**
 	 * Delete selected dataset
 	 * @param id
@@ -205,19 +247,34 @@ public class DatasetController {
 	}
 	
 	/**
-	 * Link selected project with selected dataset
+	 * Check if project is linked to some derived dataset 
+	 * if true link button on ONE PROJECT PAGE - Overview is disabled, othervise is enabled
 	 * @param projectId
 	 * @param datasetId
 	 * @return
 	 */
-	@RequestMapping(value = "/linkDataset", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/linkDataset", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> findDatasetBynName(@RequestParam Integer projectId, @RequestParam Integer datasetId){
 		//Proveriti s Vladom
-		/*Projects project = projectDao.findById(projectId);
-		Datasets dataset = datasetsDao.findById(datasetId);
-		project.setDatasets(dataset);
-		projectDao.attachDirty(project);*/
-		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("OK", HttpStatus.OK.value()), HttpStatus.OK);
+		@SuppressWarnings("unused")
+		Projects project = projectDao.findById(projectId);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetsDao.isDatasetLinkedToProject(projectId), HttpStatus.OK.value()), HttpStatus.OK);
 	}
+	
+	/**
+	 * Method for getting statistics for given variable
+	 * @param id - of variable
+	 * @return ResponseEntity containing the variable statistics along with HTTP status
+	 */
+	@RequestMapping(value = "/variable/{id}", method = RequestMethod.GET)
+	public ResponseEntity<RestResponseDto> variableDetails(@PathVariable Integer id){
+		
+		Variables variable = variablesDao.findById(id);
+		
+		VariableDto variableDto = datasetService.getVariableStatistics(variable);
+		
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(variableDto, HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	
 }

@@ -10,7 +10,7 @@ public class DatasetDto implements Serializable {
 	private static final long serialVersionUID = 4987038072366014688L;
 
 	private String datasetName;
-	private int numberOfColumns;
+	private int numberOfRows;
 	private int numberOfVariables;
 	private int datasetSize;
 	private String datasetDesc;
@@ -23,11 +23,12 @@ public class DatasetDto implements Serializable {
 	public void setDatasetName(String datasetName) {
 		this.datasetName = datasetName;
 	}
-	public int getNumberOfColumns() {
-		return numberOfColumns;
+	
+	public int getNumberOfRows() {
+		return numberOfRows;
 	}
-	public void setNumberOfColumns(int numberOfColumns) {
-		this.numberOfColumns = numberOfColumns;
+	public void setNumberOfRows(int numberOfRows) {
+		this.numberOfRows = numberOfRows;
 	}
 	public int getNumberOfVariables() {
 		return numberOfVariables;
