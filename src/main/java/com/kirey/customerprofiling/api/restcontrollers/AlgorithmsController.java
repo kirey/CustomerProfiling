@@ -93,11 +93,9 @@ public class AlgorithmsController {
 	}
 	
 	
-	@RequestMapping(value = "/getAlgorithmsForProject/{projectId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/getAlgorithmsForProject/{projectId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> getAlgorithmsForProject(@PathVariable Integer projectId){
 		
-		
-		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Ok", HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(algorithmsDao.findAlgortithmsByProject(projectId), HttpStatus.OK.value()), HttpStatus.OK);
 	}
 }
