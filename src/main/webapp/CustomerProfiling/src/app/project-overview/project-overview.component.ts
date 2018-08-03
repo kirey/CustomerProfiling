@@ -8,9 +8,14 @@ import { ProjectOverviewService } from './project.overview.service';
 })
 export class ProjectOverviewComponent implements OnInit {
   selected = 'option2';
+  id: number;
   constructor(public projectOverviewService: ProjectOverviewService) { }
 
+   getProjectId(): string {
+    return localStorage.getItem('projectID');
+}
   ngOnInit() {
+this.getProjectId();
   }
 
 }

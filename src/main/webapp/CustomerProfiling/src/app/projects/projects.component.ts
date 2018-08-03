@@ -103,6 +103,7 @@ openProject(id){
     });
   }
   ngOnInit() {
+    localStorage.removeItem('projectID');
     this.getProjects();
   }
 }
