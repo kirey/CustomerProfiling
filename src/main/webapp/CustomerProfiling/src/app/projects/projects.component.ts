@@ -44,7 +44,7 @@ export class ProjectsComponent implements OnInit {
 
 openProject(id){
   localStorage.setItem("projectID",id);
-  this._router.navigate(['/project-overview']);
+  this._router.navigate(['/one-project']);
 }
 
   // open add dialog
