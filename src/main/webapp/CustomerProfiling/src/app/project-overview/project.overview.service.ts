@@ -5,17 +5,22 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class ProjectOverviewService {
+  constructor(private _http: HttpClient) {}
 
-    constructor(private _http: HttpClient) { }
+  baseUrl = '/CustomerProfiling/rest/';
 
-     baseUrl = '/CustomerProfiling/rest/';
-
-  //   getProjects(): Observable<any> {
-  //       return this._http.get(this.baseUrl + 'projects');
-  //   }
-  //   deleteProject(id): Observable<any> {
-  //     return this._http.delete(this.baseUrl + 'projects/' + id);
-  // }
-
-
+  getDataset(): Observable<any> {
+    return this._http.get(this.baseUrl + 'dataset');
+  }
+  getDatasetDetails(id): Observable<any> {
+    return this._http.get(this.baseUrl + 'dataset/' + id);
+  }
+  getAlgorithms(id): Observable<any> {
+    return this._http.get(
+      this.baseUrl + 'algorithms/getAlgorithmsForProject/' + id
+    );
+  }
+  getProject(id): Observable<any> {
+    return this._http.get(this.baseUrl + 'projects/' + id);
+  }
 }

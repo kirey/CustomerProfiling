@@ -1,45 +1,27 @@
 @import '../app.component.scss';
 #projectOverview {
-  margin-left: 20%;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 5% 15%;
+
   mat-dialog-content {
     width: 60%;
     display: flex;
     flex-direction: column;
   }
-  .box1::selection {
-    background-color: $primary;
-    color: white;
+  .buttons button{
+    float: right;
+    // margin-right: 40%;
   }
-  .box2::selection {
-    background-color: $primary;
-    color: white;
+  .buttonsFirst button {
+    float: right;
   }
-  .box3::selection {
-    background-color: $primary;
-    color: white;
-  }
-  .details {
+  .cards {
+    margin-top: 50px;
     display: flex;
     flex-direction: row;
     justify-content: center;
   }
-  .details div {
-    margin-right: 15px;
-    text-transform: uppercase;
-    padding: 10px 20px;
+  mat-card {
+    margin: 10px;
   }
-  .box1 {
-    border: 2px inset $accent;
-  }
-  .box2 {
-    border: 2px inset $warn;
-  }
-  .box3 {
-    border: 2px inset $primary;
-  }
-  .buttons {
-    float: right;
-    margin-right: 40%;
-  }
+
 }
