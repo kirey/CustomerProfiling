@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Cascade;
 
@@ -37,7 +38,8 @@ public class Algorithms implements Serializable {
 	@JsonIgnore
 	private List<ProjectsAlgorithms> projectAlgorithamsList = new ArrayList<>();
 	private List<Parameters> parameters = new ArrayList<>();
-	
+	@Transient
+	boolean analized;
 	
 	@Id
 	@SequenceGenerator(name = "seq_algorithms_gen", sequenceName = "seq_algorithms", allocationSize = 1, initialValue = 1)
@@ -89,6 +91,16 @@ public class Algorithms implements Serializable {
 	public void setProjectAlgorithamsList(List<ProjectsAlgorithms> projectAlgorithamsList) {
 		this.projectAlgorithamsList = projectAlgorithamsList;
 	}
-
+	
+	@Transient
+	public boolean isAnalized() {
+		return analized;
+	}
+	@Transient
+	public void setAnalized(boolean analized) {
+		this.analized = analized;
+	}
+	
+	
 
 }

@@ -264,6 +264,7 @@ public class AppConstants {
 	public static final String HEADERS_KEY = "headers";
 	public static final String ROWS_KEY = "rows";
 	public static final String DERIVED = "Derived";
+	public static final String PROJECT_STATUS_LEARNING = "Learning";
 	
 	
 	/**
