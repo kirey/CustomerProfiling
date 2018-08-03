@@ -8,11 +8,11 @@ import { Observable } from 'rxjs';
 export class AddProjectService {
   constructor(private _http: HttpClient) { }
 
-  baseUrl = '/CustomerProfiling/';
+  baseUrl = '/CustomerProfiling/rest/';
 
 
   addProject(project): Observable<any> {
-    return this._http.post(this.baseUrl + 'addProjectDetail', project);
+    return this._http.post(this.baseUrl + 'projects', project);
   }
   // getEvents(): Observable<any> {
   //   return this._http.get(this.baseUrl + 'events');

@@ -16,6 +16,7 @@ import { MaterialModule } from './shared/modules/material.module';
 import { ProjectsService } from './projects/projects.service';
 import { EditProjectsService } from './dialogs/edit-project/edit.project.service';
 import { AlgorithmsService } from './algorithms/algorithms.service';
+import { ProjectOverviewService } from './project-overview/project.overview.service';
 
 // Components
 import { ProjectsComponent } from './projects/projects.component';
@@ -29,6 +30,7 @@ import { CopyComponent } from './dialogs/copyProject/copy.component';
 import { DatasetComponent } from './dataset/dataset.component';
 import { DataTabComponent } from './data-tab/data-tab.component';
 import { DataTabService } from './data-tab/data-tab.service';
+
 // import { ProjectOverviewComponent } from './project-overview/project-overview.component';
 import { ProjectOverviewComponent } from './project-overview/project-overview.component';
 import { AddDatasetComponent } from './dialogs/add-dataset/add-dataset.component';
@@ -77,7 +79,8 @@ import { AddAlgorithmComponent } from './dialogs/add-algorithm/add-algorithm.com
     DataTabService,
     AlgorithmsService,
     AddProjectService,
-    CopyProjectService
+    CopyProjectService,
+    ProjectOverviewService
   ],
   entryComponents: [
     AddComponent,

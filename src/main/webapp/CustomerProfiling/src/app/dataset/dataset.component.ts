@@ -1,8 +1,8 @@
 import { DeleteComponent } from './../dialogs/delete/delete.component';
 import { DatasetService } from './dataset.service';
 import { DatasetDetailComponent } from './../dialogs/dataset-detail/dataset-detail.component';
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatPaginator, PageEvent, MatTableDataSource } from '@angular/material';
 import { AddDatasetComponent } from '../dialogs/add-dataset/add-dataset.component';
 import { SnackBarService } from '../shared/services/snackbar.service';
 
@@ -16,12 +16,26 @@ export class DatasetComponent implements OnInit {
 
   constructor(private _dialog: MatDialog, private _datasetService: DatasetService, private _snackBarService: SnackBarService) { }
 
-  private datasets;
   private displayedColumns: string[] = ['datasetName', 'actions'];
+  private dataSource: MatTableDataSource<any> = new MatTableDataSource([]);
+  paginator: MatPaginator;
+  @ViewChild(MatPaginator)
+  set datasourcePaginator(paginator: MatPaginator) {
+    this.paginator = paginator;
+    this.dataSource.paginator = this.paginator;
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
   ngOnInit() {
     this._datasetService.getDatasets().subscribe(res => {
-      this.datasets = JSON.parse(res.text()).data;
+      this.dataSource = new MatTableDataSource(JSON.parse(res.text()).data);
+    }, err => { }, () => {
+      this.dataSource.filterPredicate = function (data, filter: string): boolean {
+        return data.name.toLowerCase().includes(filter);
+      };
     });
   }
 
@@ -31,7 +45,7 @@ export class DatasetComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(results => {
       this._datasetService.getDatasets().subscribe(res => {
-        this.datasets = JSON.parse(res.text()).data;
+        this.dataSource = new MatTableDataSource(JSON.parse(res.text()).data);
       });
     });
   }
@@ -61,7 +75,7 @@ export class DatasetComponent implements OnInit {
         }, () => {
           this._snackBarService.openSnackBar('Success', 'You have successfuly deleted dataset!');
           this._datasetService.getDatasets().subscribe(res => {
-            this.datasets = JSON.parse(res.text()).data;
+            this.dataSource = new MatTableDataSource(JSON.parse(res.text()).data);
           });
         });
       }

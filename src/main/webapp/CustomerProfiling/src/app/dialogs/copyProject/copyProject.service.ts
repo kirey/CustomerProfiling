@@ -8,21 +8,9 @@ import { Observable } from 'rxjs';
 export class CopyProjectService {
   constructor(private _http: HttpClient) { }
 
-  baseUrl = '/CustomerProfiling/';
+  baseUrl = '/CustomerProfiling/rest/projects/';
 
   copyProjects(obj): Observable<any> {
-    return this._http.put(this.baseUrl + 'copyProjectDetail', obj);
+    return this._http.post(this.baseUrl + 'copy', obj);
   }
-  // addProject(project): Observable<any> {
-  //   return this._http.post(this.baseUrl + 'addProjectDetail', project);
-  // }
-  // getEvents(): Observable<any> {
-  //   return this._http.get(this.baseUrl + 'events');
-  // }
-  // editJobs(obj): Observable<any> {
-  //   return this._http.put(this.baseUrl + 'events', obj);
-  // }
-  // getJobs(): Observable<any> {
-  //   return this._http.get(this.baseUrl + 'events');
-  // }
 }
