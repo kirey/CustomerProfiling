@@ -105,7 +105,11 @@ public class AlgorithmsController {
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Algorithm added to project", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
-	
+	/**
+	 * Method for getting List of {@link Algorithms} with parameters and values by given project
+	 * @param projectId - id of {@link Projects}
+	 * @return ResponseEntity containing the list of algorithms along with HTTP status
+	 */
 	@RequestMapping(value = "/project/{projectId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> getAlgorithmsForProject(@PathVariable Integer projectId){
 		List<Algorithms> listAlgorithms = new ArrayList<>();
@@ -135,7 +139,12 @@ public class AlgorithmsController {
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(algorithm, HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
-	
+	/**
+	 * Method for saving List of algorithms with parameters and values for given project
+	 * @param algorithms - List of {@link Algorithms}
+	 * @param projectId - id of {@link Projects}
+	 * @return ResponseEntity containing the status message along with HTTP status
+	 */
 	@RequestMapping(value = "/submit", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> saveAlgorithmsToProject(@RequestBody List<Algorithms> algorithms, @RequestParam Integer projectId){
 
@@ -143,7 +152,10 @@ public class AlgorithmsController {
 		Projects project = projectsDao.findById(projectId);
 		
 		for (Algorithms algorithm : algorithms) {
-			ProjectsAlgorithms projectsAlgorithms = new ProjectsAlgorithms();
+			ProjectsAlgorithms projectsAlgorithms = projectAlgorithmsDao.findByProjectAndAlgorithms(project, algorithm);
+			if(projectsAlgorithms == null) {
+				projectsAlgorithms = new ProjectsAlgorithms();	
+			}
 			projectsAlgorithms.setAlgorithm(algorithm);
 			projectsAlgorithms.setProject(project);
 			projectsAlgorithms = (ProjectsAlgorithms) projectAlgorithmsDao.merge(projectsAlgorithms);
@@ -152,6 +164,7 @@ public class AlgorithmsController {
 				List<ParameterValues> parameterValues = parameter.getParameterValues();
 				for (ParameterValues parameterValue : parameterValues) {
 					parameterValue.setProjectAlgorithms(projectsAlgorithms);
+					parameterValue.setParameter(parameter);
 					parameterValuesDao.attachDirty(parameterValue);
 				}
 			}
