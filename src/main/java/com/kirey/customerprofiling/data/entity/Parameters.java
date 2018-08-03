@@ -86,7 +86,7 @@ public class Parameters implements Serializable{
 		this.algorithm = algorithm;
 	}
 	
-	@OneToMany(mappedBy = "parameter")// fetch = FetchType.EAGER
+	@OneToMany(mappedBy = "parameter", fetch = FetchType.EAGER)// 
 	public List<ParameterValues> getParameterValues() {
 		return parameterValues;
 	}

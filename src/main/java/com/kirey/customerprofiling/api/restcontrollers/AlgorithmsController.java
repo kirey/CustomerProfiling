@@ -53,10 +53,8 @@ public class AlgorithmsController {
 	 */
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> getAllAlgorithms(){
-				List<Algorithms> allAlgorithm = algorithmsDao.findAll();
-				for (Algorithms algorithms : allAlgorithm) {
-					algorithms.setParameters(null);
-				}
+		List<Algorithms> allAlgorithm = algorithmsDao.findAll();
+				
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(allAlgorithm, HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
@@ -108,10 +106,9 @@ public class AlgorithmsController {
 	}
 	
 	
-	@RequestMapping(value = "/getAlgorithmsForProject/{projectId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/project/{projectId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> getAlgorithmsForProject(@PathVariable Integer projectId){
 		List<Algorithms> listAlgorithms = new ArrayList<>();
-		
 		List<ProjectsAlgorithms> listProjectsAlgorithms = projectAlgorithmsDao.findByProject(projectId);
 		for (ProjectsAlgorithms projectsAlgorithm : listProjectsAlgorithms) {
 			Algorithms algorithm = projectsAlgorithm.getAlgorithm();
