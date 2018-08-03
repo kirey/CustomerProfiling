@@ -20,11 +20,18 @@ $gray: #757575;
     justify-content: space-around;
 }
 
+.space-between {
+    justify-content: space-between;
+}
+
 .wrap {
     flex-wrap: wrap;
 }
 
 // Helper classes
+.justify {
+    text-align: justify;
+}
 .subtitle {
     color: $gray;
 }

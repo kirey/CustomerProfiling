@@ -1,0 +1,95 @@
+<div id="add-algorithm">
+  <h1 class="subtitle" mat-dialog-title>Add Algorithm</h1>
+  <mat-divider></mat-divider>
+  <mat-dialog-content>
+    <!-- Form  -->
+    <form [formGroup]="addAlgorithmForm" class="flex space-between" autocomplete="off">
+      <div class="flex column">
+        <h3 class="subtitle">Basic Information</h3>
+        <!-- Name -->
+        <mat-form-field>
+          <input formControlName="algorithmName" matInput placeholder="Algorithm Name">
+        </mat-form-field>
+        <mat-error *ngIf="algorithmName.touched && algorithmName.errors">
+          <strong> You have to enter algorithm name.</strong>
+        </mat-error>
+        <!-- Library -->
+        <mat-form-field>
+          <input formControlName="library" matInput placeholder="Library">
+        </mat-form-field>
+        <mat-error *ngIf="library.touched && library.errors">
+          <strong> You have to enter library title.</strong>
+        </mat-error>
+        <!-- Description -->
+        <mat-form-field appearance="outline">
+          <textarea formControlName="description" matInput placeholder="Description"></textarea>
+          <mat-hint>Enter algorithm description.</mat-hint>
+        </mat-form-field>
+      </div>
+    </form>
+    <mat-divider></mat-divider>
+    <!-- P A R A M S -->
+    <div class="flex ">
+      <form [formGroup]="addParametersForm" (ngSubmit)="addParameter()" class="flex column">
+        <h3 class="subtitle">Add Algorithm Parameters</h3>
+        <!-- Param Name -->
+        <mat-form-field>
+          <input formControlName="parameterName" matInput placeholder="Parameter Name">
+        </mat-form-field>
+        <mat-error *ngIf="parameterName.touched && parameterName.errors">
+          <strong> You have to enter parameter name.</strong>
+        </mat-error>
+        <!-- Param Type -->
+        <mat-form-field>
+          <input formControlName="parameterValueType" matInput placeholder="Parameter Type">
+        </mat-form-field>
+        <mat-error *ngIf="parameterValueType.touched && parameterValueType.errors">
+          <strong> You have to enter parameter type.</strong>
+        </mat-error>
+        <!-- Param Value -->
+        <mat-form-field>
+          <input formControlName="defaultValue" matInput placeholder="Default Value">
+        </mat-form-field>
+        <mat-error *ngIf="defaultValue.touched && defaultValue.errors">
+          <strong> You have to enter default value.</strong>
+        </mat-error>
+        <button type="submit" mat-stroked-button color="warn" [disabled]="addParametersForm.invalid">Add Parameter</button>
+        <mat-error class="message">
+          <strong *ngIf="message"> You cannot enter paramaters with same name.</strong>
+        </mat-error>
+      </form>
+      <div class="flex column added-params">
+        <h3 class="subtitle"> Added Parameters</h3>
+        <div *ngFor="let param of parameters; let i = index">
+          <span class="params-show">
+            <mat-icon class="unselect-icon" (click)="removeJobParam(param, i)">close</mat-icon>
+            {{i+1}}. {{param.parameterName}}
+            <i *ngIf="selectedParam != i" class="material-icons params-expand-icon" (click)="expandParamsInfo(i)">
+              expand_more
+            </i>
+            <i *ngIf="expand == true && selectedParam == i" class="material-icons params-expand-icon" (click)="expandParamsInfo(i)">
+              expand_less
+            </i>
+          </span>
+          <div *ngIf="expand == true && selectedParam == i">
+            <div class="params-expanded">
+              <span class="param-value">
+                <strong>Type: </strong>
+                <br> {{param.parameterValueType}}
+              </span>
+              <span class="param-description">
+                <strong>Default Value: </strong>
+                <br> {{param.defaultValue}}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+  </mat-dialog-content>
+  <mat-dialog-actions class="buttons">
+    <button mat-stroked-button mat-dialog-close color="warn">Close</button>
+    <button mat-raised-button color="primary" [disabled]="addAlgorithmForm.invalid" (click)="submit()">Add algorithm</button>
+  </mat-dialog-actions>
+</div>

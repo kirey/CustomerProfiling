@@ -1,0 +1,77 @@
+@import '../../app.component.scss';
+
+#add-algorithm {
+
+    // FORM
+    form {
+        margin: 20px 0;
+    }
+    .mat-form-field {
+        width: 340px;
+    }
+    mat-error {
+        margin-bottom: 30px;
+    }
+    .message {
+        margin-top: 20px;
+    }
+
+    // PARAMS
+    .params-show {
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+      }
+      .added-params {
+        margin-top: 20px;
+        margin-left: 45px;
+      }
+      .params-expand-icon {
+        padding-top: 2px;
+        font-size: 29px;
+        padding-left: 5px;
+        color: $primary;
+      }
+      .params-expand-icon:hover {
+        cursor: pointer;
+        color: #424242;
+      }
+      .params-expanded {
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+      }
+      .param-value {
+        margin-right: 20px;
+        word-break: break-word;
+        width: 140px;
+      }
+      .param-description {
+        word-break: break-word;
+        width: 140px;
+      }
+      .param-value>strong, .param-description>strong {
+        color: $primary;
+      }
+      .unselect-icon {
+        color: $warn;
+        height: 18px;
+        font-size: 20px;
+        margin-right: 3px;
+        font-weight: 600;
+      }
+      .unselect-icon:hover {
+          cursor: pointer;
+          color: #424242;
+      }
+
+    // Buttons
+       // Button
+       mat-dialog-actions {
+        float: right;
+        }
+       mat-dialog-actions>button {
+            margin-top: 30px;
+            margin-left: 15px;
+        }
+}

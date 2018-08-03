@@ -20,13 +20,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatChipsModule } from '@angular/material/chips';
 import { MAT_DIALOG_DATA } from '@angular/material';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule, DateAdapter} from '@angular/material';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, DateAdapter } from '@angular/material';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material';
 
 
 @NgModule({
@@ -56,8 +57,8 @@ import {MatNativeDateModule, DateAdapter} from '@angular/material';
         MatTreeModule,
         MatChipsModule,
         MatDatepickerModule,
-        MatNativeDateModule
-
+        MatNativeDateModule,
+        MatSortModule
     ],
     exports: [
         MatButtonModule,
@@ -84,12 +85,12 @@ import {MatNativeDateModule, DateAdapter} from '@angular/material';
         MatTreeModule,
         MatChipsModule,
         MatDatepickerModule,
-        MatNativeDateModule
-
+        MatNativeDateModule,
+        MatSortModule
     ],
     declarations: [],
     providers: [
-      { provide: MAT_DIALOG_DATA, useValue: [] }, MatDatepickerModule
+        { provide: MAT_DIALOG_DATA, useValue: [] }, MatDatepickerModule
     ]
 })
 export class MaterialModule { }

@@ -2,5 +2,15 @@
 
 #algorithms {
 
+    // Table Classes
+    table.mat-table {
+        margin-top: 200px;
+    }
+    tr.mat-header-row {
+        background: linear-gradient(to right, $primary, $accent);
+    }
+    th.mat-header-cell {
+        width: 250px;
+    }
 
 }
