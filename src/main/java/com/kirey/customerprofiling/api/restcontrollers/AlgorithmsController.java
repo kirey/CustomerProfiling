@@ -1,5 +1,6 @@
 package com.kirey.customerprofiling.api.restcontrollers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kirey.customerprofiling.api.dto.RestResponseDto;
+import com.kirey.customerprofiling.common.constants.AppConstants;
 import com.kirey.customerprofiling.data.dao.AlgorithmsDao;
+import com.kirey.customerprofiling.data.dao.ParameterValuesDao;
 import com.kirey.customerprofiling.data.dao.ParametersDao;
 import com.kirey.customerprofiling.data.dao.ProjectAlgorithmsDao;
+import com.kirey.customerprofiling.data.dao.ProjectsDao;
 import com.kirey.customerprofiling.data.entity.Algorithms;
+import com.kirey.customerprofiling.data.entity.ParameterValues;
 import com.kirey.customerprofiling.data.entity.Parameters;
 import com.kirey.customerprofiling.data.entity.Projects;
 import com.kirey.customerprofiling.data.entity.ProjectsAlgorithms;
+import com.kirey.customerprofiling.data.entity.Variables;
 
 @RestController
 @RequestMapping("/rest/algorithms")
@@ -34,6 +40,12 @@ public class AlgorithmsController {
 	
 	@Autowired 
 	private ParametersDao parametersDao;
+	
+	@Autowired
+	private ProjectsDao projectsDao;
+	
+	@Autowired
+	private ParameterValuesDao parameterValuesDao;
 
 	/**
 	 * Get list of all algorithms
@@ -41,8 +53,11 @@ public class AlgorithmsController {
 	 */
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> getAllAlgorithms(){
-				
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto(algorithmsDao.findAll(), HttpStatus.OK.value()), HttpStatus.OK);
+				List<Algorithms> allAlgorithm = algorithmsDao.findAll();
+				for (Algorithms algorithms : allAlgorithm) {
+					algorithms.setParameters(null);
+				}
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(allAlgorithm, HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
 	/**
@@ -95,7 +110,59 @@ public class AlgorithmsController {
 	
 	@RequestMapping(value = "/getAlgorithmsForProject/{projectId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> getAlgorithmsForProject(@PathVariable Integer projectId){
+		List<Algorithms> listAlgorithms = new ArrayList<>();
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto(algorithmsDao.findAlgortithmsByProject(projectId), HttpStatus.OK.value()), HttpStatus.OK);
+		List<ProjectsAlgorithms> listProjectsAlgorithms = projectAlgorithmsDao.findByProject(projectId);
+		for (ProjectsAlgorithms projectsAlgorithm : listProjectsAlgorithms) {
+			Algorithms algorithm = projectsAlgorithm.getAlgorithm();
+			List<Parameters> listParameters = algorithm.getParameters();
+			for (Parameters parameter : listParameters) {
+				List<ParameterValues> listParametersValues = parameterValuesDao.findByProjectAlgorithmAndParameter(projectsAlgorithm, parameter);
+				parameter.setParameterValues(listParametersValues);
+			}
+			listAlgorithms.add(algorithm);
+		}	
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(listAlgorithms, HttpStatus.OK.value()), HttpStatus.OK);
 	}
+	
+	/**
+	 * Method for analyzing given algorithm
+	 * @param algorithm - {@link Algorithms} object with parameters and values
+	 * @return ResponseEntity containing the analyzed algorithm along with HTTP status
+	 */
+	@RequestMapping(value = "/analize", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RestResponseDto> analizeAlgorithm(@RequestBody Algorithms algorithm){
+		//TODO Analyze logic
+		algorithm.setAnalized(true);
+		
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(algorithm, HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	
+	@RequestMapping(value = "/submit", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RestResponseDto> saveAlgorithmsToProject(@RequestBody List<Algorithms> algorithms, @RequestParam Integer projectId){
+
+		
+		Projects project = projectsDao.findById(projectId);
+		
+		for (Algorithms algorithm : algorithms) {
+			ProjectsAlgorithms projectsAlgorithms = new ProjectsAlgorithms();
+			projectsAlgorithms.setAlgorithm(algorithm);
+			projectsAlgorithms.setProject(project);
+			projectsAlgorithms = (ProjectsAlgorithms) projectAlgorithmsDao.merge(projectsAlgorithms);
+			List<Parameters> parameters = algorithm.getParameters();
+			for (Parameters parameter : parameters) {
+				List<ParameterValues> parameterValues = parameter.getParameterValues();
+				for (ParameterValues parameterValue : parameterValues) {
+					parameterValue.setProjectAlgorithms(projectsAlgorithms);
+					parameterValuesDao.attachDirty(parameterValue);
+				}
+			}
+		}
+		
+		project.setStatus(AppConstants.PROJECT_STATUS_LEARNING);
+		projectsDao.merge(project);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Successfully updated project", HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
 }
