@@ -1,5 +1,4 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { ViewAlgorithmService } from './view-algorithm.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '../../../../node_modules/@angular/material';
 
 @Component({
@@ -9,24 +8,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '../../../../node_modules/@angular
 })
 export class ViewAlgorithmComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<ViewAlgorithmComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public service: ViewAlgorithmService) { }
+  constructor(public dialogRef: MatDialogRef<ViewAlgorithmComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-  getAlgorithm(id) {
-    this.service.getAlgorithm(id)
-      .subscribe(
-        res => {
-          console.log(res);
-        },
-        err => {
-          console.log(err)
-        }
-      )
-  }
 
   ngOnInit() {
-    if (this.data) {
-      this.getAlgorithm(this.data);
-    }
   }
 
 }

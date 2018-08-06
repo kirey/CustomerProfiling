@@ -1,3 +1,34 @@
-<p>
-  view-algorithm works!
-</p>
+<div id="view-algorithm" *ngIf="data">
+  <h1 class="subtitle" mat-dialog-title>View Algorithm</h1>
+  <mat-divider></mat-divider>
+  <!-- Dialog CONTENT -->
+  <mat-dialog-content>
+    <div class="flex center name">
+      <h4>{{data.algorithmName}}</h4>
+    </div>
+    <div class="flex space-between wrap">
+      <span class="description-library">
+        <div class="data-title">Description</div>
+        <div class="justify"> {{data.description}}</div>
+      </span>
+      <span class="description-library">
+        <div class="data-title">Library</div>
+        {{data.library}}
+      </span>
+    </div>
+    <div class="parameters" *ngIf="data.parameters && data.parameters.length>0">
+      <div class="data-title">Parameters</div>
+      <div class="flex align-items-center params-wrapper" *ngFor="let param of data.parameters; let i = index">
+        <span class="param-name">{{i+1}}. {{param.parameterName}}</span>
+        <span class="param-item">
+          <strong>Type:</strong> {{param.parameterValueType}}</span>
+        <span class="param-item">
+          <strong>Default Value:</strong> {{param.defaultValue}}</span>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <!-- Dialog ACTIONS -->
+  <mat-dialog-actions class="buttons">
+    <button mat-stroked-button mat-dialog-close color="warn">Close</button>
+  </mat-dialog-actions>
+</div>

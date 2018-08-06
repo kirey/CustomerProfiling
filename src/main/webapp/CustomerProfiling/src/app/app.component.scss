@@ -27,6 +27,9 @@ $gray: #757575;
 .wrap {
     flex-wrap: wrap;
 }
+.align-items-center {
+    align-items: center;
+}
 
 // Helper classes
 .justify {
@@ -61,9 +64,6 @@ mat-nav-list a mat-icon {
     padding-left: 25px;
 }
 
-mat-card {
-    color: white;
-}
 
 .userDetail {
     padding-left: 40px;

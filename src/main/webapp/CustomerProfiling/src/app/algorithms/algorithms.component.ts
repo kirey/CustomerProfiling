@@ -41,10 +41,10 @@ export class AlgorithmsComponent implements OnInit {
     });
   }
 
-  openViewDialog(id) {
+  openViewDialog(obj) {
     const dialogRef = this.dialog.open(ViewAlgorithmComponent, {
       width: '800px',
-      data: id
+      data: obj
     });
     // dialogRef.afterClosed().subscribe(results => {
     //   this.getAll();
