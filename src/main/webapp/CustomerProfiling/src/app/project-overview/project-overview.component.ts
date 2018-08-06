@@ -13,25 +13,23 @@ export class ProjectOverviewComponent implements OnInit {
   dataset: any;
   details: any;
   projectId: any;
+  algorithms: any;
+
   constructor(public projectOverviewService: ProjectOverviewService) { }
  // Get Projects
  getDataset() {
   this.projectOverviewService.getDataset().subscribe(
     res => {
-      console.log(res);
       this.dataset = res.data;
-      console.log(this.dataset);
     },
     err => console.log(err)
   );
 }
 selectedDataset(ev, id) {
-  console.log(ev);
+  console.log(ev, id);
   this.projectOverviewService.getDatasetDetails(id).subscribe(
     res => {
-      console.log(res);
       this.details = res.data;
-      console.log(this.details);
     },
     err => console.log(err)
   );
@@ -43,17 +41,15 @@ getAlorithmsProject() {
   this.projectOverviewService.getAlgorithms(this.getProjectId()).subscribe(
     res => {
       console.log(res);
-      // this.details = res.data;
-      // console.log(this.details);
+      this.algorithms = res.data;
+      console.log(this.algorithms);
     },
     err => console.log(err)
   );
 }
   ngOnInit() {
 this.projectOverviewService.getProject(this.getProjectId()).subscribe(res => {
-  console.log(res);
   this.projectId = res.data;
-  console.log(this.projectId);
 });
 this.getDataset();
 this.getAlorithmsProject();

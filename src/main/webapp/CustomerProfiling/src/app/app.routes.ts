@@ -1,3 +1,4 @@
+import { OneProjectComponent } from './one-project/one-project.component';
 import { DatasetComponent } from './dataset/dataset.component';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './shared/guards/auth.guard';
@@ -19,7 +20,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'datasets', component: DatasetComponent, canActivate: [AuthGuard] },
-  { path: 'project-overview', component: ProjectOverviewComponent },
+  { path: 'one-project', component: OneProjectComponent },
   { path: 'data-tab', component: DataTabComponent, canActivate: [AuthGuard] },
   { path: 'algorithms', component: AlgorithmsComponent, canActivate: [AuthGuard] },
   { path: '**', component: AppComponent }

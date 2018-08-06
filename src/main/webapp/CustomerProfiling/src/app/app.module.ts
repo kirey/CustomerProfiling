@@ -1,3 +1,4 @@
+import { AnalyzeService } from './analyze/analyze.service';
 import { DatasetService } from './dataset/dataset.service';
 import { AuthService } from './shared/services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -41,6 +42,9 @@ import { AddProjectService } from './dialogs/addProject/addProject.service';
 import { CopyProjectService } from './dialogs/copyProject/copyProject.service';
 import { AddAlgorithmComponent } from './dialogs/add-algorithm/add-algorithm.component';
 import { ViewAlgorithmComponent } from './dialogs/view-algorithm/view-algorithm.component';
+import { OneProjectComponent } from './one-project/one-project.component';
+import { AnalyzeComponent } from './analyze/analyze.component';
+import { AddValueComponent } from './dialogs/add-value/add-value.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +64,10 @@ import { ViewAlgorithmComponent } from './dialogs/view-algorithm/view-algorithm.
     DataTabViewComponent,
     AlgorithmsComponent,
     AddAlgorithmComponent,
-    ViewAlgorithmComponent
+    ViewAlgorithmComponent,
+    OneProjectComponent,
+    AnalyzeComponent,
+    AddValueComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +89,8 @@ import { ViewAlgorithmComponent } from './dialogs/view-algorithm/view-algorithm.
     AlgorithmsService,
     AddProjectService,
     CopyProjectService,
-    ProjectOverviewService
+    ProjectOverviewService,
+    AnalyzeService
   ],
   entryComponents: [
     AddComponent,
@@ -94,7 +102,8 @@ import { ViewAlgorithmComponent } from './dialogs/view-algorithm/view-algorithm.
     DataTabViewComponent,
     CopyComponent,
     AddAlgorithmComponent,
-    ViewAlgorithmComponent
+    ViewAlgorithmComponent,
+    AddValueComponent
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
