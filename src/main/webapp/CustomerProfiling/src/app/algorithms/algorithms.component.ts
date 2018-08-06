@@ -3,6 +3,7 @@ import { AlgorithmsService } from './algorithms.service';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { MatDialog } from '@angular/material';
 import { AddAlgorithmComponent } from '../dialogs/add-algorithm/add-algorithm.component';
+import { ViewAlgorithmComponent } from '../dialogs/view-algorithm/view-algorithm.component';
 
 @Component({
   selector: 'app-algorithms',
@@ -11,7 +12,7 @@ import { AddAlgorithmComponent } from '../dialogs/add-algorithm/add-algorithm.co
 })
 export class AlgorithmsComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'description', 'library'];
+  displayedColumns: string[] = ['name', 'description', 'library', 'actions'];
   dataSource: MatTableDataSource<any>;
 
   constructor(public service: AlgorithmsService, public dialog: MatDialog) { }
@@ -35,6 +36,19 @@ export class AlgorithmsComponent implements OnInit {
     const dialogRef = this.dialog.open(AddAlgorithmComponent, {
       width: '800px'
     });
+    dialogRef.afterClosed().subscribe(results => {
+      this.getAll();
+    });
+  }
+
+  openViewDialog(id) {
+    const dialogRef = this.dialog.open(ViewAlgorithmComponent, {
+      width: '800px',
+      data: id
+    });
+    // dialogRef.afterClosed().subscribe(results => {
+    //   this.getAll();
+    // });
   }
 
   ngOnInit() {

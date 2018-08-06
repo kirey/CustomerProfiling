@@ -11,6 +11,17 @@
     }
     th.mat-header-cell {
         width: 250px;
+        color: #fff;
+    }
+
+    // Icons
+    .view-icon {
+        color: $primary;
+        margin-left: 8px;
+    }
+    .view-icon:hover{
+        color: $warn;
+        cursor: pointer;
     }
 
 }
