@@ -20,7 +20,7 @@ export class SharedService {
         this.projectId = projectId;
     }
 
-    getProjectId(projectId: boolean) {
+    getProjectId() {
         return this.projectId;
     }
 
@@ -29,7 +29,7 @@ export class SharedService {
         this.datasetId = id;
     }
 
-    getDatasetId(id: boolean) {
+    getDatasetId() {
         return this.datasetId;
     }
 }
