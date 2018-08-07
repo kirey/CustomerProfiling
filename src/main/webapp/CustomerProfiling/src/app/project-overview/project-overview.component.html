@@ -1,17 +1,17 @@
 <div id="projectOverview">
   <h1>Project overview</h1>
-  <mat-dialog-content *ngIf="projectId">
-    <h4 class="subtitle">Project details for project ID: {{projectId.id}}</h4>
+  <mat-dialog-content *ngIf="project">
+    <h4 class="subtitle">Project details for project ID: {{project.id}}</h4>
     <mat-form-field>
-      <input matInput placeholder="Project name" [(ngModel)]="projectId.projectName" autocomplete="off">
+      <input matInput placeholder="Project name" [(ngModel)]="project.projectName" autocomplete="off">
     </mat-form-field>
     <br>
     <mat-form-field>
-      <textarea matInput placeholder="Project description" [(ngModel)]="projectId.description" autocomplete="off"></textarea>
+      <textarea matInput placeholder="Project description" [(ngModel)]="project.description" autocomplete="off"></textarea>
     </mat-form-field>
-    <div>Created: {{projectId.creationDate | date}}</div>
-    <div>Last opened: {{projectId.lastOpened | date}}</div>
-    <div>Projects status: {{projectId.status}}</div>
+    <div>Created: {{project.creationDate | date}}</div>
+    <div>Last opened: {{project.lastOpened | date}}</div>
+    <div>Projects status: {{project.status}}</div>
     <mat-dialog-actions class="buttonsFirst">
       <button type="submit" color="primary" mat-raised-button>Save</button>
     </mat-dialog-actions>
@@ -22,23 +22,38 @@
     <h4 class="subtitle">Dataset details</h4>
 
     <!-- za selektovanje dataseta -  nije zavrseno -->
-    <mat-form-field >
-      <mat-select (selectionChange)="selectedDataset($event,id)">
-        <mat-option  *ngFor="let data of dataset; let i = index" >{{data.name}}</mat-option>
+    <mat-form-field>
+      <mat-select (selectionChange)="selectedDataset($event)" placeholder="Select dataset">
+        <mat-option *ngFor="let data of dataset; let i = index" [value]="data">{{data.name}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field>
-      <textarea matInput placeholder="Dataset preview details"></textarea>
-    </mat-form-field>
+    <div *ngIf="details && showDetails">
+      <div class="details-item">
+        <strong>Description: </strong>
+        {{details.datasetDesc}}
+      </div>
+      <div class="details-item">
+        <strong>Dataset size: </strong>
+        {{details.datasetSize}}
+      </div>
+      <div class="details-item">
+        <strong>Number of rows: </strong>
+        {{details.numberOfRows}}
+      </div>
+      <div class="details-item">
+        <strong>Number of variables: </strong>
+        {{details.numberOfVariables}}
+      </div>
+    </div>
     <mat-dialog-actions class="buttons">
-      <button type="submit" color="primary" mat-raised-button>Link Dataset</button>
+      <button [disabled]="!linkDatasetBool" type="submit" color="primary" mat-stroked-button (click)="linkDataset()">Link Dataset</button>
     </mat-dialog-actions>
   </mat-dialog-content>
 
   <mat-divider></mat-divider>
   <!-- Projects Properties -->
   <h4 class="subtitle">Project properties</h4>
-  <div class="cards" >
+  <div class="cards">
     <mat-card *ngIf="algorithms">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
@@ -46,9 +61,14 @@
       </mat-card-header>
       <mat-divider></mat-divider>
       <mat-card-content *ngFor="let algorithm of algorithms">
-        <span><strong>Algorithm Name:</strong> {{algorithm.algorithmName}}</span><br>
-        <span><strong>Algorithm Description:</strong> {{algorithm.description}}</span><br>
-        <span><strong>Algorithm Library:</strong> {{algorithm.library}}</span>
+        <span>
+          <strong>Algorithm Name:</strong> {{algorithm.algorithmName}}</span>
+        <br>
+        <span>
+          <strong>Algorithm Description:</strong> {{algorithm.description}}</span>
+        <br>
+        <span>
+          <strong>Algorithm Library:</strong> {{algorithm.library}}</span>
       </mat-card-content>
     </mat-card>
     <mat-card class="example-card">

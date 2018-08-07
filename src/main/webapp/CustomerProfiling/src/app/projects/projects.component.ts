@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProjectsService } from './projects.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatPaginator, PageEvent, MatTableDataSource  } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatPaginator, PageEvent, MatTableDataSource } from '@angular/material';
 // dialogs
 import { AddComponent } from '../dialogs/addProject/add.component';
 import { EditProjectComponent } from '../dialogs/edit-project/edit-project.component';
@@ -9,6 +9,7 @@ import { DeleteComponent } from '../dialogs/delete/delete.component';
 import { CopyComponent } from '../dialogs/copyProject/copy.component';
 
 import { SnackBarService } from './../shared/services/snackbar.service';
+import { SharedService } from '../shared/services/shared.service';
 
 @Component({
   selector: 'app-projects',
@@ -19,10 +20,10 @@ export class ProjectsComponent implements OnInit {
   // dataSource: any;
   name: string;
   data: any;
-  displayedColumns: string[] = [ 'id', 'name', 'creationDate', 'lastOpened', 'status', 'description', 'editing'];
+  displayedColumns: string[] = ['id', 'name', 'creationDate', 'lastOpened', 'status', 'description', 'editing'];
   projects: any;
 
-  constructor(public projectsService: ProjectsService, public dialog: MatDialog, public snackbar: SnackBarService,private _router: Router) { }
+  constructor(public projectsService: ProjectsService, public dialog: MatDialog, public snackbar: SnackBarService, private _router: Router, public sharedService: SharedService) { }
   private dataSource: MatTableDataSource<any> = new MatTableDataSource([]);
   paginator: MatPaginator;
   @ViewChild(MatPaginator)
@@ -30,22 +31,22 @@ export class ProjectsComponent implements OnInit {
     this.paginator = paginator;
     this.dataSource.paginator = this.paginator;
   }
- // Get Projects
- getProjects() {
-  this.projectsService.getProjects().subscribe(
-    res => {
-      console.log(res);
-      this.projects = res.data;
-      console.log(this.projects);
-    },
-    err => console.log(err)
-  );
-}
+  // Get Projects
+  getProjects() {
+    this.projectsService.getProjects().subscribe(
+      res => {
+        console.log(res);
+        this.projects = res.data;
+        console.log(this.projects);
+      },
+      err => console.log(err)
+    );
+  }
 
-openProject(id){
-  localStorage.setItem("projectID",id);
-  this._router.navigate(['/one-project']);
-}
+  openProject(id) {
+    this.sharedService.setProjectId(id);
+    this._router.navigate(['/one-project']);
+  }
 
   // open add dialog
   openAddDialog() {
@@ -79,14 +80,14 @@ openProject(id){
     dialogRef.afterClosed().subscribe(res => {
       this.getProjects();
     }
-  );
+    );
   }
 
 
-   // open delete dialog
-   openDeleteDialog(id) {
+  // open delete dialog
+  openDeleteDialog(id) {
     const dialogRef = this.dialog.open(DeleteComponent, {
-      data: {id: id}
+      data: { id: id }
     });
     dialogRef.afterClosed().subscribe(res => {
       if (res === true) {

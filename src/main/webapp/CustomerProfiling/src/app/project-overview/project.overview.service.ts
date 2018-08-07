@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class ProjectOverviewService {
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient) { }
 
   baseUrl = '/CustomerProfiling/rest/';
 
