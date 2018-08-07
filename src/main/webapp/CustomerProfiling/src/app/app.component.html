@@ -5,31 +5,39 @@
     <mat-sidenav class="sideContent" *ngIf="_auth.isLoggedIn()" mode="side" opened>
         <mat-nav-list>
             <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
-                <mat-icon>dashboard</mat-icon><span>Dashboard</span></a>
+                <mat-icon>dashboard</mat-icon>
+                <span>Dashboard</span>
+            </a>
         </mat-nav-list>
         <mat-nav-list>
             <a mat-list-item routerLink="/projects" routerLinkActive="active">
-                <mat-icon>filter_list</mat-icon><span>Projects</span></a>
+                <mat-icon>filter_list</mat-icon>
+                <span>Projects</span>
+            </a>
         </mat-nav-list>
         <mat-nav-list>
             <a mat-list-item routerLink="/datasets" routerLinkActive="active">
-                <mat-icon>router</mat-icon><span>Datasets</span></a>
+                <mat-icon>router</mat-icon>
+                <span>Datasets</span>
+            </a>
         </mat-nav-list>
         <mat-nav-list>
             <a mat-list-item href="javascript:void(0)" routerLinkActive="active">
-                <mat-icon>developer_board</mat-icon><span>Algorithm</span></a>
+                <mat-icon>developer_board</mat-icon>
+                <span>Algorithms</span>
+            </a>
         </mat-nav-list>
         <mat-nav-list>
             <a mat-list-item href="javascript:void(0)" routerLinkActive="active">
-                <mat-icon>computer</mat-icon><span>System monitor</span></a>
-        </mat-nav-list>
-        <mat-nav-list>
-            <a mat-list-item routerLink="/data-tab" routerLinkActive="active">
-                <mat-icon>tab</mat-icon><span>Data-tab</span></a>
+                <mat-icon>computer</mat-icon>
+                <span>System monitor</span>
+            </a>
         </mat-nav-list>
         <mat-nav-list class="logout">
             <a mat-list-item (click)="logout()" routerLinkActive="active">
-                <mat-icon>exit_to_app</mat-icon><span>Logout</span></a>
+                <mat-icon>exit_to_app</mat-icon>
+                <span>Logout</span>
+            </a>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content class="mainContent">
