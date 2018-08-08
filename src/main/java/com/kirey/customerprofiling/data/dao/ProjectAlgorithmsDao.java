@@ -45,4 +45,10 @@ public class ProjectAlgorithmsDao extends KjcBaseDao {
 		return projectsAlgorithms;
 	}
 
+	public List<Algorithms> findAlgorithmsByProject(Integer projectId) {
+		String hql = "select pa.algorithm from ProjectsAlgorithms pa where pa.project.id = :projectId";
+		List<Algorithms> listAlgorithm = sessionFactory.getCurrentSession().createQuery(hql).setParameter("projectId", projectId).list();
+		return listAlgorithm;
+	}
+
 }

@@ -29,6 +29,7 @@ public class ProjectsAlgorithms implements Serializable {
 	private Integer id;
 	private Projects project;
 	private Algorithms algorithm;
+	private String status;
 
 	
 	@Id
@@ -62,6 +63,16 @@ public class ProjectsAlgorithms implements Serializable {
 	public void setAlgorithm(Algorithms algorithm) {
 		this.algorithm = algorithm;
 	}
+
+	@Column(name = "status", nullable=true)
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	
   
 	
