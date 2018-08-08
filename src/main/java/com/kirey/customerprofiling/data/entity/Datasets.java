@@ -27,12 +27,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
-@Table(name = "datasets", uniqueConstraints = {
-	      @UniqueConstraint(
-	              columnNames = {"name", "project"},
-	              name="datasets_name_project_uk"
-	          )
-	       })
+@Table(name = "datasets")
+//, uniqueConstraints = {
+//	      @UniqueConstraint(
+//	              columnNames = {"name", "project"},
+//	              name="datasets_name_project_uk"
+//	          )
+//	       }
 public class Datasets implements Serializable{
 
 	

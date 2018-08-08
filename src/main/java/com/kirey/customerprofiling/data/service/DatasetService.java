@@ -29,8 +29,10 @@ import com.kirey.customerprofiling.api.dto.DatasetDto;
 import com.kirey.customerprofiling.api.dto.VariableDto;
 import com.kirey.customerprofiling.common.constants.AppConstants;
 import com.kirey.customerprofiling.common.constants.DataType;
+import com.kirey.customerprofiling.common.util.Utilities;
 import com.kirey.customerprofiling.data.dao.DatasetsDao;
 import com.kirey.customerprofiling.data.dao.DerivedVariableValuesDao;
+import com.kirey.customerprofiling.data.dao.ProjectsDao;
 import com.kirey.customerprofiling.data.dao.VariablesDao;
 import com.kirey.customerprofiling.data.entity.Datasets;
 import com.kirey.customerprofiling.data.entity.DerivedVariableValue;
@@ -57,6 +59,9 @@ public class DatasetService {
 	
 	@Autowired
 	private VariablesDao variablesDao;
+	
+	@Autowired
+	private ProjectsDao projectsDao;
 	
 	/**
 	 * Method for getting List of {@link Variables} from csv file
@@ -445,13 +450,31 @@ public class DatasetService {
 		RowListProcessor processor = parser.parceFile(is);
 		datasetDto.setNumberOfVariables(listVariables.size());
 		datasetDto.setNumberOfRows(processor.getRows().size());
-		datasetDto.setDatasetSize(150);  //TODO prepraviti posle kad se razjasni sta je to //double kilobytes = (file.length() / 1024);
-		datasetDto.setProject(dataset.getProject());
-		
+		double sizeInBytes = file.length();
+		datasetDto.setDatasetSize(Utilities.round(sizeInBytes/1024, 4));
+		List<Projects> listProjects = this.findProjectsByOriginalDataset(dataset);
+		datasetDto.setListProjects(listProjects);
+		List<VariableDto> variableDetails = this.getVariableStatisticsByDataset(dataset);
+		datasetDto.setVariableDetails(variableDetails);
 		return datasetDto;
 	}
 	
 	
+	/**
+	 * Method for getting list of projects for given original dataset
+	 * @param dataset - {@link Datasets}
+	 * @return {@link List}<{@link Projects}>
+	 */
+	private List<Projects> findProjectsByOriginalDataset(Datasets dataset) {
+		List<Datasets> derivedDatasets = datasetsDao.findDerivedByOriginal(dataset);
+		List<Projects> listProjects = new ArrayList<>();
+		for (Datasets derivedDataset : derivedDatasets) {
+			Projects project = projectsDao.findByDataset(derivedDataset);
+			listProjects.add(project);
+		}
+		return listProjects;
+	}
+
 	/**
 	 * Method for generating csv file from given headers and rows. If flag save is true then csv file will be saved to local disk. 
 	 * @param headers - headers for csv file
@@ -569,7 +592,9 @@ public class DatasetService {
 	 * Method for getting statistics fro given variable
 	 * @param variable - {@link Variables} object
 	 * @return VariableDto
+	 * @deprecated use instead {@link #getVariableStatisticsByDataset(Datasets)}
 	 */
+	@SuppressWarnings("unused")
 	public VariableDto getVariableStatistics(Variables variable) {
 		VariableDto variableDto = new VariableDto();
 		try {
@@ -625,5 +650,97 @@ public class DatasetService {
 			throw new RuntimeException(e);
 		}
 		return variableDto;
+	}
+
+	
+	/**
+	 * Method for getting Variables details (name, min, max, average, variance, distinct count) by given dataset 
+	 * @param dataset - {@link Datasets}
+	 * @return List of {@link VariableDto} 
+	 */
+	public List<VariableDto> getVariableStatisticsByDataset(Datasets dataset) {
+		List<VariableDto> variableDetails = new ArrayList<>();
+		try {
+
+			File file = new File(dataset.getFilename());
+			InputStream is = new FileInputStream(file);
+			List<Variables> variables = new ArrayList<>();
+			CSVParser parser = new CSVParser();
+			RowListProcessor processor = parser.parceFile(is);
+			// get variables from csv
+			String[] headers = processor.getHeaders();
+			for (int i = 0; i < headers.length; i++) {
+				if (!processor.getRows().isEmpty()) {
+					Variables variable = new Variables();
+					variable.setVariableName(headers[i]);
+					String[] firstRow = processor.getRows().get(0);
+					String firstValue = firstRow[i];
+
+					if (NumberUtils.isCreatable(firstValue)) {
+						variable.setTypeOfData(DataType.NUMERIC);
+					} else {
+						variable.setTypeOfData(DataType.TEXT);
+					}
+					variable.setColumnNumber(i);
+					variables.add(variable);
+				}
+
+			}
+
+			List<String[]> rows = processor.getRows();
+			for (Variables variable : variables) {
+				List<String> variableValues = new ArrayList<>();
+				VariableDto variableDto = new VariableDto();
+				variableDto.setVariableName(variable.getVariableName());
+
+				// get variable values
+				for (String[] row : rows) {
+					for (int i = 0; i < row.length; i++) {
+						if (variable.getColumnNumber() == i) {
+							variableValues.add(row[i]);
+						}
+					}
+				}
+
+				if (!variableValues.isEmpty()) {
+					if (NumberUtils.isCreatable(variableValues.get(0))) {
+						// convert do double
+						List<Double> doubleList = variableValues.stream().map(Double::valueOf)
+								.collect(Collectors.toList());
+
+						// find min
+						Double min = doubleList.stream().mapToDouble(v -> v).min().getAsDouble();
+						variableDto.setMin(min);
+
+						// find max
+						Double max = doubleList.stream().mapToDouble(v -> v).max().getAsDouble();
+						variableDto.setMax(max);
+
+						// find average
+						Double average = doubleList.stream().mapToDouble(a -> a).average().getAsDouble();
+						variableDto.setAverage(average);
+
+						// find variance
+						Variance variance = new Variance();
+						Double[] valuesArr = new Double[doubleList.size()];
+						valuesArr = doubleList.toArray(valuesArr);
+						double[] valuesArrPrimitive = ArrayUtils.toPrimitive(valuesArr);
+						double varianceValue = variance.evaluate(valuesArrPrimitive);
+						variableDto.setVarience(Utilities.round(varianceValue, 2));
+					} else {
+						// find distinct count
+						List<String> distinctList = variableValues.stream().distinct().collect(Collectors.toList());
+						variableDto.setDistinctCount(distinctList.size());
+					}
+					variableDetails.add(variableDto);
+				}
+
+			}
+
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException(e);
+		}
+
+		return variableDetails;
 	}
 }

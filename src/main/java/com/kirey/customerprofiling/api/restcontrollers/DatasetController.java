@@ -262,18 +262,16 @@ public class DatasetController {
 	}
 	
 	/**
-	 * Method for getting statistics for given variable
-	 * @param id - of variable
-	 * @return ResponseEntity containing the variable statistics along with HTTP status
+	 * Method for getting statistics for given dataset
+	 * @param datasetId - of {@link Datasets}
+	 * @return ResponseEntity containing the list of variable statistics along with HTTP status
 	 */
-	@RequestMapping(value = "/variable/{id}", method = RequestMethod.GET)
-	public ResponseEntity<RestResponseDto> variableDetails(@PathVariable Integer id){
+	@RequestMapping(value = "/variableDetails", method = RequestMethod.GET)
+	public ResponseEntity<RestResponseDto> variableDetails(@RequestParam Integer datasetId){
 		
-		Variables variable = variablesDao.findById(id);
-		
-		VariableDto variableDto = datasetService.getVariableStatistics(variable);
-		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto(variableDto, HttpStatus.OK.value()), HttpStatus.OK);
+		Datasets dataset = datasetsDao.findById(datasetId);
+		List<VariableDto> variableDetails = datasetService.getVariableStatisticsByDataset(dataset);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(variableDetails, HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
 	
