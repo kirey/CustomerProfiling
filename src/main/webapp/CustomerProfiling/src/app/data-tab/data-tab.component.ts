@@ -3,6 +3,9 @@ import { MatDialog } from '../../../node_modules/@angular/material';
 import { DataTabService } from './data-tab.service';
 // Dialog Components
 import { DataTabViewComponent } from '../dialogs/data-tab-view/data-tab-view.component';
+import { SharedService } from '../shared/services/shared.service';
+import { ProjectOverviewService } from '../project-overview/project.overview.service';
+import { SnackBarService } from '../shared/services/snackbar.service';
 
 @Component({
   selector: 'app-data-tab',
@@ -12,7 +15,7 @@ import { DataTabViewComponent } from '../dialogs/data-tab-view/data-tab-view.com
 })
 export class DataTabComponent implements OnInit {
 
-  constructor(public dataTabService: DataTabService, public dialog: MatDialog) { }
+  constructor(public dataTabService: DataTabService, public dialog: MatDialog, public sharedService: SharedService, public projectOverviewService: ProjectOverviewService, public snackbar: SnackBarService) { }
 
   variables: any;
   variableTypes: any;
@@ -21,6 +24,9 @@ export class DataTabComponent implements OnInit {
   message: string;
   numericOperationTypes: any = [];
   textOperationTypes: any = [];
+  datasetId: number;
+  projectId: number;
+  details: any; //Dataset details
 
   getVariables() {
     this.dataTabService.getVariables()
@@ -59,6 +65,19 @@ export class DataTabComponent implements OnInit {
           console.log(err);
         }
       )
+  }
+
+  getDatasetDetails() {
+    this.projectOverviewService.getDatasetDetails(this.datasetId).subscribe(
+      res => {
+        this.details = res.data;
+        console.log(this.details);
+      },
+      err => {
+        console.log(err);
+        this.snackbar.openSnackBar('Something went wrong.', 'Error');
+      }
+    );
   }
 
   setOperationTypes() {
@@ -168,35 +187,89 @@ export class DataTabComponent implements OnInit {
     }
     // Send request after check
     if (checkArray.length == this.variables.length) {
-      let obj = this.variables;
-      // 
-      // Variables has params property
-      // 
-      for (let i = 0; i < this.variables.length; i++) {
-        delete obj[i]['params'];
+      let list = this.variables;
+      for (let i = 0; i < list.length; i++) {
+        delete list[i]['params'];
+        delete list[i]['operationTypes'];
       }
-      console.log(this.variables);
-      this.message = '';
-      const dialogRef = this.dialog.open(DataTabViewComponent, {
-        width: '800px',
-        data: obj
-      });
+      this.dataTabService.getProcessingView(this.datasetId, list)
+        .subscribe(
+          res => {
+            console.log(res);
+          },
+          err => {
+            console.log(err);
+          }
+        );
+      // console.log(this.variables);
+      // this.message = '';
+      // const dialogRef = this.dialog.open(DataTabViewComponent, {
+      //   width: '800px',
+      //   data: this.variables
+      // });
     }
 
   }
 
   submit() {
+    let checkArray = [];
+
+    // Check for empty fields
     for (let i = 0; i < this.variables.length; i++) {
-      delete this.variables[i]['operationTypes'];
-      delete this.variables[i]['params'];
+      if (!this.variables[i]['typeOfVariable']) {
+        this.message = 'Select variable type.';
+        break;
+      }
+      else if (!this.variables[i]['typeOfData']) {
+        this.message = 'Select data type.';
+        break;
+      }
+      else if (!this.variables[i]['bins'] && !this.variables[i]['scaleMin'] && !this.variables[i]['scaleMax'] && !this.variables[i]['distinct'] && !this.variables[i]['leaveAsItIs']) {
+        this.message = 'Select parameters.';
+        break;
+      }
+      else if (!this.variables[i]['bins'] && !this.variables[i]['scaleMin'] && !this.variables[i]['scaleMax'] && !this.variables[i]['distinct'] && !this.variables[i]['leaveAsItIs']) {
+        this.message = 'Select parameters.';
+        break;
+      }
+      else {
+        checkArray.push(true);
+      }
     }
-    console.log(this.variables);
+    // Send request after check
+    if (checkArray.length == this.variables.length) {
+
+      console.log(this.variables);
+      this.message = '';
+
+      let data = this.variables;
+      // 
+      // Variables has params property
+      // 
+      for (let i = 0; i < data.length; i++) {
+        delete data[i]['params'];
+        delete data[i]['operationTypes'];
+      }
+      this, this.dataTabService.save(this.datasetId, this.projectId, data)
+        .subscribe(
+          res => {
+            console.log(res);
+          },
+          err => {
+            console.log(err);
+          }
+        );
+    }
   }
 
   ngOnInit() {
+    this.datasetId = this.sharedService.getDatasetId();
+    this.projectId = this.sharedService.getProjectId();
+
     this.getVariables();
     this.getDataTypes();
     this.getVariableTypes();
     this.setOperationTypes();
+    this.getDatasetDetails();
   }
 }

@@ -18,6 +18,7 @@ import { ProjectsService } from './projects/projects.service';
 import { EditProjectsService } from './dialogs/edit-project/edit.project.service';
 import { AlgorithmsService } from './algorithms/algorithms.service';
 import { ProjectOverviewService } from './project-overview/project.overview.service';
+import { SharedService } from './shared/services/shared.service';
 
 // Components
 import { ProjectsComponent } from './projects/projects.component';
@@ -90,7 +91,8 @@ import { AddValueComponent } from './dialogs/add-value/add-value.component';
     AddProjectService,
     CopyProjectService,
     ProjectOverviewService,
-    AnalyzeService
+    AnalyzeService,
+    SharedService
   ],
   entryComponents: [
     AddComponent,

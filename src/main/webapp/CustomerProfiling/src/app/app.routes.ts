@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'datasets', component: DatasetComponent, canActivate: [AuthGuard] },
   { path: 'one-project', component: OneProjectComponent },
-  { path: 'data-tab', component: DataTabComponent, canActivate: [AuthGuard] },
+  // { path: 'data-tab', component: DataTabComponent, canActivate: [AuthGuard] },
   { path: 'algorithms', component: AlgorithmsComponent, canActivate: [AuthGuard] },
   { path: '**', component: AppComponent }
 ];

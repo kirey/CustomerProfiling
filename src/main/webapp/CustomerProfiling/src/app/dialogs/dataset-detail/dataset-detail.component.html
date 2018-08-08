@@ -6,26 +6,38 @@
     <mat-dialog-content>
         <form>
             <div class="column">
-                <label>Dataset Name: <span>{{data.datasetName}}</span>  </label>
+                <label>Dataset Name:
+                    <span>{{data.datasetName}}</span>
+                </label>
             </div>
             <div class="column">
-                <label>N of columns: <span>{{data.numberOfColumns}}</span></label>
+                <label>Number of rows:
+                    <span>{{data.numberOfRows}}</span>
+                </label>
             </div>
             <div class="column">
-                <label>N of Variables: <span>{{data.numberOfVariables}}</span></label>
+                <label>Number of Variables:
+                    <span>{{data.numberOfVariables}}</span>
+                </label>
             </div>
             <div class="column">
-                <label>Dataset Size: <span>{{data.datasetSize}}</span></label>
+                <label>Dataset Size:
+                    <span>{{data.datasetSize}} KB</span>
+                </label>
             </div>
             <div class="column">
-                <label>Dataset description: <span>{{data.datasetDesc}}</span></label>
+                <label>Dataset description:
+                    <span>{{data.datasetDesc}}</span>
+                </label>
             </div>
             <div class="column">
                 <label class="inline">Project Associated:
-                    <div *ngIf="data.project == null;else notNull">
-                        <span>No associated project</span>
+                    <div *ngIf="data.listProjects.length > 0;else noData">
+                        <span></span>
                     </div>
-                    <ng-template #notNull><span>{{data.project}}</span></ng-template>
+                    <ng-template #noData>
+                        <span>No data.</span>
+                    </ng-template>
                 </label>
             </div>
         </form>
