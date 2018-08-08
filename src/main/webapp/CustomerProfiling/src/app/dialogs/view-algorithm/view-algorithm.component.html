@@ -16,15 +16,23 @@
         {{data.library}}
       </span>
     </div>
-    <div class="parameters" *ngIf="data.parameters && data.parameters.length>0">
-      <div class="data-title">Parameters</div>
-      <div class="flex align-items-center params-wrapper" *ngFor="let param of data.parameters; let i = index">
-        <span class="param-name">{{i+1}}. {{param.parameterName}}</span>
-        <span class="param-item">
-          <strong>Type:</strong> {{param.parameterValueType}}</span>
-        <span class="param-item">
-          <strong>Default Value:</strong> {{param.defaultValue}}</span>
+    <!-- List of Parameters -->
+    <div class="parameters " *ngIf="data.parameters && data.parameters.length>0; else noData">
+      <label class="data-title">Parameters</label>
+      <br>
+      <div class="flex column-style header-style">
+        <span>Parameter Name</span>
+        <span>Type</span>
+        <span>Value</span>
       </div>
+      <div class="flex  column-style items-style" *ngFor="let item of data.parameters">
+        <span>{{item.parameterName}}</span>
+        <span>{{item.parameterValueType}}</span>
+        <span>{{item.defaultValue}}</span>
+      </div>
+      <ng-template #noData>
+        <span>No data.</span>
+      </ng-template>
     </div>
   </mat-dialog-content>
   <!-- Dialog ACTIONS -->
