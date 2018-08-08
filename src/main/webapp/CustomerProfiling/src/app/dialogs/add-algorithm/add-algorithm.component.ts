@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '../../../../node_modules/@angular/forms';
 import { AddAlgorithmService } from './add-algorithm.service';
+import { SnackBarService } from '../../shared/services/snackbar.service';
 
 @Component({
   selector: 'app-add-algorithm',
@@ -16,7 +17,7 @@ export class AddAlgorithmComponent implements OnInit {
   expand: boolean = false;
   selectedParam: number;
 
-  constructor(public fb: FormBuilder, public service: AddAlgorithmService) { }
+  constructor(public fb: FormBuilder, public service: AddAlgorithmService, public snackbar: SnackBarService) { }
 
   // Add Parameter
   addParameter() {
@@ -49,23 +50,19 @@ export class AddAlgorithmComponent implements OnInit {
 
   // SUBIMT FUNCTION
   submit() {
-    if (this.parameters.length == 0) {
-      console.log('ENTER PARAM');
-    }
-    else {
-      console.log(this.addAlgorithmForm.value);
-      this.addAlgorithmForm.value['parameters'] = this.parameters;
+    console.log(this.addAlgorithmForm.value);
+    this.addAlgorithmForm.value['parameters'] = this.parameters;
 
-      this.service.addAlgorithm(this.addAlgorithmForm.value)
-        .subscribe(
-          res => {
-            console.log(res)
-          },
-          err => {
-            console.log(err)
-          }
-        );
-    }
+    this.service.addAlgorithm(this.addAlgorithmForm.value)
+      .subscribe(
+        res => {
+          console.log(res);
+          this.snackbar.openSnackBar('Algorithm added successfully.', 'Success');
+        },
+        err => {
+          console.log(err)
+        }
+      );
   }
 
   ngOnInit() {
