@@ -55,7 +55,7 @@ export class DatasetComponent implements OnInit {
       objToShow = JSON.parse(res.text()).data;
     }, err => { }, () => {
       const dialogRef = this._dialog.open(DatasetDetailComponent, {
-        width: '800px',
+        width: '1000px',
         data: objToShow
       });
       dialogRef.afterClosed().subscribe(results => {
