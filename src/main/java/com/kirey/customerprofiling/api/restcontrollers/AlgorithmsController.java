@@ -111,18 +111,20 @@ public class AlgorithmsController {
 	 * @return ResponseEntity containing the list of algorithms along with HTTP status
 	 */
 	@RequestMapping(value = "/project/{projectId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<RestResponseDto> getAlgorithmsForProject(@PathVariable Integer projectId){
+	public ResponseEntity<RestResponseDto> getAlgorithmsForProject(@PathVariable Integer projectId) {
+		Projects project = projectsDao.findById(projectId);
 		List<Algorithms> listAlgorithms = new ArrayList<>();
-		List<ProjectsAlgorithms> listProjectsAlgorithms = projectAlgorithmsDao.findByProject(projectId);
-		for (ProjectsAlgorithms projectsAlgorithm : listProjectsAlgorithms) {
-			Algorithms algorithm = projectsAlgorithm.getAlgorithm();
+		List<Algorithms> listAlgorithmsFromDb = projectAlgorithmsDao.findAlgorithmsByProject(projectId);
+		//for each algorithm from db find values for certain project
+		for (Algorithms algorithm : listAlgorithmsFromDb) {
 			List<Parameters> listParameters = algorithm.getParameters();
+			ProjectsAlgorithms projectsAlgorithm = projectAlgorithmsDao.findByProjectAndAlgorithms(project, algorithm);
 			for (Parameters parameter : listParameters) {
 				List<ParameterValues> listParametersValues = parameterValuesDao.findByProjectAlgorithmAndParameter(projectsAlgorithm, parameter);
 				parameter.setParameterValues(listParametersValues);
 			}
 			listAlgorithms.add(algorithm);
-		}	
+		}
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(listAlgorithms, HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
@@ -145,11 +147,40 @@ public class AlgorithmsController {
 				}
 			}
 			if(flag) {
+				List<Parameters> paramList = algorithm.getParameters();
+				for (Parameters parameters : paramList) {
+					parameters.setParameterValues(null);
+				}
 				listFilteredAlgorithms.add(algorithm);
 			}
 		}
 			
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(listFilteredAlgorithms, HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/save/project/{projectId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RestResponseDto> addAlgorithmToProject(@PathVariable Integer projectId, Algorithms algorithm){
+		
+		Projects project = projectsDao.findById(projectId);
+		
+		ProjectsAlgorithms projectsAlgorithms = projectAlgorithmsDao.findByProjectAndAlgorithms(project, algorithm);
+		if(projectsAlgorithms == null) {
+			projectsAlgorithms = new ProjectsAlgorithms();	
+		}
+		projectsAlgorithms.setAlgorithm(algorithm);
+		projectsAlgorithms.setProject(project);
+		projectsAlgorithms = (ProjectsAlgorithms) projectAlgorithmsDao.merge(projectsAlgorithms);
+		List<Parameters> parameters = algorithm.getParameters();
+		for (Parameters parameter : parameters) {
+			List<ParameterValues> parameterValues = parameter.getParameterValues();
+			for (ParameterValues parameterValue : parameterValues) {
+				parameterValue.setProjectAlgorithms(projectsAlgorithms);
+				parameterValue.setParameter(parameter);
+				parameterValuesDao.attachDirty(parameterValue);
+			}
+		}
+		
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Successfully saved", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
 	

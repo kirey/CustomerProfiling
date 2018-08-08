@@ -50,6 +50,8 @@ public class Datasets implements Serializable{
 	private List<Datasets> derivedDatasets = new ArrayList<>();
 	private Projects project;
 	private String description;
+	private Double datasetSize;
+	private Integer noOfRows;
 	@JsonIgnore
 	private List<Variables> variables = new ArrayList<>();
 	
@@ -152,11 +154,22 @@ public class Datasets implements Serializable{
 		this.description = description;
 	}
 	
+	@Column(name = "dataset_size")
+	public Double getDatasetSize() {
+		return datasetSize;
+	}
 	
+	public void setDatasetSize(Double datasetSize) {
+		this.datasetSize = datasetSize;
+	}
 	
-	
-	
-	
+	@Column(name = "number_of_rows")
+	public Integer getNoOfRows() {
+		return noOfRows;
+	}
+	public void setNoOfRows(Integer noOfRows) {
+		this.noOfRows = noOfRows;
+	}
 	
 
 }

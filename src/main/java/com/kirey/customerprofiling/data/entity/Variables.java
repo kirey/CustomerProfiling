@@ -41,6 +41,12 @@ public class Variables implements Serializable{
  	private Integer bins;
 	private boolean leaveAsItIs;
 	private boolean distinct;
+	private Double min;
+	private Double max;
+	private Double average;
+	private Double variance;
+	private Integer distinctCount;
+	
 	private Variables originalVariable;
 	@JsonBackReference("variablesDerivedVariables")
 	private List<Variables> derivedVariables = new ArrayList<>();
@@ -173,6 +179,46 @@ public class Variables implements Serializable{
 	
 	public void setDerivedVariableValues(List<DerivedVariableValue> derivedVariableValues) {
 		this.derivedVariableValues = derivedVariableValues;
+	}
+	
+	@Column(name = "min")
+	public Double getMin() {
+		return min;
+	}
+	public void setMin(Double min) {
+		this.min = min;
+	}
+	
+	@Column(name = "max")
+	public Double getMax() {
+		return max;
+	}
+	public void setMax(Double max) {
+		this.max = max;
+	}
+	
+	@Column(name = "average")
+	public Double getAverage() {
+		return average;
+	}
+	public void setAverage(Double average) {
+		this.average = average;
+	}
+	
+	@Column(name = "variance")
+	public Double getVariance() {
+		return variance;
+	}
+	public void setVariance(Double variance) {
+		this.variance = variance;
+	}
+	
+	@Column(name = "distinct_count")
+	public Integer getDistinctCount() {
+		return distinctCount;
+	}
+	public void setDistinctCount(Integer distinctCount) {
+		this.distinctCount = distinctCount;
 	}
 
 	
