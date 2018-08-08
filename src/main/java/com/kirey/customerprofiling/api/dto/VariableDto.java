@@ -2,6 +2,7 @@ package com.kirey.customerprofiling.api.dto;
 
 public class VariableDto {
 
+	private String variableName;
 	private Double average;
 	private Double min;
 	private Double max;
@@ -37,6 +38,13 @@ public class VariableDto {
 	public void setDistinctCount(Integer distinctCount) {
 		this.distinctCount = distinctCount;
 	}
+	public String getVariableName() {
+		return variableName;
+	}
+	public void setVariableName(String variableName) {
+		this.variableName = variableName;
+	}
+	
 	
 	
 	

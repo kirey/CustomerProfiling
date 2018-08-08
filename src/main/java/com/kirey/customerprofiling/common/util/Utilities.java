@@ -166,5 +166,19 @@ public class Utilities {
 	    Map<Object, Boolean> map = new ConcurrentHashMap<>();
 	    return t -> map.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
 	}
+	
+	/**
+	 * Returns rounded double value
+	 * @param value
+	 * @param places - number of decimal places
+	 * @return 
+	 */
+	public static double round(double value, int places) {
+		if (places < 0) throw new IllegalArgumentException();
+
+	    BigDecimal bd = new BigDecimal(value);
+	    bd = bd.setScale(places, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
+	}
 
 }

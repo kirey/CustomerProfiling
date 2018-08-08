@@ -12,9 +12,11 @@ public class DatasetDto implements Serializable {
 	private String datasetName;
 	private int numberOfRows;
 	private int numberOfVariables;
-	private int datasetSize;
+	private double datasetSize;
 	private String datasetDesc;
-	private Projects project;
+//	private Projects project;
+	private List<Projects> listProjects;
+	private List<VariableDto> variableDetails;
 	
 	
 	public String getDatasetName() {
@@ -36,10 +38,10 @@ public class DatasetDto implements Serializable {
 	public void setNumberOfVariables(int numberOfVariables) {
 		this.numberOfVariables = numberOfVariables;
 	}
-	public int getDatasetSize() {
+	public double getDatasetSize() {
 		return datasetSize;
 	}
-	public void setDatasetSize(int datasetSize) {
+	public void setDatasetSize(double datasetSize) {
 		this.datasetSize = datasetSize;
 	}
 	public String getDatasetDesc() {
@@ -48,12 +50,26 @@ public class DatasetDto implements Serializable {
 	public void setDatasetDesc(String datasetDesc) {
 		this.datasetDesc = datasetDesc;
 	}
-	public Projects getProject() {
-		return project;
+//	public Projects getProject() {
+//		return project;
+//	}
+//	public void setProject(Projects project) {
+//		this.project = project;
+//	}
+	public List<Projects> getListProjects() {
+		return listProjects;
 	}
-	public void setProject(Projects project) {
-		this.project = project;
+	public void setListProjects(List<Projects> listProjects) {
+		this.listProjects = listProjects;
 	}
+	public List<VariableDto> getVariableDetails() {
+		return variableDetails;
+	}
+	public void setVariableDetails(List<VariableDto> variableDetails) {
+		this.variableDetails = variableDetails;
+	}
+	
+	
 	
 	
 }
