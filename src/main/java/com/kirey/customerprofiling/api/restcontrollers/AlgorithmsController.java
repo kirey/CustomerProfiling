@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kirey.customerprofiling.api.dto.RestResponseDto;
@@ -53,8 +54,16 @@ public class AlgorithmsController {
 	 */
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> getAllAlgorithms(){
+
 		List<Algorithms> allAlgorithm = algorithmsDao.findAll();
-				
+		
+		for (Algorithms algorithm : allAlgorithm) {
+			List<Parameters> listParameters = algorithm.getParameters();
+			for (Parameters parameter : listParameters) {
+				parameter.setParameterValues(null);
+			}		
+		}
+		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(allAlgorithm, HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
@@ -104,6 +113,57 @@ public class AlgorithmsController {
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Algorithm added to project", HttpStatus.OK.value()), HttpStatus.OK);
 	}
+	
+	
+	/**
+	 * Delete algorithm if not exists in ProjectsAlgorithm
+	 * @param project
+	 * @param algorithmId
+	 * @return
+	 */
+	@RequestMapping(value = "/deleteAlgorithm/{algorithmId}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RestResponseDto> deleteAlgorithm(@PathVariable Integer algorithmId){
+		
+		if( algorithmsDao.findById(algorithmId) == null)
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto("Algorithm doesn't exist", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		
+		
+		if( algorithmsDao.isAlgorithmNotExistInProjectAlgorithms(algorithmId) == false ) {
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto("Algorithm already exist in project,can't be deleted", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		} 
+		
+		Algorithms algorithm = (Algorithms)algorithmsDao.findById(algorithmId);
+		List<Parameters> listParameters = algorithm.getParameters();
+		
+		for(Parameters parameter : listParameters) {
+			parametersDao.delete(parameter);			
+		}
+		algorithmsDao.delete(algorithm);
+		
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Deleted successfully", HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	
+	/**
+	 * Edit algorithm 
+	 * @param algorithmId
+	 * @return
+	 */
+	@RequestMapping(value = "/editAlgorithm", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RestResponseDto> editAlgorithm(@RequestBody Algorithms algorithm){
+		
+        List<Parameters> listParameters = algorithm.getParameters();
+		
+		for(Parameters parameter : listParameters) {
+			parameter.setAlgorithm(algorithm);
+			parametersDao.attachDirty(parameter);			
+		}
+		algorithmsDao.attachDirty(algorithm);
+	
+		
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Edited successfully", HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
 	
 	/**
 	 * Method for getting List of {@link Algorithms} with parameters and values by given project
