@@ -29,7 +29,7 @@ export class DataTabComponent implements OnInit {
   details: any; //Dataset details
 
   getVariables() {
-    this.dataTabService.getVariables()
+    this.dataTabService.getVariables(this.datasetId)
       .subscribe(
         res => {
           console.log(res);

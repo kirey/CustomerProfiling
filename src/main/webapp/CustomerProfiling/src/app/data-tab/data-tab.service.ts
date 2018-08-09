@@ -11,8 +11,8 @@ export class DataTabService {
 
     baseUrl = '/CustomerProfiling/rest/dataset/';
 
-    getVariables() {
-        return this._http.get(this.baseUrl + 'preprocessing');
+    getVariables(id) {
+        return this._http.get(this.baseUrl + 'preprocessing?datasetId=' + id);
     }
 
     getDataTypes() {
