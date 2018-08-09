@@ -9,6 +9,10 @@ export class ProjectOverviewService {
 
   baseUrl = '/CustomerProfiling/rest/';
 
+  editProject(obj): Observable<any> {
+    return this._http.put(this.baseUrl + 'projects', obj);
+  }
+
   getDataset(): Observable<any> {
     return this._http.get(this.baseUrl + 'dataset');
   }

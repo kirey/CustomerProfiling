@@ -4,7 +4,6 @@ import { ProjectsService } from './projects.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatPaginator, PageEvent, MatTableDataSource } from '@angular/material';
 // dialogs
 import { AddComponent } from '../dialogs/addProject/add.component';
-import { EditProjectComponent } from '../dialogs/edit-project/edit-project.component';
 import { DeleteComponent } from '../dialogs/delete/delete.component';
 import { CopyComponent } from '../dialogs/copyProject/copy.component';
 
@@ -57,20 +56,6 @@ export class ProjectsComponent implements OnInit {
       this.getProjects();
     });
   }
-
-  // open edit dialog
-  openEditDialog(obj) {
-    const dialogRef = this.dialog.open(EditProjectComponent, {
-      width: '800px',
-      data: obj
-    });
-    dialogRef.afterClosed().subscribe(res => {
-      this.getProjects();
-      console.log(res);
-      console.log('uspesno');
-    });
-  }
-
 
   openCopyDialog(obj) {
     const dialogRef = this.dialog.open(CopyComponent, {

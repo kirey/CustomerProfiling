@@ -42,6 +42,21 @@ export class ProjectOverviewComponent implements OnInit {
       err => console.log(err)
     );
   }
+
+  editProject(obj) {
+    this.projectOverviewService.editProject(obj)
+      .subscribe(
+        res => {
+          // console.log(res);
+          this.snackbar.openSnackBar(res['data'], 'Success');
+        },
+        err => {
+          console.log(err);
+          this.snackbar.openSnackBar('Something went wrong.', 'Error');
+        }
+      );
+  }
+
   selectedDataset(ev) {
     this.details = {};
     this.showDetails = false;

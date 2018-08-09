@@ -10,10 +10,15 @@
       <textarea matInput placeholder="Project description" [(ngModel)]="project.description" autocomplete="off"></textarea>
     </mat-form-field>
     <div>Created: {{project.creationDate | date}}</div>
-    <div>Last opened: {{project.lastOpened | date}}</div>
+    <div>Last opened:
+      <span *ngIf="project.lastOpened; else noData"> {{project.lastOpened | date}}</span>
+      <ng-template #noData>
+        <i>No data.</i>
+      </ng-template>
+    </div>
     <div>Projects status: {{project.status}}</div>
     <mat-dialog-actions class="buttonsFirst">
-      <button type="submit" color="primary" mat-raised-button>Save</button>
+      <button type="submit" color="primary" mat-raised-button (click)="editProject(project)">Save</button>
     </mat-dialog-actions>
   </mat-dialog-content>
   <mat-divider></mat-divider>
@@ -54,7 +59,7 @@
           <span>
             <strong>Name:</strong> {{item.variableName}} | </span>
           <span>
-            <strong>Varience:</strong> {{item.varience}} | </span>
+            <strong>Variance:</strong> {{item.variance}} | </span>
           <span>
             <strong>Min:</strong> {{item.min}} | </span>
           <span>
