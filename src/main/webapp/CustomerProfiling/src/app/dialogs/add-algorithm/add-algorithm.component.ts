@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '../../../../node_modules/@angular/forms';
 import { AddAlgorithmService } from './add-algorithm.service';
 import { SnackBarService } from '../../shared/services/snackbar.service';
+import { MatDialogRef } from '../../../../node_modules/@angular/material';
 
 @Component({
   selector: 'app-add-algorithm',
@@ -17,7 +18,7 @@ export class AddAlgorithmComponent implements OnInit {
   expand: boolean = false;
   selectedParam: number;
 
-  constructor(public fb: FormBuilder, public service: AddAlgorithmService, public snackbar: SnackBarService) { }
+  constructor(public fb: FormBuilder, public service: AddAlgorithmService, public snackbar: SnackBarService, private dialogRef: MatDialogRef<AddAlgorithmComponent>) { }
 
   // Add Parameter
   addParameter() {
@@ -57,6 +58,7 @@ export class AddAlgorithmComponent implements OnInit {
       .subscribe(
         res => {
           console.log(res);
+          this.dialogRef.close();
           this.snackbar.openSnackBar('Algorithm added successfully.', 'Success');
         },
         err => {
