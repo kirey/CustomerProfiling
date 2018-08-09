@@ -83,6 +83,7 @@ public class Variables implements Serializable{
 
 
 	@Column(name = "type_of_variable")
+	@Enumerated(EnumType.STRING)
 	public ColumnType getTypeOfVariable() {
 		return typeOfVariable;
 	}
