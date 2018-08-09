@@ -26,8 +26,8 @@
     border-color: #E1F5FE;
 }
 
-mat-card {
-    background: linear-gradient( $primary, $accent)!important;
+mat-card.dashboard-card {
+    background: $primary!important;
     color: white!important;
 }
 

@@ -15,7 +15,6 @@ import { MaterialModule } from './shared/modules/material.module';
 
 // Services
 import { ProjectsService } from './projects/projects.service';
-import { EditProjectsService } from './dialogs/edit-project/edit.project.service';
 import { AlgorithmsService } from './algorithms/algorithms.service';
 import { ProjectOverviewService } from './project-overview/project.overview.service';
 import { SharedService } from './shared/services/shared.service';
@@ -26,7 +25,6 @@ import { AddComponent } from './dialogs/addProject/add.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './shared/guards/auth.guard';
-import { EditProjectComponent } from './dialogs/edit-project/edit-project.component';
 import { DeleteComponent } from './dialogs/delete/delete.component';
 import { CopyComponent } from './dialogs/copyProject/copy.component';
 import { DatasetComponent } from './dataset/dataset.component';
@@ -54,7 +52,6 @@ import { AddValueComponent } from './dialogs/add-value/add-value.component';
     LoginComponent,
     DashboardComponent,
     AddComponent,
-    EditProjectComponent,
     DeleteComponent,
     CopyComponent,
     DatasetComponent,
@@ -85,7 +82,6 @@ import { AddValueComponent } from './dialogs/add-value/add-value.component';
     AuthService,
     AuthGuard,
     ProjectsService,
-    EditProjectsService,
     DataTabService,
     AlgorithmsService,
     AddProjectService,
@@ -96,7 +92,6 @@ import { AddValueComponent } from './dialogs/add-value/add-value.component';
   ],
   entryComponents: [
     AddComponent,
-    EditProjectComponent,
     DeleteComponent,
     CopyComponent,
     AddDatasetComponent,
