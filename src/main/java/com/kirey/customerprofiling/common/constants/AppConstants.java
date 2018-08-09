@@ -265,6 +265,9 @@ public class AppConstants {
 	public static final String ROWS_KEY = "rows";
 	public static final String DERIVED = "Derived";
 	public static final String PROJECT_STATUS_LEARNING = "Learning";
+	public static final String ALGORITHM_STATUS_NOT_TRAINED = "Not trained";
+	public static final String ALGORITHM_STATUS_TRAINED = "Trained";
+	public static final String ALGORITHM_STATUS_LEARNING = "Learning";
 	
 	
 	/**

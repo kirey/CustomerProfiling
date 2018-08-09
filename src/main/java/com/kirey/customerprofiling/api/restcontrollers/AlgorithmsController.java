@@ -189,6 +189,44 @@ public class AlgorithmsController {
 	}
 	
 	/**
+	 * Method for editing algorithm parameters that are in relation with project
+	 * @param algorithm
+	 * @return ResponseEntity containing the status message along with HTTP status
+	 */
+	@RequestMapping(value = "/parameters", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RestResponseDto> editAlgorithmProjectParameters(@RequestBody Algorithms algorithm) {
+		List<Parameters> parameters = algorithm.getParameters();
+		for (Parameters parameter : parameters) {
+			List<ParameterValues> values = parameter.getParameterValues();
+			for (ParameterValues parameterValue : values) {
+				ParameterValues valueFromDb = parameterValuesDao.findById(parameterValue.getId());
+				valueFromDb.setValue(parameterValue.getValue());;
+				parameterValuesDao.attachDirty(valueFromDb);
+			}
+		}
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Parameters updated", HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	/**
+	 * Method for removing algorithm from project
+	 * @param projectId - of {@link Projects}
+	 * @param algorithmId - of {@link Algorithms}
+	 * @return ResponseEntity containing the status message along with HTTP status
+	 */
+	@RequestMapping(value = "/remove/project/{projectId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RestResponseDto> removeAlgorithmFromProject(@PathVariable Integer projectId, @RequestParam Integer algorithmId){
+		Projects project = projectsDao.findById(projectId);
+		Algorithms algorithm = algorithmsDao.findById(algorithmId);
+		ProjectsAlgorithms projectAlgorithm = projectAlgorithmsDao.findByProjectAndAlgorithms(project, algorithm);
+		List<ParameterValues> paramValues = parameterValuesDao.findByProjectAlgorithm(projectAlgorithm.getId());
+		for (ParameterValues paramValue : paramValues) {
+			parameterValuesDao.delete(paramValue);
+		}
+		projectAlgorithmsDao.delete(projectAlgorithm);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Algorithm removed", HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	/**
 	 * Method for getting List of algorithms which are not assigned to given project
 	 * @param projectId - of {@link Projects}
 	 * @return ResponseEntity containing the list of algorithms along with HTTP status
@@ -209,7 +247,11 @@ public class AlgorithmsController {
 			if(flag) {
 				List<Parameters> paramList = algorithm.getParameters();
 				for (Parameters parameters : paramList) {
-					parameters.setParameterValues(null);
+					ParameterValues paramValue = new ParameterValues();
+					paramValue.setValue(parameters.getDefaultValue());
+					List<ParameterValues> listParamValues = new ArrayList<>();
+					listParamValues.add(paramValue);
+					parameters.setParameterValues(listParamValues);
 				}
 				listFilteredAlgorithms.add(algorithm);
 			}
@@ -218,17 +260,17 @@ public class AlgorithmsController {
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(listFilteredAlgorithms, HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/save/project/{projectId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<RestResponseDto> addAlgorithmToProject(@PathVariable Integer projectId, Algorithms algorithm){
+	@RequestMapping(value = "/save/project/{projectId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RestResponseDto> addAlgorithmToProject(@PathVariable Integer projectId, @RequestBody Algorithms algorithm){
 		
 		Projects project = projectsDao.findById(projectId);
-		
 		ProjectsAlgorithms projectsAlgorithms = projectAlgorithmsDao.findByProjectAndAlgorithms(project, algorithm);
 		if(projectsAlgorithms == null) {
 			projectsAlgorithms = new ProjectsAlgorithms();	
 		}
 		projectsAlgorithms.setAlgorithm(algorithm);
 		projectsAlgorithms.setProject(project);
+		projectsAlgorithms.setStatus(AppConstants.ALGORITHM_STATUS_NOT_TRAINED);
 		projectsAlgorithms = (ProjectsAlgorithms) projectAlgorithmsDao.merge(projectsAlgorithms);
 		List<Parameters> parameters = algorithm.getParameters();
 		for (Parameters parameter : parameters) {
@@ -242,6 +284,10 @@ public class AlgorithmsController {
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Successfully saved", HttpStatus.OK.value()), HttpStatus.OK);
 	}
+	
+	
+	
+	
 	
 	
 	/**
