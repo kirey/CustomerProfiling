@@ -84,6 +84,7 @@ public class DatasetService {
 				
 				if(NumberUtils.isCreatable(firstValue)) {
 					variable.setTypeOfData(DataType.NUMERIC);
+					
 				}else {
 					variable.setTypeOfData(DataType.TEXT);
 				}
@@ -440,22 +441,18 @@ public class DatasetService {
 		datasetDto.setDatasetDesc(dataset.getDescription());
 		datasetDto.setDatasetName(dataset.getName());
 		
-		File file = new File(dataset.getFilename());
+		List<Variables> listVariables = variablesDao.findByDataset(dataset);
+		for (Variables variable : listVariables) {
+			variable.setDataset(null);
+		}
 		
-		InputStream is = new FileInputStream(file);
-		List<Variables> listVariables = getVariablesFromCSV(is);
-		
-		is = new FileInputStream(file);
-		CSVParser parser = new CSVParser();
-		RowListProcessor processor = parser.parceFile(is);
 		datasetDto.setNumberOfVariables(listVariables.size());
-		datasetDto.setNumberOfRows(processor.getRows().size());
-		double sizeInBytes = file.length();
-		datasetDto.setDatasetSize(Utilities.round(sizeInBytes/1024, 4));
+		datasetDto.setNumberOfRows(dataset.getNoOfRows());
+		
+		datasetDto.setDatasetSize(dataset.getDatasetSize());
 		List<Projects> listProjects = this.findProjectsByOriginalDataset(dataset);
 		datasetDto.setListProjects(listProjects);
-		List<VariableDto> variableDetails = this.getVariableStatisticsByDataset(dataset);
-		datasetDto.setVariableDetails(variableDetails);
+		datasetDto.setVariableDetails(listVariables);
 		return datasetDto;
 	}
 	
@@ -657,6 +654,7 @@ public class DatasetService {
 	 * Method for getting Variables details (name, min, max, average, variance, distinct count) by given dataset 
 	 * @param dataset - {@link Datasets}
 	 * @return List of {@link VariableDto} 
+	 * @deprecated use instead {@link #setVariableStatistics(List, InputStream)}
 	 */
 	public List<VariableDto> getVariableStatisticsByDataset(Datasets dataset) {
 		List<VariableDto> variableDetails = new ArrayList<>();
@@ -742,5 +740,64 @@ public class DatasetService {
 		}
 
 		return variableDetails;
+	}
+
+	/**
+	 * Method for getting details from csv file(name, min, max, average, variance, distinct count) for each variable
+	 * @param listVariables
+	 * @param is - of CSV file
+	 * @return List of Variables with statistics
+	 */
+	public List<Variables> setVariableStatistics(List<Variables> listVariables, InputStream is) {
+
+		CSVParser parser = new CSVParser();
+		RowListProcessor processor = parser.parceFile(is);
+
+		List<String[]> rows = processor.getRows();
+		for (Variables variable : listVariables) {
+			List<String> variableValues = new ArrayList<>();
+
+			// get variable values
+			for (String[] row : rows) {
+				for (int i = 0; i < row.length; i++) {
+					if (variable.getColumnNumber() == i) {
+						variableValues.add(row[i]);
+					}
+				}
+			}
+
+			if (!variableValues.isEmpty()) {
+				if (NumberUtils.isCreatable(variableValues.get(0))) {
+					// convert do double
+					List<Double> doubleList = variableValues.stream().map(Double::valueOf).collect(Collectors.toList());
+
+					// find min
+					Double min = doubleList.stream().mapToDouble(v -> v).min().getAsDouble();
+					variable.setMin(min);
+
+					// find max
+					Double max = doubleList.stream().mapToDouble(v -> v).max().getAsDouble();
+					variable.setMax(max);
+
+					// find average
+					Double average = doubleList.stream().mapToDouble(a -> a).average().getAsDouble();
+					variable.setAverage(average);
+
+					// find variance
+					Variance variance = new Variance();
+					Double[] valuesArr = new Double[doubleList.size()];
+					valuesArr = doubleList.toArray(valuesArr);
+					double[] valuesArrPrimitive = ArrayUtils.toPrimitive(valuesArr);
+					double varianceValue = variance.evaluate(valuesArrPrimitive);
+					variable.setVariance(Utilities.round(varianceValue, 2));
+				} else {
+					// find distinct count
+					List<String> distinctList = variableValues.stream().distinct().collect(Collectors.toList());
+					variable.setDistinctCount(distinctList.size());
+				}
+			}
+
+		}
+		return listVariables;
 	}
 }
