@@ -64,7 +64,7 @@
                     <span>Min</span>
                     <span>Max</span>
                     <span>Average</span>
-                    <span>Varience</span>
+                    <span>Variance</span>
                 </div>
                 <div class="flex  column-style" *ngFor="let item of data.variableDetails; let i = index">
                     <span>{{item.variableName}}</span>
@@ -72,7 +72,7 @@
                     <span>{{item.min}}</span>
                     <span>{{item.max}}</span>
                     <span>{{item.average}}</span>
-                    <span>{{item.varience}}</span>
+                    <span>{{item.variance}}</span>
                 </div>
                 <ng-template #noData>
                     <span>No data.</span>
