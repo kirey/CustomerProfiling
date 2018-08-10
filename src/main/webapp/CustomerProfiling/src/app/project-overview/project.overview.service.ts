@@ -19,10 +19,8 @@ export class ProjectOverviewService {
   getDatasetDetails(id): Observable<any> {
     return this._http.get(this.baseUrl + 'dataset/' + id);
   }
-  getAlgorithms(id): Observable<any> {
-    return this._http.get(
-      this.baseUrl + 'algorithms/project/' + id
-    );
+  getListOfAlgorithms(id): Observable<any> {
+    return this._http.get(this.baseUrl + 'algorithms/project/' + id);
   }
   getProject(id): Observable<any> {
     return this._http.get(this.baseUrl + 'projects/' + id);

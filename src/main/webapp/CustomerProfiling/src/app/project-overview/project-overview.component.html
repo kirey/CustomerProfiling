@@ -29,6 +29,7 @@
     <!-- za selektovanje dataseta -  nije zavrseno -->
     <mat-form-field>
       <mat-select (selectionChange)="selectedDataset($event)" placeholder="Select dataset">
+        <mat-option [value]="">Select dataset</mat-option>
         <mat-option *ngFor="let data of dataset; let i = index" [value]="data">{{data.name}}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -50,30 +51,31 @@
         {{details.numberOfVariables}}
       </div>
       <br>
-      <div class="details-item">
-        <div>
-          <strong>Variable details: </strong>
+      <!-- List of VARIABLES -->
+      <div class="column" *ngIf="details.variableDetails.length > 0;else noData">
+        <h4 class="subtitle">Variable details</h4>
+        <br>
+        <div class="flex column-style header-style">
+          <span>Name</span>
+          <span>Distinct Count</span>
+          <span>Min</span>
+          <span>Max</span>
+          <span>Average</span>
+          <span>Variance</span>
         </div>
-        <div *ngFor="let item of  details.variableDetails; let i = index">
-          <span>{{i+1}}. </span>
-          <span>
-            <strong>Name:</strong> {{item.variableName}} | </span>
-          <span>
-            <strong>Variance:</strong> {{item.variance}} | </span>
-          <span>
-            <strong>Min:</strong> {{item.min}} | </span>
-          <span>
-            <strong>Max:</strong> {{item.max}} | </span>
-          <span>
-            <strong>Distinct Count:</strong> {{item.distinctCount}} | </span>
-          <span>
-            <strong>Average:</strong> {{item.average}} </span>
+        <div class="flex  column-style variables-data" *ngFor="let item of  details.variableDetails; let i = index">
+          <span>{{item.variableName}}</span>
+          <span>{{item.distinctCount}}</span>
+          <span>{{item.min}}</span>
+          <span>{{item.max}}</span>
+          <span>{{item.average}}</span>
+          <span>{{item.variance}}</span>
         </div>
+        <ng-template #noData>
+          <span>No data.</span>
+        </ng-template>
       </div>
     </div>
-    <mat-dialog-actions class="buttons">
-      <button class="link-btn" [disabled]="!linkDatasetBool" type="submit" color="primary" mat-stroked-button (click)="linkDataset()">Link Dataset</button>
-    </mat-dialog-actions>
   </mat-dialog-content>
 
   <mat-divider></mat-divider>
