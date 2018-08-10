@@ -37,4 +37,20 @@ public class ProjectsDao extends KjcBaseDao{
 		return project;
 	}
 	
+	
+	/**
+	 * Method for getting project by Algorithm Id
+	 * @param algorithmId
+	 * @return 
+	 */
+	public Projects findProjectByAlgorithmId(Integer algorithmId) {
+		
+		String hql = "select p from Projects p, ProjectsAlgorithms pa, Datasets d "
+				+ "where pa.algorithm.id=:algorithmId "
+				+ "and pa.project.id=pa.algorithm.id";
+		
+		Projects project = (Projects) sessionFactory.getCurrentSession().createQuery(hql).setParameter("algorithmId", algorithmId).uniqueResult();
+		return project;
+	}
+	
 }
