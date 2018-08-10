@@ -304,7 +304,7 @@ public class AlgorithmsController {
 	 * @return ResponseEntity containing the analyzed algorithm along with HTTP status
 	 * @throws InterruptedException 
 	 */
-	@RequestMapping(value = "/analize", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/analyze", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> analizeAlgorithm(@RequestBody List<Algorithms> algorithms, @RequestParam Integer projectId) throws InterruptedException{
 		Projects project = projectsDao.findById(projectId);
 		Datasets derivedDataset = datasetsDao.getDerivedFromProject(projectId);
@@ -322,9 +322,14 @@ public class AlgorithmsController {
 			}
 		}
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Allgorithm trained", HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Allgorithms trained", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
+	/**
+	 * Method for getting status of algorithm that is in relation with given project
+	 * @param projectId
+	 * @return ResponseEntity containing the HashMap with algorithm id as key and status as value along with HTTP status
+	 */
 	@RequestMapping(value = "/status", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> algorithmStatus(@RequestParam Integer projectId) {
 		Map<Object, Object> responseMap = new HashMap<>();

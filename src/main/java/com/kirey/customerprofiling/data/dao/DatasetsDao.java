@@ -84,7 +84,7 @@ public class DatasetsDao extends KjcBaseDao {
 	 * @return derived {@link Datasets}
 	 */
 	public Datasets getDerivedFromProject(Integer projectId) {
-		String hql = "From Datasets dds where ods.originalDataset is not null and ods.project.id = :projectId";
+		String hql = "From Datasets dds where dds.originalDataset is not null and dds.project.id = :projectId";
 		Datasets dataset = (Datasets) sessionFactory.getCurrentSession().createQuery(hql)
 				.setParameter("projectId", projectId).uniqueResult();
 		return dataset;
