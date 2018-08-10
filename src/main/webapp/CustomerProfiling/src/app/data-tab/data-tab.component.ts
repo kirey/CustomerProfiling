@@ -28,6 +28,18 @@ export class DataTabComponent implements OnInit {
   projectId: number;
   details: any; //Dataset details
   csvArray: any;
+  isDatasetLinked: boolean;
+
+
+  isLinked() {
+    this.dataTabService.isLinked(this.projectId)
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => console.log(err);
+      );
+  }
 
   getVariables() {
     this.dataTabService.getVariables(this.datasetId)
@@ -215,6 +227,7 @@ export class DataTabComponent implements OnInit {
 
   submit() {
     let checkArray = [];
+    console.log(this.variables);
 
     // Check for empty fields
     for (let i = 0; i < this.variables.length; i++) {
@@ -240,8 +253,6 @@ export class DataTabComponent implements OnInit {
     }
     // Send request after check
     if (checkArray.length == this.variables.length) {
-
-      console.log(this.variables);
       this.message = '';
 
       let data = this.variables;
@@ -268,6 +279,7 @@ export class DataTabComponent implements OnInit {
     this.datasetId = this.sharedService.getDatasetId();
     this.projectId = this.sharedService.getProjectId();
 
+    this.isLinked();
     this.getVariables();
     this.getDataTypes();
     this.getVariableTypes();
