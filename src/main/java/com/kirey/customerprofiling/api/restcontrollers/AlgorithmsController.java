@@ -311,6 +311,8 @@ public class AlgorithmsController {
 		if(derivedDataset == null) {
 			return new ResponseEntity<RestResponseDto>(new RestResponseDto("There is no derived dataset connected to project!", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
 		}else {
+			project.setStatus(AppConstants.PROJECT_STATUS_LEARNING);
+			projectsDao.merge(project);
 			for (Algorithms algorithm : algorithms) {
 				ProjectsAlgorithms projectAlgorithm = projectAlgorithmsDao.findByProjectAndAlgorithms(project, algorithm);
 				projectAlgorithm.setStatus(AppConstants.ALGORITHM_STATUS_LEARNING);
@@ -320,6 +322,9 @@ public class AlgorithmsController {
 				projectAlgorithm.setStatus(AppConstants.ALGORITHM_STATUS_TRAINED);
 				projectAlgorithmsDao.attachDirty(projectAlgorithm);
 			}
+			
+			project.setStatus(AppConstants.ALGORITHM_STATUS_TRAINED);
+			projectsDao.merge(project);
 		}
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Allgorithms trained", HttpStatus.OK.value()), HttpStatus.OK);
@@ -372,7 +377,6 @@ public class AlgorithmsController {
 			}
 		}
 		
-		project.setStatus(AppConstants.PROJECT_STATUS_LEARNING);
 		projectsDao.merge(project);
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Successfully updated project", HttpStatus.OK.value()), HttpStatus.OK);
 	}
