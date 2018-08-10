@@ -1,20 +1,25 @@
 package com.kirey.customerprofiling.data.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -32,6 +37,7 @@ public class UserAccounts implements UserDetails{
 	private String firstName;
 	private String lastName;
 	private String role;
+	private List<Projects> projects = new ArrayList<>();
 	
 	@Transient
     private List<Roles> roles;
@@ -105,6 +111,14 @@ public class UserAccounts implements UserDetails{
 		this.roles = roles;
 	}
 	
+	@OneToMany(mappedBy="userAccount", fetch = FetchType.LAZY)
+	public List<Projects> getProjects() {
+		return projects;
+	}
+	public void setProjects(List<Projects> projects) {
+		this.projects = projects;
+	}
+	
 	@Override
 	@Transient
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -134,8 +148,7 @@ public class UserAccounts implements UserDetails{
 		// TODO Auto-generated method stub
 		return true;
 	}
-	
-	
+
 	
 	
 	

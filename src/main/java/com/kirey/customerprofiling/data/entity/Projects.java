@@ -12,10 +12,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -45,6 +48,7 @@ public class Projects implements Serializable{
 	private List<ProjectsAlgorithms> projectsAlgorithmsList = new ArrayList<>();
 	@JsonIgnore
 	private Datasets datasets;
+	private UserAccounts userAccount;
 	
 	@Id
 	@SequenceGenerator(name = "seq_projects_gen", sequenceName = "seq_projects", allocationSize = 1, initialValue = 1)
@@ -120,6 +124,16 @@ public class Projects implements Serializable{
 
 	public void setDatasets(Datasets datasets) {
 		this.datasets = datasets;
+	}
+	
+	@ManyToOne
+	@JoinColumn(name="user_account")
+	public UserAccounts getUserAccount() {
+		return userAccount;
+	}
+
+	public void setUserAccount(UserAccounts userAccount) {
+		this.userAccount = userAccount;
 	}
 	
 }
