@@ -1,7 +1,10 @@
 package com.kirey.customerprofiling.api.restcontrollers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kirey.customerprofiling.api.dto.RestResponseDto;
 import com.kirey.customerprofiling.common.constants.AppConstants;
 import com.kirey.customerprofiling.data.dao.AlgorithmsDao;
+import com.kirey.customerprofiling.data.dao.DatasetsDao;
 import com.kirey.customerprofiling.data.dao.ParameterValuesDao;
 import com.kirey.customerprofiling.data.dao.ParametersDao;
 import com.kirey.customerprofiling.data.dao.ProjectAlgorithmsDao;
@@ -48,6 +52,9 @@ public class AlgorithmsController {
 	
 	@Autowired
 	private ParameterValuesDao parameterValuesDao;
+	
+	@Autowired
+	private DatasetsDao datasetsDao;
 
 	/**
 	 * Get list of all algorithms
@@ -190,6 +197,44 @@ public class AlgorithmsController {
 	}
 	
 	/**
+	 * Method for editing algorithm parameters that are in relation with project
+	 * @param algorithm
+	 * @return ResponseEntity containing the status message along with HTTP status
+	 */
+	@RequestMapping(value = "/parameters", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RestResponseDto> editAlgorithmProjectParameters(@RequestBody Algorithms algorithm) {
+		List<Parameters> parameters = algorithm.getParameters();
+		for (Parameters parameter : parameters) {
+			List<ParameterValues> values = parameter.getParameterValues();
+			for (ParameterValues parameterValue : values) {
+				ParameterValues valueFromDb = parameterValuesDao.findById(parameterValue.getId());
+				valueFromDb.setValue(parameterValue.getValue());;
+				parameterValuesDao.attachDirty(valueFromDb);
+			}
+		}
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Parameters updated", HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	/**
+	 * Method for removing algorithm from project
+	 * @param projectId - of {@link Projects}
+	 * @param algorithmId - of {@link Algorithms}
+	 * @return ResponseEntity containing the status message along with HTTP status
+	 */
+	@RequestMapping(value = "/remove/project/{projectId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RestResponseDto> removeAlgorithmFromProject(@PathVariable Integer projectId, @RequestParam Integer algorithmId){
+		Projects project = projectsDao.findById(projectId);
+		Algorithms algorithm = algorithmsDao.findById(algorithmId);
+		ProjectsAlgorithms projectAlgorithm = projectAlgorithmsDao.findByProjectAndAlgorithms(project, algorithm);
+		List<ParameterValues> paramValues = parameterValuesDao.findByProjectAlgorithm(projectAlgorithm.getId());
+		for (ParameterValues paramValue : paramValues) {
+			parameterValuesDao.delete(paramValue);
+		}
+		projectAlgorithmsDao.delete(projectAlgorithm);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Algorithm removed", HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	/**
 	 * Method for getting List of algorithms which are not assigned to given project
 	 * @param projectId - of {@link Projects}
 	 * @return ResponseEntity containing the list of algorithms along with HTTP status
@@ -210,7 +255,11 @@ public class AlgorithmsController {
 			if(flag) {
 				List<Parameters> paramList = algorithm.getParameters();
 				for (Parameters parameters : paramList) {
-					parameters.setParameterValues(null);
+					ParameterValues paramValue = new ParameterValues();
+					paramValue.setValue(parameters.getDefaultValue());
+					List<ParameterValues> listParamValues = new ArrayList<>();
+					listParamValues.add(paramValue);
+					parameters.setParameterValues(listParamValues);
 				}
 				listFilteredAlgorithms.add(algorithm);
 			}
@@ -219,17 +268,17 @@ public class AlgorithmsController {
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(listFilteredAlgorithms, HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/save/project/{projectId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<RestResponseDto> addAlgorithmToProject(@PathVariable Integer projectId, Algorithms algorithm){
+	@RequestMapping(value = "/save/project/{projectId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RestResponseDto> addAlgorithmToProject(@PathVariable Integer projectId, @RequestBody Algorithms algorithm){
 		
 		Projects project = projectsDao.findById(projectId);
-		
 		ProjectsAlgorithms projectsAlgorithms = projectAlgorithmsDao.findByProjectAndAlgorithms(project, algorithm);
 		if(projectsAlgorithms == null) {
 			projectsAlgorithms = new ProjectsAlgorithms();	
 		}
 		projectsAlgorithms.setAlgorithm(algorithm);
 		projectsAlgorithms.setProject(project);
+		projectsAlgorithms.setStatus(AppConstants.ALGORITHM_STATUS_NOT_TRAINED);
 		projectsAlgorithms = (ProjectsAlgorithms) projectAlgorithmsDao.merge(projectsAlgorithms);
 		List<Parameters> parameters = algorithm.getParameters();
 		for (Parameters parameter : parameters) {
@@ -245,17 +294,46 @@ public class AlgorithmsController {
 	}
 	
 	
+	
+	
+	
+	
 	/**
 	 * Method for analyzing given algorithm
 	 * @param algorithm - {@link Algorithms} object with parameters and values
 	 * @return ResponseEntity containing the analyzed algorithm along with HTTP status
+	 * @throws InterruptedException 
 	 */
 	@RequestMapping(value = "/analize", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<RestResponseDto> analizeAlgorithm(@RequestBody Algorithms algorithm){
-		//TODO Analyze logic
-		algorithm.setAnalized(true);
+	public ResponseEntity<RestResponseDto> analizeAlgorithm(@RequestBody List<Algorithms> algorithms, @RequestParam Integer projectId) throws InterruptedException{
+		Projects project = projectsDao.findById(projectId);
+		Datasets derivedDataset = datasetsDao.getDerivedFromProject(projectId);
+		if(derivedDataset == null) {
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto("There is no derived dataset connected to project!", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}else {
+			for (Algorithms algorithm : algorithms) {
+				ProjectsAlgorithms projectAlgorithm = projectAlgorithmsDao.findByProjectAndAlgorithms(project, algorithm);
+				projectAlgorithm.setStatus(AppConstants.ALGORITHM_STATUS_LEARNING);
+				projectAlgorithmsDao.attachDirty(projectAlgorithm);
+				//simulate training of algorithm
+				TimeUnit.SECONDS.sleep(10);
+				projectAlgorithm.setStatus(AppConstants.ALGORITHM_STATUS_TRAINED);
+				projectAlgorithmsDao.attachDirty(projectAlgorithm);
+			}
+		}
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto(algorithm, HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Allgorithm trained", HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/status", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RestResponseDto> algorithmStatus(@RequestParam Integer projectId) {
+		Map<Object, Object> responseMap = new HashMap<>();
+		List<ProjectsAlgorithms> listProjectAlgorithms = projectAlgorithmsDao.findByProject(projectId);
+		for (ProjectsAlgorithms projectsAlgorithms : listProjectAlgorithms) {
+			responseMap.put(projectsAlgorithms.getId(), projectsAlgorithms.getStatus());
+		}
+		
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(responseMap, HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
 	/**
