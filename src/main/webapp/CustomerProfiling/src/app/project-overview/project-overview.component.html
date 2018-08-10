@@ -1,0 +1,109 @@
+<div id="projectOverview">
+  <h1>Project overview</h1>
+  <mat-dialog-content *ngIf="project">
+    <h4 class="subtitle">Project details for project ID: {{project.id}}</h4>
+    <mat-form-field>
+      <input matInput placeholder="Project name" [(ngModel)]="project.projectName" autocomplete="off">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <textarea matInput placeholder="Project description" [(ngModel)]="project.description" autocomplete="off"></textarea>
+    </mat-form-field>
+    <div>Created: {{project.creationDate | date}}</div>
+    <div>Last opened: {{project.lastOpened | date}}</div>
+    <div>Projects status: {{project.status}}</div>
+    <mat-dialog-actions class="buttonsFirst">
+      <button type="submit" color="primary" mat-raised-button>Save</button>
+    </mat-dialog-actions>
+  </mat-dialog-content>
+  <mat-divider></mat-divider>
+  <!-- Select dataset -->
+  <mat-dialog-content>
+    <h4 class="subtitle">Dataset details</h4>
+
+    <!-- za selektovanje dataseta -  nije zavrseno -->
+    <mat-form-field>
+      <mat-select (selectionChange)="selectedDataset($event)" placeholder="Select dataset">
+        <mat-option *ngFor="let data of dataset; let i = index" [value]="data">{{data.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div *ngIf="details && showDetails">
+      <div class="details-item">
+        <strong>Description: </strong>
+        {{details.datasetDesc}}
+      </div>
+      <div class="details-item">
+        <strong>Dataset size: </strong>
+        {{details.datasetSize}} KB
+      </div>
+      <div class="details-item">
+        <strong>Number of rows: </strong>
+        {{details.numberOfRows}}
+      </div>
+      <div class="details-item">
+        <strong>Number of variables: </strong>
+        {{details.numberOfVariables}}
+      </div>
+      <br>
+      <div class="details-item">
+        <div>
+          <strong>Variable details: </strong>
+        </div>
+        <div *ngFor="let item of  details.variableDetails; let i = index">
+          <span>{{i+1}}. </span>
+          <span>
+            <strong>Name:</strong> {{item.variableName}} | </span>
+          <span>
+            <strong>Varience:</strong> {{item.varience}} | </span>
+          <span>
+            <strong>Min:</strong> {{item.min}} | </span>
+          <span>
+            <strong>Max:</strong> {{item.max}} | </span>
+          <span>
+            <strong>Distinct Count:</strong> {{item.distinctCount}} | </span>
+          <span>
+            <strong>Average:</strong> {{item.average}} </span>
+        </div>
+      </div>
+    </div>
+    <mat-dialog-actions class="buttons">
+      <button class="link-btn" [disabled]="!linkDatasetBool" type="submit" color="primary" mat-stroked-button (click)="linkDataset()">Link Dataset</button>
+    </mat-dialog-actions>
+  </mat-dialog-content>
+
+  <mat-divider></mat-divider>
+  <!-- Projects Properties -->
+  <h4 class="subtitle">Project properties</h4>
+  <div class="cards">
+    <mat-card *ngIf="algorithms">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Algorithms</mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content *ngFor="let algorithm of algorithms">
+        <span>
+          <strong>Algorithm Name:</strong> {{algorithm.algorithmName}}</span>
+        <br>
+        <span>
+          <strong>Algorithm Description:</strong> {{algorithm.description}}</span>
+        <br>
+        <span>
+          <strong>Algorithm Library:</strong> {{algorithm.library}}</span>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Questions</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes
+          very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>

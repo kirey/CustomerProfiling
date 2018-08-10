@@ -1,0 +1,45 @@
+@import '../../app.component.scss';
+
+#view-algorithm {
+    .data-title {
+        color: $primary;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .name {
+        background-color: $primary;
+        color: #fff;
+        font-size: 21px;
+        margin: 20px 0;
+    }
+    .description-library {
+        border: 1px solid $primary;
+        padding: 20px;
+        width: 42%;
+        margin: 5px 0;
+    }
+    .parameters {
+        border: 1px solid $primary;
+        padding: 20px;
+        margin: 10px 0;
+    }
+    .header-style {
+        color: $accent;
+        font-weight: bold;
+        font-size: 16px;
+        margin: 10px 0;
+    }
+    .column-style>span {
+        width: 170px;
+    }
+    .items-style>span {
+        margin-left: 1px;
+    }
+    mat-dialog-actions {
+        float: right;
+    }
+    button {
+        margin: 20px 0;
+    }
+}

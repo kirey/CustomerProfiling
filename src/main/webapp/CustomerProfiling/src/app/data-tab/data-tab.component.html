@@ -1,0 +1,157 @@
+<div id="data-tab">
+  <!-- Basic info -->
+  <h2 class="subtitle">DATASET - Info & Stats</h2>
+  <div class="flex space-around border">
+    <!-- DATASET DETAILS -->
+    <mat-card class="info-box justify">
+      <div *ngIf="details">
+        <div class="details-item">
+          <strong>Dataset: </strong>
+          {{details.datasetName}}
+        </div>
+        <div class="details-item">
+          <strong>Description: </strong>
+          {{details.datasetDesc}}
+        </div>
+        <div class="details-item">
+          <strong>Dataset size: </strong>
+          {{details.datasetSize}} KB
+        </div>
+        <div class="details-item">
+          <strong>Number of rows: </strong>
+          {{details.numberOfRows}}
+        </div>
+        <div class="details-item">
+          <strong>Number of variables: </strong>
+          {{details.numberOfVariables}}
+        </div>
+      </div>
+    </mat-card>
+    <!-- LIST OF VARIABLES -->
+    <mat-card class="info-box justify">
+      <div *ngIf="details && details.variableDetails.length > 0">
+        <div>
+          <strong>Variable details: </strong>
+        </div>
+        <div *ngFor="let item of  details.variableDetails; let i = index">
+          <span>{{i+1}}. </span>
+          <span>
+            <strong>Name:</strong> {{item.variableName}} </span>
+          <span>
+            <br>
+            <strong>Varience:</strong> {{item.varience}} </span>
+          <span>
+            <br>
+            <strong>Min:</strong> {{item.min}} </span>
+          <span>
+            <strong>Max:</strong> {{item.max}} </span>
+          <span>
+            <br>
+            <strong>Distinct Count:</strong> {{item.distinctCount}} </span>
+          <br>
+          <span>
+            <strong>Average:</strong> {{item.average}} </span>
+          <br>
+          <br>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  <!-- Pre Processing -->
+  <h2 class="subtitle">DATASET - Pre Processing</h2>
+  <div class="border">
+    <!-- Titles -->
+    <div class="flex space-around title-bar" *ngIf="variables">
+      <span class="processing-title">
+        Variable Name
+      </span>
+      <span class="processing-title">
+        Type of Variable
+      </span>
+      <span class="processing-title">
+        Type of Data
+      </span>
+      <span class="processing-title">
+        Type of Operation
+      </span>
+      <span class="processing-title">
+        Parameters
+      </span>
+    </div>
+    <!-- Data -->
+    <div class="flex column">
+      <div *ngFor="let variable of variables; let i = index" class="flex space-around variable-items">
+        <!-- Variable Name -->
+        <span>{{variable.variableName}}</span>
+
+        <!-- Variable Type -->
+        <mat-form-field>
+          <mat-select (selectionChange)="selectionChanged($event, i, 'typeOfVariable')" placeholder="Variable Type">
+            <mat-option *ngFor="let type of variableTypes" [value]="type">
+              {{type}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Data Type -->
+        <mat-form-field>
+          <mat-select [(ngModel)]="variables[i].typeOfData" (selectionChange)="selectionChanged($event, i, 'typeOfData')" placeholder="Data Type">
+            <mat-option *ngFor="let type of dataTypes" [value]="type">
+              {{type}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Operation Type -->
+        <div>
+          <!-- Numeric -->
+          <mat-form-field *ngIf="variables[i].typeOfData == 'NUMERIC'">
+            <mat-select (selectionChange)="setParams($event, i)" placeholder="Operation Type">
+              <mat-option *ngFor="let type of numericOperationTypes" [value]="type">
+                {{type}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- Text -->
+          <mat-form-field *ngIf="variables[i].typeOfData == 'TEXT'">
+            <mat-select (selectionChange)="setParams($event, i)" placeholder="Operation Type">
+              <mat-option *ngFor="let type of textOperationTypes" [value]="type">
+                {{type}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!--  P A R A M S -->
+        <span class="params">
+          <!-- Min & Max -->
+          <div *ngIf="variables[i]['params']; else noData">
+            <span *ngIf="variables[i]['params']['minmax'] == true">
+              <mat-form-field class="small-input">
+                <input (change)="paramsChanged($event, i, 'scaleMin')" matInput placeholder="Min">
+              </mat-form-field>
+              <mat-form-field class="small-input">
+                <input (change)="paramsChanged($event, i, 'scaleMax')" matInput placeholder="Max">
+              </mat-form-field>
+            </span>
+            <!-- Bins -->
+            <span *ngIf="variables[i]['params']['bins'] == true">
+              <mat-form-field class="small-input">
+                <input (change)="paramsChanged($event, i, 'bins')" matInput placeholder="Bins">
+              </mat-form-field>
+            </span>
+          </div>
+          <ng-template #noData>
+            No parameters.
+          </ng-template>
+        </span>
+      </div>
+      <div class="warn-message"> {{message}}</div>
+      <!-- Buttons -->
+      <span class="buttons">
+        <button mat-raised-button color="primary" (click)=submit()>Save</button>
+        <button mat-stroked-button color="warn" (click)="viewObject()">View</button>
+      </span>
+    </div>
+  </div>
+</div>

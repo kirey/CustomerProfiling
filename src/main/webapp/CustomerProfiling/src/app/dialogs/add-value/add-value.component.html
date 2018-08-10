@@ -1,0 +1,17 @@
+<div id="addValue">
+    <h1>Add Value for parameter </h1>
+    <mat-divider></mat-divider>
+    <mat-dialog-content>
+        <form [formGroup]="addValueForm" (ngSubmit)="addValue()">
+            <mat-form-field>
+                <input matInput formControlName="value" type="text" placeholder="Enter value" autocomplete="off" [(ngModel)]="value">
+            </mat-form-field>
+            <mat-error *ngIf="addValueForm.get('value').touched && addValueForm.get('value').hasError('required')">
+                Value is required!
+            </mat-error>
+            <mat-dialog-actions class="buttons">
+                <button type="submit" mat-raised-button [disabled]="addValueForm.invalid">Add value</button>
+            </mat-dialog-actions>
+        </form>
+    </mat-dialog-content>
+</div>

@@ -1,0 +1,42 @@
+<div id="view-algorithm" *ngIf="data">
+  <h1 class="subtitle" mat-dialog-title>View Algorithm</h1>
+  <mat-divider></mat-divider>
+  <!-- Dialog CONTENT -->
+  <mat-dialog-content>
+    <div class="flex center name">
+      <h4>{{data.algorithmName}}</h4>
+    </div>
+    <div class="flex space-between wrap">
+      <span class="description-library">
+        <div class="data-title">Description</div>
+        <div class="justify"> {{data.description}}</div>
+      </span>
+      <span class="description-library">
+        <div class="data-title">Library</div>
+        {{data.library}}
+      </span>
+    </div>
+    <!-- List of Parameters -->
+    <div class="parameters " *ngIf="data.parameters && data.parameters.length>0; else noData">
+      <label class="data-title">Parameters</label>
+      <br>
+      <div class="flex column-style header-style">
+        <span>Parameter Name</span>
+        <span>Type</span>
+        <span>Value</span>
+      </div>
+      <div class="flex  column-style items-style" *ngFor="let item of data.parameters">
+        <span>{{item.parameterName}}</span>
+        <span>{{item.parameterValueType}}</span>
+        <span>{{item.defaultValue}}</span>
+      </div>
+      <ng-template #noData>
+        <span>No data.</span>
+      </ng-template>
+    </div>
+  </mat-dialog-content>
+  <!-- Dialog ACTIONS -->
+  <mat-dialog-actions class="buttons">
+    <button mat-stroked-button mat-dialog-close color="warn">Close</button>
+  </mat-dialog-actions>
+</div>

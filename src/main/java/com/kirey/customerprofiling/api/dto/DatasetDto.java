@@ -4,17 +4,20 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.kirey.customerprofiling.data.entity.Projects;
+import com.kirey.customerprofiling.data.entity.Variables;
 
 public class DatasetDto implements Serializable {
 
 	private static final long serialVersionUID = 4987038072366014688L;
 
 	private String datasetName;
-	private int numberOfRows;
-	private int numberOfVariables;
-	private int datasetSize;
+	private Integer numberOfRows;
+	private Integer numberOfVariables;
+	private Double datasetSize;
 	private String datasetDesc;
-	private Projects project;
+//	private Projects project;
+	private List<Projects> listProjects;
+	private List<Variables> variableDetails;
 	
 	
 	public String getDatasetName() {
@@ -24,22 +27,22 @@ public class DatasetDto implements Serializable {
 		this.datasetName = datasetName;
 	}
 	
-	public int getNumberOfRows() {
+	public Integer getNumberOfRows() {
 		return numberOfRows;
 	}
-	public void setNumberOfRows(int numberOfRows) {
+	public void setNumberOfRows(Integer numberOfRows) {
 		this.numberOfRows = numberOfRows;
 	}
-	public int getNumberOfVariables() {
+	public Integer getNumberOfVariables() {
 		return numberOfVariables;
 	}
-	public void setNumberOfVariables(int numberOfVariables) {
+	public void setNumberOfVariables(Integer numberOfVariables) {
 		this.numberOfVariables = numberOfVariables;
 	}
-	public int getDatasetSize() {
+	public Double getDatasetSize() {
 		return datasetSize;
 	}
-	public void setDatasetSize(int datasetSize) {
+	public void setDatasetSize(Double datasetSize) {
 		this.datasetSize = datasetSize;
 	}
 	public String getDatasetDesc() {
@@ -48,12 +51,26 @@ public class DatasetDto implements Serializable {
 	public void setDatasetDesc(String datasetDesc) {
 		this.datasetDesc = datasetDesc;
 	}
-	public Projects getProject() {
-		return project;
+//	public Projects getProject() {
+//		return project;
+//	}
+//	public void setProject(Projects project) {
+//		this.project = project;
+//	}
+	public List<Projects> getListProjects() {
+		return listProjects;
 	}
-	public void setProject(Projects project) {
-		this.project = project;
+	public void setListProjects(List<Projects> listProjects) {
+		this.listProjects = listProjects;
 	}
+	public List<Variables> getVariableDetails() {
+		return variableDetails;
+	}
+	public void setVariableDetails(List<Variables> variableDetails) {
+		this.variableDetails = variableDetails;
+	}
+	
+	
 	
 	
 }

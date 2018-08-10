@@ -28,13 +28,17 @@ import com.kirey.customerprofiling.api.dto.VariableDto;
 import com.kirey.customerprofiling.common.constants.AppConstants;
 import com.kirey.customerprofiling.common.constants.ColumnType;
 import com.kirey.customerprofiling.common.constants.DataType;
+import com.kirey.customerprofiling.common.util.Utilities;
 import com.kirey.customerprofiling.data.dao.DatasetsDao;
 import com.kirey.customerprofiling.data.dao.ProjectsDao;
 import com.kirey.customerprofiling.data.dao.VariablesDao;
 import com.kirey.customerprofiling.data.entity.Datasets;
 import com.kirey.customerprofiling.data.entity.Projects;
 import com.kirey.customerprofiling.data.entity.Variables;
+import com.kirey.customerprofiling.data.service.CSVParser;
 import com.kirey.customerprofiling.data.service.DatasetService;
+import com.univocity.parsers.common.processor.RowListProcessor;
+
 
 /**
  * 
@@ -64,7 +68,7 @@ public class DatasetController {
 	 * @throws FileNotFoundException
 	 */
 	//TEMPORARY CONTROLLER
-	@RequestMapping(value = "/preprocessing", method = RequestMethod.GET)
+	@RequestMapping(value = "/preprocessing/temp", method = RequestMethod.GET)
 	public ResponseEntity<RestResponseDto> getPreProcessingInfo() throws FileNotFoundException {
 		File file = new File("C:\\Temp\\testCSV.csv"); //Or upload from application (@RequestPart MultipartFile csvFile)
 		InputStream is = new FileInputStream(file);
@@ -77,10 +81,13 @@ public class DatasetController {
 	 * @param datasetId - of {@link Datasets}
 	 * @return ResponseEntity containing the list of {@link Variables} along with HTTP status
 	 */
-	@RequestMapping(value = "/preprocessing/dataset", method = RequestMethod.GET)
+	@RequestMapping(value = "/preprocessing", method = RequestMethod.GET)
 	public ResponseEntity<RestResponseDto> getPreProcessingInfo(@RequestParam Integer datasetId) {
 		Datasets dataset = datasetsDao.findById(datasetId);
 		List<Variables> listVariables = variablesDao.findByDataset(dataset);
+		for (Variables variables : listVariables) {
+			variables.setDataset(null);
+		}
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(listVariables, HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
@@ -182,23 +189,33 @@ public class DatasetController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/addNewDataset", method = RequestMethod.POST,consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<RestResponseDto> uploadCsvDataset(@RequestPart(name="csvFile") MultipartFile csvFile, @RequestPart(name="dataset") Datasets dataset) throws IllegalStateException, IOException{
+	public ResponseEntity<RestResponseDto> uploadCsvDataset(@RequestPart(name="csvFile") MultipartFile csvFile, @RequestPart(name="dataset") Datasets dataset) throws IllegalStateException, IOException {
 		
 		String filePath = datasetService.uploadCSVFile(csvFile);
+		File file = new File(filePath); 
+		InputStream is = new FileInputStream(file);
+		
+		
 		Datasets newDataset = new Datasets();
 		newDataset.setFilename(filePath);
 		newDataset.setName(dataset.getName());
 		newDataset.setDescription(dataset.getDescription());
+		double sizeInBytes = csvFile.getSize();
+		newDataset.setDatasetSize(Utilities.round(sizeInBytes/1024, 4));
+		CSVParser parser = new CSVParser();
+		RowListProcessor processor = parser.parceFile(is);
+		List<String[]> rows = processor.getRows();
+		newDataset.setNoOfRows(rows.size());
 	    datasetsDao.attachDirty(newDataset);
 	    
-	    File file = new File(filePath); 
-		InputStream is = new FileInputStream(file);
-		List<Variables> listVariables = datasetService.getVariablesFromCSV(is);
+	    InputStream is1 = new FileInputStream(file);
+		List<Variables> listVariables = datasetService.getVariablesFromCSV(is1);
+		InputStream is2 = new FileInputStream(file);
+		listVariables = datasetService.setVariableStatistics(listVariables, is2);
 		for (Variables variable : listVariables) {
 			variable.setDataset(newDataset);
 			variablesDao.attachDirty(variable);
 		}
-	    		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Dataset successfully created", HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
@@ -220,7 +237,6 @@ public class DatasetController {
 	 */
 	@RequestMapping(value = "/{datasetId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> datasetDetails(@PathVariable Integer datasetId) throws FileNotFoundException{
-				
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetService.getDatasetDetails(datasetId), HttpStatus.OK.value()), HttpStatus.OK);
 	}
 		
@@ -262,18 +278,16 @@ public class DatasetController {
 	}
 	
 	/**
-	 * Method for getting statistics for given variable
-	 * @param id - of variable
-	 * @return ResponseEntity containing the variable statistics along with HTTP status
+	 * Method for getting statistics for given dataset
+	 * @param datasetId - of {@link Datasets}
+	 * @return ResponseEntity containing the list of variable statistics along with HTTP status
 	 */
-	@RequestMapping(value = "/variable/{id}", method = RequestMethod.GET)
-	public ResponseEntity<RestResponseDto> variableDetails(@PathVariable Integer id){
+	@RequestMapping(value = "/variableDetails", method = RequestMethod.GET)
+	public ResponseEntity<RestResponseDto> variableDetails(@RequestParam Integer datasetId){
 		
-		Variables variable = variablesDao.findById(id);
-		
-		VariableDto variableDto = datasetService.getVariableStatistics(variable);
-		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto(variableDto, HttpStatus.OK.value()), HttpStatus.OK);
+		Datasets dataset = datasetsDao.findById(datasetId);
+		List<VariableDto> variableDetails = datasetService.getVariableStatisticsByDataset(dataset);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(variableDetails, HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
 	

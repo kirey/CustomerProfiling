@@ -1,0 +1,44 @@
+@import '../app.component.scss';
+.selectAlgorithm {
+    border: ridge;
+    border-width: 1px;
+    border-color: $gray;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+h4 {
+    margin-left: 15px;
+}
+
+.mat-form-field {
+    margin-left: 40px;
+}
+
+.labels {
+    padding-left: 35px;
+}
+
+.algorithmDetails {
+    background: #fafafa;
+    display: grid;
+}
+
+.name {
+    padding-right: 48px;
+}
+
+.desc {
+    padding-right: 10px;
+}
+
+.bottomLabel {
+    margin-top: 20px;
+}
+
+table {
+    border-spacing: 0;
+    margin: 40px;
+}

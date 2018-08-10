@@ -1,0 +1,26 @@
+<div id="editProject">
+    <h1>Edit Project {{data.id}}</h1>
+    <form #editProjectForm="ngForm">
+      <mat-dialog-content>
+    <mat-form-field>
+      <input matInput name="projectName" type="text" [(ngModel)]="data.projectName" placeholder=" Project name">
+    </mat-form-field><br>
+    <!-- <mat-form-field>
+        <input matInput name="creationDate" type="text" [(ngModel)]="data.createDate" placeholder=" Project date">
+      </mat-form-field><br> -->
+      <mat-form-field fxFlexFill>
+          <input matInput name="creationDate" [matDatepicker]="picker" placeholder="Date" [(ngModel)]="data.creationDate" [value]="data.creationDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      </mat-form-field>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-form-field>
+          <input matInput name="status" type="text" [(ngModel)]="data.status" placeholder=" Project status">
+        </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions class="buttons">
+      <button mat-button mat-dialog-close (click)="cancel()">Cancel</button>
+      <button type="submit" color="warn" mat-raised-button (click)="editProject(editProjectForm.value)">Save</button>
+  </mat-dialog-actions>
+</form>
+  </div>
+

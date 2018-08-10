@@ -1,0 +1,56 @@
+@import '../app.component.scss';
+
+#data-tab {
+    margin: 5% 10%;
+
+    .border {
+        border: 1px solid #E0E0E0;
+        padding: 50px;
+    }
+
+    .info-box {
+        padding: 50px;
+        width: 400px;
+        margin: 0 20px;
+    }
+
+    .title-bar {
+        margin-bottom: 20px;
+    }
+
+    // Processing Classes
+    .processing-title{
+        color: $primary;
+        margin-top: 20px;
+        font-size: 18px;
+        width: 158px;
+        font-weight: bold;
+    }
+    .variable-items>span {
+        width: 150px;
+        padding: 20px 0;
+        font-size: 16px;
+    }
+    .params {
+        padding:  0!important;
+        font-size: 16px!important;
+        display: flex;
+        align-items: center;
+    }
+    .mat-form-field-infix {
+        width: 150px!important;
+    }
+    .small-input {
+        width: 45px!important;
+        margin-right: 10px;
+    }
+
+    // Buttons
+    .buttons {
+        margin-top: 40px;
+    }
+    button {
+        float: right;
+        margin-left: 10px;
+    }
+}

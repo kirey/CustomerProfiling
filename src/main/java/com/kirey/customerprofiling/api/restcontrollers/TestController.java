@@ -28,6 +28,10 @@ public class TestController {
 	@Autowired
 	private ContentDao contentDao;
 	
+	@RequestMapping(value = "/proba", method = RequestMethod.GET)
+	public String proba() {
+		return "radiiiiiiiii";
+	}
 	
 	
 	@RequestMapping(value = "/html/{page}/{position}", method = RequestMethod.GET)

@@ -1,0 +1,27 @@
+<div id="addDataset">
+    <h1>Add Dataset </h1>
+    <mat-divider></mat-divider>
+    <mat-dialog-content>
+        <form [formGroup]="datasetForm" (ngSubmit)="addDataset()">
+            <mat-form-field>
+                <input matInput formControlName="name" type="text" placeholder="Dataset name" autocomplete="off" [(ngModel)]="name">
+            </mat-form-field>
+            <mat-error *ngIf="datasetForm.get('name').touched && datasetForm.get('name').hasError('required')">
+                Name is required!
+            </mat-error>
+            <mat-form-field>
+                <input matInput formControlName="description" type="text" placeholder="Dataset description" autocomplete="off" [(ngModel)]="description">
+            </mat-form-field>
+            <mat-error *ngIf="datasetForm.get('description').touched && datasetForm.get('description').hasError('required')">
+                Description is required!
+            </mat-error>
+            <mat-dialog-actions class="buttons">
+                <label class="btn btn-default btn-file">
+                  {{csvFileButton}}
+                  <input style="display: none;" formControlName="csv" type="file" accept=".csv" (change)="handleCSVFile($event.target.files)">
+                </label>
+                <button type="submit" mat-raised-button [disabled]="datasetForm.invalid">Add dataset</button>
+            </mat-dialog-actions>
+        </form>
+    </mat-dialog-content>
+</div>

@@ -1,0 +1,83 @@
+<div id="datasetDetail">
+    <mat-dialog-title>
+        <h1>Dataset detail </h1>
+        <mat-divider></mat-divider>
+    </mat-dialog-title>
+    <mat-dialog-content>
+        <form>
+            <div class="column">
+                <label>Dataset Name:
+                    <span>{{data.datasetName}}</span>
+                </label>
+            </div>
+            <div class="column">
+                <label>Number of rows:
+                    <span>{{data.numberOfRows}}</span>
+                </label>
+            </div>
+            <div class="column">
+                <label>Number of Variables:
+                    <span>{{data.numberOfVariables}}</span>
+                </label>
+            </div>
+            <div class="column">
+                <label>Dataset Size:
+                    <span>{{data.datasetSize}} KB</span>
+                </label>
+            </div>
+            <div class="column">
+                <label>Dataset description:
+                    <span>{{data.datasetDesc}}</span>
+                </label>
+            </div>
+            <!-- List of Projects -->
+            <div class="column" *ngIf="data.listProjects.length > 0;else noData">
+                <label class="inline">Project Associated</label>
+                <br>
+                <div class="flex column-style header-style">
+                    <span>Project Name</span>
+                    <span>Description</span>
+                    <span>Status</span>
+                    <span>Creation Date</span>
+                    <span>Last Opened</span>
+                </div>
+                <div class="flex" *ngFor="let item of data.listProjects; let i = index">
+                    <div class="flex column-style">
+                        <span>{{item.projectName}}</span>
+                        <span>{{item.description}}</span>
+                        <span>{{item.status}}</span>
+                        <span>{{item.creationDate}}</span>
+                        <span>{{item.lastOpened}}</span>
+                    </div>
+                </div>
+                <ng-template #noData>
+                    <span>No data.</span>
+                </ng-template>
+            </div>
+            <!-- List of VARIABLES -->
+            <div class="column" *ngIf="data.variableDetails.length > 0;else noData">
+                <label class="inline">List of variables</label>
+                <br>
+                <div class="flex column-style header-style">
+                    <span>Variable Name</span>
+                    <span>Distinct Count</span>
+                    <span>Min</span>
+                    <span>Max</span>
+                    <span>Average</span>
+                    <span>Varience</span>
+                </div>
+                <div class="flex  column-style" *ngFor="let item of data.variableDetails; let i = index">
+                    <span>{{item.variableName}}</span>
+                    <span>{{item.distinctCount}}</span>
+                    <span>{{item.min}}</span>
+                    <span>{{item.max}}</span>
+                    <span>{{item.average}}</span>
+                    <span>{{item.varience}}</span>
+                </div>
+                <ng-template #noData>
+                    <span>No data.</span>
+                </ng-template>
+            </div>
+        </form>
+    </mat-dialog-content>
+</div>
