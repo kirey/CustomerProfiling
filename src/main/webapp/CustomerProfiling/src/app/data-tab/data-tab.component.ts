@@ -27,6 +27,7 @@ export class DataTabComponent implements OnInit {
   datasetId: number;
   projectId: number;
   details: any; //Dataset details
+  csvArray: any;
 
   getVariables() {
     this.dataTabService.getVariables(this.datasetId)
@@ -187,15 +188,16 @@ export class DataTabComponent implements OnInit {
     }
     // Send request after check
     if (checkArray.length == this.variables.length) {
-      let list = this.variables;
-      for (let i = 0; i < list.length; i++) {
-        delete list[i]['params'];
-        delete list[i]['operationTypes'];
-      }
-      this.dataTabService.getProcessingView(this.datasetId, list)
+
+      this.dataTabService.getProcessingView(this.datasetId, this.variables)
         .subscribe(
           res => {
-            console.log(res);
+            console.log(res['data']);
+            this.csvArray = res['data'];
+            this.dialog.open(DataTabViewComponent, {
+              width: '800px',
+              data: this.csvArray
+            })
           },
           err => {
             console.log(err);

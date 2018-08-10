@@ -28,6 +28,11 @@ export class DataTabService {
     }
 
     getProcessingView(datasetId, list): Observable<any> {
+        for (let i = 0; i < list.length; i++) {
+            delete list[i]['params'];
+            delete list[i]['operationTypes'];
+        }
+
         return this._http.post(this.baseUrl + 'preprocessing/view?datasetId=' + datasetId, list);
     }
     save(datasetId, projectId, list) {

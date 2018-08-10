@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { ProjectOverviewService } from './project.overview.service';
 import { SnackBarService } from '../shared/services/snackbar.service';
 import { SharedService } from '../shared/services/shared.service';
@@ -10,6 +10,9 @@ import { SharedService } from '../shared/services/shared.service';
   encapsulation: ViewEncapsulation.None
 })
 export class ProjectOverviewComponent implements OnInit {
+
+  @Output() disableTabsChange = new EventEmitter<boolean>();
+
   selected = 'option2';
   id: number;
   dataset: any;
@@ -68,6 +71,9 @@ export class ProjectOverviewComponent implements OnInit {
           this.details = res.data;
           // console.log(this.details);
 
+          // Enable Tabs
+          this.disableTabsChange.emit(false);
+
           // Link dataset
           this.sharedService.setDatasetId(this.selectedDatasetId);
           this.snackbar.openSnackBar('Dataset linked.', 'Success');
@@ -77,6 +83,13 @@ export class ProjectOverviewComponent implements OnInit {
           this.snackbar.openSnackBar('Something went wrong.', 'Error');
         }
       );
+    }
+    else {
+      // Disable Tabs
+      this.disableTabsChange.emit(true);
+
+      // Link dataset
+      this.sharedService.setDatasetId(null);
     }
   }
 

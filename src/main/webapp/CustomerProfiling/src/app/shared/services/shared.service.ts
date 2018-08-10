@@ -12,6 +12,7 @@ export class SharedService {
 
     projectId: number;
     datasetId: number;
+    disableTabs: boolean = true;
 
     constructor() { }
 
@@ -31,5 +32,10 @@ export class SharedService {
 
     getDatasetId() {
         return this.datasetId;
+    }
+
+    // TABS
+    disableEnableTabs() {
+        return !this.disableTabs;
     }
 }

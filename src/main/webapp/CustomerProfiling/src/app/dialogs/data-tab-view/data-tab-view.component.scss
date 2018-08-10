@@ -30,4 +30,25 @@
     button {
         margin-top: 30px;
     }
+
+    // Table
+    #csv_data_table {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 0;
+    }
+    table {
+        border-collapse: collapse;
+        border: 1px $gray solid;
+        font: 17px;
+    }
+    th, tr {
+        padding: 10px 5px;
+    }
+
+    td {
+        border: 1px $gray solid;
+        padding: 5px;
+    }
 }
