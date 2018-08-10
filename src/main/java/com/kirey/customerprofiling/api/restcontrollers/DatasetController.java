@@ -158,7 +158,10 @@ public class DatasetController {
 	 */
 	@RequestMapping(value = "/preprocessing/save", method = RequestMethod.POST)
 	public ResponseEntity<RestResponseDto> saveTransformedCSV(@RequestBody List<Variables> originalVariables, @RequestParam Integer datasetId, @RequestParam Integer projectId) throws FileNotFoundException{
-		
+		Datasets derivedDatast = datasetsDao.getDerivedFromProject(projectId);
+		if(derivedDatast != null) {
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto("Derived dataset already exist for current project", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
 		Datasets originalDataset = datasetsDao.findById(datasetId);
 		Projects project = projectDao.findById(projectId);
 		//update original variables
@@ -265,15 +268,11 @@ public class DatasetController {
 	/**
 	 * Check if project is linked to some derived dataset 
 	 * if true link button on ONE PROJECT PAGE - Overview is disabled, othervise is enabled
-	 * @param projectId
 	 * @param datasetId
 	 * @return
 	 */
-	@RequestMapping(value = "/linkDataset", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<RestResponseDto> findDatasetBynName(@RequestParam Integer projectId, @RequestParam Integer datasetId){
-		//Proveriti s Vladom
-		@SuppressWarnings("unused")
-		Projects project = projectDao.findById(projectId);
+	@RequestMapping(value = "/linkDataset", method = RequestMethod.GET)
+	public ResponseEntity<RestResponseDto> findDatasetBynName(@RequestParam Integer projectId){
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetsDao.isDatasetLinkedToProject(projectId), HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	

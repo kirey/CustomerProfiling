@@ -76,6 +76,18 @@ public class DatasetsDao extends KjcBaseDao {
 		String hql = "from Datasets ds where ds.originalDataset.id = :originalId";
 		List<Datasets> listDerived = sessionFactory.getCurrentSession().createQuery(hql).setParameter("originalId", dataset.getId()).list();
 		return listDerived;
+	}
+
+	/**
+	 * Method for getting derived dataset by given project
+	 * @param projectId - of {@link Projects}
+	 * @return derived {@link Datasets}
+	 */
+	public Datasets getDerivedFromProject(Integer projectId) {
+		String hql = "From Datasets dds where dds.originalDataset is not null and dds.project.id = :projectId";
+		Datasets dataset = (Datasets) sessionFactory.getCurrentSession().createQuery(hql)
+				.setParameter("projectId", projectId).uniqueResult();
+		return dataset;
 	} 
 
 }

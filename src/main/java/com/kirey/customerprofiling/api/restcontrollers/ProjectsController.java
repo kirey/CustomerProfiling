@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kirey.customerprofiling.api.dto.RestResponseDto;
+import com.kirey.customerprofiling.common.constants.AppConstants;
 import com.kirey.customerprofiling.data.dao.ProjectsDao;
 import com.kirey.customerprofiling.data.entity.Projects;
 
@@ -66,7 +67,7 @@ public class ProjectsController {
 	public ResponseEntity<RestResponseDto> addProjectDetail(@RequestBody Projects project) {
 		
 		project.setCreationDate(new Date());
-		project.setStatus("CREATED");
+		project.setStatus(AppConstants.ALGORITHM_STATUS_NOT_TRAINED);
 		
 		projectsDao.persist(project);
 		
@@ -81,7 +82,6 @@ public class ProjectsController {
 	@RequestMapping(value = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> editProjectDetail(@RequestBody Projects project) {
 	
-		project.setStatus("EDITED");
 		
 		projectsDao.attachDirty(project);
 		
@@ -115,7 +115,7 @@ public class ProjectsController {
 		
 		newProject.setProjectName(project.getProjectName());
 		newProject.setCreationDate(new Date());
-		newProject.setStatus("COPIED");
+		newProject.setStatus(project.getStatus());
 //		newProject.setDatasets(project.getDatasets());
 		newProject.setDescription(project.getDescription());
 		newProject.setLastOpened(new Date());

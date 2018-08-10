@@ -1,20 +1,31 @@
 package com.kirey.customerprofiling.data.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
 @Entity
 @Table(name = "user_accounts")
-public class UserAccounts implements Serializable{
+public class UserAccounts implements UserDetails{
 
 	
 	private static final long serialVersionUID = -8800545744984448614L;
@@ -25,8 +36,11 @@ public class UserAccounts implements Serializable{
 	private String email;
 	private String firstName;
 	private String lastName;
-	private String socketSessionId;
 	private String role;
+	private List<Projects> projects = new ArrayList<>();
+	
+	@Transient
+    private List<Roles> roles;
 	
 	@Id
 	@SequenceGenerator(name = "seq_users_gen", sequenceName = "seq_users", allocationSize = 1, initialValue = 1)
@@ -80,13 +94,6 @@ public class UserAccounts implements Serializable{
 		this.lastName = lastName;
 	}
 	
-	@Column(name = "socket_session_id")
-	public String getSocketSessionId() {
-		return socketSessionId;
-	}
-	public void setSocketSessionId(String socketSessionId) {
-		this.socketSessionId = socketSessionId;
-	}
 	
 	@Column(name = "role", nullable = false)
 	public String getRole() {
@@ -96,7 +103,52 @@ public class UserAccounts implements Serializable{
 		this.role = role;
 	}
 	
+	@Transient
+	public List<Roles> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<Roles> roles) {
+		this.roles = roles;
+	}
 	
+	@OneToMany(mappedBy="userAccount", fetch = FetchType.LAZY)
+	public List<Projects> getProjects() {
+		return projects;
+	}
+	public void setProjects(List<Projects> projects) {
+		this.projects = projects;
+	}
+	
+	@Override
+	@Transient
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return this.roles;
+	}
+	@Override
+	@Transient
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	@Transient
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	@Transient
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	@Transient
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
 	
 	
 	
