@@ -95,7 +95,8 @@
 
         <!-- Data Type -->
         <mat-form-field>
-          <mat-select [(ngModel)]="variables[i].typeOfData" (selectionChange)="selectionChanged($event, i, 'typeOfData')" placeholder="Data Type">
+          <mat-select [disabled]="variables[i].typeOfData =='TEXT'" [(ngModel)]="variables[i].typeOfData" (selectionChange)="selectionChanged($event, i, 'typeOfData')"
+            placeholder="Data Type">
             <mat-option *ngFor="let type of dataTypes" [value]="type">
               {{type}}
             </mat-option>
