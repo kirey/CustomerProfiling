@@ -44,10 +44,11 @@ public class Projects implements Serializable{
 	private Date lastOpened;
 	private String status;
 	private String description;
-	@JsonBackReference
+	@JsonBackReference("projectAlgorithms")
 	private List<ProjectsAlgorithms> projectsAlgorithmsList = new ArrayList<>();
 	@JsonIgnore
 	private Datasets datasets;
+	@JsonBackReference("projectUser")
 	private UserAccounts userAccount;
 	
 	@Id
