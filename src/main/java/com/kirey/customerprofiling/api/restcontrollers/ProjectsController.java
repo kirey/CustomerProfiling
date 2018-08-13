@@ -143,14 +143,14 @@ public class ProjectsController {
     public ResponseEntity<RestResponseDto> copyProjectDetail( @RequestBody Projects project) {
 		
 		Projects newProject = new Projects();
-		
+		UserAccounts user = SecurityUtils.getUserFromContext();
 		newProject.setProjectName(project.getProjectName());
 		newProject.setCreationDate(new Date());
-		newProject.setStatus(project.getStatus());
+		newProject.setStatus(AppConstants.ALGORITHM_STATUS_NOT_TRAINED);
 //		newProject.setDatasets(project.getDatasets());
 		newProject.setDescription(project.getDescription());
 		newProject.setLastOpened(new Date());
-		newProject.setUserAccount(project.getUserAccount());
+		newProject.setUserAccount(user);
 //		newProject.setProjectsAlgorithmsList(project.getProjectsAlgorithmsList());
 		
 		
