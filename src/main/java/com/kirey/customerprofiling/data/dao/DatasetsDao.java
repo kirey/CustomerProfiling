@@ -88,6 +88,17 @@ public class DatasetsDao extends KjcBaseDao {
 		Datasets dataset = (Datasets) sessionFactory.getCurrentSession().createQuery(hql)
 				.setParameter("projectId", projectId).uniqueResult();
 		return dataset;
+	}
+
+	/**
+	 * Method for getting original dataset by given project
+	 * @param projectId - of {@link Projects}
+	 * @return original {@link Datasets}
+	 */
+	public Datasets findOriginalByProject(Integer projectId) {
+		String hql = "select ds.originalDataset from Datasets ds where ds.originalDataset is not null and ds.project.id = :projectId";
+		Datasets dataset = (Datasets) sessionFactory.getCurrentSession().createQuery(hql).setParameter("projectId", projectId).uniqueResult();
+		return dataset;
 	} 
 
 }

@@ -7,7 +7,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -273,7 +275,18 @@ public class DatasetController {
 	 */
 	@RequestMapping(value = "/linkDataset", method = RequestMethod.GET)
 	public ResponseEntity<RestResponseDto> findDatasetBynName(@RequestParam Integer projectId){
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetsDao.isDatasetLinkedToProject(projectId), HttpStatus.OK.value()), HttpStatus.OK);
+		
+//		datasetsDao.isDatasetLinkedToProject(projectId);
+		Map<Object, Object> responseMap = new HashMap<>();
+		Datasets originalDataset = datasetsDao.findOriginalByProject(projectId);
+		if(originalDataset != null) {
+			responseMap.put(true, originalDataset.getId());
+		}else {
+			responseMap.put(false, null);
+		}
+		
+		
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(responseMap, HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
 	/**

@@ -141,21 +141,19 @@ public class ProjectsController {
 	 */
 	@RequestMapping(value = "/copy", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RestResponseDto> copyProjectDetail( @RequestBody Projects project) {
-		
+		//TODO check copy just project detail or relation with algorithms and dataset
 		Projects newProject = new Projects();
-		
+		UserAccounts user = SecurityUtils.getUserFromContext();
 		newProject.setProjectName(project.getProjectName());
 		newProject.setCreationDate(new Date());
-		newProject.setStatus(project.getStatus());
+		newProject.setStatus(AppConstants.ALGORITHM_STATUS_NOT_TRAINED);
 //		newProject.setDatasets(project.getDatasets());
 		newProject.setDescription(project.getDescription());
 		newProject.setLastOpened(new Date());
-		newProject.setUserAccount(project.getUserAccount());
+		newProject.setUserAccount(user);
 //		newProject.setProjectsAlgorithmsList(project.getProjectsAlgorithmsList());
 		
-		
 		projectsDao.attachDirty(newProject);
-		
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Successfully copied", HttpStatus.OK.value()), HttpStatus.OK);
 	}
