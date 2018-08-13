@@ -34,8 +34,4 @@ export class SharedService {
         return this.datasetId;
     }
 
-    // TABS
-    disableEnableTabs() {
-        return !this.disableTabs;
-    }
 }
