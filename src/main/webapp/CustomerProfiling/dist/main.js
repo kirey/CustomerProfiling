@@ -353,7 +353,7 @@ var AnalyzeService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header\">\r\n    <a routerLink=\"/dashboard\" class=\"logo\">Customer Profiling</a>\r\n</div>\r\n<mat-sidenav-container class=\"navContainer\">\r\n    <mat-sidenav class=\"sideContent\" *ngIf=\"_auth.isLoggedIn()\" mode=\"side\" opened>\r\n        <mat-nav-list>\r\n            <a mat-list-item routerLink=\"/dashboard\" routerLinkActive=\"active\">\r\n                <mat-icon>dashboard</mat-icon>\r\n                <span>Dashboard</span>\r\n            </a>\r\n        </mat-nav-list>\r\n        <mat-nav-list>\r\n            <a mat-list-item routerLink=\"/projects\" routerLinkActive=\"active\">\r\n                <mat-icon>filter_list</mat-icon>\r\n                <span>Projects</span>\r\n            </a>\r\n        </mat-nav-list>\r\n        <mat-nav-list>\r\n            <a mat-list-item routerLink=\"/datasets\" routerLinkActive=\"active\">\r\n                <mat-icon>router</mat-icon>\r\n                <span>Datasets</span>\r\n            </a>\r\n        </mat-nav-list>\r\n        <mat-nav-list>\r\n            <a mat-list-item routerLink=\"/algorithms\" routerLinkActive=\"active\">\r\n                <mat-icon>developer_board</mat-icon>\r\n                <span>Algorithms</span>\r\n            </a>\r\n        </mat-nav-list>\r\n        <mat-nav-list>\r\n            <a mat-list-item href=\"javascript:void(0)\" routerLinkActive=\"active\">\r\n                <mat-icon>computer</mat-icon>\r\n                <span>System monitor</span>\r\n            </a>\r\n        </mat-nav-list>\r\n        <mat-nav-list class=\"logout\">\r\n            <a mat-list-item (click)=\"logout()\" routerLinkActive=\"active\">\r\n                <mat-icon>exit_to_app</mat-icon>\r\n                <span>Logout</span>\r\n            </a>\r\n        </mat-nav-list>\r\n    </mat-sidenav>\r\n    <mat-sidenav-content class=\"mainContent\">\r\n        <router-outlet></router-outlet>\r\n    </mat-sidenav-content>\r\n</mat-sidenav-container>"
+module.exports = "<div class=\"header\">\r\n    <a routerLink=\"/dashboard\" class=\"logo\">Customer Profiling</a>\r\n</div>\r\n<mat-sidenav-container class=\"navContainer\">\r\n    <mat-sidenav class=\"sideContent\" *ngIf=\"_auth.isLoggedIn()\" mode=\"side\" opened>\r\n        <mat-nav-list>\r\n            <a mat-list-item routerLink=\"/dashboard\" routerLinkActive=\"active\">\r\n                <mat-icon>dashboard</mat-icon>\r\n                <span>Dashboard</span>\r\n            </a>\r\n        </mat-nav-list>\r\n        <mat-nav-list>\r\n            <a mat-list-item routerLink=\"/projects\" routerLinkActive=\"active\">\r\n                <mat-icon>filter_list</mat-icon>\r\n                <span>Projects</span>\r\n            </a>\r\n        </mat-nav-list>\r\n        <mat-nav-list>\r\n            <a mat-list-item routerLink=\"/datasets\" routerLinkActive=\"active\">\r\n                <mat-icon>router</mat-icon>\r\n                <span>Datasets</span>\r\n            </a>\r\n        </mat-nav-list>\r\n        <mat-nav-list>\r\n            <a mat-list-item routerLink=\"/algorithms\" routerLinkActive=\"active\">\r\n                <mat-icon>developer_board</mat-icon>\r\n                <span>Algorithms</span>\r\n            </a>\r\n        </mat-nav-list>\r\n        <mat-nav-list class=\"logout\">\r\n            <a mat-list-item (click)=\"logout()\" routerLinkActive=\"active\">\r\n                <mat-icon>exit_to_app</mat-icon>\r\n                <span>Logout</span>\r\n            </a>\r\n        </mat-nav-list>\r\n    </mat-sidenav>\r\n    <mat-sidenav-content class=\"mainContent\">\r\n        <router-outlet></router-outlet>\r\n    </mat-sidenav-content>\r\n</mat-sidenav-container>"
 
 /***/ }),
 
@@ -445,33 +445,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _shared_modules_material_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./shared/modules/material.module */ "./src/app/shared/modules/material.module.ts");
 /* harmony import */ var _projects_projects_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./projects/projects.service */ "./src/app/projects/projects.service.ts");
-/* harmony import */ var _dialogs_edit_project_edit_project_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./dialogs/edit-project/edit.project.service */ "./src/app/dialogs/edit-project/edit.project.service.ts");
-/* harmony import */ var _algorithms_algorithms_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./algorithms/algorithms.service */ "./src/app/algorithms/algorithms.service.ts");
-/* harmony import */ var _project_overview_project_overview_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./project-overview/project.overview.service */ "./src/app/project-overview/project.overview.service.ts");
-/* harmony import */ var _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./shared/services/shared.service */ "./src/app/shared/services/shared.service.ts");
-/* harmony import */ var _projects_projects_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./projects/projects.component */ "./src/app/projects/projects.component.ts");
-/* harmony import */ var _dialogs_addProject_add_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./dialogs/addProject/add.component */ "./src/app/dialogs/addProject/add.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./dashboard/dashboard.component */ "./src/app/dashboard/dashboard.component.ts");
-/* harmony import */ var _shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./shared/guards/auth.guard */ "./src/app/shared/guards/auth.guard.ts");
-/* harmony import */ var _dialogs_edit_project_edit_project_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./dialogs/edit-project/edit-project.component */ "./src/app/dialogs/edit-project/edit-project.component.ts");
-/* harmony import */ var _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./dialogs/delete/delete.component */ "./src/app/dialogs/delete/delete.component.ts");
-/* harmony import */ var _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./dialogs/copyProject/copy.component */ "./src/app/dialogs/copyProject/copy.component.ts");
-/* harmony import */ var _dataset_dataset_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./dataset/dataset.component */ "./src/app/dataset/dataset.component.ts");
-/* harmony import */ var _data_tab_data_tab_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./data-tab/data-tab.component */ "./src/app/data-tab/data-tab.component.ts");
-/* harmony import */ var _data_tab_data_tab_service__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./data-tab/data-tab.service */ "./src/app/data-tab/data-tab.service.ts");
-/* harmony import */ var _project_overview_project_overview_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./project-overview/project-overview.component */ "./src/app/project-overview/project-overview.component.ts");
-/* harmony import */ var _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./dialogs/add-dataset/add-dataset.component */ "./src/app/dialogs/add-dataset/add-dataset.component.ts");
-/* harmony import */ var _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./dialogs/dataset-detail/dataset-detail.component */ "./src/app/dialogs/dataset-detail/dataset-detail.component.ts");
-/* harmony import */ var _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./dialogs/data-tab-view/data-tab-view.component */ "./src/app/dialogs/data-tab-view/data-tab-view.component.ts");
-/* harmony import */ var _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./algorithms/algorithms.component */ "./src/app/algorithms/algorithms.component.ts");
-/* harmony import */ var _dialogs_addProject_addProject_service__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./dialogs/addProject/addProject.service */ "./src/app/dialogs/addProject/addProject.service.ts");
-/* harmony import */ var _dialogs_copyProject_copyProject_service__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./dialogs/copyProject/copyProject.service */ "./src/app/dialogs/copyProject/copyProject.service.ts");
-/* harmony import */ var _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./dialogs/add-algorithm/add-algorithm.component */ "./src/app/dialogs/add-algorithm/add-algorithm.component.ts");
-/* harmony import */ var _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./dialogs/view-algorithm/view-algorithm.component */ "./src/app/dialogs/view-algorithm/view-algorithm.component.ts");
-/* harmony import */ var _one_project_one_project_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./one-project/one-project.component */ "./src/app/one-project/one-project.component.ts");
-/* harmony import */ var _analyze_analyze_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./analyze/analyze.component */ "./src/app/analyze/analyze.component.ts");
-/* harmony import */ var _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./dialogs/add-value/add-value.component */ "./src/app/dialogs/add-value/add-value.component.ts");
+/* harmony import */ var _algorithms_algorithms_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./algorithms/algorithms.service */ "./src/app/algorithms/algorithms.service.ts");
+/* harmony import */ var _project_overview_project_overview_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./project-overview/project.overview.service */ "./src/app/project-overview/project.overview.service.ts");
+/* harmony import */ var _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./shared/services/shared.service */ "./src/app/shared/services/shared.service.ts");
+/* harmony import */ var _projects_projects_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./projects/projects.component */ "./src/app/projects/projects.component.ts");
+/* harmony import */ var _dialogs_addProject_add_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./dialogs/addProject/add.component */ "./src/app/dialogs/addProject/add.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./dashboard/dashboard.component */ "./src/app/dashboard/dashboard.component.ts");
+/* harmony import */ var _shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./shared/guards/auth.guard */ "./src/app/shared/guards/auth.guard.ts");
+/* harmony import */ var _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./dialogs/delete/delete.component */ "./src/app/dialogs/delete/delete.component.ts");
+/* harmony import */ var _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./dialogs/copyProject/copy.component */ "./src/app/dialogs/copyProject/copy.component.ts");
+/* harmony import */ var _dataset_dataset_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./dataset/dataset.component */ "./src/app/dataset/dataset.component.ts");
+/* harmony import */ var _data_tab_data_tab_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./data-tab/data-tab.component */ "./src/app/data-tab/data-tab.component.ts");
+/* harmony import */ var _data_tab_data_tab_service__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./data-tab/data-tab.service */ "./src/app/data-tab/data-tab.service.ts");
+/* harmony import */ var _project_overview_project_overview_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./project-overview/project-overview.component */ "./src/app/project-overview/project-overview.component.ts");
+/* harmony import */ var _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./dialogs/add-dataset/add-dataset.component */ "./src/app/dialogs/add-dataset/add-dataset.component.ts");
+/* harmony import */ var _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./dialogs/dataset-detail/dataset-detail.component */ "./src/app/dialogs/dataset-detail/dataset-detail.component.ts");
+/* harmony import */ var _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./dialogs/data-tab-view/data-tab-view.component */ "./src/app/dialogs/data-tab-view/data-tab-view.component.ts");
+/* harmony import */ var _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./algorithms/algorithms.component */ "./src/app/algorithms/algorithms.component.ts");
+/* harmony import */ var _dialogs_addProject_addProject_service__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./dialogs/addProject/addProject.service */ "./src/app/dialogs/addProject/addProject.service.ts");
+/* harmony import */ var _dialogs_copyProject_copyProject_service__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./dialogs/copyProject/copyProject.service */ "./src/app/dialogs/copyProject/copyProject.service.ts");
+/* harmony import */ var _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./dialogs/add-algorithm/add-algorithm.component */ "./src/app/dialogs/add-algorithm/add-algorithm.component.ts");
+/* harmony import */ var _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./dialogs/view-algorithm/view-algorithm.component */ "./src/app/dialogs/view-algorithm/view-algorithm.component.ts");
+/* harmony import */ var _one_project_one_project_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./one-project/one-project.component */ "./src/app/one-project/one-project.component.ts");
+/* harmony import */ var _analyze_analyze_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./analyze/analyze.component */ "./src/app/analyze/analyze.component.ts");
+/* harmony import */ var _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./dialogs/add-value/add-value.component */ "./src/app/dialogs/add-value/add-value.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -495,9 +493,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-
 // Components
-
 
 
 
@@ -528,25 +524,24 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["NgModule"])({
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"],
-                _projects_projects_component__WEBPACK_IMPORTED_MODULE_16__["ProjectsComponent"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_18__["LoginComponent"],
-                _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_19__["DashboardComponent"],
-                _dialogs_addProject_add_component__WEBPACK_IMPORTED_MODULE_17__["AddComponent"],
-                _dialogs_edit_project_edit_project_component__WEBPACK_IMPORTED_MODULE_21__["EditProjectComponent"],
-                _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_22__["DeleteComponent"],
-                _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_23__["CopyComponent"],
-                _dataset_dataset_component__WEBPACK_IMPORTED_MODULE_24__["DatasetComponent"],
-                _data_tab_data_tab_component__WEBPACK_IMPORTED_MODULE_25__["DataTabComponent"],
-                _project_overview_project_overview_component__WEBPACK_IMPORTED_MODULE_27__["ProjectOverviewComponent"],
-                _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_28__["AddDatasetComponent"],
-                _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_29__["DatasetDetailComponent"],
-                _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_30__["DataTabViewComponent"],
-                _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_31__["AlgorithmsComponent"],
-                _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_34__["AddAlgorithmComponent"],
-                _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_35__["ViewAlgorithmComponent"],
-                _one_project_one_project_component__WEBPACK_IMPORTED_MODULE_36__["OneProjectComponent"],
-                _analyze_analyze_component__WEBPACK_IMPORTED_MODULE_37__["AnalyzeComponent"],
-                _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_38__["AddValueComponent"]
+                _projects_projects_component__WEBPACK_IMPORTED_MODULE_15__["ProjectsComponent"],
+                _login_login_component__WEBPACK_IMPORTED_MODULE_17__["LoginComponent"],
+                _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_18__["DashboardComponent"],
+                _dialogs_addProject_add_component__WEBPACK_IMPORTED_MODULE_16__["AddComponent"],
+                _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_20__["DeleteComponent"],
+                _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_21__["CopyComponent"],
+                _dataset_dataset_component__WEBPACK_IMPORTED_MODULE_22__["DatasetComponent"],
+                _data_tab_data_tab_component__WEBPACK_IMPORTED_MODULE_23__["DataTabComponent"],
+                _project_overview_project_overview_component__WEBPACK_IMPORTED_MODULE_25__["ProjectOverviewComponent"],
+                _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_26__["AddDatasetComponent"],
+                _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_27__["DatasetDetailComponent"],
+                _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_28__["DataTabViewComponent"],
+                _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_29__["AlgorithmsComponent"],
+                _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_32__["AddAlgorithmComponent"],
+                _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_33__["ViewAlgorithmComponent"],
+                _one_project_one_project_component__WEBPACK_IMPORTED_MODULE_34__["OneProjectComponent"],
+                _analyze_analyze_component__WEBPACK_IMPORTED_MODULE_35__["AnalyzeComponent"],
+                _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_36__["AddValueComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
@@ -561,29 +556,27 @@ var AppModule = /** @class */ (function () {
             ],
             providers: [
                 _shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"],
-                _shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_20__["AuthGuard"],
+                _shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_19__["AuthGuard"],
                 _projects_projects_service__WEBPACK_IMPORTED_MODULE_11__["ProjectsService"],
-                _dialogs_edit_project_edit_project_service__WEBPACK_IMPORTED_MODULE_12__["EditProjectsService"],
-                _data_tab_data_tab_service__WEBPACK_IMPORTED_MODULE_26__["DataTabService"],
-                _algorithms_algorithms_service__WEBPACK_IMPORTED_MODULE_13__["AlgorithmsService"],
-                _dialogs_addProject_addProject_service__WEBPACK_IMPORTED_MODULE_32__["AddProjectService"],
-                _dialogs_copyProject_copyProject_service__WEBPACK_IMPORTED_MODULE_33__["CopyProjectService"],
-                _project_overview_project_overview_service__WEBPACK_IMPORTED_MODULE_14__["ProjectOverviewService"],
+                _data_tab_data_tab_service__WEBPACK_IMPORTED_MODULE_24__["DataTabService"],
+                _algorithms_algorithms_service__WEBPACK_IMPORTED_MODULE_12__["AlgorithmsService"],
+                _dialogs_addProject_addProject_service__WEBPACK_IMPORTED_MODULE_30__["AddProjectService"],
+                _dialogs_copyProject_copyProject_service__WEBPACK_IMPORTED_MODULE_31__["CopyProjectService"],
+                _project_overview_project_overview_service__WEBPACK_IMPORTED_MODULE_13__["ProjectOverviewService"],
                 _analyze_analyze_service__WEBPACK_IMPORTED_MODULE_0__["AnalyzeService"],
-                _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_15__["SharedService"]
+                _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_14__["SharedService"]
             ],
             entryComponents: [
-                _dialogs_addProject_add_component__WEBPACK_IMPORTED_MODULE_17__["AddComponent"],
-                _dialogs_edit_project_edit_project_component__WEBPACK_IMPORTED_MODULE_21__["EditProjectComponent"],
-                _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_22__["DeleteComponent"],
-                _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_23__["CopyComponent"],
-                _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_28__["AddDatasetComponent"],
-                _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_29__["DatasetDetailComponent"],
-                _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_30__["DataTabViewComponent"],
-                _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_23__["CopyComponent"],
-                _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_34__["AddAlgorithmComponent"],
-                _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_35__["ViewAlgorithmComponent"],
-                _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_38__["AddValueComponent"]
+                _dialogs_addProject_add_component__WEBPACK_IMPORTED_MODULE_16__["AddComponent"],
+                _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_20__["DeleteComponent"],
+                _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_21__["CopyComponent"],
+                _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_26__["AddDatasetComponent"],
+                _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_27__["DatasetDetailComponent"],
+                _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_28__["DataTabViewComponent"],
+                _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_21__["CopyComponent"],
+                _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_32__["AddAlgorithmComponent"],
+                _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_33__["ViewAlgorithmComponent"],
+                _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_36__["AddValueComponent"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]],
             schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_4__["CUSTOM_ELEMENTS_SCHEMA"]]
@@ -647,7 +640,7 @@ var AppRoutes = _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].for
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"dashboardPanel\">\r\n    <h1>Dashboard</h1>\r\n    <div class=\"flex-grid\">\r\n        <div class=\"col\">\r\n            <mat-card>\r\n                <mat-title>Projects Overview</mat-title>\r\n            </mat-card>\r\n        </div>\r\n        <div class=\"col\">\r\n            <mat-card>\r\n                <mat-title>Analytical Tools Overview</mat-title>\r\n            </mat-card>\r\n        </div>\r\n    </div>\r\n    <div class=\"flex-grid\">\r\n        <div class=\"col\">\r\n            <mat-card>\r\n                <mat-title>Datasets Overview</mat-title>\r\n            </mat-card>\r\n        </div>\r\n        <div class=\"col\">\r\n            <mat-card>\r\n                <mat-title>System Monitor Overview</mat-title>\r\n            </mat-card>\r\n        </div>\r\n    </div>\r\n    <div class=\"flex-grid\">\r\n        <div class=\"colFullWidth\">\r\n            <mat-card>\r\n                <mat-title>Panel Detail</mat-title>\r\n            </mat-card>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"dashboardPanel\">\r\n    <h1>Dashboard</h1>\r\n    <div class=\"flex-grid\">\r\n        <div class=\"col\">\r\n            <mat-card class=\"dashboard-card\">\r\n                <mat-title>Projects Overview</mat-title>\r\n            </mat-card>\r\n        </div>\r\n        <div class=\"col\">\r\n            <mat-card class=\"dashboard-card\">\r\n                <mat-title>Analytical Tools Overview</mat-title>\r\n            </mat-card>\r\n        </div>\r\n    </div>\r\n    <div class=\"flex-grid\">\r\n        <div class=\"col\">\r\n            <mat-card class=\"dashboard-card\">\r\n                <mat-title>Datasets Overview</mat-title>\r\n            </mat-card>\r\n        </div>\r\n        <div class=\"col\">\r\n            <mat-card class=\"dashboard-card\">\r\n                <mat-title>System Monitor Overview</mat-title>\r\n            </mat-card>\r\n        </div>\r\n    </div>\r\n    <div class=\"flex-grid\">\r\n        <div class=\"colFullWidth\">\r\n            <mat-card class=\"dashboard-card\">\r\n                <mat-title>Panel Detail</mat-title>\r\n            </mat-card>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -658,7 +651,7 @@ module.exports = "<div class=\"dashboardPanel\">\r\n    <h1>Dashboard</h1>\r\n  
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n.dashboardPanel {\n  width: 98%;\n  margin-left: 2%; }\n\n.flex-grid {\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: 1%; }\n\n.col {\n  width: 49%;\n  height: 250px;\n  border-width: 1px;\n  border-style: groove;\n  border-color: #E1F5FE; }\n\n.colFullWidth {\n  width: 100%;\n  height: 240px;\n  border-width: 1px;\n  border-style: groove;\n  border-color: #E1F5FE; }\n\nmat-card {\n  background: linear-gradient(#311B92, #7C4DFF) !important;\n  color: white !important; }\n\n@media (max-width: 400px) {\n  .flex-grid {\n    display: block; }\n  .col {\n    margin-top: 1%;\n    width: 100%; } }\n\nh1 {\n  color: #757575; }\n"
+module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n.dashboardPanel {\n  width: 98%;\n  margin-left: 2%; }\n\n.flex-grid {\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: 1%; }\n\n.col {\n  width: 49%;\n  height: 250px;\n  border-width: 1px;\n  border-style: groove;\n  border-color: #E1F5FE; }\n\n.colFullWidth {\n  width: 100%;\n  height: 240px;\n  border-width: 1px;\n  border-style: groove;\n  border-color: #E1F5FE; }\n\nmat-card.dashboard-card {\n  background: #311B92 !important;\n  color: white !important; }\n\n@media (max-width: 400px) {\n  .flex-grid {\n    display: block; }\n  .col {\n    margin-top: 1%;\n    width: 100%; } }\n\nh1 {\n  color: #757575; }\n"
 
 /***/ }),
 
@@ -711,7 +704,7 @@ var DashboardComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"data-tab\">\r\n  <!-- Basic info -->\r\n  <h2 class=\"subtitle\">DATASET - Info & Stats</h2>\r\n  <div class=\"flex space-around border\">\r\n    <!-- DATASET DETAILS -->\r\n    <mat-card class=\"info-box justify\">\r\n      <div *ngIf=\"details\">\r\n        <div class=\"details-item\">\r\n          <strong>Dataset: </strong>\r\n          {{details.datasetName}}\r\n        </div>\r\n        <div class=\"details-item\">\r\n          <strong>Description: </strong>\r\n          {{details.datasetDesc}}\r\n        </div>\r\n        <div class=\"details-item\">\r\n          <strong>Dataset size: </strong>\r\n          {{details.datasetSize}} KB\r\n        </div>\r\n        <div class=\"details-item\">\r\n          <strong>Number of rows: </strong>\r\n          {{details.numberOfRows}}\r\n        </div>\r\n        <div class=\"details-item\">\r\n          <strong>Number of variables: </strong>\r\n          {{details.numberOfVariables}}\r\n        </div>\r\n      </div>\r\n    </mat-card>\r\n    <!-- LIST OF VARIABLES -->\r\n    <mat-card class=\"info-box justify\">\r\n      <div *ngIf=\"details && details.variableDetails.length > 0\">\r\n        <div>\r\n          <strong>Variable details: </strong>\r\n        </div>\r\n        <div *ngFor=\"let item of  details.variableDetails; let i = index\">\r\n          <span>{{i+1}}. </span>\r\n          <span>\r\n            <strong>Name:</strong> {{item.variableName}} </span>\r\n          <span>\r\n            <br>\r\n            <strong>Varience:</strong> {{item.varience}} </span>\r\n          <span>\r\n            <br>\r\n            <strong>Min:</strong> {{item.min}} </span>\r\n          <span>\r\n            <strong>Max:</strong> {{item.max}} </span>\r\n          <span>\r\n            <br>\r\n            <strong>Distinct Count:</strong> {{item.distinctCount}} </span>\r\n          <br>\r\n          <span>\r\n            <strong>Average:</strong> {{item.average}} </span>\r\n          <br>\r\n          <br>\r\n        </div>\r\n      </div>\r\n    </mat-card>\r\n  </div>\r\n  <!-- Pre Processing -->\r\n  <h2 class=\"subtitle\">DATASET - Pre Processing</h2>\r\n  <div class=\"border\">\r\n    <!-- Titles -->\r\n    <div class=\"flex space-around title-bar\" *ngIf=\"variables\">\r\n      <span class=\"processing-title\">\r\n        Variable Name\r\n      </span>\r\n      <span class=\"processing-title\">\r\n        Type of Variable\r\n      </span>\r\n      <span class=\"processing-title\">\r\n        Type of Data\r\n      </span>\r\n      <span class=\"processing-title\">\r\n        Type of Operation\r\n      </span>\r\n      <span class=\"processing-title\">\r\n        Parameters\r\n      </span>\r\n    </div>\r\n    <!-- Data -->\r\n    <div class=\"flex column\">\r\n      <div *ngFor=\"let variable of variables; let i = index\" class=\"flex space-around variable-items\">\r\n        <!-- Variable Name -->\r\n        <span>{{variable.variableName}}</span>\r\n\r\n        <!-- Variable Type -->\r\n        <mat-form-field>\r\n          <mat-select (selectionChange)=\"selectionChanged($event, i, 'typeOfVariable')\" placeholder=\"Variable Type\">\r\n            <mat-option *ngFor=\"let type of variableTypes\" [value]=\"type\">\r\n              {{type}}\r\n            </mat-option>\r\n          </mat-select>\r\n        </mat-form-field>\r\n\r\n        <!-- Data Type -->\r\n        <mat-form-field>\r\n          <mat-select [(ngModel)]=\"variables[i].typeOfData\" (selectionChange)=\"selectionChanged($event, i, 'typeOfData')\" placeholder=\"Data Type\">\r\n            <mat-option *ngFor=\"let type of dataTypes\" [value]=\"type\">\r\n              {{type}}\r\n            </mat-option>\r\n          </mat-select>\r\n        </mat-form-field>\r\n\r\n        <!-- Operation Type -->\r\n        <div>\r\n          <!-- Numeric -->\r\n          <mat-form-field *ngIf=\"variables[i].typeOfData == 'NUMERIC'\">\r\n            <mat-select (selectionChange)=\"setParams($event, i)\" placeholder=\"Operation Type\">\r\n              <mat-option *ngFor=\"let type of numericOperationTypes\" [value]=\"type\">\r\n                {{type}}\r\n              </mat-option>\r\n            </mat-select>\r\n          </mat-form-field>\r\n          <!-- Text -->\r\n          <mat-form-field *ngIf=\"variables[i].typeOfData == 'TEXT'\">\r\n            <mat-select (selectionChange)=\"setParams($event, i)\" placeholder=\"Operation Type\">\r\n              <mat-option *ngFor=\"let type of textOperationTypes\" [value]=\"type\">\r\n                {{type}}\r\n              </mat-option>\r\n            </mat-select>\r\n          </mat-form-field>\r\n        </div>\r\n\r\n        <!--  P A R A M S -->\r\n        <span class=\"params\">\r\n          <!-- Min & Max -->\r\n          <div *ngIf=\"variables[i]['params']; else noData\">\r\n            <span *ngIf=\"variables[i]['params']['minmax'] == true\">\r\n              <mat-form-field class=\"small-input\">\r\n                <input (change)=\"paramsChanged($event, i, 'scaleMin')\" matInput placeholder=\"Min\">\r\n              </mat-form-field>\r\n              <mat-form-field class=\"small-input\">\r\n                <input (change)=\"paramsChanged($event, i, 'scaleMax')\" matInput placeholder=\"Max\">\r\n              </mat-form-field>\r\n            </span>\r\n            <!-- Bins -->\r\n            <span *ngIf=\"variables[i]['params']['bins'] == true\">\r\n              <mat-form-field class=\"small-input\">\r\n                <input (change)=\"paramsChanged($event, i, 'bins')\" matInput placeholder=\"Bins\">\r\n              </mat-form-field>\r\n            </span>\r\n          </div>\r\n          <ng-template #noData>\r\n            No parameters.\r\n          </ng-template>\r\n        </span>\r\n      </div>\r\n      <div class=\"warn-message\"> {{message}}</div>\r\n      <!-- Buttons -->\r\n      <span class=\"buttons\">\r\n        <button mat-raised-button color=\"primary\" (click)=submit()>Save</button>\r\n        <button mat-stroked-button color=\"warn\" (click)=\"viewObject()\">View</button>\r\n      </span>\r\n    </div>\r\n  </div>\r\n</div>"
+module.exports = "<div id=\"data-tab\">\r\n  <!-- Basic info -->\r\n  <h2 class=\"subtitle\">DATASET - Info & Stats</h2>\r\n  <div class=\"flex space-around border\">\r\n    <!-- DATASET DETAILS -->\r\n    <mat-card class=\"info-box justify\">\r\n      <div *ngIf=\"details\">\r\n        <div class=\"details-item\">\r\n          <strong>Dataset: </strong>\r\n          {{details.datasetName}}\r\n        </div>\r\n        <div class=\"details-item\">\r\n          <strong>Description: </strong>\r\n          {{details.datasetDesc}}\r\n        </div>\r\n        <div class=\"details-item\">\r\n          <strong>Dataset size: </strong>\r\n          {{details.datasetSize}} KB\r\n        </div>\r\n        <div class=\"details-item\">\r\n          <strong>Number of rows: </strong>\r\n          {{details.numberOfRows}}\r\n        </div>\r\n        <div class=\"details-item\">\r\n          <strong>Number of variables: </strong>\r\n          {{details.numberOfVariables}}\r\n        </div>\r\n      </div>\r\n    </mat-card>\r\n    <!-- LIST OF VARIABLES -->\r\n    <mat-card class=\"info-box justify\">\r\n      <div *ngIf=\"details && details.variableDetails.length > 0\">\r\n        <div>\r\n          <strong>Variable details: </strong>\r\n        </div>\r\n        <div *ngFor=\"let item of  details.variableDetails; let i = index\">\r\n          <span>{{i+1}}. </span>\r\n          <span>\r\n            <strong>Name:</strong> {{item.variableName}} </span>\r\n          <span>\r\n            <br>\r\n            <strong>Variance:</strong> {{item.variance}} </span>\r\n          <span>\r\n            <br>\r\n            <strong>Min:</strong> {{item.min}} </span>\r\n          <span>\r\n            <strong>Max:</strong> {{item.max}} </span>\r\n          <span>\r\n            <br>\r\n            <strong>Distinct Count:</strong> {{item.distinctCount}} </span>\r\n          <br>\r\n          <span>\r\n            <strong>Average:</strong> {{item.average}} </span>\r\n          <br>\r\n          <br>\r\n        </div>\r\n      </div>\r\n    </mat-card>\r\n  </div>\r\n  <!-- Pre Processing -->\r\n  <h2 *ngIf=\"!isDatasetLinked\" class=\"subtitle\">DATASET - Pre Processing</h2>\r\n  <div *ngIf=\"!isDatasetLinked\" class=\"border\">\r\n    <!-- Titles -->\r\n    <div class=\"flex space-around title-bar\" *ngIf=\"variables\">\r\n      <span class=\"processing-title\">\r\n        Variable Name\r\n      </span>\r\n      <span class=\"processing-title\">\r\n        Type of Variable\r\n      </span>\r\n      <span class=\"processing-title\">\r\n        Type of Data\r\n      </span>\r\n      <span class=\"processing-title\">\r\n        Type of Operation\r\n      </span>\r\n      <span class=\"processing-title\">\r\n        Parameters\r\n      </span>\r\n    </div>\r\n    <!-- Data -->\r\n    <div class=\"flex column\">\r\n      <div *ngFor=\"let variable of variables; let i = index\" class=\"flex space-around variable-items\">\r\n        <!-- Variable Name -->\r\n        <span>{{variable.variableName}}</span>\r\n\r\n        <!-- Variable Type -->\r\n        <mat-form-field>\r\n          <mat-select (selectionChange)=\"selectionChanged($event, i, 'typeOfVariable')\" placeholder=\"Variable Type\">\r\n            <mat-option *ngFor=\"let type of variableTypes\" [value]=\"type\">\r\n              {{type}}\r\n            </mat-option>\r\n          </mat-select>\r\n        </mat-form-field>\r\n\r\n        <!-- Data Type -->\r\n        <mat-form-field>\r\n          <mat-select [disabled]=\"variables[i].typeOfData =='TEXT'\" [(ngModel)]=\"variables[i].typeOfData\" (selectionChange)=\"selectionChanged($event, i, 'typeOfData')\"\r\n            placeholder=\"Data Type\">\r\n            <mat-option *ngFor=\"let type of dataTypes\" [value]=\"type\">\r\n              {{type}}\r\n            </mat-option>\r\n          </mat-select>\r\n        </mat-form-field>\r\n\r\n        <!-- Operation Type -->\r\n        <div>\r\n          <!-- Numeric -->\r\n          <mat-form-field *ngIf=\"variables[i].typeOfData == 'NUMERIC'\">\r\n            <mat-select (selectionChange)=\"setParams($event, i)\" placeholder=\"Operation Type\">\r\n              <mat-option *ngFor=\"let type of numericOperationTypes\" [value]=\"type\">\r\n                {{type}}\r\n              </mat-option>\r\n            </mat-select>\r\n          </mat-form-field>\r\n          <!-- Text -->\r\n          <mat-form-field *ngIf=\"variables[i].typeOfData == 'TEXT'\">\r\n            <mat-select (selectionChange)=\"setParams($event, i)\" placeholder=\"Operation Type\">\r\n              <mat-option *ngFor=\"let type of textOperationTypes\" [value]=\"type\">\r\n                {{type}}\r\n              </mat-option>\r\n            </mat-select>\r\n          </mat-form-field>\r\n        </div>\r\n\r\n        <!--  P A R A M S -->\r\n        <span class=\"params\">\r\n          <!-- Min & Max -->\r\n          <div *ngIf=\"variables[i]['params']; else noData\">\r\n            <span *ngIf=\"variables[i]['params']['minmax'] == true\">\r\n              <mat-form-field class=\"small-input\">\r\n                <input type=\"number\" (change)=\"paramsChanged($event, i, 'scaleMin')\" matInput placeholder=\"Min\">\r\n              </mat-form-field>\r\n              <mat-form-field class=\"small-input\">\r\n                <input type=\"number\" (change)=\"paramsChanged($event, i, 'scaleMax')\" matInput placeholder=\"Max\">\r\n              </mat-form-field>\r\n            </span>\r\n            <!-- Bins -->\r\n            <span *ngIf=\"variables[i]['params']['bins'] == true\">\r\n              <mat-form-field class=\"small-input\">\r\n                <input type=\"number\" (change)=\"paramsChanged($event, i, 'bins')\" matInput placeholder=\"Bins\">\r\n              </mat-form-field>\r\n            </span>\r\n          </div>\r\n          <ng-template #noData>\r\n            No parameters.\r\n          </ng-template>\r\n        </span>\r\n      </div>\r\n      <div class=\"warn-message\"> {{message}}</div>\r\n      <!-- Buttons -->\r\n      <span class=\"buttons\">\r\n        <button mat-raised-button color=\"primary\" (click)=submit()>Save</button>\r\n        <button mat-stroked-button color=\"warn\" (click)=\"viewObject()\">View</button>\r\n      </span>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -739,9 +732,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _node_modules_angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/@angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _data_tab_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./data-tab.service */ "./src/app/data-tab/data-tab.service.ts");
-/* harmony import */ var _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/services/shared.service */ "./src/app/shared/services/shared.service.ts");
-/* harmony import */ var _project_overview_project_overview_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../project-overview/project.overview.service */ "./src/app/project-overview/project.overview.service.ts");
-/* harmony import */ var _shared_services_snackbar_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../shared/services/snackbar.service */ "./src/app/shared/services/snackbar.service.ts");
+/* harmony import */ var _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../dialogs/data-tab-view/data-tab-view.component */ "./src/app/dialogs/data-tab-view/data-tab-view.component.ts");
+/* harmony import */ var _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shared/services/shared.service */ "./src/app/shared/services/shared.service.ts");
+/* harmony import */ var _project_overview_project_overview_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../project-overview/project.overview.service */ "./src/app/project-overview/project.overview.service.ts");
+/* harmony import */ var _shared_services_snackbar_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../shared/services/snackbar.service */ "./src/app/shared/services/snackbar.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -753,6 +747,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+// Dialog Components
 
 
 
@@ -767,6 +763,14 @@ var DataTabComponent = /** @class */ (function () {
         this.numericOperationTypes = [];
         this.textOperationTypes = [];
     }
+    DataTabComponent.prototype.isLinked = function () {
+        var _this = this;
+        this.dataTabService.isLinked(this.projectId)
+            .subscribe(function (res) {
+            console.log(res);
+            _this.isDatasetLinked = res['data'];
+        }, function (err) { return console.log(err); });
+    };
     DataTabComponent.prototype.getVariables = function () {
         var _this = this;
         this.dataTabService.getVariables(this.datasetId)
@@ -887,6 +891,7 @@ var DataTabComponent = /** @class */ (function () {
         console.log(this.variables);
     };
     DataTabComponent.prototype.viewObject = function () {
+        var _this = this;
         var checkArray = [];
         // Check for empty fields
         for (var i = 0; i < this.variables.length; i++) {
@@ -912,14 +917,17 @@ var DataTabComponent = /** @class */ (function () {
         }
         // Send request after check
         if (checkArray.length == this.variables.length) {
-            var list = this.variables;
-            for (var i = 0; i < list.length; i++) {
-                delete list[i]['params'];
-                delete list[i]['operationTypes'];
-            }
-            this.dataTabService.getProcessingView(this.datasetId, list)
+            this.dataTabService.getProcessingView(this.datasetId, this.variables)
                 .subscribe(function (res) {
-                console.log(res);
+                console.log(res['data']);
+                _this.csvArray = res['data'];
+                var dialogRef = _this.dialog.open(_dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_3__["DataTabViewComponent"], {
+                    width: '800px',
+                    data: _this.csvArray
+                });
+                dialogRef.afterClosed().subscribe(function (res) {
+                    console.log(res);
+                });
             }, function (err) {
                 console.log(err);
             });
@@ -932,7 +940,9 @@ var DataTabComponent = /** @class */ (function () {
         }
     };
     DataTabComponent.prototype.submit = function () {
+        var _this = this;
         var checkArray = [];
+        console.log(this.variables);
         // Check for empty fields
         for (var i = 0; i < this.variables.length; i++) {
             if (!this.variables[i]['typeOfVariable']) {
@@ -957,7 +967,6 @@ var DataTabComponent = /** @class */ (function () {
         }
         // Send request after check
         if (checkArray.length == this.variables.length) {
-            console.log(this.variables);
             this.message = '';
             var data = this.variables;
             // 
@@ -970,6 +979,7 @@ var DataTabComponent = /** @class */ (function () {
             this, this.dataTabService.save(this.datasetId, this.projectId, data)
                 .subscribe(function (res) {
                 console.log(res);
+                _this.isLinked();
             }, function (err) {
                 console.log(err);
             });
@@ -978,6 +988,7 @@ var DataTabComponent = /** @class */ (function () {
     DataTabComponent.prototype.ngOnInit = function () {
         this.datasetId = this.sharedService.getDatasetId();
         this.projectId = this.sharedService.getProjectId();
+        this.isLinked();
         this.getVariables();
         this.getDataTypes();
         this.getVariableTypes();
@@ -991,7 +1002,7 @@ var DataTabComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./data-tab.component.scss */ "./src/app/data-tab/data-tab.component.scss")],
             encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None
         }),
-        __metadata("design:paramtypes", [_data_tab_service__WEBPACK_IMPORTED_MODULE_2__["DataTabService"], _node_modules_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"], _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_3__["SharedService"], _project_overview_project_overview_service__WEBPACK_IMPORTED_MODULE_4__["ProjectOverviewService"], _shared_services_snackbar_service__WEBPACK_IMPORTED_MODULE_5__["SnackBarService"]])
+        __metadata("design:paramtypes", [_data_tab_service__WEBPACK_IMPORTED_MODULE_2__["DataTabService"], _node_modules_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"], _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_4__["SharedService"], _project_overview_project_overview_service__WEBPACK_IMPORTED_MODULE_5__["ProjectOverviewService"], _shared_services_snackbar_service__WEBPACK_IMPORTED_MODULE_6__["SnackBarService"]])
     ], DataTabComponent);
     return DataTabComponent;
 }());
@@ -1040,7 +1051,15 @@ var DataTabService = /** @class */ (function () {
     DataTabService.prototype.getOperationTypes = function (type) {
         return this._http.get(this.baseUrl + 'operationTypes?dataType=' + type);
     };
+    // Check whether dataset is linked to project
+    DataTabService.prototype.isLinked = function (projectId) {
+        return this._http.get(this.baseUrl + 'linkDataset?projectId=' + projectId);
+    };
     DataTabService.prototype.getProcessingView = function (datasetId, list) {
+        for (var i = 0; i < list.length; i++) {
+            delete list[i]['params'];
+            delete list[i]['operationTypes'];
+        }
         return this._http.post(this.baseUrl + 'preprocessing/view?datasetId=' + datasetId, list);
     };
     DataTabService.prototype.save = function (datasetId, projectId, list) {
@@ -1295,6 +1314,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/@angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _add_algorithm_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./add-algorithm.service */ "./src/app/dialogs/add-algorithm/add-algorithm.service.ts");
 /* harmony import */ var _shared_services_snackbar_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/services/snackbar.service */ "./src/app/shared/services/snackbar.service.ts");
+/* harmony import */ var _node_modules_angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../node_modules/@angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1308,11 +1328,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var AddAlgorithmComponent = /** @class */ (function () {
-    function AddAlgorithmComponent(fb, service, snackbar) {
+    function AddAlgorithmComponent(fb, service, snackbar, dialogRef) {
         this.fb = fb;
         this.service = service;
         this.snackbar = snackbar;
+        this.dialogRef = dialogRef;
         this.parameters = [];
         this.message = false;
         this.expand = false;
@@ -1353,6 +1375,7 @@ var AddAlgorithmComponent = /** @class */ (function () {
         this.service.addAlgorithm(this.addAlgorithmForm.value)
             .subscribe(function (res) {
             console.log(res);
+            _this.dialogRef.close();
             _this.snackbar.openSnackBar('Algorithm added successfully.', 'Success');
         }, function (err) {
             console.log(err);
@@ -1419,7 +1442,7 @@ var AddAlgorithmComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./add-algorithm.component.html */ "./src/app/dialogs/add-algorithm/add-algorithm.component.html"),
             styles: [__webpack_require__(/*! ./add-algorithm.component.scss */ "./src/app/dialogs/add-algorithm/add-algorithm.component.scss")]
         }),
-        __metadata("design:paramtypes", [_node_modules_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"], _add_algorithm_service__WEBPACK_IMPORTED_MODULE_2__["AddAlgorithmService"], _shared_services_snackbar_service__WEBPACK_IMPORTED_MODULE_3__["SnackBarService"]])
+        __metadata("design:paramtypes", [_node_modules_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"], _add_algorithm_service__WEBPACK_IMPORTED_MODULE_2__["AddAlgorithmService"], _shared_services_snackbar_service__WEBPACK_IMPORTED_MODULE_3__["SnackBarService"], _node_modules_angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialogRef"]])
     ], AddAlgorithmComponent);
     return AddAlgorithmComponent;
 }());
@@ -1961,7 +1984,7 @@ var CopyProjectService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"data-tab-view\">\r\n    <h2 mat-dialog-title class=\"subtitle\">DATASET - Pre Processing VIEW</h2>\r\n    <mat-divider></mat-divider>\r\n    <mat-dialog-content *ngIf=\"data\">\r\n        <!-- Titles -->\r\n        <div class=\"flex space-around title-bar\">\r\n            <span class=\"processing-title\">\r\n                Variable Name\r\n            </span>\r\n            <span class=\"processing-title\">\r\n                Type of Variable\r\n            </span>\r\n            <span class=\"processing-title\">\r\n                Type of Data\r\n            </span>\r\n            <span class=\"processing-title\">\r\n                Parameters\r\n            </span>\r\n        </div>\r\n        <!-- Data -->\r\n        <div class=\"flex column\">\r\n            <div *ngFor=\"let item of data; let i = index\" class=\"flex space-around variable-items\">\r\n                <!-- Variable Name -->\r\n                <span>\r\n                    <strong>{{item.variableName}}</strong>\r\n                </span>\r\n                <!-- Variable Type -->\r\n                <span>\r\n                    {{item.typeOfVariable}}\r\n                </span>\r\n                <!-- Data Type -->\r\n                <span>\r\n                    {{item.typeOfData}}\r\n                </span>\r\n                <!-- Operation Type -->\r\n                <!-- <span>\r\n                    {{data}}\r\n                </span> -->\r\n                <!--  P A R A M S -->\r\n                <span *ngIf=\"item.leaveAsItIs == true\">\r\n                    Leave as it is\r\n                </span>\r\n                <span *ngIf=\"item.distinct == true\">\r\n                    Unfolding with distinct categories\r\n                </span>\r\n                <span *ngIf=\"item.scaleMin && item.scaleMax\" class=\"minmax\">\r\n                    <span>\r\n                        <strong>Min: </strong>{{item.scaleMin}} </span>\r\n                    <span>\r\n                        <strong>Max: </strong> {{item.scaleMax}}</span>\r\n                </span>\r\n                <span *ngIf=\"item.bins\">\r\n                    <strong> Bins: </strong> {{item.bins}}\r\n                </span>\r\n            </div>\r\n        </div>\r\n    </mat-dialog-content>\r\n    <mat-dialog-actions>\r\n        <button mat-stroked-button color=\"primary\" mat-dialog-close>Close</button>\r\n    </mat-dialog-actions>\r\n</div>"
+module.exports = "<div id=\"data-tab-view\">\r\n    <h2 mat-dialog-title class=\"subtitle\">DATASET - Pre Processing VIEW</h2>\r\n    <mat-divider></mat-divider>\r\n    <mat-dialog-content>\r\n        <div id=\"csv_data_table\"></div>\r\n    </mat-dialog-content>\r\n    <mat-dialog-actions>\r\n        <button mat-stroked-button [mat-dialog-close]=\"csv_data\" color=\"primary\" mat-dialog-close>Close</button>\r\n    </mat-dialog-actions>\r\n</div>"
 
 /***/ }),
 
@@ -1972,7 +1995,7 @@ module.exports = "<div id=\"data-tab-view\">\r\n    <h2 mat-dialog-title class=\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n#data-tab-view .title-bar {\n  margin-bottom: 20px; }\n\n#data-tab-view .processing-title {\n  color: #311B92;\n  margin-top: 20px;\n  font-size: 18px;\n  width: 158px;\n  font-weight: bold; }\n\n#data-tab-view .variable-items > span {\n  width: 150px;\n  padding: 20px 0;\n  font-size: 16px;\n  display: flex;\n  align-items: center; }\n\n#data-tab-view .minmax > span {\n  margin-right: 15px; }\n\n#data-tab-view mat-dialog-actions {\n  float: right; }\n\n#data-tab-view button {\n  margin-top: 30px; }\n"
+module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n#data-tab-view .title-bar {\n  margin-bottom: 20px; }\n\n#data-tab-view .processing-title {\n  color: #311B92;\n  margin-top: 20px;\n  font-size: 18px;\n  width: 158px;\n  font-weight: bold; }\n\n#data-tab-view .variable-items > span {\n  width: 150px;\n  padding: 20px 0;\n  font-size: 16px;\n  display: flex;\n  align-items: center; }\n\n#data-tab-view .minmax > span {\n  margin-right: 15px; }\n\n#data-tab-view mat-dialog-actions {\n  float: right; }\n\n#data-tab-view button {\n  margin-top: 30px; }\n\n#data-tab-view #csv_data_table {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  padding: 30px 0; }\n\n#data-tab-view table {\n  border-collapse: collapse;\n  border: 1px #757575 solid;\n  font: 17px; }\n\n#data-tab-view th, #data-tab-view tr {\n  padding: 10px 5px; }\n\n#data-tab-view td {\n  border: 1px #757575 solid;\n  padding: 5px; }\n"
 
 /***/ }),
 
@@ -2003,11 +2026,31 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 var DataTabViewComponent = /** @class */ (function () {
-    function DataTabViewComponent(dialogRef, data) {
+    function DataTabViewComponent(dialogRef, csv_data) {
         this.dialogRef = dialogRef;
-        this.data = data;
+        this.csv_data = csv_data;
     }
     DataTabViewComponent.prototype.ngOnInit = function () {
+        if (this.csv_data.length > 0) {
+            // CSV TO TABLE
+            var csv_data = this.csv_data.split(/\r?\n|\r/);
+            var table_data = '<table class="table table-bordered table-striped">';
+            for (var count = 0; count < csv_data.length; count++) {
+                var cell_data = csv_data[count].split(",");
+                table_data += '<tr>';
+                for (var cell_count = 0; cell_count < cell_data.length; cell_count++) {
+                    if (count === 0) {
+                        table_data += '<th>' + cell_data[cell_count] + '</th>';
+                    }
+                    else {
+                        table_data += '<td>' + cell_data[cell_count] + '</td>';
+                    }
+                }
+                table_data += '</tr>';
+            }
+            table_data += '</table>';
+            document.getElementById('csv_data_table').innerHTML = table_data;
+        }
     };
     DataTabViewComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2033,7 +2076,7 @@ var DataTabViewComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"datasetDetail\">\r\n    <mat-dialog-title>\r\n        <h1>Dataset detail </h1>\r\n        <mat-divider></mat-divider>\r\n    </mat-dialog-title>\r\n    <mat-dialog-content>\r\n        <form>\r\n            <div class=\"column\">\r\n                <label>Dataset Name:\r\n                    <span>{{data.datasetName}}</span>\r\n                </label>\r\n            </div>\r\n            <div class=\"column\">\r\n                <label>Number of rows:\r\n                    <span>{{data.numberOfRows}}</span>\r\n                </label>\r\n            </div>\r\n            <div class=\"column\">\r\n                <label>Number of Variables:\r\n                    <span>{{data.numberOfVariables}}</span>\r\n                </label>\r\n            </div>\r\n            <div class=\"column\">\r\n                <label>Dataset Size:\r\n                    <span>{{data.datasetSize}} KB</span>\r\n                </label>\r\n            </div>\r\n            <div class=\"column\">\r\n                <label>Dataset description:\r\n                    <span>{{data.datasetDesc}}</span>\r\n                </label>\r\n            </div>\r\n            <!-- List of Projects -->\r\n            <div class=\"column\" *ngIf=\"data.listProjects.length > 0;else noData\">\r\n                <label class=\"inline\">Project Associated</label>\r\n                <br>\r\n                <div class=\"flex column-style header-style\">\r\n                    <span>Project Name</span>\r\n                    <span>Description</span>\r\n                    <span>Status</span>\r\n                    <span>Creation Date</span>\r\n                    <span>Last Opened</span>\r\n                </div>\r\n                <div class=\"flex\" *ngFor=\"let item of data.listProjects; let i = index\">\r\n                    <div class=\"flex column-style\">\r\n                        <span>{{item.projectName}}</span>\r\n                        <span>{{item.description}}</span>\r\n                        <span>{{item.status}}</span>\r\n                        <span>{{item.creationDate}}</span>\r\n                        <span>{{item.lastOpened}}</span>\r\n                    </div>\r\n                </div>\r\n                <ng-template #noData>\r\n                    <span>No data.</span>\r\n                </ng-template>\r\n            </div>\r\n            <!-- List of VARIABLES -->\r\n            <div class=\"column\" *ngIf=\"data.variableDetails.length > 0;else noData\">\r\n                <label class=\"inline\">List of variables</label>\r\n                <br>\r\n                <div class=\"flex column-style header-style\">\r\n                    <span>Variable Name</span>\r\n                    <span>Distinct Count</span>\r\n                    <span>Min</span>\r\n                    <span>Max</span>\r\n                    <span>Average</span>\r\n                    <span>Varience</span>\r\n                </div>\r\n                <div class=\"flex  column-style\" *ngFor=\"let item of data.variableDetails; let i = index\">\r\n                    <span>{{item.variableName}}</span>\r\n                    <span>{{item.distinctCount}}</span>\r\n                    <span>{{item.min}}</span>\r\n                    <span>{{item.max}}</span>\r\n                    <span>{{item.average}}</span>\r\n                    <span>{{item.varience}}</span>\r\n                </div>\r\n                <ng-template #noData>\r\n                    <span>No data.</span>\r\n                </ng-template>\r\n            </div>\r\n        </form>\r\n    </mat-dialog-content>\r\n</div>"
+module.exports = "<div id=\"datasetDetail\">\r\n    <mat-dialog-title>\r\n        <h1>Dataset detail </h1>\r\n        <mat-divider></mat-divider>\r\n    </mat-dialog-title>\r\n    <mat-dialog-content>\r\n        <form>\r\n            <div class=\"column\">\r\n                <label>Dataset Name:\r\n                    <span>{{data.datasetName}}</span>\r\n                </label>\r\n            </div>\r\n            <div class=\"column\">\r\n                <label>Number of rows:\r\n                    <span>{{data.numberOfRows}}</span>\r\n                </label>\r\n            </div>\r\n            <div class=\"column\">\r\n                <label>Number of Variables:\r\n                    <span>{{data.numberOfVariables}}</span>\r\n                </label>\r\n            </div>\r\n            <div class=\"column\">\r\n                <label>Dataset Size:\r\n                    <span>{{data.datasetSize}} KB</span>\r\n                </label>\r\n            </div>\r\n            <div class=\"column\">\r\n                <label>Dataset description:\r\n                    <span>{{data.datasetDesc}}</span>\r\n                </label>\r\n            </div>\r\n            <!-- List of Projects -->\r\n            <div class=\"column\" *ngIf=\"data.listProjects.length > 0;else noData\">\r\n                <label class=\"inline\">Project Associated</label>\r\n                <br>\r\n                <div class=\"flex column-style header-style\">\r\n                    <span>Project Name</span>\r\n                    <span>Description</span>\r\n                    <span>Status</span>\r\n                    <span>Creation Date</span>\r\n                    <span>Last Opened</span>\r\n                </div>\r\n                <div class=\"flex\" *ngFor=\"let item of data.listProjects; let i = index\">\r\n                    <div class=\"flex column-style\">\r\n                        <span>{{item.projectName}}</span>\r\n                        <span>{{item.description}}</span>\r\n                        <span>{{item.status}}</span>\r\n                        <span>{{item.creationDate}}</span>\r\n                        <span>{{item.lastOpened}}</span>\r\n                    </div>\r\n                </div>\r\n                <ng-template #noData>\r\n                    <span>No data.</span>\r\n                </ng-template>\r\n            </div>\r\n            <!-- List of VARIABLES -->\r\n            <div class=\"column\" *ngIf=\"data.variableDetails.length > 0;else noData\">\r\n                <label class=\"inline\">List of variables</label>\r\n                <br>\r\n                <div class=\"flex column-style header-style\">\r\n                    <span>Variable Name</span>\r\n                    <span>Distinct Count</span>\r\n                    <span>Min</span>\r\n                    <span>Max</span>\r\n                    <span>Average</span>\r\n                    <span>Variance</span>\r\n                </div>\r\n                <div class=\"flex  column-style\" *ngFor=\"let item of data.variableDetails; let i = index\">\r\n                    <span>{{item.variableName}}</span>\r\n                    <span>{{item.distinctCount}}</span>\r\n                    <span>{{item.min}}</span>\r\n                    <span>{{item.max}}</span>\r\n                    <span>{{item.average}}</span>\r\n                    <span>{{item.variance}}</span>\r\n                </div>\r\n                <ng-template #noData>\r\n                    <span>No data.</span>\r\n                </ng-template>\r\n            </div>\r\n        </form>\r\n    </mat-dialog-content>\r\n</div>"
 
 /***/ }),
 
@@ -2165,147 +2208,6 @@ var DeleteComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"], Object])
     ], DeleteComponent);
     return DeleteComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/dialogs/edit-project/edit-project.component.html":
-/*!******************************************************************!*\
-  !*** ./src/app/dialogs/edit-project/edit-project.component.html ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div id=\"editProject\">\r\n    <h1>Edit Project {{data.id}}</h1>\r\n    <form #editProjectForm=\"ngForm\">\r\n      <mat-dialog-content>\r\n    <mat-form-field>\r\n      <input matInput name=\"projectName\" type=\"text\" [(ngModel)]=\"data.projectName\" placeholder=\" Project name\">\r\n    </mat-form-field><br>\r\n    <!-- <mat-form-field>\r\n        <input matInput name=\"creationDate\" type=\"text\" [(ngModel)]=\"data.createDate\" placeholder=\" Project date\">\r\n      </mat-form-field><br> -->\r\n      <mat-form-field fxFlexFill>\r\n          <input matInput name=\"creationDate\" [matDatepicker]=\"picker\" placeholder=\"Date\" [(ngModel)]=\"data.creationDate\" [value]=\"data.creationDate\">\r\n          <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\r\n      </mat-form-field>\r\n      <mat-datepicker #picker></mat-datepicker>\r\n      <mat-form-field>\r\n          <input matInput name=\"status\" type=\"text\" [(ngModel)]=\"data.status\" placeholder=\" Project status\">\r\n        </mat-form-field>\r\n  </mat-dialog-content>\r\n  <mat-dialog-actions class=\"buttons\">\r\n      <button mat-button mat-dialog-close (click)=\"cancel()\">Cancel</button>\r\n      <button type=\"submit\" color=\"warn\" mat-raised-button (click)=\"editProject(editProjectForm.value)\">Save</button>\r\n  </mat-dialog-actions>\r\n</form>\r\n  </div>\r\n\r\n"
-
-/***/ }),
-
-/***/ "./src/app/dialogs/edit-project/edit-project.component.scss":
-/*!******************************************************************!*\
-  !*** ./src/app/dialogs/edit-project/edit-project.component.scss ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "#editProject {\n  margin-left: 5%;\n  font-family: Roboto, \"Helvetica Neue\", sans-serif; }\n  #editProject .mat-form-field {\n    width: 90%; }\n  #editProject .buttons {\n    float: right; }\n"
-
-/***/ }),
-
-/***/ "./src/app/dialogs/edit-project/edit-project.component.ts":
-/*!****************************************************************!*\
-  !*** ./src/app/dialogs/edit-project/edit-project.component.ts ***!
-  \****************************************************************/
-/*! exports provided: EditProjectComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditProjectComponent", function() { return EditProjectComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _edit_project_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit.project.service */ "./src/app/dialogs/edit-project/edit.project.service.ts");
-/* harmony import */ var _shared_services_snackbar_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../shared/services/snackbar.service */ "./src/app/shared/services/snackbar.service.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
-
-
-
-
-
-var EditProjectComponent = /** @class */ (function () {
-    function EditProjectComponent(editProjectService, dialogRef, data, snackBarService) {
-        this.editProjectService = editProjectService;
-        this.dialogRef = dialogRef;
-        this.data = data;
-        this.snackBarService = snackBarService;
-        this.date = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](new Date());
-        this.serializedDate = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]((new Date()).toISOString());
-    }
-    EditProjectComponent.prototype.editProject = function (obj) {
-        var _this = this;
-        obj['id'] = this.data.id;
-        console.log(obj);
-        this.editProjectService.editProjects(obj).subscribe(function (res) {
-            console.log(res);
-            _this.snackBarService.openSnackBar(res['data'], 'Success');
-            _this.dialogRef.close();
-        }, function (err) {
-            console.log(err);
-            _this.snackBarService.openSnackBar('Something went wrong.', 'Error');
-        });
-    };
-    EditProjectComponent.prototype.cancel = function () {
-        this.dialogRef.close();
-    };
-    EditProjectComponent.prototype.ngOnInit = function () {
-        console.log(this.data);
-    };
-    EditProjectComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-edit-project',
-            template: __webpack_require__(/*! ./edit-project.component.html */ "./src/app/dialogs/edit-project/edit-project.component.html"),
-            styles: [__webpack_require__(/*! ./edit-project.component.scss */ "./src/app/dialogs/edit-project/edit-project.component.scss")],
-            encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None
-        }),
-        __param(2, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"])),
-        __metadata("design:paramtypes", [_edit_project_service__WEBPACK_IMPORTED_MODULE_3__["EditProjectsService"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"], Object, _shared_services_snackbar_service__WEBPACK_IMPORTED_MODULE_4__["SnackBarService"]])
-    ], EditProjectComponent);
-    return EditProjectComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/dialogs/edit-project/edit.project.service.ts":
-/*!**************************************************************!*\
-  !*** ./src/app/dialogs/edit-project/edit.project.service.ts ***!
-  \**************************************************************/
-/*! exports provided: EditProjectsService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditProjectsService", function() { return EditProjectsService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var EditProjectsService = /** @class */ (function () {
-    function EditProjectsService(_http) {
-        this._http = _http;
-        this.baseUrl = '/CustomerProfiling/rest/';
-    }
-    EditProjectsService.prototype.editProjects = function (obj) {
-        return this._http.put(this.baseUrl + 'projects', obj);
-    };
-    EditProjectsService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
-    ], EditProjectsService);
-    return EditProjectsService;
 }());
 
 
@@ -2486,7 +2388,7 @@ var LoginComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-tab-group mat-stretch-tabs class=\"mat-elevation-z4\">\r\n    <mat-tab label=\"Project Overview\">\r\n        <ng-template matTabContent>\r\n            <app-project-overview></app-project-overview>\r\n        </ng-template>\r\n    </mat-tab>\r\n    <mat-tab label=\"Data\">\r\n        <ng-template matTabContent>\r\n            <app-data-tab></app-data-tab>\r\n        </ng-template>\r\n    </mat-tab>\r\n    <mat-tab label=\"Analyze\">\r\n        <ng-template matTabContent>\r\n            <app-analyze></app-analyze>\r\n        </ng-template>\r\n    </mat-tab>\r\n    <mat-tab label=\"Question\">\r\n        <ng-template matTabContent>\r\n            <h1>Question</h1>\r\n            <p>...</p>\r\n        </ng-template>\r\n    </mat-tab>\r\n</mat-tab-group>"
+module.exports = "<div id=\"one-project\" class=\"flex column center\">\r\n    <button routerLink=\"/projects\" mat-stroked-button color=\"primary\" matTooltip=\"Back to list of projects\" matTooltipPosition=\"right\">Back to Projects</button>\r\n    <mat-tab-group color=\"warn\" mat-stretch-tabs class=\"mat-elevation-z4\">\r\n        <mat-tab label=\"Project Overview\">\r\n            <ng-template matTabContent>\r\n                <app-project-overview (disableTabsChange)=\"disableTabsChange($event)\"></app-project-overview>\r\n            </ng-template>\r\n        </mat-tab>\r\n        <mat-tab [disabled]=\"disableTabs\" label=\"Data\">\r\n            <ng-template matTabContent>\r\n                <app-data-tab></app-data-tab>\r\n            </ng-template>\r\n        </mat-tab>\r\n        <mat-tab [disabled]=\"disableTabs\" label=\"Analyze\">\r\n            <ng-template matTabContent>\r\n                <app-analyze></app-analyze>\r\n            </ng-template>\r\n        </mat-tab>\r\n        <mat-tab [disabled]=\"disableTabs\" label=\"Question\">\r\n            <ng-template matTabContent>\r\n                <h1>Question</h1>\r\n                <p>...</p>\r\n            </ng-template>\r\n        </mat-tab>\r\n    </mat-tab-group>\r\n</div>"
 
 /***/ }),
 
@@ -2497,7 +2399,7 @@ module.exports = "<mat-tab-group mat-stretch-tabs class=\"mat-elevation-z4\">\r\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "#one-project {\n  padding: 50px 0; }\n  #one-project mat-tab-group {\n    width: 90%; }\n  #one-project button {\n    align-self: flex-start;\n    margin-left: 5%;\n    margin-bottom: 25px; }\n"
 
 /***/ }),
 
@@ -2512,6 +2414,7 @@ module.exports = ""
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OneProjectComponent", function() { return OneProjectComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../shared/services/shared.service */ "./src/app/shared/services/shared.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2522,9 +2425,15 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var OneProjectComponent = /** @class */ (function () {
-    function OneProjectComponent() {
+    function OneProjectComponent(sharedService) {
+        this.sharedService = sharedService;
+        this.disableTabs = true;
     }
+    OneProjectComponent.prototype.disableTabsChange = function (ev) {
+        this.disableTabs = ev;
+    };
     OneProjectComponent.prototype.ngOnInit = function () {
     };
     OneProjectComponent = __decorate([
@@ -2533,7 +2442,7 @@ var OneProjectComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./one-project.component.html */ "./src/app/one-project/one-project.component.html"),
             styles: [__webpack_require__(/*! ./one-project.component.scss */ "./src/app/one-project/one-project.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_shared_services_shared_service__WEBPACK_IMPORTED_MODULE_1__["SharedService"]])
     ], OneProjectComponent);
     return OneProjectComponent;
 }());
@@ -2549,7 +2458,7 @@ var OneProjectComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"projectOverview\">\r\n  <h1>Project overview</h1>\r\n  <mat-dialog-content *ngIf=\"project\">\r\n    <h4 class=\"subtitle\">Project details for project ID: {{project.id}}</h4>\r\n    <mat-form-field>\r\n      <input matInput placeholder=\"Project name\" [(ngModel)]=\"project.projectName\" autocomplete=\"off\">\r\n    </mat-form-field>\r\n    <br>\r\n    <mat-form-field>\r\n      <textarea matInput placeholder=\"Project description\" [(ngModel)]=\"project.description\" autocomplete=\"off\"></textarea>\r\n    </mat-form-field>\r\n    <div>Created: {{project.creationDate | date}}</div>\r\n    <div>Last opened: {{project.lastOpened | date}}</div>\r\n    <div>Projects status: {{project.status}}</div>\r\n    <mat-dialog-actions class=\"buttonsFirst\">\r\n      <button type=\"submit\" color=\"primary\" mat-raised-button>Save</button>\r\n    </mat-dialog-actions>\r\n  </mat-dialog-content>\r\n  <mat-divider></mat-divider>\r\n  <!-- Select dataset -->\r\n  <mat-dialog-content>\r\n    <h4 class=\"subtitle\">Dataset details</h4>\r\n\r\n    <!-- za selektovanje dataseta -  nije zavrseno -->\r\n    <mat-form-field>\r\n      <mat-select (selectionChange)=\"selectedDataset($event)\" placeholder=\"Select dataset\">\r\n        <mat-option *ngFor=\"let data of dataset; let i = index\" [value]=\"data\">{{data.name}}</mat-option>\r\n      </mat-select>\r\n    </mat-form-field>\r\n    <div *ngIf=\"details && showDetails\">\r\n      <div class=\"details-item\">\r\n        <strong>Description: </strong>\r\n        {{details.datasetDesc}}\r\n      </div>\r\n      <div class=\"details-item\">\r\n        <strong>Dataset size: </strong>\r\n        {{details.datasetSize}} KB\r\n      </div>\r\n      <div class=\"details-item\">\r\n        <strong>Number of rows: </strong>\r\n        {{details.numberOfRows}}\r\n      </div>\r\n      <div class=\"details-item\">\r\n        <strong>Number of variables: </strong>\r\n        {{details.numberOfVariables}}\r\n      </div>\r\n      <br>\r\n      <div class=\"details-item\">\r\n        <div>\r\n          <strong>Variable details: </strong>\r\n        </div>\r\n        <div *ngFor=\"let item of  details.variableDetails; let i = index\">\r\n          <span>{{i+1}}. </span>\r\n          <span>\r\n            <strong>Name:</strong> {{item.variableName}} | </span>\r\n          <span>\r\n            <strong>Varience:</strong> {{item.varience}} | </span>\r\n          <span>\r\n            <strong>Min:</strong> {{item.min}} | </span>\r\n          <span>\r\n            <strong>Max:</strong> {{item.max}} | </span>\r\n          <span>\r\n            <strong>Distinct Count:</strong> {{item.distinctCount}} | </span>\r\n          <span>\r\n            <strong>Average:</strong> {{item.average}} </span>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <mat-dialog-actions class=\"buttons\">\r\n      <button class=\"link-btn\" [disabled]=\"!linkDatasetBool\" type=\"submit\" color=\"primary\" mat-stroked-button (click)=\"linkDataset()\">Link Dataset</button>\r\n    </mat-dialog-actions>\r\n  </mat-dialog-content>\r\n\r\n  <mat-divider></mat-divider>\r\n  <!-- Projects Properties -->\r\n  <h4 class=\"subtitle\">Project properties</h4>\r\n  <div class=\"cards\">\r\n    <mat-card *ngIf=\"algorithms\">\r\n      <mat-card-header>\r\n        <div mat-card-avatar class=\"example-header-image\"></div>\r\n        <mat-card-title>Algorithms</mat-card-title>\r\n      </mat-card-header>\r\n      <mat-divider></mat-divider>\r\n      <mat-card-content *ngFor=\"let algorithm of algorithms\">\r\n        <span>\r\n          <strong>Algorithm Name:</strong> {{algorithm.algorithmName}}</span>\r\n        <br>\r\n        <span>\r\n          <strong>Algorithm Description:</strong> {{algorithm.description}}</span>\r\n        <br>\r\n        <span>\r\n          <strong>Algorithm Library:</strong> {{algorithm.library}}</span>\r\n      </mat-card-content>\r\n    </mat-card>\r\n    <mat-card class=\"example-card\">\r\n      <mat-card-header>\r\n        <div mat-card-avatar class=\"example-header-image\"></div>\r\n        <mat-card-title>Questions</mat-card-title>\r\n      </mat-card-header>\r\n      <mat-card-content>\r\n        <p>\r\n          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes\r\n          very well with mountainous terrain, the Shiba Inu was originally bred for hunting.\r\n        </p>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </div>\r\n\r\n</div>"
+module.exports = "<div id=\"projectOverview\">\r\n  <h1>Project overview</h1>\r\n  <mat-dialog-content *ngIf=\"project\">\r\n    <h4 class=\"subtitle\">Project details for project ID: {{project.id}}</h4>\r\n    <mat-form-field>\r\n      <input matInput placeholder=\"Project name\" [(ngModel)]=\"project.projectName\" autocomplete=\"off\">\r\n    </mat-form-field>\r\n    <br>\r\n    <mat-form-field>\r\n      <textarea matInput placeholder=\"Project description\" [(ngModel)]=\"project.description\" autocomplete=\"off\"></textarea>\r\n    </mat-form-field>\r\n    <div>Created: {{project.creationDate | date}}</div>\r\n    <div>Last opened:\r\n      <span *ngIf=\"project.lastOpened; else noData\"> {{project.lastOpened | date}}</span>\r\n      <ng-template #noData>\r\n        <i>No data.</i>\r\n      </ng-template>\r\n    </div>\r\n    <div>Projects status: {{project.status}}</div>\r\n    <mat-dialog-actions class=\"buttonsFirst\">\r\n      <button type=\"submit\" color=\"primary\" mat-raised-button (click)=\"editProject(project)\">Save</button>\r\n    </mat-dialog-actions>\r\n  </mat-dialog-content>\r\n  <mat-divider></mat-divider>\r\n  <!-- Select dataset -->\r\n  <mat-dialog-content>\r\n    <h4 class=\"subtitle\">Dataset details</h4>\r\n\r\n    <!-- za selektovanje dataseta -  nije zavrseno -->\r\n    <mat-form-field>\r\n      <mat-select (selectionChange)=\"selectedDataset($event)\" placeholder=\"Select dataset\">\r\n        <mat-option [value]=\"\">Select dataset</mat-option>\r\n        <mat-option *ngFor=\"let data of dataset; let i = index\" [value]=\"data\">{{data.name}}</mat-option>\r\n      </mat-select>\r\n    </mat-form-field>\r\n    <div *ngIf=\"details && showDetails\">\r\n      <div class=\"details-item\">\r\n        <strong>Description: </strong>\r\n        {{details.datasetDesc}}\r\n      </div>\r\n      <div class=\"details-item\">\r\n        <strong>Dataset size: </strong>\r\n        {{details.datasetSize}} KB\r\n      </div>\r\n      <div class=\"details-item\">\r\n        <strong>Number of rows: </strong>\r\n        {{details.numberOfRows}}\r\n      </div>\r\n      <div class=\"details-item\">\r\n        <strong>Number of variables: </strong>\r\n        {{details.numberOfVariables}}\r\n      </div>\r\n      <br>\r\n      <!-- List of VARIABLES -->\r\n      <div class=\"column\" *ngIf=\"details.variableDetails.length > 0;else noData\">\r\n        <h4 class=\"subtitle\">Variable details</h4>\r\n        <br>\r\n        <div class=\"flex column-style header-style\">\r\n          <span>Name</span>\r\n          <span>Distinct Count</span>\r\n          <span>Min</span>\r\n          <span>Max</span>\r\n          <span>Average</span>\r\n          <span>Variance</span>\r\n        </div>\r\n        <div class=\"flex  column-style variables-data\" *ngFor=\"let item of  details.variableDetails; let i = index\">\r\n          <span>{{item.variableName}}</span>\r\n          <span>{{item.distinctCount}}</span>\r\n          <span>{{item.min}}</span>\r\n          <span>{{item.max}}</span>\r\n          <span>{{item.average}}</span>\r\n          <span>{{item.variance}}</span>\r\n        </div>\r\n        <ng-template #noData>\r\n          <span>No data.</span>\r\n        </ng-template>\r\n      </div>\r\n    </div>\r\n  </mat-dialog-content>\r\n\r\n  <mat-divider></mat-divider>\r\n  <!-- Projects Properties -->\r\n  <h4 class=\"subtitle\">Project properties</h4>\r\n  <div class=\"cards\">\r\n    <mat-card *ngIf=\"algorithms\">\r\n      <mat-card-header>\r\n        <div mat-card-avatar class=\"example-header-image\"></div>\r\n        <mat-card-title>Algorithms</mat-card-title>\r\n      </mat-card-header>\r\n      <mat-divider></mat-divider>\r\n      <mat-card-content *ngFor=\"let algorithm of algorithms\">\r\n        <span>\r\n          <strong>Algorithm Name:</strong> {{algorithm.algorithmName}}</span>\r\n        <br>\r\n        <span>\r\n          <strong>Algorithm Description:</strong> {{algorithm.description}}</span>\r\n        <br>\r\n        <span>\r\n          <strong>Algorithm Library:</strong> {{algorithm.library}}</span>\r\n      </mat-card-content>\r\n    </mat-card>\r\n    <mat-card class=\"example-card\">\r\n      <mat-card-header>\r\n        <div mat-card-avatar class=\"example-header-image\"></div>\r\n        <mat-card-title>Questions</mat-card-title>\r\n      </mat-card-header>\r\n      <mat-card-content>\r\n        <p>\r\n          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes\r\n          very well with mountainous terrain, the Shiba Inu was originally bred for hunting.\r\n        </p>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </div>\r\n\r\n</div>"
 
 /***/ }),
 
@@ -2560,7 +2469,7 @@ module.exports = "<div id=\"projectOverview\">\r\n  <h1>Project overview</h1>\r\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n#projectOverview {\n  margin: 5% 15%; }\n\n#projectOverview mat-dialog-content {\n    display: flex;\n    flex-direction: column; }\n\n#projectOverview .buttons button {\n    float: right; }\n\n#projectOverview .buttonsFirst button {\n    float: right; }\n\n#projectOverview .cards {\n    margin-top: 50px;\n    display: flex;\n    flex-direction: row;\n    justify-content: center; }\n\n#projectOverview mat-card {\n    margin: 10px; }\n\n#projectOverview mat-card-content {\n    margin-top: 10px; }\n\n#projectOverview mat-divider {\n    margin: 10px 0; }\n\n#projectOverview h4 {\n    color: #311B92; }\n\n#projectOverview .link-btn {\n    margin: 40px 0; }\n"
+module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n#projectOverview {\n  margin: 5% 15%; }\n\n#projectOverview mat-dialog-content {\n    display: flex;\n    flex-direction: column; }\n\n#projectOverview .buttonsFirst button {\n    float: right; }\n\n#projectOverview .cards {\n    margin-top: 50px;\n    display: flex;\n    flex-direction: row;\n    justify-content: center; }\n\n#projectOverview mat-card {\n    margin: 10px; }\n\n#projectOverview mat-card-content {\n    margin-top: 10px; }\n\n#projectOverview mat-divider {\n    margin: 10px 0; }\n\n#projectOverview h4 {\n    color: #311B92; }\n\n#projectOverview .inline {\n    display: inline-flex; }\n\n#projectOverview .header-style {\n    color: #7C4DFF;\n    font-weight: bold;\n    font-size: 17px;\n    margin: 10px 0; }\n\n#projectOverview .column-style > span {\n    width: 170px; }\n\n#projectOverview .variables-data > span {\n    padding-left: 2px; }\n"
 
 /***/ }),
 
@@ -2596,15 +2505,15 @@ var ProjectOverviewComponent = /** @class */ (function () {
         this.projectOverviewService = projectOverviewService;
         this.snackbar = snackbar;
         this.sharedService = sharedService;
+        this.disableTabsChange = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.selected = 'option2';
         this.showDetails = false;
-        this.linkDatasetBool = false;
     }
-    ProjectOverviewComponent.prototype.getAlorithmsProject = function () {
+    ProjectOverviewComponent.prototype.getListOfAlgorithms = function () {
         var _this = this;
-        this.projectOverviewService.getAlgorithms(this.projectId).subscribe(function (res) {
+        this.projectOverviewService.getListOfAlgorithms(this.projectId).subscribe(function (res) {
             _this.algorithms = res.data;
-            console.log(_this.algorithms);
+            // console.log(res);
         }, function (err) { return console.log(err); });
     };
     ProjectOverviewComponent.prototype.getDataset = function () {
@@ -2613,25 +2522,43 @@ var ProjectOverviewComponent = /** @class */ (function () {
             _this.dataset = res.data;
         }, function (err) { return console.log(err); });
     };
-    ProjectOverviewComponent.prototype.selectedDataset = function (ev) {
+    ProjectOverviewComponent.prototype.editProject = function (obj) {
         var _this = this;
-        this.details = {};
-        this.showDetails = false;
-        this.selectedDatasetId = ev.value.id;
-        this.projectOverviewService.getDatasetDetails(this.selectedDatasetId).subscribe(function (res) {
-            _this.showDetails = true;
-            _this.details = res.data;
-            console.log(_this.details);
-            _this.linkDatasetBool = true;
+        this.projectOverviewService.editProject(obj)
+            .subscribe(function (res) {
+            // console.log(res);
+            _this.snackbar.openSnackBar(res['data'], 'Success');
         }, function (err) {
             console.log(err);
-            _this.linkDatasetBool = false;
             _this.snackbar.openSnackBar('Something went wrong.', 'Error');
         });
     };
-    ProjectOverviewComponent.prototype.linkDataset = function () {
-        this.sharedService.setDatasetId(this.selectedDatasetId);
-        this.snackbar.openSnackBar('Dataset linked.', 'Success');
+    ProjectOverviewComponent.prototype.selectedDataset = function (ev) {
+        var _this = this;
+        if (ev.value) {
+            this.details = {};
+            this.showDetails = false;
+            this.selectedDatasetId = ev.value.id;
+            this.projectOverviewService.getDatasetDetails(this.selectedDatasetId).subscribe(function (res) {
+                _this.showDetails = true;
+                _this.details = res.data;
+                // console.log(this.details);
+                // Enable Tabs
+                _this.disableTabsChange.emit(false);
+                // Link dataset
+                _this.sharedService.setDatasetId(_this.selectedDatasetId);
+                _this.snackbar.openSnackBar('Dataset linked.', 'Success');
+            }, function (err) {
+                console.log(err);
+                _this.snackbar.openSnackBar('Something went wrong.', 'Error');
+            });
+        }
+        else {
+            // Disable Tabs
+            this.disableTabsChange.emit(true);
+            // Link dataset
+            this.sharedService.setDatasetId(null);
+        }
     };
     ProjectOverviewComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -2640,8 +2567,12 @@ var ProjectOverviewComponent = /** @class */ (function () {
             _this.project = res.data;
         });
         this.getDataset();
-        this.getAlorithmsProject();
+        this.getListOfAlgorithms();
     };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+        __metadata("design:type", Object)
+    ], ProjectOverviewComponent.prototype, "disableTabsChange", void 0);
     ProjectOverviewComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-project-overview',
@@ -2686,13 +2617,16 @@ var ProjectOverviewService = /** @class */ (function () {
         this._http = _http;
         this.baseUrl = '/CustomerProfiling/rest/';
     }
+    ProjectOverviewService.prototype.editProject = function (obj) {
+        return this._http.put(this.baseUrl + 'projects', obj);
+    };
     ProjectOverviewService.prototype.getDataset = function () {
         return this._http.get(this.baseUrl + 'dataset');
     };
     ProjectOverviewService.prototype.getDatasetDetails = function (id) {
         return this._http.get(this.baseUrl + 'dataset/' + id);
     };
-    ProjectOverviewService.prototype.getAlgorithms = function (id) {
+    ProjectOverviewService.prototype.getListOfAlgorithms = function (id) {
         return this._http.get(this.baseUrl + 'algorithms/project/' + id);
     };
     ProjectOverviewService.prototype.getProject = function (id) {
@@ -2716,7 +2650,7 @@ var ProjectOverviewService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"projects\">\r\n    <button mat-mini-fab color=\"primary\" matTooltip=\"Create Project\" matTooltipPosition=\"above\" (click)=\"openAddDialog()\">\r\n    <i class=\"material-icons\">add</i>\r\n  </button>\r\n    <table mat-table [dataSource]=\"projects\" class=\"mat-elevation-z8\">\r\n        <!-- Name Column -->\r\n        <ng-container matColumnDef=\"id\">\r\n            <th mat-header-cell *matHeaderCellDef> Id </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.id}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"name\">\r\n            <th mat-header-cell *matHeaderCellDef> Name </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.projectName}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"creationDate\">\r\n            <th mat-header-cell *matHeaderCellDef> Creation Date </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.creationDate | date}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"lastOpened\">\r\n            <th mat-header-cell *matHeaderCellDef> Last Opened </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.lastOpened | date}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"status\">\r\n            <th mat-header-cell *matHeaderCellDef> Status </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.status}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"description\">\r\n            <th mat-header-cell *matHeaderCellDef> Description </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.description}} </td>\r\n        </ng-container>\r\n        <!-- Actions -->\r\n        <ng-container matColumnDef=\"editing\">\r\n            <th mat-header-cell *matHeaderCellDef> Editing</th>\r\n            <td mat-cell *matCellDef=\"let element; let i = index\">\r\n                <span class=\"flex\">\r\n          <i matTooltip=\"Edit Project\" matTooltipPosition=\"above\" class=\"material-icons table-icons\" (click)=\"openEditDialog(element)\">\r\n            edit\r\n          </i>\r\n          <i matTooltip=\"Copy Project\" matTooltipPosition=\"above\" class=\"material-icons table-icons\" (click)=\"openCopyDialog(element, element.id)\">\r\n            file_copy\r\n          </i>\r\n          <i color=\"warn\" matTooltip=\"Delete Project\" matTooltipPosition=\"above\" class=\"material-icons table-icons\" (click)=\"openDeleteDialog(element.id)\">\r\n            delete\r\n          </i>\r\n          <i color=\"warn\" matTooltip=\"Open Project\" matTooltipPosition=\"above\" class=\"material-icons table-icons\" (click)=\"openProject(element.id)\">\r\n              open_in_new\r\n            </i>\r\n        </span>\r\n            </td>\r\n        </ng-container>\r\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n    </table>\r\n    <!-- <mat-paginator [length]=\"dataSource.length\" [pageSize]=\"10\" [pageSizeOptions]=\"[1,5, 10, 25, 100]\"></mat-paginator> -->\r\n</div>"
+module.exports = "<div id=\"projects\">\r\n    <button mat-mini-fab color=\"primary\" matTooltip=\"Create Project\" matTooltipPosition=\"above\" (click)=\"openAddDialog()\">\r\n        <i class=\"material-icons\">add</i>\r\n    </button>\r\n    <table mat-table [dataSource]=\"projects\" class=\"mat-elevation-z8\">\r\n        <!-- Name Column -->\r\n        <ng-container matColumnDef=\"id\">\r\n            <th mat-header-cell *matHeaderCellDef> Id </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.id}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"name\">\r\n            <th mat-header-cell *matHeaderCellDef> Name </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.projectName}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"creationDate\">\r\n            <th mat-header-cell *matHeaderCellDef> Creation Date </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.creationDate | date}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"lastOpened\">\r\n            <th mat-header-cell *matHeaderCellDef> Last Opened </th>\r\n            <td mat-cell *matCellDef=\"let element\">\r\n                <span *ngIf=\"element.lastOpened; else noData\">\r\n                    {{element.lastOpened | date}}\r\n                </span>\r\n                <ng-template #noData>\r\n                    <i>No data.</i>\r\n                </ng-template>\r\n            </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"status\">\r\n            <th mat-header-cell *matHeaderCellDef> Status </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.status}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"description\">\r\n            <th mat-header-cell *matHeaderCellDef> Description </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.description}} </td>\r\n        </ng-container>\r\n        <!-- Actions -->\r\n        <ng-container matColumnDef=\"editing\">\r\n            <th mat-header-cell *matHeaderCellDef> Editing</th>\r\n            <td mat-cell *matCellDef=\"let element; let i = index\">\r\n                <span class=\"flex\">\r\n                    <i matTooltip=\"Copy Project\" matTooltipPosition=\"above\" class=\"material-icons table-icons\" (click)=\"openCopyDialog(element, element.id)\">\r\n                        file_copy\r\n                    </i>\r\n                    <i color=\"warn\" matTooltip=\"Delete Project\" matTooltipPosition=\"above\" class=\"material-icons table-icons\" (click)=\"openDeleteDialog(element.id)\">\r\n                        delete\r\n                    </i>\r\n                    <i color=\"warn\" matTooltip=\"Open Project\" matTooltipPosition=\"above\" class=\"material-icons table-icons\" (click)=\"openProject(element.id)\">\r\n                        open_in_new\r\n                    </i>\r\n                </span>\r\n            </td>\r\n        </ng-container>\r\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n    </table>\r\n    <!-- <mat-paginator [length]=\"dataSource.length\" [pageSize]=\"10\" [pageSizeOptions]=\"[1,5, 10, 25, 100]\"></mat-paginator> -->\r\n</div>"
 
 /***/ }),
 
@@ -2746,11 +2680,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _projects_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./projects.service */ "./src/app/projects/projects.service.ts");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _dialogs_addProject_add_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../dialogs/addProject/add.component */ "./src/app/dialogs/addProject/add.component.ts");
-/* harmony import */ var _dialogs_edit_project_edit_project_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../dialogs/edit-project/edit-project.component */ "./src/app/dialogs/edit-project/edit-project.component.ts");
-/* harmony import */ var _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../dialogs/delete/delete.component */ "./src/app/dialogs/delete/delete.component.ts");
-/* harmony import */ var _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../dialogs/copyProject/copy.component */ "./src/app/dialogs/copyProject/copy.component.ts");
-/* harmony import */ var _shared_services_snackbar_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../shared/services/snackbar.service */ "./src/app/shared/services/snackbar.service.ts");
-/* harmony import */ var _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../shared/services/shared.service */ "./src/app/shared/services/shared.service.ts");
+/* harmony import */ var _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../dialogs/delete/delete.component */ "./src/app/dialogs/delete/delete.component.ts");
+/* harmony import */ var _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../dialogs/copyProject/copy.component */ "./src/app/dialogs/copyProject/copy.component.ts");
+/* harmony import */ var _shared_services_snackbar_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../shared/services/snackbar.service */ "./src/app/shared/services/snackbar.service.ts");
+/* harmony import */ var _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../shared/services/shared.service */ "./src/app/shared/services/shared.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2765,7 +2698,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 // dialogs
-
 
 
 
@@ -2812,22 +2744,9 @@ var ProjectsComponent = /** @class */ (function () {
             _this.getProjects();
         });
     };
-    // open edit dialog
-    ProjectsComponent.prototype.openEditDialog = function (obj) {
-        var _this = this;
-        var dialogRef = this.dialog.open(_dialogs_edit_project_edit_project_component__WEBPACK_IMPORTED_MODULE_5__["EditProjectComponent"], {
-            width: '800px',
-            data: obj
-        });
-        dialogRef.afterClosed().subscribe(function (res) {
-            _this.getProjects();
-            console.log(res);
-            console.log('uspesno');
-        });
-    };
     ProjectsComponent.prototype.openCopyDialog = function (obj) {
         var _this = this;
-        var dialogRef = this.dialog.open(_dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_7__["CopyComponent"], {
+        var dialogRef = this.dialog.open(_dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_6__["CopyComponent"], {
             width: '800px',
             data: obj
         });
@@ -2838,7 +2757,7 @@ var ProjectsComponent = /** @class */ (function () {
     // open delete dialog
     ProjectsComponent.prototype.openDeleteDialog = function (id) {
         var _this = this;
-        var dialogRef = this.dialog.open(_dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_6__["DeleteComponent"], {
+        var dialogRef = this.dialog.open(_dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_5__["DeleteComponent"], {
             data: { id: id }
         });
         dialogRef.afterClosed().subscribe(function (res) {
@@ -2867,7 +2786,7 @@ var ProjectsComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./projects.component.html */ "./src/app/projects/projects.component.html"),
             styles: [__webpack_require__(/*! ./projects.component.scss */ "./src/app/projects/projects.component.scss")]
         }),
-        __metadata("design:paramtypes", [_projects_service__WEBPACK_IMPORTED_MODULE_2__["ProjectsService"], _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialog"], _shared_services_snackbar_service__WEBPACK_IMPORTED_MODULE_8__["SnackBarService"], _angular_router__WEBPACK_IMPORTED_MODULE_0__["Router"], _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_9__["SharedService"]])
+        __metadata("design:paramtypes", [_projects_service__WEBPACK_IMPORTED_MODULE_2__["ProjectsService"], _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialog"], _shared_services_snackbar_service__WEBPACK_IMPORTED_MODULE_7__["SnackBarService"], _angular_router__WEBPACK_IMPORTED_MODULE_0__["Router"], _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_8__["SharedService"]])
     ], ProjectsComponent);
     return ProjectsComponent;
 }());
@@ -3195,6 +3114,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var SharedService = /** @class */ (function () {
     function SharedService() {
+        this.disableTabs = true;
     }
     // PROJECT ID
     SharedService.prototype.setProjectId = function (projectId) {
