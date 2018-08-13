@@ -1,5 +1,10 @@
 package com.kirey.customerprofiling.security;
 
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import com.kirey.customerprofiling.data.entity.UserAccounts;
+
 /**
  * @author paunovicm
  *
@@ -7,8 +12,11 @@ package com.kirey.customerprofiling.security;
 
 public class SecurityUtils {
 	
-	/*
-	public static UserAccount getUserFromContext() {
+	/**
+	 * Method for getting logged user from security context  
+	 * @return {@link UserAccounts}
+	 */
+	public static UserAccounts getUserFromContext() {
 
 		SecurityContext securityContext = SecurityContextHolder.getContext();
 		Object details = null;
@@ -19,13 +27,13 @@ public class SecurityUtils {
 			details = null;
 		}
 
-		UserAccount user = null;
-		if (details != null && details instanceof UserAccount) {
-			user = (UserAccount) details;
+		UserAccounts user = null;
+		if (details != null && details instanceof UserAccounts) {
+			user = (UserAccounts) details;
 		}
 
 		return user;
 	}
-	*/
+	
 
 }

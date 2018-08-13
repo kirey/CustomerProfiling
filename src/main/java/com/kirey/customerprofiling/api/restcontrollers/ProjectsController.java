@@ -1,6 +1,7 @@
 package com.kirey.customerprofiling.api.restcontrollers;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,8 @@ import com.kirey.customerprofiling.api.dto.RestResponseDto;
 import com.kirey.customerprofiling.common.constants.AppConstants;
 import com.kirey.customerprofiling.data.dao.ProjectsDao;
 import com.kirey.customerprofiling.data.entity.Projects;
+import com.kirey.customerprofiling.data.entity.UserAccounts;
+import com.kirey.customerprofiling.security.SecurityUtils;
 
 /**
  * 
@@ -27,7 +30,8 @@ import com.kirey.customerprofiling.data.entity.Projects;
 @RequestMapping("/rest/projects")
 public class ProjectsController {
 
-	@Autowired ProjectsDao projectsDao;
+	@Autowired
+	private ProjectsDao projectsDao;
 	
 	
 	/**
@@ -36,10 +40,29 @@ public class ProjectsController {
 	 */
 	
 //	@GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
+//	@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<RestResponseDto> getAllProjects() {	
+//		
+//		return new ResponseEntity<RestResponseDto>(new RestResponseDto(projectsDao.findAll(), HttpStatus.OK.value()), HttpStatus.OK);
+//		
+//	}
+	
+	
+	/**
+	 * Method for getting list of filtered projects by given user
+	 * @return ResponseEntity containing the list of filtered projects along with HTTP status
+	 */
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<RestResponseDto> getAllProjects() {	
+	public ResponseEntity<RestResponseDto> getFilteredProjectsByUser() {	
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto(projectsDao.findAll(), HttpStatus.OK.value()), HttpStatus.OK);
+		UserAccounts user = SecurityUtils.getUserFromContext();
+		if(user == null) {
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto("You need to be logged to access projects", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
+		
+		List<Projects> listProjects = projectsDao.findFilteredByUser(user.getId());
+		
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(listProjects, HttpStatus.OK.value()), HttpStatus.OK);
 		
 	}
 	
@@ -54,7 +77,12 @@ public class ProjectsController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> getProjectDetails(@PathVariable Integer id) {	
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto(projectsDao.findById(id), HttpStatus.OK.value()), HttpStatus.OK);
+		boolean belong = projectsDao.belongToLoggedUser(id);
+		if(!belong) {
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto("You are not authorized to view details for this project", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}else {
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto(projectsDao.findById(id), HttpStatus.OK.value()), HttpStatus.OK);
+		}
 		
 	}
 	
@@ -66,9 +94,11 @@ public class ProjectsController {
 	@RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> addProjectDetail(@RequestBody Projects project) {
 		
+		UserAccounts user = SecurityUtils.getUserFromContext();
+		
 		project.setCreationDate(new Date());
 		project.setStatus(AppConstants.ALGORITHM_STATUS_NOT_TRAINED);
-		
+		project.setUserAccount(user);
 		projectsDao.persist(project);
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Successfully added", HttpStatus.OK.value()), HttpStatus.OK);
@@ -82,7 +112,8 @@ public class ProjectsController {
 	@RequestMapping(value = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> editProjectDetail(@RequestBody Projects project) {
 	
-		
+		UserAccounts user = SecurityUtils.getUserFromContext();
+		project.setUserAccount(user);
 		projectsDao.attachDirty(project);
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Successfully edited", HttpStatus.OK.value()), HttpStatus.OK);
@@ -119,6 +150,7 @@ public class ProjectsController {
 //		newProject.setDatasets(project.getDatasets());
 		newProject.setDescription(project.getDescription());
 		newProject.setLastOpened(new Date());
+		newProject.setUserAccount(project.getUserAccount());
 //		newProject.setProjectsAlgorithmsList(project.getProjectsAlgorithmsList());
 		
 		

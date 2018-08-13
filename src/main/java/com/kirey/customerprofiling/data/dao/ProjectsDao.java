@@ -1,5 +1,7 @@
 package com.kirey.customerprofiling.data.dao;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.apache.commons.logging.LogFactory;
@@ -9,6 +11,8 @@ import org.springframework.stereotype.Repository;
 
 import com.kirey.customerprofiling.data.entity.Datasets;
 import com.kirey.customerprofiling.data.entity.Projects;
+import com.kirey.customerprofiling.data.entity.UserAccounts;
+import com.kirey.customerprofiling.security.SecurityUtils;
 
 /**
  * 
@@ -51,6 +55,34 @@ public class ProjectsDao extends KjcBaseDao{
 		
 		Projects project = (Projects) sessionFactory.getCurrentSession().createQuery(hql).setParameter("algorithmId", algorithmId).uniqueResult();
 		return project;
+	}
+
+	/**
+	 * Method for getting list of filtered projects by given user
+	 * @param userId - of {@link UserAccounts}c
+	 * @return List of filtered {@link Projects}
+	 */
+	public List<Projects> findFilteredByUser(Integer userId) {
+		String hql = "from Projects p where p.userAccount.id = :userId";
+		List<Projects> projects = sessionFactory.getCurrentSession().createQuery(hql).setParameter("userId", userId).list();
+		return projects;
+	}
+
+	/**
+	 * Method checks does given project belong to logged user
+	 * @param projectId - of {@link Projects}
+	 * @return true if belong / false if not
+	 */
+	public boolean belongToLoggedUser(Integer projectId) {
+		UserAccounts user = SecurityUtils.getUserFromContext();
+		Projects project = this.findById(projectId);
+		
+		if(user != null && project.getUserAccount().getId().equals(user.getId())) {
+			return true;
+		}else {
+			return false;	
+		}
+		
 	}
 	
 }
