@@ -82,8 +82,12 @@ public class AlgorithmsController {
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> getAlgorithmDetails(@PathVariable Integer id){
-			
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto(algorithmsDao.findById(id), HttpStatus.OK.value()), HttpStatus.OK);
+		Algorithms algorithm = algorithmsDao.findById(id);
+		List<Parameters> listParameters = algorithm.getParameters();
+		for (Parameters parameter : listParameters) {
+			parameter.setParameterValues(null);
+		}	
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(algorithm, HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
 	/**

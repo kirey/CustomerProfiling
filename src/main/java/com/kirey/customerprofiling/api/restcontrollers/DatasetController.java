@@ -7,7 +7,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -158,6 +160,10 @@ public class DatasetController {
 	 */
 	@RequestMapping(value = "/preprocessing/save", method = RequestMethod.POST)
 	public ResponseEntity<RestResponseDto> saveTransformedCSV(@RequestBody List<Variables> originalVariables, @RequestParam Integer datasetId, @RequestParam Integer projectId) throws FileNotFoundException{
+		boolean belong = projectDao.belongToLoggedUser(projectId);
+		if(!belong) {
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto("You are not authorized to view details for this project", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
 		Datasets derivedDatast = datasetsDao.getDerivedFromProject(projectId);
 		if(derivedDatast != null) {
 			return new ResponseEntity<RestResponseDto>(new RestResponseDto("Derived dataset already exist for current project", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
@@ -273,7 +279,18 @@ public class DatasetController {
 	 */
 	@RequestMapping(value = "/linkDataset", method = RequestMethod.GET)
 	public ResponseEntity<RestResponseDto> findDatasetBynName(@RequestParam Integer projectId){
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto(datasetsDao.isDatasetLinkedToProject(projectId), HttpStatus.OK.value()), HttpStatus.OK);
+		
+//		datasetsDao.isDatasetLinkedToProject(projectId);
+		Map<Object, Object> responseMap = new HashMap<>();
+		Datasets originalDataset = datasetsDao.findOriginalByProject(projectId);
+		if(originalDataset != null) {
+			responseMap.put(true, originalDataset.getId());
+		}else {
+			responseMap.put(false, null);
+		}
+		
+		
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(responseMap, HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
 	/**
