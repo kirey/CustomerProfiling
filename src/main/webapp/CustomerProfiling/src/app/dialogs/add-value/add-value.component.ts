@@ -20,8 +20,8 @@ export class AddValueComponent implements OnInit {
     });
   }
 
-  addValue(){
-    this.dialogRef.close(this.value);
+  addValue() {
+    this.dialogRef.close(this.addValueForm.value);
   }
 
 }
