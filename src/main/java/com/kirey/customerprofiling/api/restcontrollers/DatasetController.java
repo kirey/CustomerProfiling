@@ -160,6 +160,10 @@ public class DatasetController {
 	 */
 	@RequestMapping(value = "/preprocessing/save", method = RequestMethod.POST)
 	public ResponseEntity<RestResponseDto> saveTransformedCSV(@RequestBody List<Variables> originalVariables, @RequestParam Integer datasetId, @RequestParam Integer projectId) throws FileNotFoundException{
+		boolean belong = projectDao.belongToLoggedUser(projectId);
+		if(!belong) {
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto("You are not authorized to view details for this project", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}
 		Datasets derivedDatast = datasetsDao.getDerivedFromProject(projectId);
 		if(derivedDatast != null) {
 			return new ResponseEntity<RestResponseDto>(new RestResponseDto("Derived dataset already exist for current project", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
