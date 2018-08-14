@@ -140,7 +140,7 @@ public class AlgorithmsController {
 			return new ResponseEntity<RestResponseDto>(new RestResponseDto("Algorithm doesn't exist", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
 		
 		
-		if( algorithmsDao.isAlgorithmNotExistInProjectAlgorithms(algorithmId) == false ) {
+		if(algorithmsDao.relatedWithProject(algorithmId)) {
 			return new ResponseEntity<RestResponseDto>(new RestResponseDto("Algorithm already exist in project,can't be deleted", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
 		} 
 		

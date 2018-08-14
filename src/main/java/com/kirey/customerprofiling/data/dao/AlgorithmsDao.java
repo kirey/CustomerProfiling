@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kirey.customerprofiling.data.entity.Algorithms;
+import com.kirey.customerprofiling.data.entity.Projects;
+import com.kirey.customerprofiling.data.entity.ProjectsAlgorithms;
 
 @Repository(value = "algorithmsDao")
 @Transactional
@@ -24,7 +26,11 @@ public class AlgorithmsDao extends KjcBaseDao {
 		entityClass = Algorithms.class;
     }
 
-	
+	/**
+	 * Method for getting list of algorithms by given project
+	 * @param projectId - of {@link Projects}
+	 * @return List of {@link Algorithms}
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Algorithms> findAlgortithmsByProject(Integer projectId) {
 		
@@ -39,24 +45,17 @@ public class AlgorithmsDao extends KjcBaseDao {
 	/**
 	 * If Algorithm not exists in ProjectsAlgorithm
 	 * @param algorithmId
-	 * @return TRUE if Algorithm doesn't exist in ProjectAlgorithms
+	 * @return TRUE if Algorithm exists in ProjectAlgorithms
 	 */
 	@SuppressWarnings("unused")
-	public boolean isAlgorithmNotExistInProjectAlgorithms(Integer algorithmId) {
-		
-		String hql = "Select a from Algorithms a where a.id=:algorithmId "
-				+ "and not exists "
-				+ "( Select 1 "
-				+ "from ProjectsAlgorithms pa "
-				+ "where pa.algorithm.id=:algorithmId )";
-		
-		try {
-			Algorithms algorithm = (Algorithms)sessionFactory.getCurrentSession().createQuery(hql).setParameter("algorithmId", algorithmId).getSingleResult();
+	public boolean relatedWithProject(Integer algorithmId) {		
+		String hql = "from ProjectsAlgorithms pa where pa.algorithm.id = :algorithmId";		
+		ProjectsAlgorithms projectAlgorithm = (ProjectsAlgorithms)sessionFactory.getCurrentSession().createQuery(hql).setParameter("algorithmId", algorithmId).uniqueResult();		
+		if(projectAlgorithm != null) {
 			return true;
-		}catch (NoResultException e) {	
+		}else {
 			return false;
 		}
-		
 	}
 }
 
