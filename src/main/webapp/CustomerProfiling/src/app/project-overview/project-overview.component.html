@@ -27,10 +27,10 @@
     <h4 class="subtitle">Dataset details</h4>
 
     <!-- za selektovanje dataseta -  nije zavrseno -->
-    <mat-form-field>
-      <mat-select (selectionChange)="selectedDataset($event)" placeholder="Select dataset">
-        <mat-option [value]="">Select dataset</mat-option>
-        <mat-option *ngFor="let data of dataset; let i = index" [value]="data">{{data.name}}</mat-option>
+    <mat-form-field *ngIf="linked && dataset">
+      <mat-select [disabled]="sharedService.getIsDatasetLinked()" [(ngModel)]="datasetName" (selectionChange)="selectedDataset($event)"
+        placeholder="Select dataset">
+        <mat-option *ngFor="let data of dataset; let i = index" [value]="data.name">{{data.name}}</mat-option>
       </mat-select>
     </mat-form-field>
     <div *ngIf="details && showDetails">

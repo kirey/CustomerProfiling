@@ -30,18 +30,6 @@ export class DataTabComponent implements OnInit {
   csvArray: any;
   isDatasetLinked: boolean;
 
-
-  isLinked() {
-    this.dataTabService.isLinked(this.projectId)
-      .subscribe(
-        res => {
-          console.log(res);
-          this.isDatasetLinked = res['data'];
-        },
-        err => console.log(err)
-      );
-  }
-
   getVariables() {
     this.dataTabService.getVariables(this.datasetId)
       .subscribe(
@@ -92,6 +80,10 @@ export class DataTabComponent implements OnInit {
         this.snackbar.openSnackBar('Something went wrong.', 'Error');
       }
     );
+  }
+
+  getIsDatasetLinked() {
+    this.isDatasetLinked = this.sharedService.getIsDatasetLinked();
   }
 
   setOperationTypes() {
@@ -280,11 +272,11 @@ export class DataTabComponent implements OnInit {
     this.datasetId = this.sharedService.getDatasetId();
     this.projectId = this.sharedService.getProjectId();
 
-    this.isLinked();
     this.getVariables();
     this.getDataTypes();
     this.getVariableTypes();
     this.setOperationTypes();
     this.getDatasetDetails();
+    this.getIsDatasetLinked();
   }
 }

@@ -27,11 +27,6 @@ export class DataTabService {
         return this._http.get(this.baseUrl + 'operationTypes?dataType=' + type);
     }
 
-    // Check whether dataset is linked to project
-    isLinked(projectId) {
-        return this._http.get(this.baseUrl + 'linkDataset?projectId=' + projectId);
-    }
-
     getProcessingView(datasetId, list): Observable<any> {
         for (let i = 0; i < list.length; i++) {
             delete list[i]['params'];

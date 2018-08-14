@@ -13,6 +13,8 @@ export class SharedService {
     projectId: number;
     datasetId: number;
     disableTabs: boolean = true;
+    datasetName: string;
+    isDatasetLinked: boolean = false;
 
     constructor() { }
 
@@ -32,6 +34,33 @@ export class SharedService {
 
     getDatasetId() {
         return this.datasetId;
+    }
+
+    // DATASET NAME
+    setDatasetName(name: string) {
+        this.datasetName = name;
+    }
+
+    getDatasetName() {
+        return this.datasetName;
+    }
+
+    // DATASET LINKED
+    setDatasetLink(isLinked: boolean) {
+        this.isDatasetLinked = isLinked;
+    }
+
+    getIsDatasetLinked() {
+        return this.isDatasetLinked;
+    }
+
+    // RESET VALUES - ONE PROJECT CMP
+    resetValuesOneProject() {
+        this.projectId = null;
+        this.datasetId = null;
+        this.disableTabs = true;
+        this.datasetName = null;
+        this.isDatasetLinked = false;
     }
 
 }

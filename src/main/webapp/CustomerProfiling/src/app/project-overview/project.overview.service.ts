@@ -25,4 +25,8 @@ export class ProjectOverviewService {
   getProject(id): Observable<any> {
     return this._http.get(this.baseUrl + 'projects/' + id);
   }
+  // Check whether DATASET is linked to project
+  isLinked(projectId) {
+    return this._http.get(this.baseUrl + 'dataset/linkDataset?projectId=' + projectId);
+  }
 }

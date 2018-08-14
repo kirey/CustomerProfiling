@@ -10,9 +10,4 @@ export class OneProjectService {
     constructor(private _http: HttpClient) { }
 
     baseUrl = '/CustomerProfiling/rest/';
-
-    // Check whether DATASET is linked to project
-    isLinked(projectId) {
-        return this._http.get(this.baseUrl + 'dataset/linkDataset?projectId=' + projectId);
-    }
 }
