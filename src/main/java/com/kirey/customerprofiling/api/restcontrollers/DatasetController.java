@@ -125,6 +125,7 @@ public class DatasetController {
 		if(dataType.equals(DataType.NUMERIC)) {
 			possibleValues.add(AppConstants.OPERATION_TYPE_SCALING_OPERATION);
 			possibleValues.add(AppConstants.OPERATION_TYPE_BINNING_OPERATION);
+			possibleValues.add(AppConstants.OPERATION_TYPE_LIVE_AS_IT_IS);
 		}else if(dataType.equals(DataType.TEXT)) {
 			possibleValues.add(AppConstants.OPERATION_TYPE_UNFOLDING_DISTINCT);
 			possibleValues.add(AppConstants.OPERATION_TYPE_LIVE_AS_IT_IS);
