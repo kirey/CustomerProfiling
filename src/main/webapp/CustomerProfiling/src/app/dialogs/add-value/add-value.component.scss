@@ -38,4 +38,19 @@
         overflow: auto;
         -webkit-overflow-scrolling: touch;
     }
+    .dialog {
+        padding: 30px;
+    }
+
+    // EDIT PARAMS
+    mat-dialog-actions {
+        align-self: flex-end!important;
+        margin: 30px 30px 0!important;
+    }
+    mat-dialog-actions>button {
+        margin: 0 10px!important;
+    }
+    .params-table {
+        margin: 45px;
+    }
 }

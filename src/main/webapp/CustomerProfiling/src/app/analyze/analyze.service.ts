@@ -26,4 +26,9 @@ export class AnalyzeService {
   getListOfAlgorithms(projectId) {
     return this._http.get(this.baseUrl + 'project/' + projectId).pipe(map(res => res.json()));
   }
+
+  // Delete Algorithm
+  deleteAlgorithm(projectId, algorithmId) {
+    return this._http.get(this.baseUrl + 'remove/project/' + projectId + '?algorithmId=' + algorithmId);
+  }
 }

@@ -13,11 +13,13 @@ export class AddValueComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<AddValueComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private _formBuilder: FormBuilder) { }
   private addValueForm: FormGroup;
   private value;
+  private displayedColumns: string[] = ['parameterName', 'parameterValueType', 'parameterValue'];
 
   ngOnInit() {
-    this.addValueForm = this._formBuilder.group({
-      value: ['', Validators.required]
-    });
+    console.log(this.data);
+    // this.addValueForm = this._formBuilder.group({
+    //   value: ['', Validators.required]
+    // });
   }
 
   addValue() {

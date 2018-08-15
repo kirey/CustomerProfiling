@@ -6,6 +6,7 @@ import { AnalyzeService } from './analyze.service';
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared/services/shared.service';
 import { SnackBarService } from '../shared/services/snackbar.service';
+import { DeleteComponent } from '../dialogs/delete/delete.component';
 
 @Component({
   selector: 'app-analyze',
@@ -64,7 +65,8 @@ export class AnalyzeComponent implements OnInit {
 
   addValue(element, i) {
     const dialogRef = this._dialog.open(AddValueComponent, {
-      width: '850px'
+      width: '850px',
+      data: { type: 'addValueDialog', data: null }
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
@@ -72,12 +74,49 @@ export class AnalyzeComponent implements OnInit {
 
     });
   }
+
+  editParams(params) {
+    const dialogRef = this._dialog.open(AddValueComponent, {
+      width: '850px',
+      data: { type: 'editParams', data: params }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+
+    });
+  }
+
+  deleteAlgorithm(id, name) {
+    const dialogRef = this._dialog.open(DeleteComponent, {
+      width: '500px',
+      data: { type: "algorithm", value: name }
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      if (res == true) {
+        this._analyzeService.deleteAlgorithm(this.projectId, id)
+          .subscribe(
+            res => {
+              // console.log(res);
+              this.getListOfAlgorithms();
+              this.snackbar.openSnackBar('Successfully deleted.', 'Success');
+            },
+            err => {
+              console.log(err);
+              this.snackbar.openSnackBar('Something went wrong.', 'Error');
+            }
+          )
+      }
+    });
+  }
+
+  // SAVE button
   addAlgorithm() {
     console.log(this.initialAlgorithm);
     this._analyzeService.save(this.projectId, this.initialAlgorithm)
       .subscribe(
         res => {
           this.getListOfAlgorithms();
+          this.getAlgorithms();
           // console.log(res);
           this.snackbar.openSnackBar('Successfully saved.', 'Success');
         },
@@ -86,8 +125,8 @@ export class AnalyzeComponent implements OnInit {
           this.snackbar.openSnackBar('Something went wrong.', 'Error');
         }
       )
-
   }
+
   ngOnInit() {
     this.projectId = this.sharedService.getProjectId();
     this.getAlgorithms();
