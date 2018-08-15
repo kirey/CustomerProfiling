@@ -31,4 +31,9 @@ export class AnalyzeService {
   deleteAlgorithm(projectId, algorithmId) {
     return this._http.get(this.baseUrl + 'remove/project/' + projectId + '?algorithmId=' + algorithmId);
   }
+
+  // Save Parameters
+  saveParams(obj) {
+    return this._http.put(this.baseUrl + 'parameters', obj);
+  }
 }

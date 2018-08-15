@@ -9,12 +9,12 @@
             </mat-select>
         </mat-form-field>
         <h4>Algorithm Details:</h4>
-        <div *ngIf="parameters.length != 0" class="algorithmDetails">
+        <div class="algorithmDetails">
             <label class="labels">
                 <strong class="name">Algorithm Name:</strong> {{initialAlgorithm.algorithmName}}</label>
             <label class="labels bottomLabel">
                 <strong class="desc">Algorithm Description:</strong> {{initialAlgorithm.description}}</label>
-            <table mat-table [dataSource]="parameters" class="mat-elevation-z8">
+            <table *ngIf="parameters.length != 0" mat-table [dataSource]="parameters" class="mat-elevation-z8">
                 <ng-container matColumnDef="parameterName">
                     <th mat-header-cell *matHeaderCellDef> Parameter Name </th>
                     <td mat-cell *matCellDef="let element"> {{element.parameterName}} </td>
@@ -30,7 +30,7 @@
                 </ng-container>
                 <ng-container matColumnDef="actions">
                     <th mat-header-cell *matHeaderCellDef> Add Value</th>
-                    <td mat-cell *matCellDef="let elementl let i = index">
+                    <td mat-cell *matCellDef="let element let i = index">
                         <i matTooltip="Add value" (click)="addValue(element, i)" matTooltipPosition="above" class="material-icons table-icons"> add </i>
                     </td>
                 </ng-container>
@@ -42,11 +42,11 @@
     </div>
 </div>
 <div class="selectAlgorithm" *ngIf="this.listOfAlgorithms">
-    <div class="flex column algorithm-list" *ngFor="let algorithm of listOfAlgorithms">
+    <div class="flex column algorithm-list" *ngFor="let algorithm of listOfAlgorithms; let i = index">
         <div class="flex space-between algorithm-list-item">
             <span>{{algorithm.algorithmName}}</span>
             <span>
-                <i (click)="editParams(algorithm.parameters)" class="material-icons">border_color</i>
+                <i (click)="editParams(algorithm.parameters, i)" class="material-icons">border_color</i>
                 <i (click)="deleteAlgorithm(algorithm.id, algorithm.algorithmName)" class="material-icons">delete</i>
             </span>
         </div>

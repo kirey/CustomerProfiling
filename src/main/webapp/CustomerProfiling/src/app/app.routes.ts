@@ -16,6 +16,12 @@ import { AlgorithmsComponent } from './algorithms/algorithms.component';
 
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: '/login',
+    canActivate: [AuthGuard],
+    pathMatch: 'full'
+  },
   { path: 'projects', component: ProjectsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -23,7 +29,7 @@ const routes: Routes = [
   { path: 'one-project', component: OneProjectComponent },
   // { path: 'data-tab', component: DataTabComponent, canActivate: [AuthGuard] },
   { path: 'algorithms', component: AlgorithmsComponent, canActivate: [AuthGuard] },
-  { path: '**', component: AppComponent }
+  { path: '**', component: LoginComponent }
 ];
 
 export const AppRoutes: any = RouterModule.forRoot(routes, { useHash: true });

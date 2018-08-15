@@ -66,23 +66,37 @@ export class AnalyzeComponent implements OnInit {
   addValue(element, i) {
     const dialogRef = this._dialog.open(AddValueComponent, {
       width: '850px',
-      data: { type: 'addValueDialog', data: null }
+      data: { type: 'addValueDialog', value: element.parameterValues[0].value }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      this.parameters[i].parameterValues[0] = result;
-
+      if (result) {
+        console.log(result);
+        this.parameters[i].parameterValues[0] = result;
+      }
     });
   }
 
-  editParams(params) {
+  editParams(params, algorithmIndex) {
     const dialogRef = this._dialog.open(AddValueComponent, {
       width: '850px',
       data: { type: 'editParams', data: params }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      if (result) {
+        this.listOfAlgorithms[algorithmIndex]['parameters'] = result;
 
+        this._analyzeService.saveParams(this.listOfAlgorithms[algorithmIndex])
+          .subscribe(
+            res => {
+              // console.log(res);
+              this.snackbar.openSnackBar('Parameters updated.', 'Success');
+            },
+            err => {
+              console.log(err);
+              this.snackbar.openSnackBar('Something went wrong.', 'Error');
+            }
+          );
+      }
     });
   }
 
