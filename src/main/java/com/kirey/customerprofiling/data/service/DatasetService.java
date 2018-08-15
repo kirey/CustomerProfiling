@@ -123,6 +123,29 @@ public class DatasetService {
 		
 		List<List<String[]>> listRows = new ArrayList<>();
 		for (Variables variable : variables) {
+			if(variable.isLeaveAsItIs()) {
+				List<String> variableValues = new ArrayList<>();
+				List<String[]> rows = processor.getRows();
+				// get variable values
+				for (String[] row : rows) {
+					for (int i = 0; i < row.length; i++) {
+						if (variable.getColumnNumber() == i) {
+							variableValues.add(row[i]);
+						}
+					}
+				}
+				//transform to string
+				List<String[]> stringValues = new ArrayList<>();
+				for(int i = 0; i < variableValues.size(); i++) {
+					String[] s = new String[1];
+					s[0] = String.valueOf(variableValues.get(i));
+					stringValues.add(s);
+				}
+				//add to headers
+				derivedHeaders.add(variable.getVariableName());
+				listRows.add(stringValues);
+				this.createDerivedVariableAndPutInHolder(variable, variable.getVariableName());
+			}
 			if(variable.getTypeOfData().equals(DataType.TEXT)) {
 				if(variable.isDistinct()) {
 					List<String> distinctHeaders = this.findDistinctFromCSV(variable, processor);
@@ -131,13 +154,6 @@ public class DatasetService {
 //					distinctValues = this.getValuesDistinctTransformed(variable, processor, distinctHeaders);
 					//add to headers
 					derivedHeaders.addAll(distinctHeaders);
-				}else if(variable.isLeaveAsItIs()) {
-					List<String> allHeaders = this.findAllValuesFromCSV(variable, processor);
-					//add to headers
-					derivedHeaders.addAll(allHeaders);
-					List<String[]> values = this.getValuesDistinctTransformed(variable, processor, allHeaders);
-					listRows.add(values);
-					
 				}
 			} else if(variable.getTypeOfData().equals(DataType.NUMERIC)) {
 				if(variable.getBins() != null) {
@@ -212,10 +228,16 @@ public class DatasetService {
 		HashMap<String, Object> returnMap = new HashMap<>();
 		List<String[]> rows = new ArrayList<>();
 		List<Double> listValues = this.getNumericValuesFromCSVByVariable(variable, processor);
+		////////
+		// find min
+		Double globalMin = listValues.stream().mapToDouble(v -> v).min().getAsDouble();
+		// find max
+		Double globalMax = listValues.stream().mapToDouble(v -> v).max().getAsDouble();
+		///////
 		for (Double value : listValues) {
 			String[] row = new String[variable.getBins()];
 			for(int i = 0; i < variable.getBins(); i++) {
-				row[i] = this.performBinningOperation(value, variable.getBins(), i);
+				row[i] = this.performBinningOperation(value, variable.getBins(), i, globalMin, globalMax);
 			}
 			rows.add(row);
 		}
@@ -242,19 +264,21 @@ public class DatasetService {
 	/**
 	 * Method for finding range in which value belongs. 
 	 * <p>Range is defined from
-	 * <p> <code>bins * increment</code>
+	 * <p> <code>globalMin + (increment*(globalMax-globalMin)/bins)</code>
 	 * <p> to 
-	 * <p><code>bins * (increment+1)</code>
+	 * <p><code>globalMin + ((increment+1)*(globalMax-globalMin)/bins)</code>
 	 * @param x - the value for which the range should be found
 	 * @param bins - for defining range
 	 * @param increment - value can be from 0 to bins
+	 * @param globalMin - minimum value from whole dataset
+	 * @param globalMax - maximum value from whole dataset
 	 * @return "1" if value x belongs to given range or "0" if not.
 	 */
-	private String performBinningOperation(double x, Integer bins, int increment) {
-		int min = bins* increment;
-		int max = bins*(increment+1);
+	private String performBinningOperation(double x, Integer bins, int increment, Double globalMin, Double globalMax) {
+		double min = globalMin + (increment*(globalMax-globalMin)/bins);
+		double max = globalMin + ((increment+1)*(globalMax-globalMin)/bins);
 		
-		if(x >= min && x < max) {
+		if(x >= min && x <= max) {
 			return "1";
 		}else {
 			return "0";
