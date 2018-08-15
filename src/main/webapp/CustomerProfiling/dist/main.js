@@ -179,7 +179,7 @@ var AlgorithmsService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"selectAlgorithm\">\r\n    <h4>Select Algorithm:</h4>\r\n    <div *ngIf=\"initialAlgorithm != null && parameters.length != 0\">\r\n        <mat-form-field>\r\n            <mat-select [(ngModel)]=\"initialAlgorithm\" [ngModelOptions]=\"{standalone: true}\" placeholder=\"Select Algorithm\" (selectionChange)=\"getParameters($event.value)\">\r\n                <mat-option *ngFor=\"let algorithm of algorithms\" [value]=\"algorithm\">\r\n                    {{algorithm.algorithmName}}\r\n                </mat-option>\r\n            </mat-select>\r\n        </mat-form-field>\r\n        <h4>Algorithm Details:</h4>\r\n        <div class=\"algorithmDetails\">\r\n            <label class=\"labels\"> <strong class=\"name\">Algorithm Name:</strong> {{initialAlgorithm.algorithmName}}</label>\r\n            <label class=\"labels bottomLabel\"><strong class=\"desc\">Algorithm Description:</strong> {{initialAlgorithm.description}}</label>\r\n            <table mat-table [dataSource]=\"parameters\" class=\"mat-elevation-z8\">\r\n                <ng-container matColumnDef=\"parameterName\">\r\n                    <th mat-header-cell *matHeaderCellDef> Parameter Name </th>\r\n                    <td mat-cell *matCellDef=\"let element\"> {{element.parameterName}} </td>\r\n                </ng-container>\r\n                <ng-container matColumnDef=\"parameterValueType\">\r\n                    <th mat-header-cell *matHeaderCellDef> Parameter Value Type </th>\r\n                    <td mat-cell *matCellDef=\"let element\"> {{element.parameterValueType}} </td>\r\n                </ng-container>\r\n                <ng-container matColumnDef=\"parameterDefaultValue\">\r\n                    <th mat-header-cell *matHeaderCellDef> Parameter Default Value </th>\r\n                    <td mat-cell *matCellDef=\"let element\"> {{element.defaultValue}} </td>\r\n                </ng-container>\r\n                <ng-container matColumnDef=\"parameterValue\">\r\n                    <th mat-header-cell *matHeaderCellDef> Parameter Value </th>\r\n                    <td mat-cell *matCellDef=\"let element\"> {{element.parameterValues[0] != null ? element.parameterValues[0].value : element.defaultValue}} </td>\r\n                </ng-container>\r\n                <ng-container matColumnDef=\"actions\">\r\n                    <th mat-header-cell *matHeaderCellDef> Add Value</th>\r\n                    <td mat-cell *matCellDef=\"let element\">\r\n                        <i matTooltip=\"Add value\" (click)=\"addValue(element)\" matTooltipPosition=\"above\" class=\"material-icons table-icons\"> add </i>\r\n                    </td>\r\n                </ng-container>\r\n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n            </table>\r\n            <button mat-button>Add</button>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"selectAlgorithm\">\r\n    <h4>Select Algorithm:</h4>\r\n    <div *ngIf=\"initialAlgorithm != null\">\r\n        <mat-form-field>\r\n            <mat-select [(ngModel)]=\"initialAlgorithm\" [ngModelOptions]=\"{standalone: true}\" placeholder=\"Select Algorithm\" (selectionChange)=\"getParameters($event.value)\">\r\n                <mat-option *ngFor=\"let algorithm of algorithms\" [value]=\"algorithm\">\r\n                    {{algorithm.algorithmName}}\r\n                </mat-option>\r\n            </mat-select>\r\n        </mat-form-field>\r\n        <h4>Algorithm Details:</h4>\r\n        <div *ngIf=\"parameters.length != 0\" class=\"algorithmDetails\">\r\n            <label class=\"labels\">\r\n                <strong class=\"name\">Algorithm Name:</strong> {{initialAlgorithm.algorithmName}}</label>\r\n            <label class=\"labels bottomLabel\">\r\n                <strong class=\"desc\">Algorithm Description:</strong> {{initialAlgorithm.description}}</label>\r\n            <table mat-table [dataSource]=\"parameters\" class=\"mat-elevation-z8\">\r\n                <ng-container matColumnDef=\"parameterName\">\r\n                    <th mat-header-cell *matHeaderCellDef> Parameter Name </th>\r\n                    <td mat-cell *matCellDef=\"let element\"> {{element.parameterName}} </td>\r\n                </ng-container>\r\n                <ng-container matColumnDef=\"parameterValueType\">\r\n                    <th mat-header-cell *matHeaderCellDef> Parameter Value Type </th>\r\n                    <td mat-cell *matCellDef=\"let element\"> {{element.parameterValueType}} </td>\r\n                </ng-container>\r\n                <ng-container matColumnDef=\"parameterValue\">\r\n                    <th mat-header-cell *matHeaderCellDef> Parameter Value </th>\r\n                    <td mat-cell *matCellDef=\"let element\"> {{element.parameterValues[0] != null ? element.parameterValues[0].value : element.parameterValues[0].value}}\r\n                    </td>\r\n                </ng-container>\r\n                <ng-container matColumnDef=\"actions\">\r\n                    <th mat-header-cell *matHeaderCellDef> Add Value</th>\r\n                    <td mat-cell *matCellDef=\"let elementl let i = index\">\r\n                        <i matTooltip=\"Add value\" (click)=\"addValue(element, i)\" matTooltipPosition=\"above\" class=\"material-icons table-icons\"> add </i>\r\n                    </td>\r\n                </ng-container>\r\n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n            </table>\r\n            <button mat-raised-button color=\"primary\" (click)=\"addAlgorithm()\">Add</button>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div class=\"selectAlgorithm\" *ngIf=\"this.listOfAlgorithms\">\r\n    <div class=\"flex column algorithm-list\" *ngFor=\"let algorithm of listOfAlgorithms\">\r\n        <div class=\"flex space-between algorithm-list-item\">\r\n            <span>{{algorithm.algorithmName}}</span>\r\n            <span>\r\n                <i (click)=\"editParams(algorithm.parameters)\" class=\"material-icons\">border_color</i>\r\n                <i (click)=\"deleteAlgorithm(algorithm.id, algorithm.algorithmName)\" class=\"material-icons\">delete</i>\r\n            </span>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -190,7 +190,7 @@ module.exports = "<div class=\"selectAlgorithm\">\r\n    <h4>Select Algorithm:</
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n.selectAlgorithm {\n  border: ridge;\n  border-width: 1px;\n  border-color: #757575;\n  margin-left: 15%;\n  margin-right: 15%;\n  margin-top: 2%;\n  margin-bottom: 5%; }\n\nh4 {\n  margin-left: 15px; }\n\n.mat-form-field {\n  margin-left: 40px; }\n\n.labels {\n  padding-left: 35px; }\n\n.algorithmDetails {\n  background: #fafafa;\n  display: -ms-grid;\n  display: grid; }\n\n.name {\n  padding-right: 48px; }\n\n.desc {\n  padding-right: 10px; }\n\n.bottomLabel {\n  margin-top: 20px; }\n\ntable {\n  border-spacing: 0;\n  margin: 40px; }\n"
+module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n.selectAlgorithm {\n  border: ridge;\n  border-width: 1px;\n  border-color: #757575;\n  margin-left: 15%;\n  margin-right: 15%;\n  margin-top: 2%;\n  margin-bottom: 5%; }\n\nh4 {\n  margin-left: 15px; }\n\n.mat-form-field {\n  margin-left: 40px; }\n\n.labels {\n  padding-left: 35px; }\n\n.algorithmDetails {\n  background: #fafafa;\n  display: -ms-grid;\n  display: grid; }\n\n.name {\n  padding-right: 48px; }\n\n.desc {\n  padding-right: 10px; }\n\n.bottomLabel {\n  margin-top: 20px; }\n\ntable {\n  border-spacing: 0;\n  margin: 40px; }\n\n.algorithm-list {\n  padding: 20px; }\n\n.algorithm-list-item {\n  color: #311B92;\n  font-weight: bold;\n  margin: 10px 0; }\n"
 
 /***/ }),
 
@@ -209,6 +209,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _analyze_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./analyze.service */ "./src/app/analyze/analyze.service.ts");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../shared/services/shared.service */ "./src/app/shared/services/shared.service.ts");
+/* harmony import */ var _shared_services_snackbar_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../shared/services/snackbar.service */ "./src/app/shared/services/snackbar.service.ts");
+/* harmony import */ var _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../dialogs/delete/delete.component */ "./src/app/dialogs/delete/delete.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -223,26 +226,20 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
+
 var AnalyzeComponent = /** @class */ (function () {
-    function AnalyzeComponent(_analyzeService, _formBuilder, _dialog) {
+    function AnalyzeComponent(_analyzeService, _formBuilder, _dialog, sharedService, snackbar) {
         this._analyzeService = _analyzeService;
         this._formBuilder = _formBuilder;
         this._dialog = _dialog;
+        this.sharedService = sharedService;
+        this.snackbar = snackbar;
         this.parameters = [];
-        this.displayedColumns = ['parameterName', 'parameterValueType', 'parameterDefaultValue', 'parameterValue', 'actions'];
+        this.displayedColumns = ['parameterName', 'parameterValueType', 'parameterValue', 'actions'];
         this.selectedAlgorithms = [];
     }
-    AnalyzeComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this._analyzeService.getAlgorithms().subscribe(function (res) {
-            _this.algorithms = JSON.parse(res.text()).data;
-        }, function (err) {
-        }, function () {
-            _this.initialAlgorithm = _this.algorithms[0];
-            console.log(_this.initialAlgorithm);
-            _this.getParameters(_this.initialAlgorithm);
-        });
-    };
     AnalyzeComponent.prototype.getParameters = function (algorithm) {
         var _this = this;
         console.log(this.parameters);
@@ -254,38 +251,88 @@ var AnalyzeComponent = /** @class */ (function () {
         });
         console.log(this.parameters);
     };
-    AnalyzeComponent.prototype.addValue = function (element) {
+    AnalyzeComponent.prototype.getAlgorithms = function () {
         var _this = this;
-        var dialogRef = this._dialog.open(_dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_1__["AddValueComponent"], {
-            width: '850px'
-        });
-        dialogRef.afterClosed().subscribe(function (result) {
-            //here we take value from dialog back to component and need to put it back in array changed and to delete old one
-            for (var i = 0; i < _this.parameters.length; i++) {
-                if (element == _this.parameters[i]) {
-                    var newParameter = {
-                        defaultValue: element.defaultValue,
-                        id: element.id,
-                        parameterName: element.parameterName,
-                        parameterValueType: element.parameterValueType,
-                        parameterValues: [
-                            {
-                                value: result
-                            }
-                        ]
-                    };
-                    console.log(newParameter);
-                    delete _this.parameters[i];
-                    _this.parameters.push(newParameter);
-                }
+        this._analyzeService.getAlgorithms(this.projectId).subscribe(function (res) {
+            _this.algorithms = JSON.parse(res.text()).data;
+            console.log(_this.algorithms);
+        }, function (err) {
+            _this.snackbar.openSnackBar('Something went wrong.', 'Error');
+        }, function () {
+            if (_this.algorithms.length > 0) {
+                _this.initialAlgorithm = _this.algorithms[0];
+                console.log(_this.initialAlgorithm);
+                _this.getParameters(_this.initialAlgorithm);
             }
-            //to remove undefined element that is deleted previously
-            _this.parameters = _this.parameters.filter(function (element) {
-                return element !== undefined;
-            });
         });
     };
+    AnalyzeComponent.prototype.getListOfAlgorithms = function () {
+        var _this = this;
+        this._analyzeService.getListOfAlgorithms(this.projectId)
+            .subscribe(function (res) {
+            console.log(res);
+            _this.listOfAlgorithms = res['data'];
+        }, function (err) { return console.log(err); });
+    };
+    AnalyzeComponent.prototype.addValue = function (element, i) {
+        var _this = this;
+        var dialogRef = this._dialog.open(_dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_1__["AddValueComponent"], {
+            width: '850px',
+            data: { type: 'addValueDialog', data: null }
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            console.log(result);
+            _this.parameters[i].parameterValues[0] = result;
+        });
+    };
+    AnalyzeComponent.prototype.editParams = function (params) {
+        var dialogRef = this._dialog.open(_dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_1__["AddValueComponent"], {
+            width: '850px',
+            data: { type: 'editParams', data: params }
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            console.log(result);
+        });
+    };
+    AnalyzeComponent.prototype.deleteAlgorithm = function (id, name) {
+        var _this = this;
+        var dialogRef = this._dialog.open(_dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_7__["DeleteComponent"], {
+            width: '500px',
+            data: { type: "algorithm", value: name }
+        });
+        dialogRef.afterClosed().subscribe(function (res) {
+            if (res == true) {
+                _this._analyzeService.deleteAlgorithm(_this.projectId, id)
+                    .subscribe(function (res) {
+                    // console.log(res);
+                    _this.getListOfAlgorithms();
+                    _this.snackbar.openSnackBar('Successfully deleted.', 'Success');
+                }, function (err) {
+                    console.log(err);
+                    _this.snackbar.openSnackBar('Something went wrong.', 'Error');
+                });
+            }
+        });
+    };
+    // SAVE button
     AnalyzeComponent.prototype.addAlgorithm = function () {
+        var _this = this;
+        console.log(this.initialAlgorithm);
+        this._analyzeService.save(this.projectId, this.initialAlgorithm)
+            .subscribe(function (res) {
+            _this.getListOfAlgorithms();
+            _this.getAlgorithms();
+            // console.log(res);
+            _this.snackbar.openSnackBar('Successfully saved.', 'Success');
+        }, function (err) {
+            console.log(err);
+            _this.snackbar.openSnackBar('Something went wrong.', 'Error');
+        });
+    };
+    AnalyzeComponent.prototype.ngOnInit = function () {
+        this.projectId = this.sharedService.getProjectId();
+        this.getAlgorithms();
+        this.getListOfAlgorithms();
     };
     AnalyzeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["Component"])({
@@ -293,7 +340,7 @@ var AnalyzeComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./analyze.component.html */ "./src/app/analyze/analyze.component.html"),
             styles: [__webpack_require__(/*! ./analyze.component.scss */ "./src/app/analyze/analyze.component.scss")]
         }),
-        __metadata("design:paramtypes", [_analyze_service__WEBPACK_IMPORTED_MODULE_3__["AnalyzeService"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"], _angular_material__WEBPACK_IMPORTED_MODULE_0__["MatDialog"]])
+        __metadata("design:paramtypes", [_analyze_service__WEBPACK_IMPORTED_MODULE_3__["AnalyzeService"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"], _angular_material__WEBPACK_IMPORTED_MODULE_0__["MatDialog"], _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_5__["SharedService"], _shared_services_snackbar_service__WEBPACK_IMPORTED_MODULE_6__["SnackBarService"]])
     ], AnalyzeComponent);
     return AnalyzeComponent;
 }());
@@ -314,6 +361,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnalyzeService", function() { return AnalyzeService; });
 /* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -325,13 +373,27 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var AnalyzeService = /** @class */ (function () {
     function AnalyzeService(_http) {
         this._http = _http;
         this.baseUrl = 'rest/algorithms/';
     }
-    AnalyzeService.prototype.getAlgorithms = function () {
-        return this._http.get(this.baseUrl);
+    // Get All Algorithms
+    AnalyzeService.prototype.getAlgorithms = function (projectId) {
+        return this._http.get(this.baseUrl + 'filtered/project/' + projectId);
+    };
+    // Save
+    AnalyzeService.prototype.save = function (projectId, obj) {
+        return this._http.post(this.baseUrl + 'save/project/' + projectId, obj);
+    };
+    // List of Algorithms
+    AnalyzeService.prototype.getListOfAlgorithms = function (projectId) {
+        return this._http.get(this.baseUrl + 'project/' + projectId).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
+    };
+    // Delete Algorithm
+    AnalyzeService.prototype.deleteAlgorithm = function (projectId, algorithmId) {
+        return this._http.get(this.baseUrl + 'remove/project/' + projectId + '?algorithmId=' + algorithmId);
     };
     AnalyzeService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -763,14 +825,6 @@ var DataTabComponent = /** @class */ (function () {
         this.numericOperationTypes = [];
         this.textOperationTypes = [];
     }
-    DataTabComponent.prototype.isLinked = function () {
-        var _this = this;
-        this.dataTabService.isLinked(this.projectId)
-            .subscribe(function (res) {
-            console.log(res);
-            _this.isDatasetLinked = res['data'];
-        }, function (err) { return console.log(err); });
-    };
     DataTabComponent.prototype.getVariables = function () {
         var _this = this;
         this.dataTabService.getVariables(this.datasetId)
@@ -810,6 +864,9 @@ var DataTabComponent = /** @class */ (function () {
             console.log(err);
             _this.snackbar.openSnackBar('Something went wrong.', 'Error');
         });
+    };
+    DataTabComponent.prototype.getIsDatasetLinked = function () {
+        this.isDatasetLinked = this.sharedService.getIsDatasetLinked();
     };
     DataTabComponent.prototype.setOperationTypes = function () {
         var _this = this;
@@ -921,12 +978,9 @@ var DataTabComponent = /** @class */ (function () {
                 .subscribe(function (res) {
                 console.log(res['data']);
                 _this.csvArray = res['data'];
-                var dialogRef = _this.dialog.open(_dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_3__["DataTabViewComponent"], {
+                _this.dialog.open(_dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_3__["DataTabViewComponent"], {
                     width: '800px',
                     data: _this.csvArray
-                });
-                dialogRef.afterClosed().subscribe(function (res) {
-                    console.log(res);
                 });
             }, function (err) {
                 console.log(err);
@@ -940,7 +994,6 @@ var DataTabComponent = /** @class */ (function () {
         }
     };
     DataTabComponent.prototype.submit = function () {
-        var _this = this;
         var checkArray = [];
         console.log(this.variables);
         // Check for empty fields
@@ -979,7 +1032,6 @@ var DataTabComponent = /** @class */ (function () {
             this, this.dataTabService.save(this.datasetId, this.projectId, data)
                 .subscribe(function (res) {
                 console.log(res);
-                _this.isLinked();
             }, function (err) {
                 console.log(err);
             });
@@ -988,12 +1040,12 @@ var DataTabComponent = /** @class */ (function () {
     DataTabComponent.prototype.ngOnInit = function () {
         this.datasetId = this.sharedService.getDatasetId();
         this.projectId = this.sharedService.getProjectId();
-        this.isLinked();
         this.getVariables();
         this.getDataTypes();
         this.getVariableTypes();
         this.setOperationTypes();
         this.getDatasetDetails();
+        this.getIsDatasetLinked();
     };
     DataTabComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1050,10 +1102,6 @@ var DataTabService = /** @class */ (function () {
     };
     DataTabService.prototype.getOperationTypes = function (type) {
         return this._http.get(this.baseUrl + 'operationTypes?dataType=' + type);
-    };
-    // Check whether dataset is linked to project
-    DataTabService.prototype.isLinked = function (projectId) {
-        return this._http.get(this.baseUrl + 'linkDataset?projectId=' + projectId);
     };
     DataTabService.prototype.getProcessingView = function (datasetId, list) {
         for (var i = 0; i < list.length; i++) {
@@ -1620,7 +1668,7 @@ var AddDatasetComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"addValue\">\r\n    <h1>Add Value for parameter </h1>\r\n    <mat-divider></mat-divider>\r\n    <mat-dialog-content>\r\n        <form [formGroup]=\"addValueForm\" (ngSubmit)=\"addValue()\">\r\n            <mat-form-field>\r\n                <input matInput formControlName=\"value\" type=\"text\" placeholder=\"Enter value\" autocomplete=\"off\" [(ngModel)]=\"value\">\r\n            </mat-form-field>\r\n            <mat-error *ngIf=\"addValueForm.get('value').touched && addValueForm.get('value').hasError('required')\">\r\n                Value is required!\r\n            </mat-error>\r\n            <mat-dialog-actions class=\"buttons\">\r\n                <button type=\"submit\" mat-raised-button [disabled]=\"addValueForm.invalid\">Add value</button>\r\n            </mat-dialog-actions>\r\n        </form>\r\n    </mat-dialog-content>\r\n</div>"
+module.exports = "<!-- ONE VALUE -->\r\n<div *ngIf=\"data && data.type == 'addValueDialog'\" id=\"addValue\">\r\n    <h1>Add Value for parameter </h1>\r\n    <mat-divider></mat-divider>\r\n    <mat-dialog-content>\r\n        <form [formGroup]=\"addValueForm\" (ngSubmit)=\"addValue()\">\r\n            <mat-form-field>\r\n                <input matInput formControlName=\"value\" type=\"text\" placeholder=\"Enter value\" autocomplete=\"off\" [(ngModel)]=\"value\">\r\n            </mat-form-field>\r\n            <mat-error *ngIf=\"addValueForm.get('value').touched && addValueForm.get('value').hasError('required')\">\r\n                Value is required!\r\n            </mat-error>\r\n            <mat-dialog-actions class=\"buttons\">\r\n                <button type=\"submit\" mat-raised-button [disabled]=\"addValueForm.invalid\">Add value</button>\r\n            </mat-dialog-actions>\r\n        </form>\r\n    </mat-dialog-content>\r\n</div>\r\n\r\n<!-- MULTIPLE VALUES -->\r\n<div class=\"flex column center dialog\" *ngIf=\"data && data.type == 'editParams'\">\r\n    <table mat-table [dataSource]=\"data.data\" class=\"params-table mat-elevation-z8\">\r\n        <ng-container matColumnDef=\"parameterName\">\r\n            <th mat-header-cell *matHeaderCellDef> Parameter Name </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.parameterName}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"parameterValueType\">\r\n            <th mat-header-cell *matHeaderCellDef> Parameter Value Type </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.parameterValueType}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"parameterValue\">\r\n            <th mat-header-cell *matHeaderCellDef> Parameter Value </th>\r\n            <td mat-cell *matCellDef=\"let element\">\r\n                <mat-form-field>\r\n                    <input matInput type=\"text\" placeholder=\"Enter value\" autocomplete=\"off\" [(ngModel)]=\"element.parameterValues[0] != null ? element.parameterValues[0].value : element.parameterValues[0].value\">\r\n                </mat-form-field>\r\n                <!-- <mat-error *ngIf=\"addValueForm.get('value').touched && addValueForm.get('value').hasError('required')\">\r\n                    Value is required!\r\n                </mat-error> -->\r\n            </td>\r\n        </ng-container>\r\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n    </table>\r\n    <mat-dialog-actions>\r\n        <button mat-dialog-close mat-stroked-button color=\"warn\">Cancel</button>\r\n        <button mat-raised-button color=\"primary\" type=\"submit\" mat-raised-button>Save</button>\r\n    </mat-dialog-actions>\r\n</div>"
 
 /***/ }),
 
@@ -1631,7 +1679,7 @@ module.exports = "<div id=\"addValue\">\r\n    <h1>Add Value for parameter </h1>
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n#addValue {\n  display: flex;\n  flex-direction: column;\n  padding-right: 20px; }\n\n#addValue .mat-form-field {\n    width: 100%;\n    padding: 10px 10px 10px 10px; }\n\n#addValue .mat-dialog-content {\n    height: 300px; }\n\n#addValue .buttons {\n    float: right; }\n\n#addValue button {\n    background: #311B92;\n    color: white; }\n\n#addValue button:disabled,\n  #addValue button[disabled] {\n    background-color: #cccccc;\n    color: black; }\n\n#addValue h1 {\n    text-align: center; }\n\n#addValue .mat-error {\n    padding-left: 10px;\n    margin-top: -20px; }\n\n#addValue .mat-dialog-content {\n    margin-top: 50px;\n    margin-bottom: 20px;\n    display: block;\n    padding: 0 24px;\n    max-height: 65vh;\n    overflow: auto;\n    -webkit-overflow-scrolling: touch; }\n"
+module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n#addValue {\n  display: flex;\n  flex-direction: column;\n  padding-right: 20px; }\n\n#addValue .mat-form-field {\n    width: 100%;\n    padding: 10px 10px 10px 10px; }\n\n#addValue .mat-dialog-content {\n    height: 300px; }\n\n#addValue .buttons {\n    float: right; }\n\n#addValue button {\n    background: #311B92;\n    color: white; }\n\n#addValue button:disabled,\n  #addValue button[disabled] {\n    background-color: #cccccc;\n    color: black; }\n\n#addValue h1 {\n    text-align: center; }\n\n#addValue .mat-error {\n    padding-left: 10px;\n    margin-top: -20px; }\n\n#addValue .mat-dialog-content {\n    margin-top: 50px;\n    margin-bottom: 20px;\n    display: block;\n    padding: 0 24px;\n    max-height: 65vh;\n    overflow: auto;\n    -webkit-overflow-scrolling: touch; }\n\n#addValue .dialog {\n    padding: 30px; }\n\n#addValue mat-dialog-actions {\n    align-self: flex-end !important;\n    margin: 30px 30px 0 !important; }\n\n#addValue mat-dialog-actions > button {\n    margin: 0 10px !important; }\n\n#addValue .params-table {\n    margin: 45px; }\n"
 
 /***/ }),
 
@@ -1668,14 +1716,16 @@ var AddValueComponent = /** @class */ (function () {
         this.dialogRef = dialogRef;
         this.data = data;
         this._formBuilder = _formBuilder;
+        this.displayedColumns = ['parameterName', 'parameterValueType', 'parameterValue'];
     }
     AddValueComponent.prototype.ngOnInit = function () {
-        this.addValueForm = this._formBuilder.group({
-            value: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required]
-        });
+        console.log(this.data);
+        // this.addValueForm = this._formBuilder.group({
+        //   value: ['', Validators.required]
+        // });
     };
     AddValueComponent.prototype.addValue = function () {
-        this.dialogRef.close(this.value);
+        this.dialogRef.close(this.addValueForm.value);
     };
     AddValueComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
@@ -1984,7 +2034,7 @@ var CopyProjectService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"data-tab-view\">\r\n    <h2 mat-dialog-title class=\"subtitle\">DATASET - Pre Processing VIEW</h2>\r\n    <mat-divider></mat-divider>\r\n    <mat-dialog-content>\r\n        <div id=\"csv_data_table\"></div>\r\n    </mat-dialog-content>\r\n    <mat-dialog-actions>\r\n        <button mat-stroked-button [mat-dialog-close]=\"csv_data\" color=\"primary\" mat-dialog-close>Close</button>\r\n    </mat-dialog-actions>\r\n</div>"
+module.exports = "<div id=\"data-tab-view\">\r\n    <h2 mat-dialog-title class=\"subtitle\">DATASET - Pre Processing VIEW</h2>\r\n    <mat-divider></mat-divider>\r\n    <mat-dialog-content>\r\n        <div id=\"csv_data_table\"></div>\r\n    </mat-dialog-content>\r\n    <mat-dialog-actions>\r\n        <button mat-stroked-button color=\"primary\" mat-dialog-close>Close</button>\r\n    </mat-dialog-actions>\r\n</div>"
 
 /***/ }),
 
@@ -2388,7 +2438,7 @@ var LoginComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"one-project\" class=\"flex column center\">\r\n    <button routerLink=\"/projects\" mat-stroked-button color=\"primary\" matTooltip=\"Back to list of projects\" matTooltipPosition=\"right\">Back to Projects</button>\r\n    <mat-tab-group color=\"warn\" mat-stretch-tabs class=\"mat-elevation-z4\">\r\n        <mat-tab label=\"Project Overview\">\r\n            <ng-template matTabContent>\r\n                <app-project-overview (disableTabsChange)=\"disableTabsChange($event)\"></app-project-overview>\r\n            </ng-template>\r\n        </mat-tab>\r\n        <mat-tab [disabled]=\"disableTabs\" label=\"Data\">\r\n            <ng-template matTabContent>\r\n                <app-data-tab></app-data-tab>\r\n            </ng-template>\r\n        </mat-tab>\r\n        <mat-tab [disabled]=\"disableTabs\" label=\"Analyze\">\r\n            <ng-template matTabContent>\r\n                <app-analyze></app-analyze>\r\n            </ng-template>\r\n        </mat-tab>\r\n        <mat-tab [disabled]=\"disableTabs\" label=\"Question\">\r\n            <ng-template matTabContent>\r\n                <h1>Question</h1>\r\n                <p>...</p>\r\n            </ng-template>\r\n        </mat-tab>\r\n    </mat-tab-group>\r\n</div>"
+module.exports = "<div id=\"one-project\" class=\"flex column center\">\r\n    <button (click)=\"backBtn()\" routerLink=\"/projects\" mat-stroked-button color=\"primary\" matTooltip=\"Back to list of projects\"\r\n        matTooltipPosition=\"right\">Back to Projects</button>\r\n    <mat-tab-group color=\"warn\" mat-stretch-tabs class=\"mat-elevation-z4\">\r\n        <mat-tab label=\"Project Overview\">\r\n            <ng-template matTabContent>\r\n                <app-project-overview (disableTabsChange)=\"disableTabsChange($event)\"></app-project-overview>\r\n            </ng-template>\r\n        </mat-tab>\r\n        <mat-tab [disabled]=\"disableTabs\" label=\"Data\">\r\n            <ng-template matTabContent>\r\n                <app-data-tab></app-data-tab>\r\n            </ng-template>\r\n        </mat-tab>\r\n        <mat-tab [disabled]=\"disableTabs\" label=\"Analyze\">\r\n            <ng-template matTabContent>\r\n                <app-analyze></app-analyze>\r\n            </ng-template>\r\n        </mat-tab>\r\n        <mat-tab [disabled]=\"disableTabs\" label=\"Question\">\r\n            <ng-template matTabContent>\r\n                <h1>Question</h1>\r\n                <p>...</p>\r\n            </ng-template>\r\n        </mat-tab>\r\n    </mat-tab-group>\r\n</div>"
 
 /***/ }),
 
@@ -2434,6 +2484,9 @@ var OneProjectComponent = /** @class */ (function () {
     OneProjectComponent.prototype.disableTabsChange = function (ev) {
         this.disableTabs = ev;
     };
+    OneProjectComponent.prototype.backBtn = function () {
+        this.sharedService.resetValuesOneProject();
+    };
     OneProjectComponent.prototype.ngOnInit = function () {
     };
     OneProjectComponent = __decorate([
@@ -2458,7 +2511,7 @@ var OneProjectComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"projectOverview\">\r\n  <h1>Project overview</h1>\r\n  <mat-dialog-content *ngIf=\"project\">\r\n    <h4 class=\"subtitle\">Project details for project ID: {{project.id}}</h4>\r\n    <mat-form-field>\r\n      <input matInput placeholder=\"Project name\" [(ngModel)]=\"project.projectName\" autocomplete=\"off\">\r\n    </mat-form-field>\r\n    <br>\r\n    <mat-form-field>\r\n      <textarea matInput placeholder=\"Project description\" [(ngModel)]=\"project.description\" autocomplete=\"off\"></textarea>\r\n    </mat-form-field>\r\n    <div>Created: {{project.creationDate | date}}</div>\r\n    <div>Last opened:\r\n      <span *ngIf=\"project.lastOpened; else noData\"> {{project.lastOpened | date}}</span>\r\n      <ng-template #noData>\r\n        <i>No data.</i>\r\n      </ng-template>\r\n    </div>\r\n    <div>Projects status: {{project.status}}</div>\r\n    <mat-dialog-actions class=\"buttonsFirst\">\r\n      <button type=\"submit\" color=\"primary\" mat-raised-button (click)=\"editProject(project)\">Save</button>\r\n    </mat-dialog-actions>\r\n  </mat-dialog-content>\r\n  <mat-divider></mat-divider>\r\n  <!-- Select dataset -->\r\n  <mat-dialog-content>\r\n    <h4 class=\"subtitle\">Dataset details</h4>\r\n\r\n    <!-- za selektovanje dataseta -  nije zavrseno -->\r\n    <mat-form-field>\r\n      <mat-select (selectionChange)=\"selectedDataset($event)\" placeholder=\"Select dataset\">\r\n        <mat-option [value]=\"\">Select dataset</mat-option>\r\n        <mat-option *ngFor=\"let data of dataset; let i = index\" [value]=\"data\">{{data.name}}</mat-option>\r\n      </mat-select>\r\n    </mat-form-field>\r\n    <div *ngIf=\"details && showDetails\">\r\n      <div class=\"details-item\">\r\n        <strong>Description: </strong>\r\n        {{details.datasetDesc}}\r\n      </div>\r\n      <div class=\"details-item\">\r\n        <strong>Dataset size: </strong>\r\n        {{details.datasetSize}} KB\r\n      </div>\r\n      <div class=\"details-item\">\r\n        <strong>Number of rows: </strong>\r\n        {{details.numberOfRows}}\r\n      </div>\r\n      <div class=\"details-item\">\r\n        <strong>Number of variables: </strong>\r\n        {{details.numberOfVariables}}\r\n      </div>\r\n      <br>\r\n      <!-- List of VARIABLES -->\r\n      <div class=\"column\" *ngIf=\"details.variableDetails.length > 0;else noData\">\r\n        <h4 class=\"subtitle\">Variable details</h4>\r\n        <br>\r\n        <div class=\"flex column-style header-style\">\r\n          <span>Name</span>\r\n          <span>Distinct Count</span>\r\n          <span>Min</span>\r\n          <span>Max</span>\r\n          <span>Average</span>\r\n          <span>Variance</span>\r\n        </div>\r\n        <div class=\"flex  column-style variables-data\" *ngFor=\"let item of  details.variableDetails; let i = index\">\r\n          <span>{{item.variableName}}</span>\r\n          <span>{{item.distinctCount}}</span>\r\n          <span>{{item.min}}</span>\r\n          <span>{{item.max}}</span>\r\n          <span>{{item.average}}</span>\r\n          <span>{{item.variance}}</span>\r\n        </div>\r\n        <ng-template #noData>\r\n          <span>No data.</span>\r\n        </ng-template>\r\n      </div>\r\n    </div>\r\n  </mat-dialog-content>\r\n\r\n  <mat-divider></mat-divider>\r\n  <!-- Projects Properties -->\r\n  <h4 class=\"subtitle\">Project properties</h4>\r\n  <div class=\"cards\">\r\n    <mat-card *ngIf=\"algorithms\">\r\n      <mat-card-header>\r\n        <div mat-card-avatar class=\"example-header-image\"></div>\r\n        <mat-card-title>Algorithms</mat-card-title>\r\n      </mat-card-header>\r\n      <mat-divider></mat-divider>\r\n      <mat-card-content *ngFor=\"let algorithm of algorithms\">\r\n        <span>\r\n          <strong>Algorithm Name:</strong> {{algorithm.algorithmName}}</span>\r\n        <br>\r\n        <span>\r\n          <strong>Algorithm Description:</strong> {{algorithm.description}}</span>\r\n        <br>\r\n        <span>\r\n          <strong>Algorithm Library:</strong> {{algorithm.library}}</span>\r\n      </mat-card-content>\r\n    </mat-card>\r\n    <mat-card class=\"example-card\">\r\n      <mat-card-header>\r\n        <div mat-card-avatar class=\"example-header-image\"></div>\r\n        <mat-card-title>Questions</mat-card-title>\r\n      </mat-card-header>\r\n      <mat-card-content>\r\n        <p>\r\n          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes\r\n          very well with mountainous terrain, the Shiba Inu was originally bred for hunting.\r\n        </p>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </div>\r\n\r\n</div>"
+module.exports = "<div id=\"projectOverview\">\r\n  <h1>Project overview</h1>\r\n  <mat-dialog-content *ngIf=\"project\">\r\n    <h4 class=\"subtitle\">Project details for project ID: {{project.id}}</h4>\r\n    <mat-form-field>\r\n      <input matInput placeholder=\"Project name\" [(ngModel)]=\"project.projectName\" autocomplete=\"off\">\r\n    </mat-form-field>\r\n    <br>\r\n    <mat-form-field>\r\n      <textarea matInput placeholder=\"Project description\" [(ngModel)]=\"project.description\" autocomplete=\"off\"></textarea>\r\n    </mat-form-field>\r\n    <div>Created: {{project.creationDate | date}}</div>\r\n    <div>Last opened:\r\n      <span *ngIf=\"project.lastOpened; else noData\"> {{project.lastOpened | date}}</span>\r\n      <ng-template #noData>\r\n        <i>No data.</i>\r\n      </ng-template>\r\n    </div>\r\n    <div>Projects status: {{project.status}}</div>\r\n    <mat-dialog-actions class=\"buttonsFirst\">\r\n      <button type=\"submit\" color=\"primary\" mat-raised-button (click)=\"editProject(project)\">Save</button>\r\n    </mat-dialog-actions>\r\n  </mat-dialog-content>\r\n  <mat-divider></mat-divider>\r\n  <!-- Select dataset -->\r\n  <mat-dialog-content>\r\n    <h4 class=\"subtitle\">Dataset details</h4>\r\n\r\n    <!-- za selektovanje dataseta -  nije zavrseno -->\r\n    <mat-form-field *ngIf=\"linked && dataset\">\r\n      <mat-select [disabled]=\"sharedService.getIsDatasetLinked()\" [(ngModel)]=\"datasetName\" (selectionChange)=\"selectedDataset($event)\"\r\n        placeholder=\"Select dataset\">\r\n        <mat-option *ngFor=\"let data of dataset; let i = index\" [value]=\"data.name\">{{data.name}}</mat-option>\r\n      </mat-select>\r\n    </mat-form-field>\r\n    <div *ngIf=\"details && showDetails\">\r\n      <div class=\"details-item\">\r\n        <strong>Description: </strong>\r\n        {{details.datasetDesc}}\r\n      </div>\r\n      <div class=\"details-item\">\r\n        <strong>Dataset size: </strong>\r\n        {{details.datasetSize}} KB\r\n      </div>\r\n      <div class=\"details-item\">\r\n        <strong>Number of rows: </strong>\r\n        {{details.numberOfRows}}\r\n      </div>\r\n      <div class=\"details-item\">\r\n        <strong>Number of variables: </strong>\r\n        {{details.numberOfVariables}}\r\n      </div>\r\n      <br>\r\n      <!-- List of VARIABLES -->\r\n      <div class=\"column\" *ngIf=\"details.variableDetails.length > 0;else noData\">\r\n        <h4 class=\"subtitle\">Variable details</h4>\r\n        <br>\r\n        <div class=\"flex column-style header-style\">\r\n          <span>Name</span>\r\n          <span>Distinct Count</span>\r\n          <span>Min</span>\r\n          <span>Max</span>\r\n          <span>Average</span>\r\n          <span>Variance</span>\r\n        </div>\r\n        <div class=\"flex  column-style variables-data\" *ngFor=\"let item of  details.variableDetails; let i = index\">\r\n          <span>{{item.variableName}}</span>\r\n          <span>{{item.distinctCount}}</span>\r\n          <span>{{item.min}}</span>\r\n          <span>{{item.max}}</span>\r\n          <span>{{item.average}}</span>\r\n          <span>{{item.variance}}</span>\r\n        </div>\r\n        <ng-template #noData>\r\n          <span>No data.</span>\r\n        </ng-template>\r\n      </div>\r\n    </div>\r\n  </mat-dialog-content>\r\n\r\n  <mat-divider></mat-divider>\r\n  <!-- Projects Properties -->\r\n  <h4 class=\"subtitle\">Project properties</h4>\r\n  <div class=\"cards\">\r\n    <mat-card *ngIf=\"algorithms\">\r\n      <mat-card-header>\r\n        <div mat-card-avatar class=\"example-header-image\"></div>\r\n        <mat-card-title>Algorithms</mat-card-title>\r\n      </mat-card-header>\r\n      <mat-divider></mat-divider>\r\n      <mat-card-content *ngFor=\"let algorithm of algorithms\">\r\n        <span>\r\n          <strong>Algorithm Name:</strong> {{algorithm.algorithmName}}</span>\r\n        <br>\r\n        <span>\r\n          <strong>Algorithm Description:</strong> {{algorithm.description}}</span>\r\n        <br>\r\n        <span>\r\n          <strong>Algorithm Library:</strong> {{algorithm.library}}</span>\r\n      </mat-card-content>\r\n    </mat-card>\r\n    <mat-card class=\"example-card\">\r\n      <mat-card-header>\r\n        <div mat-card-avatar class=\"example-header-image\"></div>\r\n        <mat-card-title>Questions</mat-card-title>\r\n      </mat-card-header>\r\n      <mat-card-content>\r\n        <p>\r\n          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes\r\n          very well with mountainous terrain, the Shiba Inu was originally bred for hunting.\r\n        </p>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </div>\r\n\r\n</div>"
 
 /***/ }),
 
@@ -2522,6 +2575,33 @@ var ProjectOverviewComponent = /** @class */ (function () {
             _this.dataset = res.data;
         }, function (err) { return console.log(err); });
     };
+    ProjectOverviewComponent.prototype.isLinked = function () {
+        var _this = this;
+        this.projectOverviewService.isLinked(this.projectId)
+            .subscribe(function (res) {
+            console.log(res);
+            if (res['data']['true'] && _this.dataset) {
+                _this.datasetId = res['data']['true'];
+                for (var i = 0; i < _this.dataset.length; i++) {
+                    if (_this.dataset[i].id == _this.datasetId) {
+                        _this.datasetName = _this.dataset[i].name;
+                        _this.selectedDatasetId = _this.dataset[i].id;
+                        // Link Dataset to SHARED service
+                        _this.sharedService.setDatasetName(_this.datasetName);
+                        _this.sharedService.setDatasetId(_this.datasetId);
+                        _this.sharedService.setDatasetLink(true);
+                        _this.linked = true;
+                        // Enable Tabs
+                        _this.disableTabsChange.emit(false);
+                    }
+                }
+                console.log(_this.datasetName);
+            }
+            else {
+                _this.linked = true;
+            }
+        }, function (err) { return console.log(err); });
+    };
     ProjectOverviewComponent.prototype.editProject = function (obj) {
         var _this = this;
         this.projectOverviewService.editProject(obj)
@@ -2536,9 +2616,15 @@ var ProjectOverviewComponent = /** @class */ (function () {
     ProjectOverviewComponent.prototype.selectedDataset = function (ev) {
         var _this = this;
         if (ev.value) {
+            for (var i = 0; i < this.dataset.length; i++) {
+                if (this.dataset[i].name == ev.value) {
+                    this.selectedDatasetId = this.dataset[i].id;
+                    this.datasetName = this.dataset[i].name;
+                }
+            }
             this.details = {};
             this.showDetails = false;
-            this.selectedDatasetId = ev.value.id;
+            // this.selectedDatasetId = ev.value.id;
             this.projectOverviewService.getDatasetDetails(this.selectedDatasetId).subscribe(function (res) {
                 _this.showDetails = true;
                 _this.details = res.data;
@@ -2547,6 +2633,7 @@ var ProjectOverviewComponent = /** @class */ (function () {
                 _this.disableTabsChange.emit(false);
                 // Link dataset
                 _this.sharedService.setDatasetId(_this.selectedDatasetId);
+                _this.sharedService.setDatasetName(_this.datasetName);
                 _this.snackbar.openSnackBar('Dataset linked.', 'Success');
             }, function (err) {
                 console.log(err);
@@ -2558,16 +2645,20 @@ var ProjectOverviewComponent = /** @class */ (function () {
             this.disableTabsChange.emit(true);
             // Link dataset
             this.sharedService.setDatasetId(null);
+            this.sharedService.setDatasetName(null);
         }
     };
     ProjectOverviewComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.linked = false;
         this.projectId = this.sharedService.getProjectId();
+        this.datasetName = this.sharedService.getDatasetName();
         this.projectOverviewService.getProject(this.projectId).subscribe(function (res) {
             _this.project = res.data;
         });
         this.getDataset();
         this.getListOfAlgorithms();
+        this.isLinked();
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
@@ -2631,6 +2722,10 @@ var ProjectOverviewService = /** @class */ (function () {
     };
     ProjectOverviewService.prototype.getProject = function (id) {
         return this._http.get(this.baseUrl + 'projects/' + id);
+    };
+    // Check whether DATASET is linked to project
+    ProjectOverviewService.prototype.isLinked = function (projectId) {
+        return this._http.get(this.baseUrl + 'dataset/linkDataset?projectId=' + projectId);
     };
     ProjectOverviewService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
@@ -3115,6 +3210,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var SharedService = /** @class */ (function () {
     function SharedService() {
         this.disableTabs = true;
+        this.isDatasetLinked = false;
     }
     // PROJECT ID
     SharedService.prototype.setProjectId = function (projectId) {
@@ -3129,6 +3225,28 @@ var SharedService = /** @class */ (function () {
     };
     SharedService.prototype.getDatasetId = function () {
         return this.datasetId;
+    };
+    // DATASET NAME
+    SharedService.prototype.setDatasetName = function (name) {
+        this.datasetName = name;
+    };
+    SharedService.prototype.getDatasetName = function () {
+        return this.datasetName;
+    };
+    // DATASET LINKED
+    SharedService.prototype.setDatasetLink = function (isLinked) {
+        this.isDatasetLinked = isLinked;
+    };
+    SharedService.prototype.getIsDatasetLinked = function () {
+        return this.isDatasetLinked;
+    };
+    // RESET VALUES - ONE PROJECT CMP
+    SharedService.prototype.resetValuesOneProject = function () {
+        this.projectId = null;
+        this.datasetId = null;
+        this.disableTabs = true;
+        this.datasetName = null;
+        this.isDatasetLinked = false;
     };
     SharedService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
