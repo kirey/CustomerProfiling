@@ -140,7 +140,7 @@ public class AlgorithmsController {
 			return new ResponseEntity<RestResponseDto>(new RestResponseDto("Algorithm doesn't exist", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
 		
 		
-		if( algorithmsDao.isAlgorithmNotExistInProjectAlgorithms(algorithmId) == false ) {
+		if(algorithmsDao.relatedWithProject(algorithmId)) {
 			return new ResponseEntity<RestResponseDto>(new RestResponseDto("Algorithm already exist in project,can't be deleted", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
 		} 
 		
@@ -341,13 +341,14 @@ public class AlgorithmsController {
 	 */
 	@RequestMapping(value = "/status", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> algorithmStatus(@RequestParam Integer projectId) {
-		Map<Object, Object> responseMap = new HashMap<>();
-		List<ProjectsAlgorithms> listProjectAlgorithms = projectAlgorithmsDao.findByProject(projectId);
-		for (ProjectsAlgorithms projectsAlgorithms : listProjectAlgorithms) {
-			responseMap.put(projectsAlgorithms.getId(), projectsAlgorithms.getStatus());
-		}
+//		Map<Object, Object> responseMap = new HashMap<>();
+//		List<ProjectsAlgorithms> listProjectAlgorithms = projectAlgorithmsDao.findByProject(projectId);
+//		for (ProjectsAlgorithms projectsAlgorithms : listProjectAlgorithms) {
+//			responseMap.put(projectsAlgorithms.getId(), projectsAlgorithms.getStatus());
+//		}
+		Projects project = projectsDao.findById(projectId);
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto(responseMap, HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(project.getStatus(), HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
 	/**
