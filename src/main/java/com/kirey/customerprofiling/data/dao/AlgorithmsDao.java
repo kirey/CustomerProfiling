@@ -50,8 +50,8 @@ public class AlgorithmsDao extends KjcBaseDao {
 	@SuppressWarnings("unused")
 	public boolean relatedWithProject(Integer algorithmId) {		
 		String hql = "from ProjectsAlgorithms pa where pa.algorithm.id = :algorithmId";		
-		ProjectsAlgorithms projectAlgorithm = (ProjectsAlgorithms)sessionFactory.getCurrentSession().createQuery(hql).setParameter("algorithmId", algorithmId).uniqueResult();		
-		if(projectAlgorithm != null) {
+		List<ProjectsAlgorithms> projectAlgorithm = sessionFactory.getCurrentSession().createQuery(hql).setParameter("algorithmId", algorithmId).list();		
+		if(projectAlgorithm != null && !projectAlgorithm.isEmpty()) {
 			return true;
 		}else {
 			return false;

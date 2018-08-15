@@ -341,13 +341,14 @@ public class AlgorithmsController {
 	 */
 	@RequestMapping(value = "/status", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> algorithmStatus(@RequestParam Integer projectId) {
-		Map<Object, Object> responseMap = new HashMap<>();
-		List<ProjectsAlgorithms> listProjectAlgorithms = projectAlgorithmsDao.findByProject(projectId);
-		for (ProjectsAlgorithms projectsAlgorithms : listProjectAlgorithms) {
-			responseMap.put(projectsAlgorithms.getId(), projectsAlgorithms.getStatus());
-		}
+//		Map<Object, Object> responseMap = new HashMap<>();
+//		List<ProjectsAlgorithms> listProjectAlgorithms = projectAlgorithmsDao.findByProject(projectId);
+//		for (ProjectsAlgorithms projectsAlgorithms : listProjectAlgorithms) {
+//			responseMap.put(projectsAlgorithms.getId(), projectsAlgorithms.getStatus());
+//		}
+		Projects project = projectsDao.findById(projectId);
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto(responseMap, HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(project.getStatus(), HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
 	/**
