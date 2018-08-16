@@ -259,14 +259,13 @@ public class DatasetController {
 	public ResponseEntity<RestResponseDto> deleteDataset(@PathVariable Integer id){
 		
 		Datasets dataset = datasetsDao.findById(id);
+		List<Datasets> derivedDatasets = datasetsDao.findDerivedByOriginal(dataset);
 		
-		if(dataset.getProject() != null) {
-			Projects project = projectDao.findById(dataset.getProject().getId());				
-			project.setDatasets(null);
-			projectDao.attachDirty(project);
+		if( derivedDatasets != null && !derivedDatasets.isEmpty() ) {
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto("Dataset can't be deleted!", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}else {
+			datasetsDao.delete(dataset);	
 		}
-		
-		datasetsDao.delete(dataset);
 		
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Dataset successfully deleted!", HttpStatus.OK.value()), HttpStatus.OK);
