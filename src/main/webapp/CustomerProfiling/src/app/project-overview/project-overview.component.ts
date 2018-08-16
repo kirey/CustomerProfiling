@@ -23,6 +23,8 @@ export class ProjectOverviewComponent implements OnInit {
   datasetId: number;
   projectId: number;
   selectedDatasetId: number;
+  datasetName: string;
+  linked: boolean;
 
   constructor(public projectOverviewService: ProjectOverviewService, public snackbar: SnackBarService, public sharedService: SharedService) { }
 
@@ -45,6 +47,39 @@ export class ProjectOverviewComponent implements OnInit {
     );
   }
 
+  isLinked() {
+    this.projectOverviewService.isLinked(this.projectId)
+      .subscribe(
+        res => {
+          console.log(res);
+          if (res['data']['true'] && this.dataset) {
+            this.datasetId = res['data']['true'];
+
+            for (let i = 0; i < this.dataset.length; i++) {
+              if (this.dataset[i].id == this.datasetId) {
+                this.datasetName = this.dataset[i].name;
+                this.selectedDatasetId = this.dataset[i].id;
+
+                // Link Dataset to SHARED service
+                this.sharedService.setDatasetName(this.datasetName);
+                this.sharedService.setDatasetId(this.datasetId);
+                this.sharedService.setDatasetLink(true);
+
+                this.linked = true;
+                // Enable Tabs
+                this.disableTabsChange.emit(false);
+              }
+            }
+            console.log(this.datasetName);
+          }
+          else {
+            this.linked = true;
+          }
+        },
+        err => console.log(err)
+      );
+  }
+
   editProject(obj) {
     this.projectOverviewService.editProject(obj)
       .subscribe(
@@ -61,9 +96,15 @@ export class ProjectOverviewComponent implements OnInit {
 
   selectedDataset(ev) {
     if (ev.value) {
+      for (let i = 0; i < this.dataset.length; i++) {
+        if (this.dataset[i].name == ev.value) {
+          this.selectedDatasetId = this.dataset[i].id;
+          this.datasetName = this.dataset[i].name;
+        }
+      }
       this.details = {};
       this.showDetails = false;
-      this.selectedDatasetId = ev.value.id;
+      // this.selectedDatasetId = ev.value.id;
 
       this.projectOverviewService.getDatasetDetails(this.selectedDatasetId).subscribe(
         res => {
@@ -76,6 +117,8 @@ export class ProjectOverviewComponent implements OnInit {
 
           // Link dataset
           this.sharedService.setDatasetId(this.selectedDatasetId);
+          this.sharedService.setDatasetName(this.datasetName);
+
           this.snackbar.openSnackBar('Dataset linked.', 'Success');
         },
         err => {
@@ -90,17 +133,21 @@ export class ProjectOverviewComponent implements OnInit {
 
       // Link dataset
       this.sharedService.setDatasetId(null);
+      this.sharedService.setDatasetName(null);
     }
   }
 
   ngOnInit() {
+    this.linked = false;
     this.projectId = this.sharedService.getProjectId();
+    this.datasetName = this.sharedService.getDatasetName();
 
     this.projectOverviewService.getProject(this.projectId).subscribe(res => {
       this.project = res.data;
     });
     this.getDataset();
     this.getListOfAlgorithms();
+    this.isLinked();
   }
 
 }

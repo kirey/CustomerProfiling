@@ -16,6 +16,10 @@ export class OneProjectComponent implements OnInit {
     this.disableTabs = ev;
   }
 
+  backBtn() {
+    this.sharedService.resetValuesOneProject();
+  }
+
   ngOnInit() {
   }
 

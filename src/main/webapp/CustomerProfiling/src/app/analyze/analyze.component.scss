@@ -42,3 +42,22 @@ table {
     border-spacing: 0;
     margin: 40px;
 }
+
+.algorithm-list {
+    padding: 20px;
+}
+.algorithm-list-item {
+    color: $primary;
+    font-weight: bold;
+    margin: 10px 0;
+}
+.status-box {
+    padding: 10px;
+    border: 1px solid $primary;
+    width: 66px;
+    height: 25px;
+    margin-bottom: 30px;
+}
+.list-box>div {
+    width: 50%;
+}
