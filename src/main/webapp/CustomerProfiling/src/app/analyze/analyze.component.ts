@@ -141,10 +141,25 @@ export class AnalyzeComponent implements OnInit {
       )
   }
 
+  getStatus() {
+    this._analyzeService.status(this.projectId)
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => console.log(err)
+      );
+  }
+
+  analyze() {
+    console.log("änalyze");
+  }
+
   ngOnInit() {
     this.projectId = this.sharedService.getProjectId();
     this.getAlgorithms();
     this.getListOfAlgorithms();
+    this.getStatus();
   }
 }
 

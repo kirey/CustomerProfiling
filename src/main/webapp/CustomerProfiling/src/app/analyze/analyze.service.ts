@@ -36,4 +36,9 @@ export class AnalyzeService {
   saveParams(obj) {
     return this._http.put(this.baseUrl + 'parameters', obj);
   }
+
+  // Status request
+  status(projectId) {
+    return this._http.get(this.baseUrl + 'status?projectId=' + projectId).pipe(map(res => res.json()));
+  }
 }

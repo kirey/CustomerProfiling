@@ -42,13 +42,21 @@
     </div>
 </div>
 <div class="selectAlgorithm" *ngIf="this.listOfAlgorithms">
-    <div class="flex column algorithm-list" *ngFor="let algorithm of listOfAlgorithms; let i = index">
-        <div class="flex space-between algorithm-list-item">
-            <span>{{algorithm.algorithmName}}</span>
-            <span>
-                <i (click)="editParams(algorithm.parameters, i)" class="material-icons">border_color</i>
-                <i (click)="deleteAlgorithm(algorithm.id, algorithm.algorithmName)" class="material-icons">delete</i>
-            </span>
+    <div class="flex list-box">
+        <div class="flex column">
+            <div class="algorithm-list" *ngFor="let algorithm of listOfAlgorithms; let i = index">
+                <div class="flex space-between algorithm-list-item">
+                    <span>{{algorithm.algorithmName}}</span>
+                    <span>
+                        <i (click)="editParams(algorithm.parameters, i)" class="material-icons">border_color</i>
+                        <i (click)="deleteAlgorithm(algorithm.id, algorithm.algorithmName)" class="material-icons">delete</i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="flex column center">
+            <div class="status-box"></div>
+            <button mat-raised-button color="primary" (click)="analyze()">Analyze</button>
         </div>
     </div>
 </div>
