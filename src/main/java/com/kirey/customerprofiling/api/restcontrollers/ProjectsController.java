@@ -178,7 +178,8 @@ public class ProjectsController {
 				}
 				variablesDao.delete(variable);
 			}
-			datasetsDao.delete(dataset);
+			int datasetId = dataset.getId();
+			datasetsDao.delete(datasetId);
 		}
 		
 		

@@ -276,6 +276,8 @@ public class AlgorithmsController {
 	public ResponseEntity<RestResponseDto> addAlgorithmToProject(@PathVariable Integer projectId, @RequestBody Algorithms algorithm){
 		
 		Projects project = projectsDao.findById(projectId);
+		project.setStatus(AppConstants.ALGORITHM_STATUS_NOT_TRAINED);
+		projectsDao.merge(project);
 		ProjectsAlgorithms projectsAlgorithms = projectAlgorithmsDao.findByProjectAndAlgorithms(project, algorithm);
 		if(projectsAlgorithms == null) {
 			projectsAlgorithms = new ProjectsAlgorithms();	

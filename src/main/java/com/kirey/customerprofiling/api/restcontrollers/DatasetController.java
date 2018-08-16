@@ -147,7 +147,7 @@ public class DatasetController {
 		Datasets dataset = datasetsDao.findById(datasetId);
 		File originalFile = new File(dataset.getFilename());//new File("C:\\Temp\\testCSV.csv"); //dataset.getFilename();
 		InputStream is = new FileInputStream(originalFile);
-		String csv = datasetService.createDerivedFromOriginal(is, variables, false, dataset);
+		String csv = datasetService.createDerivedFromOriginal(is, variables, false, dataset, null);
 
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(csv, HttpStatus.OK.value()), HttpStatus.OK);
 	}
@@ -182,7 +182,7 @@ public class DatasetController {
 		
 		File originalFile = new File(originalDataset.getFilename()); //"C:\\Temp\\testCSV.csv"
 		InputStream is = new FileInputStream(originalFile);
-		String derivedCSV = datasetService.createDerivedFromOriginal(is, originalVariables, true, originalDataset);
+		String derivedCSV = datasetService.createDerivedFromOriginal(is, originalVariables, true, originalDataset, project);
 		
 		InputStream derivedIs = new ByteArrayInputStream(derivedCSV.getBytes());
 		datasetService.saveDerivedVariableAndValues(derivedIs, derivedDataset);

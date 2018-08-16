@@ -114,7 +114,7 @@ public class DatasetService {
 	 * @param save - true/false flag
 	 * @return String transformed csv file
 	 */
-	public String createDerivedFromOriginal(InputStream csvFile, List<Variables> variables, boolean save, Datasets originalDataset) {
+	public String createDerivedFromOriginal(InputStream csvFile, List<Variables> variables, boolean save, Datasets originalDataset, Projects project) {
 		CSVParser parser = new CSVParser();
 		RowListProcessor processor = parser.parceFile(csvFile);
 		List<String> derivedHeaders = new ArrayList<>();
@@ -213,7 +213,7 @@ public class DatasetService {
 		}
 		
 		//write csv
-		String csv = writeSimpleCsv(headers, listFullRows, save, originalDataset);
+		String csv = writeSimpleCsv(headers, listFullRows, save, originalDataset, project);
 		return csv;
 		
 	}
@@ -504,7 +504,7 @@ public class DatasetService {
 	 * @param originalDataset - original {@link Datasets}
 	 * @return String csvFile
 	 */
-	public String writeSimpleCsv(String[] headers, List<String[]> rows, boolean save, Datasets originalDataset) {
+	public String writeSimpleCsv(String[] headers, List<String[]> rows, boolean save, Datasets originalDataset, Projects project) {
 
 		// Writing to an in-memory byte array. This will be printed out to the standard output so you can easily see the result.
 		ByteArrayOutputStream csvResult = new ByteArrayOutputStream();
@@ -533,7 +533,7 @@ public class DatasetService {
 				// Write from byte array to CSV file somewhere on local disk.
 				String originalFilename = originalDataset.getFilename();
 				String extension = originalFilename.substring(originalFilename.length()-4, originalFilename.length());
-				String derivedFilename = originalFilename.substring(0, originalFilename.length()-4) + AppConstants.DERIVED + extension;
+				String derivedFilename = originalFilename.substring(0, originalFilename.length()-4) + AppConstants.DERIVED + project.getId() + extension;
 				OutputStream outputStream = new FileOutputStream(derivedFilename);//"C:\\Temp\\testCSVDerived.csv"
 				csvResult.writeTo(outputStream);
 			}
@@ -596,11 +596,11 @@ public class DatasetService {
 	 */
 	public Datasets saveDerivedDatasetFromOriginal(Datasets originalDataset, Projects project) {
 		Datasets derivedDataset = new Datasets();
-		derivedDataset.setName(originalDataset.getName() + AppConstants.DERIVED);
+		derivedDataset.setName(originalDataset.getName() + AppConstants.DERIVED + project.getId());
 		
 		String originalFilename = originalDataset.getFilename();
 		String extension = originalFilename.substring(originalFilename.length()-4, originalFilename.length());
-		String derivedFilename = originalFilename.substring(0, originalFilename.length()-4) + AppConstants.DERIVED + extension;
+		String derivedFilename = originalFilename.substring(0, originalFilename.length()-4) + AppConstants.DERIVED + project.getId() + extension;
 		
 		derivedDataset.setFilename(derivedFilename);
 		derivedDataset.setOriginalDataset(originalDataset);
