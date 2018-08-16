@@ -41,4 +41,10 @@ export class AnalyzeService {
   status(projectId) {
     return this._http.get(this.baseUrl + 'status?projectId=' + projectId).pipe(map(res => res.json()));
   }
+
+  // Analyze
+  analyze(projectId, obj) {
+    return this._http.post(this.baseUrl + 'analyze?projectId=' + projectId, obj).pipe(map(res => res.json()));
+
+  }
 }

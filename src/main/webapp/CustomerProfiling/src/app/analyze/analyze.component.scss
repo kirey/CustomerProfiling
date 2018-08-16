@@ -51,12 +51,19 @@ table {
     font-weight: bold;
     margin: 10px 0;
 }
+.status-container {
+    justify-content: center;
+    align-items: flex-end;
+    padding-right: 20px;
+}
 .status-box {
-    padding: 10px;
+    padding: 15px;
     border: 1px solid $primary;
-    width: 66px;
+    width: 50%;
     height: 25px;
     margin-bottom: 30px;
+    font-weight: bold;
+    color: $primary;
 }
 .list-box>div {
     width: 50%;

@@ -54,8 +54,10 @@
                 </div>
             </div>
         </div>
-        <div class="flex column center">
-            <div class="status-box"></div>
+        <div class="flex column status-container">
+            <div *ngIf="status" class="status-box flex center">
+                {{status}}
+            </div>
             <button mat-raised-button color="primary" (click)="analyze()">Analyze</button>
         </div>
     </div>
