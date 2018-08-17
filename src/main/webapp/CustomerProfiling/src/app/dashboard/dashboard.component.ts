@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   algorithm: any;
   selected: any;
   projectsArr: Array<Object>;
+  data: any;
 
   constructor(
     public dashboardService: Dashboardervice,
@@ -77,8 +78,8 @@ export class DashboardComponent implements OnInit {
   }
   projectDblclick(id) {
     console.log('dblklik');
-    // this.sharedService.setProjectId(id);
-    // this._router.navigate(['/one-project']);
+    this.sharedService.setProjectId(id);
+    this._router.navigate(['/one-project']);
     // this.dashboardService.getProjectsDetails(id).subscribe(
     //   res => {
     //     console.log(res);
@@ -90,11 +91,7 @@ export class DashboardComponent implements OnInit {
     // );
   }
   // dataset details click and dbl click
-  datasetClick() {
-    console.log('click');
-  }
-  datasetDblclick(id) {
-    console.log('dblklik');
+  datasetClick(id) {
     this.dashboardService.getDatasetDetails(id).subscribe(
       res => {
         console.log(res);

@@ -18,7 +18,7 @@
               </div>
             </mat-list-item>
           </mat-nav-list>
-        </mat-card-content> -->
+        </mat-card-content>
       </mat-card>
     </div>
     <div class="col">
@@ -29,7 +29,7 @@
         <mat-divider></mat-divider>
         <mat-card-content>
           <mat-nav-list *ngFor="let datasets of dataset; let i = index">
-            <mat-list-item (click)="datasetClick()" (dblclick)="datasetDblclick(datasets.id)">{{datasets.name}}</mat-list-item>
+            <mat-list-item (click)="datasetClick(datasets.id)">{{datasets.name}}</mat-list-item>
           </mat-nav-list>
         </mat-card-content>
       </mat-card>
@@ -62,18 +62,18 @@
         </mat-card-header>
         <mat-card-content>
           <div>
-            <ng-template #projects>
-              <span class="projects">
-                <h4 class="subtitle">Project details for project ID: </h4>
-                projects
-                <p></p>
-              </span>
-            </ng-template>
-            <!-- <ng-template #datasets>
-                <span class="datasets">
-                  datasets
-                </span> -->
-              <!-- </ng-template> -->
+            <div>
+
+            </div>
+            <div *ngIf="data">
+              <span><strong>Dataset Name: </strong>{{data.datasetName}}</span><br>
+              <span><strong>Dataset Description: </strong>{{data.datasetDesc}}</span><br>
+              <span><strong>Dataset Size: </strong>{{data.datasetSize}}</span><br>
+              <span><strong>Number Of Rows: </strong>{{data.numberOfRows}}</span><br>
+              <span><strong>Number Of Variables: </strong>{{data.numberOfVariables}}</span>
+              <h3>Variable Details</h3>
+              <p *ngFor="let vars of data.variableDetails">{{vars.variableName}}</p>
+            </div>
           </div>
           <ng-content></ng-content>
         </mat-card-content>

@@ -31,6 +31,9 @@ color: $gray;
   border-color: #E1F5FE;
   margin-left: 2%;
 }
+.colFullHeight mat-card-content {
+  max-height: 100%;
+}
 // mat card style
 mat-card {
   padding: 0 !important;
