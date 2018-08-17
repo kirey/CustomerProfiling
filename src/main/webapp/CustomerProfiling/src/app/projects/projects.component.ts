@@ -70,13 +70,13 @@ export class ProjectsComponent implements OnInit {
 
 
   // open delete dialog
-  openDeleteDialog(id) {
+  openDeleteDialog(item) {
     const dialogRef = this.dialog.open(DeleteComponent, {
-      data: { id: id }
+      data: { name: item.projectName, type: 'project' }
     });
     dialogRef.afterClosed().subscribe(res => {
       if (res === true) {
-        this.projectsService.deleteProject(id).subscribe(
+        this.projectsService.deleteProject(item.id).subscribe(
           res => {
             this.snackbar.openSnackBar(res['data'], 'Successful');
             this.getProjects();

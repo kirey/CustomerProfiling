@@ -1,0 +1,18 @@
+@import '../../app.component.scss';
+#deleteDialog {
+
+    mat-dialog-content {
+        padding: 50px 30px 20px 30px;
+        font-size: 20px;
+    }
+// Buttons
+    mat-dialog-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      }
+     mat-dialog-actions>button {
+          margin-top: 30px;
+          margin-left: 15px;
+      }
+}

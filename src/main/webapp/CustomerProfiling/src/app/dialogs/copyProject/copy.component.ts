@@ -15,7 +15,7 @@ export class CopyComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public copyProjectService: CopyProjectService,
     public snackbar: SnackBarService
-  ) {}
+  ) { }
   copyProject(obj) {
     obj['id'] = this.data.id;
     console.log(obj);

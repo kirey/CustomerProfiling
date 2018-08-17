@@ -64,8 +64,7 @@ export class DatasetComponent implements OnInit {
   }
   deleteDataset(dataset) {
     const dialogRef = this._dialog.open(DeleteComponent, {
-      width: '500px',
-      data: { type: "dataset", value: dataset.name }
+      data: { name: dataset.name, type: 'dataset' }
     });
     dialogRef.afterClosed().subscribe(res => {
       if (res == true) {
