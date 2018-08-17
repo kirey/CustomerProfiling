@@ -10,6 +10,7 @@ import { SharedService } from '../shared/services/shared.service';
   encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
+  data: any;
   dataset: any;
   algorithm: any;
   selected: any;
