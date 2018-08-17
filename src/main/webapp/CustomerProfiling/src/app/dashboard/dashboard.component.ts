@@ -17,24 +17,26 @@ export class DashboardComponent implements OnInit {
   data: any;
   projectDetails: any;
   algo: any;
+  panelProject = false;
+  panelData = false;
+  panelAlgo = false;
 
   constructor(
     public dashboardService: Dashboardervice,
     private _router: Router,
     public sharedService: SharedService
-  ) { }
+  ) {}
   // get All projects - first tab
   getAllProjects() {
-    this.dashboardService.getProjects()
-      .subscribe(
-        res => {
-          console.log(res);
-          this.projectsArr = res['data'];
-        },
-        err => {
-          console.log(err)
-        }
-      );
+    this.dashboardService.getProjects().subscribe(
+      res => {
+        console.log(res);
+        this.projectsArr = res['data'];
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
   // colors for status - projects
   getColor(status) {
@@ -42,9 +44,9 @@ export class DashboardComponent implements OnInit {
       case 'Not trained':
         return '$primary';
       case 'Trained':
-        return '$accent';
+        return '#7C4DFF';
       case 'Learning':
-        return '$warn';
+        return '#FF3D00';
     }
   }
   // get All Datasets - second tab
@@ -75,6 +77,9 @@ export class DashboardComponent implements OnInit {
   }
   // project details click and dbl click function
   projectClick(id) {
+    this.panelProject = true;
+    this.panelData = false;
+    this.panelAlgo = false;
     console.log('klik');
     this.dashboardService.getProjectsDetails(id).subscribe(
       res => {
@@ -94,6 +99,9 @@ export class DashboardComponent implements OnInit {
   }
   // dataset details click
   datasetClick(id) {
+    this.panelData = true;
+    this.panelProject = false;
+    this.panelAlgo = false;
     this.dashboardService.getDatasetDetails(id).subscribe(
       res => {
         console.log(res);
@@ -109,6 +117,9 @@ export class DashboardComponent implements OnInit {
   // algorithm details click
   algorithmClick(id) {
     console.log('dblklik');
+    this.panelAlgo = true;
+    this.panelData = false;
+    this.panelProject = false;
     this.dashboardService.getAlgorithmDetails(id).subscribe(
       res => {
         console.log(res);
