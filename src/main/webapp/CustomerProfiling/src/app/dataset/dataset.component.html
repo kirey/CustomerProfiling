@@ -1,14 +1,16 @@
-<div id="datasets">
-    <h1>My Datasets </h1>
-    <div class="aboveTable">
-        <button class="addBtn" (click)="addDataset()" matTooltip="Add Dataset" matTooltipPosition="above" mat-mini-fab>
+<div id="datasets" class="flex column center">
+
+    <div class="button-wrapper flex space-between">
+        <!-- Search Input -->
+        <mat-form-field class="filterInput">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search table">
+        </mat-form-field>
+        <!-- Add Button -->
+        <button (click)="addDataset()" matTooltip="Add Dataset" matTooltipPosition="above" mat-mini-fab>
             <i class="material-icons plus">add</i>
         </button>
     </div>
     <div *ngIf="dataSource">
-        <mat-form-field class="filterInput">
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search table">
-        </mat-form-field>
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
             <ng-container matColumnDef="datasetName">
                 <th mat-header-cell *matHeaderCellDef> Dataset Name </th>
@@ -17,8 +19,10 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef> Actions</th>
                 <td mat-cell *matCellDef="let dataset">
-                    <i matTooltip="Delete dateset" (click)="deleteDataset(dataset)" matTooltipPosition="above" class="material-icons table-icons"> delete </i>
-                    <i matTooltip="Show dateset" (click)="showDatasetDetail(dataset.id)" matTooltipPosition="above" class="material-icons table-icons"> visibility </i>
+                    <i matTooltip="Delete dateset" (click)="deleteDataset(dataset)" matTooltipPosition="above" class="material-icons table-icons">
+                        delete </i>
+                    <i matTooltip="Show dateset" (click)="showDatasetDetail(dataset.id)" matTooltipPosition="above" class="material-icons table-icons">
+                        visibility </i>
                 </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

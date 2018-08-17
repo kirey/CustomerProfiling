@@ -1,18 +1,46 @@
 @import '../app.component.scss';
 #projects {
-  margin: 5% 10%;
-  table {
-    width: 100%;
-  }
-  button {
-    margin-bottom: 2%;
-  }
-  .flex i {
-    color: $primary;
-    margin-right: 10px;
-    font-size: 18px;
-  }
-  .flex i:hover {
+
+  // Table Classes
+  table.mat-table {
+    margin-top: 30px;
+    width: 80%;
+}
+tr.mat-header-row {
+    background: linear-gradient(to right, $primary, $accent);
+}
+th.mat-header-cell {
+    width: 250px;
+    color: #fff;
+}
+td.mat-cell {
+  padding: 10px 10px 10px 0!important;
+}
+td.mat-cell:first-child, td.mat-footer-cell:first-child, th.mat-header-cell:first-child {
+  padding-left: 24px!important;
+}
+
+// Add Button
+.button-wrapper {
+  width: 80%;
+  margin-top: 100px;
+}
+.button-wrapper>button {
+  float: right;
+}
+
+// Icons
+.icons-wrapper {
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.table-icons {
+  color: $primary;
+  font-size: 23px;
+  margin-right: 15px;
+}
+.table-icons:hover{
+    color: $warn;
     cursor: pointer;
-  }
+}
 }

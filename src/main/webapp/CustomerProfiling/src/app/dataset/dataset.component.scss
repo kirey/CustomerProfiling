@@ -1,67 +1,25 @@
 @import '../app.component.scss';
-table {
-    width: 70%;
-    margin-left: 15%;
-}
 
-.aboveTable {
-    margin-left: 15%;
-    margin-right: 15%;
-    margin-bottom: 1%;
+#datasets {
+     // Table Classes
+ table.mat-table {
+    margin-top: 30px;
+    width: 80%;
 }
-
-button {
-    margin-left: 95%;
-}
-
-h1 {
-    margin-left: 4%;
-}
-
-@media (max-width: 1400px) {
-    button {
-        margin-left: 92%;
-    }
-}
-
-@media (max-width: 750px) {
-    button {
-        margin-left: 87%;
-    }
-}
-
-@media (max-width: 500px) {
-    button {
-        margin-left: 83%;
-    }
-}
-
 tr.mat-header-row {
-    background: linear-gradient( $primary, $accent);
+    background: linear-gradient(to right, $primary, $accent);
 }
-
 th.mat-header-cell {
-    text-align: center;
-    color: white;
+    width: 250px;
+    color: #fff;
+}
+td.mat-cell {
+    padding: 10px 10px 10px 0!important;
+  }
+  td.mat-cell:first-child, td.mat-footer-cell:first-child, th.mat-header-cell:first-child {
+    padding-left: 24px!important;
 }
 
-td {
-    text-align: center;
-}
-
-.addBtn {
-    background: $primary;
-    color: white!important;
-}
-
-table i {
-    color: $primary;
-    font-size: 22px;
-}
-
-h1 {
-    color: $gray;
-}
 
 .mat-paginator,
 .mat-paginator-page-size .mat-select-trigger {
@@ -71,4 +29,5 @@ h1 {
 
 .filterInput {
     margin-left: 15%;
+}
 }

@@ -3,7 +3,6 @@
 #algorithms {
 
     // Table Classes
-
     table.mat-table {
         margin-top: 30px;
         width: 80%;
@@ -14,6 +13,12 @@
     th.mat-header-cell {
         width: 250px;
         color: #fff;
+    }
+    td.mat-cell {
+        padding: 10px 10px 10px 0!important;
+      }
+      td.mat-cell:first-child, td.mat-footer-cell:first-child, th.mat-header-cell:first-child {
+        padding-left: 24px!important;
     }
 
     // Icons
@@ -26,18 +31,18 @@
     }
     .icons-wrapper {
         align-items: flex-start;
-        justify-content: center;
+        justify-content: flex-start;
     }
     .view-icon, .edit-icon {
         color: $primary;
-        font-size: 23px;
+        font-size: 22px;
+        margin-right: 15px;
     }
     .view-icon:hover, .edit-icon:hover{
         color: $warn;
         cursor: pointer;
     }
     .view-icon {
-        margin-left: 20px;
         font-size: 24px;
     }
    
