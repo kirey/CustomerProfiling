@@ -1,27 +1,45 @@
 @import '../../app.component.scss';
 #addDataset {
-    display: flex;
-    flex-direction: column;
-    padding-right: 20px;
+
+   // FORM
+   form {
+    margin: 20px 0;
+    }
     .mat-form-field {
-        width: 100%;
-        padding: 10px 10px 10px 10px;
+        width: 40%;
     }
-    .mat-dialog-content {
-        height: 300px;
+    .description-field {
+    margin-left: 50px;
     }
-    .buttons {
-        float: right;
+    .mat-error {
+        padding-left: 10px;
+        margin-top: -20px;
     }
-    .btn-file {
-        position: relative;
+
+  // Buttons
+  mat-dialog-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    }
+   mat-dialog-actions>* {
+        margin-top: 30px;
+        margin-left: 15px;
+    }
+
+    // FILE Button
+   .btn-file {
         overflow: hidden;
-        background: $primary;
-        margin-right: 10px;
+        background: $accent;
         color: white;
-        padding: 15px;
+        padding: 9px;
+        font-size: 15px;
+        position: absolute;
+        left: 0;
+        bottom: 13px;
     }
-    .btn-file input[type=file] {
+   .btn-file input[type=file] {
         position: absolute;
         top: 0;
         right: 0;
@@ -37,29 +55,5 @@
         cursor: inherit;
         display: block;
     }
-    button {
-        background: $primary;
-        color: white;
-    }
-    button:disabled,
-    button[disabled] {
-        background-color: #cccccc;
-        color: black;
-    }
-    h1 {
-        text-align: center;
-    }
-    .mat-error {
-        padding-left: 10px;
-        margin-top: -20px;
-    }
-    .mat-dialog-content {
-        margin-top: 50px;
-        margin-bottom: 20px;
-        display: block;
-        padding: 0 24px;
-        max-height: 65vh;
-        overflow: auto;
-        -webkit-overflow-scrolling: touch;
-    }
+   
 }
