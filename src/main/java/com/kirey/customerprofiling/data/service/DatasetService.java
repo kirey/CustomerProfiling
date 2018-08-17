@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,7 +19,6 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.math3.stat.descriptive.moment.Variance;
-import org.bouncycastle.crypto.DerivationFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -70,7 +68,6 @@ public class DatasetService {
 	 */
 	public List<Variables> getVariablesFromCSV(InputStream csvFile){
 		CSVParser parser = new CSVParser();
-//		List<Variables> listVariables = parser.parseFile(Variables.class, csvFile);
 		List<Variables> listVariables = new ArrayList<>();
 		RowListProcessor processor = parser.parceFile(csvFile);
 		
@@ -151,7 +148,6 @@ public class DatasetService {
 					List<String> distinctHeaders = this.findDistinctFromCSV(variable, processor);
 					List<String[]> values = this.getValuesDistinctTransformed(variable, processor, distinctHeaders);
 					listRows.add(values);
-//					distinctValues = this.getValuesDistinctTransformed(variable, processor, distinctHeaders);
 					//add to headers
 					derivedHeaders.addAll(distinctHeaders);
 				}
@@ -330,11 +326,11 @@ public class DatasetService {
 	 */
 	private List<Double> scalingOperation(Variables variable, RowListProcessor processor) {
 		List<Double> listValues = this.getNumericValuesFromCSVByVariable(variable, processor);
-		Double in_min = listValues.stream().mapToDouble(v -> v).min().getAsDouble();
-		Double in_max = listValues.stream().mapToDouble(v -> v).max().getAsDouble();
+		Double inMin = listValues.stream().mapToDouble(v -> v).min().getAsDouble();
+		Double inMax = listValues.stream().mapToDouble(v -> v).max().getAsDouble();
 		List<Double> transformedValues = new ArrayList<>();
 		for (Double value : listValues) {
-			Double transformedValue = this.mapRangeToAnother(value, in_min, in_max, variable.getScaleMin(), variable.getScaleMax());
+			Double transformedValue = this.mapRangeToAnother(value, inMin, inMax, variable.getScaleMin(), variable.getScaleMax());
 			transformedValues.add(transformedValue);
 		}
 		
@@ -344,14 +340,14 @@ public class DatasetService {
 	/**
 	 * Method for transforming value from one range to another
 	 * @param x - value that need to be transformed
-	 * @param in_min - min value of actual range
-	 * @param in_max - max value of actual range
-	 * @param out_min - min value of range in which value need to be transformed
-	 * @param out_max - max value of range in which value need to be transformed
+	 * @param inMin - min value of actual range
+	 * @param inMax - max value of actual range
+	 * @param outMin - min value of range in which value need to be transformed
+	 * @param outMax - max value of range in which value need to be transformed
 	 * @return transformed value
 	 */
-	private Double mapRangeToAnother(Double x, Double in_min, Double in_max, double out_min, double out_max) {
-		return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+	private Double mapRangeToAnother(Double x, Double inMin, Double inMax, double outMin, double outMax) {
+		return (x - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
 	}
 
 	/**
@@ -440,7 +436,7 @@ public class DatasetService {
 		DerivedVariablesHolder.getInstance().addToDerivedVariables(derivedVariable);
 	}
 
-	public String uploadCSVFile(MultipartFile csvFile) throws IllegalStateException, IOException {
+	public String uploadCSVFile(MultipartFile csvFile) throws IOException{
 		
 		String uploadDir = "C:\\Temp\\";
 		if(! new File(uploadDir).exists())
@@ -616,14 +612,13 @@ public class DatasetService {
 	 * @deprecated use instead {@link #getVariableStatisticsByDataset(Datasets)}
 	 */
 	@SuppressWarnings("unused")
+	@Deprecated
 	public VariableDto getVariableStatistics(Variables variable) {
 		VariableDto variableDto = new VariableDto();
-		try {
-			Datasets dataset = datasetsDao.findByVariable(variable);
-
+		Datasets dataset = datasetsDao.findByVariable(variable);
+		File file = new File(dataset.getFilename());
+		try (InputStream is = new FileInputStream(file)){
 			//get values for variable from CSV file
-			File file = new File(dataset.getFilename());
-			InputStream is = new FileInputStream(file);
 			CSVParser parser = new CSVParser();
 			RowListProcessor processor = parser.parceFile(is);
 			List<String> variableValues = new ArrayList<>();
@@ -667,7 +662,7 @@ public class DatasetService {
 				}
 			}
 			
-		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 		return variableDto;
@@ -680,6 +675,7 @@ public class DatasetService {
 	 * @return List of {@link VariableDto} 
 	 * @deprecated use instead {@link #setVariableStatistics(List, InputStream)}
 	 */
+	@Deprecated
 	public List<VariableDto> getVariableStatisticsByDataset(Datasets dataset) {
 		List<VariableDto> variableDetails = new ArrayList<>();
 		try {

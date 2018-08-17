@@ -1,6 +1,5 @@
 package com.kirey.customerprofiling.data.entity;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -18,8 +17,6 @@ import javax.persistence.Transient;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 

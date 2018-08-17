@@ -1,14 +1,12 @@
 package com.kirey.customerprofiling.api.restcontrollers;
 
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,19 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kirey.customerprofiling.api.dto.RestResponseDto;
 import com.kirey.customerprofiling.common.constants.AppConstants;
-import com.kirey.customerprofiling.data.dao.AlgorithmsDao;
 import com.kirey.customerprofiling.data.dao.DatasetsDao;
 import com.kirey.customerprofiling.data.dao.DerivedVariableValuesDao;
 import com.kirey.customerprofiling.data.dao.ParameterValuesDao;
-import com.kirey.customerprofiling.data.dao.ParametersDao;
 import com.kirey.customerprofiling.data.dao.ProjectAlgorithmsDao;
 import com.kirey.customerprofiling.data.dao.ProjectsDao;
 import com.kirey.customerprofiling.data.dao.VariablesDao;
-import com.kirey.customerprofiling.data.entity.Algorithms;
 import com.kirey.customerprofiling.data.entity.Datasets;
 import com.kirey.customerprofiling.data.entity.DerivedVariableValue;
 import com.kirey.customerprofiling.data.entity.ParameterValues;
-import com.kirey.customerprofiling.data.entity.Parameters;
 import com.kirey.customerprofiling.data.entity.Projects;
 import com.kirey.customerprofiling.data.entity.ProjectsAlgorithms;
 import com.kirey.customerprofiling.data.entity.UserAccounts;
@@ -61,29 +55,9 @@ public class ProjectsController {
 	private ProjectAlgorithmsDao projectAlgorithmsDao;
 	
 	@Autowired
-	private AlgorithmsDao algorithmsDao;
-	
-	
-	@Autowired
-	private ParametersDao parametersDao;
-	
-	@Autowired
 	private ParameterValuesDao parameterValuesDao;
 	
-	
-	/**
-	 * Returns all projects from db
-	 * @return
-	 */
-	
-//	@GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-//	@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public ResponseEntity<RestResponseDto> getAllProjects() {	
-//		
-//		return new ResponseEntity<RestResponseDto>(new RestResponseDto(projectsDao.findAll(), HttpStatus.OK.value()), HttpStatus.OK);
-//		
-//	}
-	
+
 	
 	/**
 	 * Method for getting list of filtered projects by given user
@@ -210,11 +184,9 @@ public class ProjectsController {
 		newProject.setProjectName(project.getProjectName());
 		newProject.setCreationDate(new Date());
 		newProject.setStatus(AppConstants.ALGORITHM_STATUS_NOT_TRAINED);
-//		newProject.setDatasets(project.getDatasets());
 		newProject.setDescription(project.getDescription());
 		newProject.setLastOpened(new Date());
 		newProject.setUserAccount(user);
-//		newProject.setProjectsAlgorithmsList(project.getProjectsAlgorithmsList());
 		
 		projectsDao.attachDirty(newProject);
 		

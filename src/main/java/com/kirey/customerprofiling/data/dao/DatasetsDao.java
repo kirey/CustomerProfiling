@@ -5,12 +5,12 @@ import java.util.List;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
-import org.jfree.data.general.Dataset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import com.kirey.customerprofiling.data.entity.Datasets;
-import com.kirey.customerprofiling.data.entity.Variables;
 import com.kirey.customerprofiling.data.entity.Projects;
+import com.kirey.customerprofiling.data.entity.Variables;
 
 
 @Repository(value = "datasetsDao")

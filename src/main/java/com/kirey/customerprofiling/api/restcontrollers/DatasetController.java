@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -199,7 +198,7 @@ public class DatasetController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/addNewDataset", method = RequestMethod.POST,consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<RestResponseDto> uploadCsvDataset(@RequestPart(name="csvFile") MultipartFile csvFile, @RequestPart(name="dataset") Datasets dataset) throws IllegalStateException, IOException {
+	public ResponseEntity<RestResponseDto> uploadCsvDataset(@RequestPart(name="csvFile") MultipartFile csvFile, @RequestPart(name="dataset") Datasets dataset) throws IOException {
 		
 		String filePath = datasetService.uploadCSVFile(csvFile);
 		File file = new File(filePath); 
@@ -280,7 +279,6 @@ public class DatasetController {
 	@RequestMapping(value = "/linkDataset", method = RequestMethod.GET)
 	public ResponseEntity<RestResponseDto> findDatasetBynName(@RequestParam Integer projectId){
 		
-//		datasetsDao.isDatasetLinkedToProject(projectId);
 		Map<Object, Object> responseMap = new HashMap<>();
 		Datasets originalDataset = datasetsDao.findOriginalByProject(projectId);
 		if(originalDataset != null) {

@@ -19,14 +19,14 @@ public class AccessDeniedExceptionHandler implements AccessDeniedHandler  {
     /* (non-Javadoc)
      * @see org.springframework.security.web.access.AccessDeniedHandler#handle(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, org.springframework.security.access.AccessDeniedException)
      */
+	@Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException ex) {
 
 		try {
 			response.getWriter().write("AccessDeniedException!");
 			response.setStatus(403);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 	}
 }

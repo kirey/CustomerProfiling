@@ -67,7 +67,6 @@ public class CSVParser {
 	 */
 	public <T> List parseFile(T object, InputStream inputStream) {
 
-		Object obj = null;
 		List<T> beans = null;
 		try {
 			// parser setings

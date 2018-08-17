@@ -98,25 +98,6 @@ public class Utilities {
 		return c.getTime();
 	}
 
-	/**
-	 * This method is used for converting longitude to the centered map 
-	 * in case it is not in the range (-180, 180) 
-	 * @param longitude
-	 * @return longitude
-	 */
-	public static BigDecimal convertIncomingLongitude(BigDecimal longitude) {
-		if(longitude.doubleValue() > 180){
-			longitude = BigDecimal.valueOf(longitude.doubleValue() - 360);
-		}else if(longitude.doubleValue() < -180){
-			longitude = BigDecimal.valueOf(longitude.doubleValue() + 360);
-		}
-		if(longitude.doubleValue()<180 && longitude.doubleValue() > -180){
-			return longitude.setScale(6,RoundingMode.HALF_UP);
-		}else{
-			return convertIncomingLongitude(longitude);
-		}
-		
-	}
 
 	/**
 	 * This method is used to adjust the date from client request to server in
@@ -174,9 +155,11 @@ public class Utilities {
 	 * @return 
 	 */
 	public static double round(double value, int places) {
-		if (places < 0) throw new IllegalArgumentException();
+		if (places < 0) {
+			throw new IllegalArgumentException();
+		}
 
-	    BigDecimal bd = new BigDecimal(value);
+	    BigDecimal bd = BigDecimal.valueOf(value);
 	    bd = bd.setScale(places, RoundingMode.HALF_UP);
 	    return bd.doubleValue();
 	}

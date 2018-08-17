@@ -37,11 +37,10 @@ public class AuthController {
 	@RequestMapping(value = "/authentication", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> createUser(@RequestBody UserAccount userAccount) {
 		
-		Authentication authentication = null;
 		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
 				userAccount.getUsername(), userAccount.getPassword());
 
-		authentication = this.authenticationManager.authenticate(authenticationToken);
+		Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
 		

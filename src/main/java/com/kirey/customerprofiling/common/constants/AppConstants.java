@@ -1,7 +1,5 @@
 package com.kirey.customerprofiling.common.constants;
 
-import com.kirey.customerprofiling.data.entity.Datasets;
-
 /**
  * Constants for application.
  *
@@ -243,7 +241,7 @@ public class AppConstants {
 	public static final String ISTAT = "ISTAT";
 	public static final String EMAIL_PATTERN = "[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?";
 	public static final String USERNAME_PATTERN = "^(?=.{6,255}$)(?![-_.])(?!.*[-_.]{2})[A-Za-z0-9._-]+(?<![-_.])$";
-	public static final String PASSWORD_PATTERN = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$";
+	public static final String ACCESS_CODE_PATTERN = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$";
 	public static final String EMPTY_STRING = "";
 	public static final Integer DEFAULT_ACCESS_CODE_STRENGTH = 3;
 	public static final String SIMBOL_REGEX = ".*(?=.*?[#?!.@$%^&*-]).*";
@@ -273,7 +271,7 @@ public class AppConstants {
 	/**
 	 * Constructor from superClass.
 	 */
-	public AppConstants() {
+	private AppConstants() {
 		super();
 
 	}
