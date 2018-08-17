@@ -98,6 +98,8 @@ export class DashboardComponent implements OnInit {
     this.dashboardService.getDatasetDetails(id).subscribe(
       res => {
         console.log(res);
+        this.data = res['data'];
+        console.log(this.data);
         // this._router.navigate(['/one-project']);
       },
       err => {
