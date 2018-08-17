@@ -3,17 +3,47 @@
   <div class="flex-grid">
     <div class="col">
       <mat-card class="dashboard-card">
-        <mat-title>Projects Overview</mat-title>
+        <mat-card-header>
+          <mat-title>Projects Overview</mat-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content *ngIf="projects">
+          <mat-nav-list *ngFor="let project of projects; let i = index">
+            <mat-list-item (click)="projectClick()" (dblclick)="projectDblclick(project.id)">
+              <div class="flex space-between list-wrapper">
+                <span> {{project.projectName}}</span>
+                <mat-chip-list>
+                  <mat-chip [ngStyle]="{'backgroundColor':getColor(project.status)}" selected>{{project.status}}</mat-chip>
+                </mat-chip-list>
+              </div>
+            </mat-list-item>
+          </mat-nav-list>
+        </mat-card-content>
       </mat-card>
     </div>
     <div class="col">
       <mat-card class="dashboard-card">
-        <mat-title>Datasets Overview</mat-title>
+        <mat-card-header>
+          <mat-title>Datasets Overview</mat-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <mat-nav-list *ngFor="let datasets of dataset; let i = index">
+            <mat-list-item (click)="datasetClick()" (dblclick)="datasetDblclick(datasets.id)">{{datasets.name}}</mat-list-item>
+          </mat-nav-list>
+        </mat-card-content>
       </mat-card>
     </div>
     <div class="col">
       <mat-card class="dashboard-card">
-        <mat-title>Analytical Tools Overview</mat-title>
+        <mat-card-header>
+          <mat-title>Analytical Tools Overview</mat-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-nav-list *ngFor="let algorithms of algorithm; let i = index">
+            <mat-list-item (click)="algorithmClick()" (dblclick)="algorithmDblclick(algorithms.id)">{{algorithms.algorithmName}}</mat-list-item>
+          </mat-nav-list>
+        </mat-card-content>
       </mat-card>
     </div>
   </div>
@@ -27,7 +57,26 @@
   <div class="flex-grid">
     <div class="colFullHeight">
       <mat-card class="dashboard-card">
-        <mat-title>Panel Detail</mat-title>
+        <mat-card-header>
+          <mat-title>Panel Detail</mat-title>
+        </mat-card-header>
+        <mat-card-content>
+         <div>
+            <ng-template #projects>
+                <span class="projects">
+                    <h4 class="subtitle">Project details for project ID: </h4>
+                  projects
+                  <p></p>
+                </span>
+              </ng-template>
+            <!-- <ng-template #datasets>
+                <span class="datasets">
+                  datasets
+                </span>
+              </ng-template> -->
+          </div>
+          <ng-content></ng-content>
+        </mat-card-content>
       </mat-card>
     </div>
   </div>

@@ -19,6 +19,7 @@ import { AlgorithmsService } from './algorithms/algorithms.service';
 import { ProjectOverviewService } from './project-overview/project.overview.service';
 import { SharedService } from './shared/services/shared.service';
 import { EditAlgorithmService } from './dialogs/edit-algorithm/edit-algorithm.service';
+import { Dashboardervice } from './dashboard/dashboard.service';
 
 // Components
 import { ProjectsComponent } from './projects/projects.component';
@@ -92,7 +93,8 @@ import { AddValueComponent } from './dialogs/add-value/add-value.component';
     ProjectOverviewService,
     AnalyzeService,
     SharedService,
-    EditAlgorithmService
+    EditAlgorithmService,
+    Dashboardervice
   ],
   entryComponents: [
     AddComponent,
