@@ -8,8 +8,8 @@
         </mat-card-header>
         <mat-divider></mat-divider>
         <mat-card-content *ngIf="projectsArr">
-          <mat-nav-list *ngFor="let project of projectsArr; let i = index">
-            <mat-list-item (click)="projectClick(project.id)" (dblclick)="projectDblclick(project.id)">
+          <mat-nav-list>
+            <mat-list-item *ngFor="let project of projectsArr; let i = index" (click)="projectClick(project.id)" (dblclick)="projectDblclick(project.id)">
               <div class="flex space-between list-wrapper">
                 <span> {{project.projectName}}</span>
                 <mat-chip-list>
@@ -28,8 +28,8 @@
         </mat-card-header>
         <mat-divider></mat-divider>
         <mat-card-content>
-          <mat-nav-list *ngFor="let datasets of dataset; let i = index">
-            <mat-list-item (click)="datasetClick(datasets.id)">{{datasets.name}}</mat-list-item>
+          <mat-nav-list>
+            <mat-list-item *ngFor="let datasets of dataset; let i = index" (click)="datasetClick(datasets.id)">{{datasets.name}}</mat-list-item>
           </mat-nav-list>
         </mat-card-content>
       </mat-card>
@@ -40,8 +40,8 @@
           <mat-title>Analytical Tools Overview</mat-title>
         </mat-card-header>
         <mat-card-content>
-          <mat-nav-list *ngFor="let algorithms of algorithm; let i = index">
-            <mat-list-item (click)="algorithmClick(algorithms.id)">{{algorithms.algorithmName}}</mat-list-item>
+          <mat-nav-list>
+            <mat-list-item *ngFor="let algorithms of algorithm; let i = index" (click)="algorithmClick(algorithms.id)">{{algorithms.algorithmName}}</mat-list-item>
           </mat-nav-list>
         </mat-card-content>
       </mat-card>
@@ -118,7 +118,7 @@
               <span>
                 <strong>Library: </strong>{{algo.library}}</span>
               <h3>Parameters Details</h3>
-              <div *ngFor="let par of algo.parameters">
+              <p *ngFor="let par of algo.parameters">
                 <span>
                   <strong>Parameter Name: </strong>{{par.parameterName}}</span>
                 <br>
@@ -130,7 +130,7 @@
                 <br>
                 <span *ngIf="par.parameterValues">
                   <strong>Parameter Values: </strong>{{par.parameterValues}}</span>
-              </div>
+                </p>
             </div>
           </div>
         </mat-card-content>
