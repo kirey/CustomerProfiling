@@ -1,8 +1,9 @@
 @import '../app.component.scss';
 
 #datasets {
-     // Table Classes
- table.mat-table {
+
+// Table Classes
+table.mat-table {
     margin-top: 30px;
     width: 80%;
 }
@@ -20,14 +21,36 @@ td.mat-cell {
     padding-left: 24px!important;
 }
 
+ // Icons
+ .button-wrapper {
+    width: 80%;
+    margin-top: 100px;
+}
+.button-wrapper>button {
+    float: right;
+    margin-top: 15px;
+}
+.icons-wrapper {
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.table-icons {
+    color: $primary;
+    font-size: 22px;
+    margin-right: 15px;
+}
+.table-icons:hover{
+    color: $warn;
+    cursor: pointer;
+}
+
 
 .mat-paginator,
 .mat-paginator-page-size .mat-select-trigger {
-    margin-left: 15%;
-    margin-right: 15%;
+    width: 80%;
 }
 
 .filterInput {
-    margin-left: 15%;
+   width: 50%;
 }
 }
