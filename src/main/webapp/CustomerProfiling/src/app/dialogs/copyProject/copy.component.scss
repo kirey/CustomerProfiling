@@ -1,8 +1,23 @@
 #copyProject {
+    // FORM
+    form {
+      margin: 20px 0;
+  }
   .mat-form-field {
-    width: 90%;
+      width: 40%;
   }
-  .buttons {
-    float: right;
+  .description-field {
+    margin-left: 50px;
   }
+  
+    // Buttons
+    mat-dialog-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      }
+     mat-dialog-actions>button {
+          margin-top: 30px;
+          margin-left: 15px;
+      }
 }

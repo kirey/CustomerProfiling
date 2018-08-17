@@ -2167,7 +2167,7 @@ var AddProjectService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"copyProject\">\r\n  <h1>Copy Project  {{data.id}}</h1>\r\n  <form #copyProjectForm=\"ngForm\">\r\n  <mat-dialog-content>\r\n    <mat-form-field>\r\n      <input matInput name=\"projectName\" type=\"text\" [(ngModel)]=\"data.projectName\" placeholder=\"New Project Name\">\r\n    </mat-form-field>\r\n    <br>\r\n    <!-- <mat-form-field>\r\n      <input matInput name=\"newProjectName\" type=\"text\" [(ngModel)]=\"data.newProjectName\" placeholder=\"New project name\">\r\n    </mat-form-field> -->\r\n    <br>\r\n    <mat-form-field>\r\n      <textarea matInput name=\"description\" type=\"text\" [(ngModel)]=\"data.description\" placeholder=\"Previous aproject Text\"></textarea>\r\n    </mat-form-field>\r\n    <br>\r\n    <!-- <mat-form-field>\r\n      <mat-select [(value)]=\"selected\">\r\n        <mat-option>None</mat-option>\r\n        <mat-option value=\"option1\">Option 1</mat-option>\r\n        <mat-option value=\"option2\">Option 2</mat-option>\r\n        <mat-option value=\"option3\">Option 3</mat-option>\r\n      </mat-select>\r\n    </mat-form-field> -->\r\n  </mat-dialog-content>\r\n  <mat-dialog-actions class=\"buttons\">\r\n    <button mat-button mat-dialog-close (click)=\"cancel()\">Cancel</button>\r\n    <button type=\"submit\" color=\"warn\" mat-raised-button (click)=\"copyProject(copyProjectForm.value)\">Create project</button>\r\n  </mat-dialog-actions>\r\n  </form>\r\n</div>\r\n"
+module.exports = "<div id=\"copyProject\">\r\n  <h1 class=\"subtitle\" mat-dialog-title>Copy Project</h1>\r\n  <form class=\"flex column\" #copyProjectForm=\"ngForm\">\r\n    <mat-dialog-content class=\"flex\">\r\n      <mat-form-field>\r\n        <input matInput name=\"projectName\" type=\"text\" [(ngModel)]=\"data.projectName\" placeholder=\"New Project Name\">\r\n      </mat-form-field>\r\n      <mat-form-field class=\"description-field\" appearance=\"outline\">\r\n        <textarea matInput name=\"description\" type=\"text\" [(ngModel)]=\"data.description\" placeholder=\"Previous aproject Text\"></textarea>\r\n      </mat-form-field>\r\n    </mat-dialog-content>\r\n    <mat-dialog-actions>\r\n      <button mat-stroked-button color=\"warn\" mat-dialog-close (click)=\"cancel()\">Cancel</button>\r\n      <button type=\"submit\" color=\"primary\" mat-raised-button (click)=\"copyProject(copyProjectForm.value)\">Create project</button>\r\n    </mat-dialog-actions>\r\n  </form>\r\n</div>"
 
 /***/ }),
 
@@ -2178,7 +2178,7 @@ module.exports = "<div id=\"copyProject\">\r\n  <h1>Copy Project  {{data.id}}</h
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#copyProject .mat-form-field {\n  width: 90%; }\n\n#copyProject .buttons {\n  float: right; }\n"
+module.exports = "#copyProject form {\n  margin: 20px 0; }\n\n#copyProject .mat-form-field {\n  width: 40%; }\n\n#copyProject .description-field {\n  margin-left: 50px; }\n\n#copyProject mat-dialog-actions {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end; }\n\n#copyProject mat-dialog-actions > button {\n  margin-top: 30px;\n  margin-left: 15px; }\n"
 
 /***/ }),
 
