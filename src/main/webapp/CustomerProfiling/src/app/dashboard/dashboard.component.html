@@ -63,6 +63,7 @@
         <mat-card-content>
           <div>
             <div *ngIf="projectDetails && panelProject">
+              <h3>Project Details</h3>
               <span>
                 <strong>Project Id: </strong>{{projectDetails.id}},</span>
               <br>
@@ -82,6 +83,7 @@
                 <strong>Last Opened: </strong>{{projectDetails.lastOpened}}</span>
             </div>
             <div *ngIf="data && panelData">
+              <h3>Dataset Details</h3>
               <span>
                 <strong>Dataset Name: </strong>{{data.datasetName}}</span>
               <br>
@@ -106,6 +108,7 @@
               </p>
             </div>
             <div *ngIf="algo && panelAlgo">
+              <h3>Algorithm Details</h3>
               <span>
                 <strong>Algorithm Name: </strong>{{algo.algorithmName}}</span>
               <br>

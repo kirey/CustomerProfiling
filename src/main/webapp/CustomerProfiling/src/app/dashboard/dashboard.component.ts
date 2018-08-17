@@ -75,7 +75,7 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-  // project details click and dbl click function
+  // project details click - show details in panel details
   projectClick(id) {
     this.panelProject = true;
     this.panelData = false;
@@ -92,12 +92,13 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
+  // project details dbl click function -  go to overview project page
   projectDblclick(id) {
     console.log('dblklik');
     this.sharedService.setProjectId(id);
     this._router.navigate(['/one-project']);
   }
-  // dataset details click
+  // dataset details click - show details in panel details
   datasetClick(id) {
     this.panelData = true;
     this.panelProject = false;
@@ -107,14 +108,13 @@ export class DashboardComponent implements OnInit {
         console.log(res);
         this.data = res['data'];
         console.log(this.data);
-        // this._router.navigate(['/one-project']);
       },
       err => {
         console.log(err);
       }
     );
   }
-  // algorithm details click
+  // algorithm details click - show algorithms details in panel details
   algorithmClick(id) {
     console.log('dblklik');
     this.panelAlgo = true;
