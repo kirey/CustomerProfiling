@@ -4,6 +4,7 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { MatDialog } from '@angular/material';
 import { AddAlgorithmComponent } from '../dialogs/add-algorithm/add-algorithm.component';
 import { ViewAlgorithmComponent } from '../dialogs/view-algorithm/view-algorithm.component';
+import { EditAlgorithmComponent } from '../dialogs/edit-algorithm/edit-algorithm.component';
 
 @Component({
   selector: 'app-algorithms',
@@ -49,6 +50,12 @@ export class AlgorithmsComponent implements OnInit {
     // dialogRef.afterClosed().subscribe(results => {
     //   this.getAll();
     // });
+  }
+  openEditDialog(obj) {
+    const dialogRef = this.dialog.open(EditAlgorithmComponent, {
+      width: '800px',
+      data: obj
+    });
   }
 
   ngOnInit() {

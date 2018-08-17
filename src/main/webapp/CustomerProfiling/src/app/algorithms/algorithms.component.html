@@ -1,7 +1,9 @@
-<div id="algorithms" class="flex center">
-  <button mat-mini-fab color="primary" matTooltip="Add Algorithm" matTooltipPosition="above" (click)="openAddDialog()">
-    <i class="material-icons">add</i>
-  </button>
+<div id="algorithms" class="flex column center">
+  <div class="button-wrapper">
+    <button mat-mini-fab color="accent" matTooltip="Add Algorithm" matTooltipPosition="above" (click)="openAddDialog()">
+      <i class="material-icons">add</i>
+    </button>
+  </div>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- Name -->
     <ng-container matColumnDef="name">
@@ -27,9 +29,14 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let element">
-        <i class="material-icons view-icon" matTooltip="View Algorithm" (click)="openViewDialog(element)">
-          visibility
-        </i>
+        <div class="flex icons-wrapper">
+          <i class="material-icons edit-icon" matTooltip="Edit Algorithm" (click)="openEditDialog(element)">
+            border_color
+          </i>
+          <i class="material-icons view-icon" matTooltip="View Algorithm" (click)="openViewDialog(element)">
+            visibility
+          </i>
+        </div>
       </td>
     </ng-container>
 

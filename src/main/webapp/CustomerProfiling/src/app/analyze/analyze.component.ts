@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared/services/shared.service';
 import { SnackBarService } from '../shared/services/snackbar.service';
 import { DeleteComponent } from '../dialogs/delete/delete.component';
+import { interval, UnsubscriptionError } from 'rxjs';
+
 
 @Component({
   selector: 'app-analyze',
@@ -24,6 +26,8 @@ export class AnalyzeComponent implements OnInit {
   private listOfAlgorithms: any;
   private displayedColumns: string[] = ['parameterName', 'parameterValueType', 'parameterValue', 'actions'];
   private selectedAlgorithms = [];
+  private status: String;
+  private refreshInterval$ = interval(5000);
 
   getParameters(algorithm) {
     console.log(this.parameters);
@@ -131,6 +135,7 @@ export class AnalyzeComponent implements OnInit {
         res => {
           this.getListOfAlgorithms();
           this.getAlgorithms();
+          this.getStatus();
           // console.log(res);
           this.snackbar.openSnackBar('Successfully saved.', 'Success');
         },
@@ -142,17 +147,29 @@ export class AnalyzeComponent implements OnInit {
   }
 
   getStatus() {
+    console.log("lala");
     this._analyzeService.status(this.projectId)
       .subscribe(
         res => {
-          console.log(res);
+          // console.log(res);
+          this.status = res['data'];
         },
         err => console.log(err)
       );
   }
 
   analyze() {
-    console.log("änalyze");
+    this._analyzeService.analyze(this.projectId, this.listOfAlgorithms)
+      .subscribe(
+        res => {
+          // console.log(res)
+          this.snackbar.openSnackBar(res['data'], 'Success');
+        },
+        err => {
+          console.log(err);
+          this.snackbar.openSnackBar(err['data'], 'Error');
+        }
+      );
   }
 
   ngOnInit() {
@@ -160,6 +177,17 @@ export class AnalyzeComponent implements OnInit {
     this.getAlgorithms();
     this.getListOfAlgorithms();
     this.getStatus();
+
+    // Get Status every 5 seconds
+    this.refreshInterval$.subscribe(() =>
+      this.getStatus()
+    );
+  }
+
+  ngOnDestroy() {
+
+    // TO DO
+    // Stop getting Status every 5 seconds
   }
 }
 

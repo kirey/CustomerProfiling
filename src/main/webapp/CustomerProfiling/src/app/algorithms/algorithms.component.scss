@@ -3,8 +3,10 @@
 #algorithms {
 
     // Table Classes
+
     table.mat-table {
-        margin-top: 200px;
+        margin-top: 30px;
+        width: 80%;
     }
     tr.mat-header-row {
         background: linear-gradient(to right, $primary, $accent);
@@ -15,13 +17,29 @@
     }
 
     // Icons
-    .view-icon {
-        color: $primary;
-        margin-left: 8px;
+    .button-wrapper {
+        width: 80%;
+        margin-top: 100px;
     }
-    .view-icon:hover{
+    .button-wrapper>button {
+        float: right;
+    }
+    .icons-wrapper {
+        align-items: flex-start;
+        justify-content: center;
+    }
+    .view-icon, .edit-icon {
+        color: $primary;
+        font-size: 23px;
+    }
+    .view-icon:hover, .edit-icon:hover{
         color: $warn;
         cursor: pointer;
     }
+    .view-icon {
+        margin-left: 20px;
+        font-size: 24px;
+    }
+   
 
 }
