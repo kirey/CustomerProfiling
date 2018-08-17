@@ -135,6 +135,7 @@ export class AnalyzeComponent implements OnInit {
         res => {
           this.getListOfAlgorithms();
           this.getAlgorithms();
+          this.getStatus();
           // console.log(res);
           this.snackbar.openSnackBar('Successfully saved.', 'Success');
         },

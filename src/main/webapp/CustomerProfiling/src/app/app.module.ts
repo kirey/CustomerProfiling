@@ -18,6 +18,7 @@ import { ProjectsService } from './projects/projects.service';
 import { AlgorithmsService } from './algorithms/algorithms.service';
 import { ProjectOverviewService } from './project-overview/project.overview.service';
 import { SharedService } from './shared/services/shared.service';
+import { EditAlgorithmService } from './dialogs/edit-algorithm/edit-algorithm.service';
 
 // Components
 import { ProjectsComponent } from './projects/projects.component';
@@ -30,6 +31,7 @@ import { CopyComponent } from './dialogs/copyProject/copy.component';
 import { DatasetComponent } from './dataset/dataset.component';
 import { DataTabComponent } from './data-tab/data-tab.component';
 import { DataTabService } from './data-tab/data-tab.service';
+import { EditAlgorithmComponent } from './dialogs/edit-algorithm/edit-algorithm.component';
 
 // import { ProjectOverviewComponent } from './project-overview/project-overview.component';
 import { ProjectOverviewComponent } from './project-overview/project-overview.component';
@@ -65,7 +67,8 @@ import { AddValueComponent } from './dialogs/add-value/add-value.component';
     ViewAlgorithmComponent,
     OneProjectComponent,
     AnalyzeComponent,
-    AddValueComponent
+    AddValueComponent,
+    EditAlgorithmComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +91,8 @@ import { AddValueComponent } from './dialogs/add-value/add-value.component';
     CopyProjectService,
     ProjectOverviewService,
     AnalyzeService,
-    SharedService
+    SharedService,
+    EditAlgorithmService
   ],
   entryComponents: [
     AddComponent,
@@ -100,7 +104,8 @@ import { AddValueComponent } from './dialogs/add-value/add-value.component';
     CopyComponent,
     AddAlgorithmComponent,
     ViewAlgorithmComponent,
-    AddValueComponent
+    AddValueComponent,
+    EditAlgorithmComponent
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
