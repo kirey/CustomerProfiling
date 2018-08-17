@@ -7,8 +7,8 @@
           <mat-title>Projects Overview</mat-title>
         </mat-card-header>
         <mat-divider></mat-divider>
-        <mat-card-content *ngIf="projects">
-          <mat-nav-list *ngFor="let project of projects; let i = index">
+        <mat-card-content *ngIf="projectsArr">
+          <mat-nav-list *ngFor="let project of projectsArr; let i = index">
             <mat-list-item (click)="projectClick()" (dblclick)="projectDblclick(project.id)">
               <div class="flex space-between list-wrapper">
                 <span> {{project.projectName}}</span>
@@ -61,14 +61,14 @@
           <mat-title>Panel Detail</mat-title>
         </mat-card-header>
         <mat-card-content>
-         <div>
+          <div>
             <ng-template #projects>
-                <span class="projects">
-                    <h4 class="subtitle">Project details for project ID: </h4>
-                  projects
-                  <p></p>
-                </span>
-              </ng-template>
+              <span class="projects">
+                <h4 class="subtitle">Project details for project ID: </h4>
+                projects
+                <p></p>
+              </span>
+            </ng-template>
             <!-- <ng-template #datasets>
                 <span class="datasets">
                   datasets

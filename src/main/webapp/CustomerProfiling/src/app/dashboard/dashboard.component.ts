@@ -10,10 +10,10 @@ import { SharedService } from '../shared/services/shared.service';
   encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
-  projects: any;
   dataset: any;
   algorithm: any;
   selected: any;
+  projectsArr: Array<Object>;
 
   constructor(
     public dashboardService: Dashboardervice,
@@ -22,17 +22,16 @@ export class DashboardComponent implements OnInit {
   ) { }
   // get All projects - first tab
   getAllProjects() {
-    this.dashboardService.getProjects().subscribe(
-      res => {
-        console.log(res);
-        this.projects = res['data'];
-        console.log(this.projects);
-        this.projects = Array.of(this.projects);
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    this.dashboardService.getProjects()
+      .subscribe(
+        res => {
+          console.log(res);
+          this.projectsArr = res['data'];
+        },
+        err => {
+          console.log(err)
+        }
+      );
   }
   // colors for status - projects
   getColor(status) {
