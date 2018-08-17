@@ -15,6 +15,8 @@ export class DashboardComponent implements OnInit {
   selected: any;
   projectsArr: Array<Object>;
   data: any;
+  projectDetails: any;
+  algo: any;
 
   constructor(
     public dashboardService: Dashboardervice,
@@ -72,25 +74,25 @@ export class DashboardComponent implements OnInit {
     );
   }
   // project details click and dbl click function
-  projectClick() {
+  projectClick(id) {
     console.log('klik');
-    // this.sharedService.setProjectId(id);
+    this.dashboardService.getProjectsDetails(id).subscribe(
+      res => {
+        console.log(res);
+        this.projectDetails = res['data'];
+        console.log(this.projectDetails);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
   projectDblclick(id) {
     console.log('dblklik');
     this.sharedService.setProjectId(id);
     this._router.navigate(['/one-project']);
-    // this.dashboardService.getProjectsDetails(id).subscribe(
-    //   res => {
-    //     console.log(res);
-    //     // this._router.navigate(['/one-project']);
-    //   },
-    //   err => {
-    //     console.log(err);
-    //   }
-    // );
   }
-  // dataset details click and dbl click
+  // dataset details click
   datasetClick(id) {
     this.dashboardService.getDatasetDetails(id).subscribe(
       res => {
@@ -104,16 +106,14 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-  // algorithm details click and dbl click
-  algorithmClick() {
-    console.log('click');
-  }
-  algorithmDblclick(id) {
+  // algorithm details click
+  algorithmClick(id) {
     console.log('dblklik');
     this.dashboardService.getAlgorithmDetails(id).subscribe(
       res => {
         console.log(res);
-        // this._router.navigate(['/one-project']);
+        this.algo = res['data'];
+        console.log(this.algo);
       },
       err => {
         console.log(err);

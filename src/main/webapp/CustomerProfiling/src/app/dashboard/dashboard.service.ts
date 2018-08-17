@@ -24,14 +24,13 @@ export class Dashboardervice {
 
   getProjectsDetails(id) {
     return this._http.get(this.baseUrl + 'projects/' + id);
-}
-getDatasetDetails(id) {
-  return this._http.get(this.baseUrl + 'dataset/' + id);
-}
-
-getAlgorithmDetails(id) {
-  return this._http.get(this.baseUrl + 'algorithms/' + id);
-}
+  }
+  getDatasetDetails(id) {
+    return this._http.get(this.baseUrl + 'dataset/' + id);
+  }
+  getAlgorithmDetails(id) {
+    return this._http.get(this.baseUrl + 'algorithms/' + id);
+  }
   // getDataTypes() {
   //     return this._http.get(this.baseUrl + 'dataTypes');
   // }

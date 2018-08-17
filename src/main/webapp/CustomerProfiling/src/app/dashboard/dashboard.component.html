@@ -9,7 +9,7 @@
         <mat-divider></mat-divider>
         <mat-card-content *ngIf="projectsArr">
           <mat-nav-list *ngFor="let project of projectsArr; let i = index">
-            <mat-list-item (click)="projectClick()" (dblclick)="projectDblclick(project.id)">
+            <mat-list-item (click)="projectClick(project.id)" (dblclick)="projectDblclick(project.id)">
               <div class="flex space-between list-wrapper">
                 <span> {{project.projectName}}</span>
                 <mat-chip-list>
@@ -41,7 +41,7 @@
         </mat-card-header>
         <mat-card-content>
           <mat-nav-list *ngFor="let algorithms of algorithm; let i = index">
-            <mat-list-item (click)="algorithmClick()" (dblclick)="algorithmDblclick(algorithms.id)">{{algorithms.algorithmName}}</mat-list-item>
+            <mat-list-item (click)="algorithmClick(algorithms.id)">{{algorithms.algorithmName}}</mat-list-item>
           </mat-nav-list>
         </mat-card-content>
       </mat-card>
@@ -62,20 +62,72 @@
         </mat-card-header>
         <mat-card-content>
           <div>
-            <div>
-
+            <div *ngIf="projectDetails">
+              <span>
+                <strong>Project Id: </strong>{{projectDetails.id}},</span>
+              <br>
+              <span>
+                <strong>Project Name: </strong> {{projectDetails.projectName}}</span>
+              <br>
+              <span>
+                <strong>Status: </strong>{{projectDetails.status}}</span>
+              <br>
+              <span>
+                <strong>Desription: </strong>{{projectDetails.description}}</span>
+              <br>
+              <span>
+                <strong>Creation Date: </strong>{{projectDetails.creationDate | date}}</span>
+              <br>
+              <span *ngIf="projectDetails.lastOpened">
+                <strong>Last Opened: </strong>{{projectDetails.lastOpened}}</span>
             </div>
             <div *ngIf="data">
-              <span><strong>Dataset Name: </strong>{{data.datasetName}}</span><br>
-              <span><strong>Dataset Description: </strong>{{data.datasetDesc}}</span><br>
-              <span><strong>Dataset Size: </strong>{{data.datasetSize}}</span><br>
-              <span><strong>Number Of Rows: </strong>{{data.numberOfRows}}</span><br>
-              <span><strong>Number Of Variables: </strong>{{data.numberOfVariables}}</span>
+              <span>
+                <strong>Dataset Name: </strong>{{data.datasetName}}</span>
+              <br>
+              <span>
+                <strong>Dataset Description: </strong>{{data.datasetDesc}}</span>
+              <br>
+              <span>
+                <strong>Dataset Size: </strong>{{data.datasetSize}}</span>
+              <br>
+              <span>
+                <strong>Number Of Rows: </strong>{{data.numberOfRows}}</span>
+              <br>
+              <span>
+                <strong>Number Of Variables: </strong>{{data.numberOfVariables}}</span>
               <h3>Variable Details</h3>
               <p *ngFor="let vars of data.variableDetails">{{vars.variableName}}</p>
             </div>
+            <div *ngIf="algo">
+              <span>
+                <strong>Id: </strong>{{algo.id}}</span><br>
+              <span>
+                <strong>Algorithm Name: </strong>{{algo.algorithmName}}</span>
+              <br>
+              <span>
+                <strong>Description: </strong>{{algo.description}}</span>
+              <br>
+              <span>
+                <strong>Library: </strong>{{algo.library}}</span>
+              <h3>Parameters Details</h3>
+              <div *ngFor="let par of algo.parameters">
+                <span>
+                  <strong>Ïd: </strong>{{par.id}}, </span>
+                <span>
+                  <strong>Parameter Name: </strong>{{par.parameterName}}</span>
+                <br>
+                <span>
+                  <strong>Default Value: </strong>{{par.defaultValue}}</span>
+                <br>
+                <span>
+                  <strong>Value Type: </strong>{{par.parameterValueType}}</span>
+                <br>
+                <span *ngIf="par.parameterValues">
+                  <strong>Parameter Values: </strong>{{par.parameterValues}}</span>
+              </div>
+            </div>
           </div>
-          <ng-content></ng-content>
         </mat-card-content>
       </mat-card>
     </div>
