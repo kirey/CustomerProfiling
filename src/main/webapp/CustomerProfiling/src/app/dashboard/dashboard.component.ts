@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
     public dashboardService: Dashboardervice,
     private _router: Router,
     public sharedService: SharedService
-  ) {}
+  ) { }
   // get All projects - first tab
   getAllProjects() {
     this.dashboardService.getProjects().subscribe(
@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
         console.log(res);
         this.projects = res['data'];
         console.log(this.projects);
+        this.projects = Array.of(this.projects);
       },
       err => {
         console.log(err);
@@ -105,8 +106,8 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-   // algorithm details click and dbl click
-   algorithmClick() {
+  // algorithm details click and dbl click
+  algorithmClick() {
     console.log('click');
   }
   algorithmDblclick(id) {

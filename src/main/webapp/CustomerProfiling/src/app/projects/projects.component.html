@@ -1,7 +1,9 @@
-<div id="projects">
-    <button mat-mini-fab color="primary" matTooltip="Create Project" matTooltipPosition="above" (click)="openAddDialog()">
-        <i class="material-icons">add</i>
-    </button>
+<div id="projects" class="flex column center">
+    <div class="button-wrapper">
+        <button mat-mini-fab color="accent" matTooltip="Create Project" matTooltipPosition="above" (click)="openAddDialog()">
+            <i class="material-icons">add</i>
+        </button>
+    </div>
     <table mat-table [dataSource]="projects" class="mat-elevation-z8">
         <!-- Name Column -->
         <ng-container matColumnDef="id">
@@ -37,19 +39,19 @@
         </ng-container>
         <!-- Actions -->
         <ng-container matColumnDef="editing">
-            <th mat-header-cell *matHeaderCellDef> Editing</th>
+            <th mat-header-cell *matHeaderCellDef> Actions</th>
             <td mat-cell *matCellDef="let element; let i = index">
-                <span class="flex">
+                <div class="flex icons-wrapper">
+                    <i color="warn" matTooltip="Open Project" matTooltipPosition="above" class="material-icons table-icons" (click)="openProject(element.id)">
+                        open_in_new
+                    </i>
                     <i matTooltip="Copy Project" matTooltipPosition="above" class="material-icons table-icons" (click)="openCopyDialog(element, element.id)">
                         file_copy
                     </i>
                     <i color="warn" matTooltip="Delete Project" matTooltipPosition="above" class="material-icons table-icons" (click)="openDeleteDialog(element.id)">
                         delete
                     </i>
-                    <i color="warn" matTooltip="Open Project" matTooltipPosition="above" class="material-icons table-icons" (click)="openProject(element.id)">
-                        open_in_new
-                    </i>
-                </span>
+                </div>
             </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
