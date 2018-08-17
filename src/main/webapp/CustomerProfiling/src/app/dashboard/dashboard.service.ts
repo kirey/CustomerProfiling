@@ -11,7 +11,7 @@ export class Dashboardervice {
   baseUrl = '/CustomerProfiling/rest/';
 
   getProjects() {
-    return this._http.get(this.baseUrl + 'projects');
+    return this._http.get(this.baseUrl + 'projects').pipe(map(res => res));
   }
 
   getDatasets() {
