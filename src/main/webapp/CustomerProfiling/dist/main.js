@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"algorithms\" class=\"flex center\">\r\n  <button mat-mini-fab color=\"primary\" matTooltip=\"Add Algorithm\" matTooltipPosition=\"above\" (click)=\"openAddDialog()\">\r\n    <i class=\"material-icons\">add</i>\r\n  </button>\r\n  <table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z8\">\r\n    <!-- Name -->\r\n    <ng-container matColumnDef=\"name\">\r\n      <th mat-header-cell *matHeaderCellDef>Algorithm Name</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.algorithmName}} </td>\r\n    </ng-container>\r\n\r\n    <!-- Description -->\r\n    <ng-container matColumnDef=\"description\">\r\n      <th mat-header-cell *matHeaderCellDef> Description </th>\r\n      <td mat-cell *matCellDef=\"let element\">\r\n        <div class=\"justify\">{{element.description}} </div>\r\n      </td>\r\n    </ng-container>\r\n\r\n    <!-- Library -->\r\n    <ng-container matColumnDef=\"library\">\r\n      <th mat-header-cell *matHeaderCellDef> Library </th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.library}} </td>\r\n    </ng-container>\r\n\r\n    <!-- Actions -->\r\n    <ng-container matColumnDef=\"actions\">\r\n      <th mat-header-cell *matHeaderCellDef> Actions </th>\r\n      <td mat-cell *matCellDef=\"let element\">\r\n        <i class=\"material-icons view-icon\" matTooltip=\"View Algorithm\" (click)=\"openViewDialog(element)\">\r\n          visibility\r\n        </i>\r\n      </td>\r\n    </ng-container>\r\n\r\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n  </table>\r\n</div>"
+module.exports = "<div id=\"algorithms\" class=\"flex column center\">\r\n  <div class=\"button-wrapper\">\r\n    <button mat-mini-fab color=\"accent\" matTooltip=\"Add Algorithm\" matTooltipPosition=\"above\" (click)=\"openAddDialog()\">\r\n      <i class=\"material-icons\">add</i>\r\n    </button>\r\n  </div>\r\n  <table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z8\">\r\n    <!-- Name -->\r\n    <ng-container matColumnDef=\"name\">\r\n      <th mat-header-cell *matHeaderCellDef>Algorithm Name</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.algorithmName}} </td>\r\n    </ng-container>\r\n\r\n    <!-- Description -->\r\n    <ng-container matColumnDef=\"description\">\r\n      <th mat-header-cell *matHeaderCellDef> Description </th>\r\n      <td mat-cell *matCellDef=\"let element\">\r\n        <div class=\"justify\">{{element.description}} </div>\r\n      </td>\r\n    </ng-container>\r\n\r\n    <!-- Library -->\r\n    <ng-container matColumnDef=\"library\">\r\n      <th mat-header-cell *matHeaderCellDef> Library </th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.library}} </td>\r\n    </ng-container>\r\n\r\n    <!-- Actions -->\r\n    <ng-container matColumnDef=\"actions\">\r\n      <th mat-header-cell *matHeaderCellDef> Actions </th>\r\n      <td mat-cell *matCellDef=\"let element\">\r\n        <div class=\"flex icons-wrapper\">\r\n          <i class=\"material-icons edit-icon\" matTooltip=\"Edit Algorithm\" (click)=\"openEditDialog(element)\">\r\n            border_color\r\n          </i>\r\n          <i class=\"material-icons view-icon\" matTooltip=\"View Algorithm\" (click)=\"openViewDialog(element)\">\r\n            visibility\r\n          </i>\r\n        </div>\r\n      </td>\r\n    </ng-container>\r\n\r\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n  </table>\r\n</div>"
 
 /***/ }),
 
@@ -41,7 +41,7 @@ module.exports = "<div id=\"algorithms\" class=\"flex center\">\r\n  <button mat
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n#algorithms table.mat-table {\n  margin-top: 200px; }\n\n#algorithms tr.mat-header-row {\n  background: linear-gradient(to right, #311B92, #7C4DFF); }\n\n#algorithms th.mat-header-cell {\n  width: 250px;\n  color: #fff; }\n\n#algorithms .view-icon {\n  color: #311B92;\n  margin-left: 8px; }\n\n#algorithms .view-icon:hover {\n  color: #FF3D00;\n  cursor: pointer; }\n"
+module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n#algorithms table.mat-table {\n  margin-top: 30px;\n  width: 80%; }\n\n#algorithms tr.mat-header-row {\n  background: linear-gradient(to right, #311B92, #7C4DFF); }\n\n#algorithms th.mat-header-cell {\n  width: 250px;\n  color: #fff; }\n\n#algorithms td.mat-cell {\n  padding: 10px 10px 10px 0 !important; }\n\n#algorithms td.mat-cell:first-child, #algorithms td.mat-footer-cell:first-child, #algorithms th.mat-header-cell:first-child {\n  padding-left: 24px !important; }\n\n#algorithms .button-wrapper {\n  width: 80%;\n  margin-top: 100px; }\n\n#algorithms .button-wrapper > button {\n  float: right; }\n\n#algorithms .icons-wrapper {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n#algorithms .view-icon, #algorithms .edit-icon {\n  color: #311B92;\n  font-size: 22px;\n  margin-right: 15px; }\n\n#algorithms .view-icon:hover, #algorithms .edit-icon:hover {\n  color: #FF3D00;\n  cursor: pointer; }\n\n#algorithms .view-icon {\n  font-size: 24px; }\n"
 
 /***/ }),
 
@@ -60,6 +60,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../dialogs/add-algorithm/add-algorithm.component */ "./src/app/dialogs/add-algorithm/add-algorithm.component.ts");
 /* harmony import */ var _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../dialogs/view-algorithm/view-algorithm.component */ "./src/app/dialogs/view-algorithm/view-algorithm.component.ts");
+/* harmony import */ var _dialogs_edit_algorithm_edit_algorithm_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../dialogs/edit-algorithm/edit-algorithm.component */ "./src/app/dialogs/edit-algorithm/edit-algorithm.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -69,6 +70,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -108,6 +110,12 @@ var AlgorithmsComponent = /** @class */ (function () {
         // dialogRef.afterClosed().subscribe(results => {
         //   this.getAll();
         // });
+    };
+    AlgorithmsComponent.prototype.openEditDialog = function (obj) {
+        var dialogRef = this.dialog.open(_dialogs_edit_algorithm_edit_algorithm_component__WEBPACK_IMPORTED_MODULE_5__["EditAlgorithmComponent"], {
+            width: '800px',
+            data: obj
+        });
     };
     AlgorithmsComponent.prototype.ngOnInit = function () {
         this.getAll();
@@ -179,7 +187,7 @@ var AlgorithmsService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"selectAlgorithm\">\r\n    <h4>Select Algorithm:</h4>\r\n    <div *ngIf=\"initialAlgorithm != null\">\r\n        <mat-form-field>\r\n            <mat-select [(ngModel)]=\"initialAlgorithm\" [ngModelOptions]=\"{standalone: true}\" placeholder=\"Select Algorithm\" (selectionChange)=\"getParameters($event.value)\">\r\n                <mat-option *ngFor=\"let algorithm of algorithms\" [value]=\"algorithm\">\r\n                    {{algorithm.algorithmName}}\r\n                </mat-option>\r\n            </mat-select>\r\n        </mat-form-field>\r\n        <h4>Algorithm Details:</h4>\r\n        <div *ngIf=\"parameters.length != 0\" class=\"algorithmDetails\">\r\n            <label class=\"labels\">\r\n                <strong class=\"name\">Algorithm Name:</strong> {{initialAlgorithm.algorithmName}}</label>\r\n            <label class=\"labels bottomLabel\">\r\n                <strong class=\"desc\">Algorithm Description:</strong> {{initialAlgorithm.description}}</label>\r\n            <table mat-table [dataSource]=\"parameters\" class=\"mat-elevation-z8\">\r\n                <ng-container matColumnDef=\"parameterName\">\r\n                    <th mat-header-cell *matHeaderCellDef> Parameter Name </th>\r\n                    <td mat-cell *matCellDef=\"let element\"> {{element.parameterName}} </td>\r\n                </ng-container>\r\n                <ng-container matColumnDef=\"parameterValueType\">\r\n                    <th mat-header-cell *matHeaderCellDef> Parameter Value Type </th>\r\n                    <td mat-cell *matCellDef=\"let element\"> {{element.parameterValueType}} </td>\r\n                </ng-container>\r\n                <ng-container matColumnDef=\"parameterValue\">\r\n                    <th mat-header-cell *matHeaderCellDef> Parameter Value </th>\r\n                    <td mat-cell *matCellDef=\"let element\"> {{element.parameterValues[0] != null ? element.parameterValues[0].value : element.parameterValues[0].value}}\r\n                    </td>\r\n                </ng-container>\r\n                <ng-container matColumnDef=\"actions\">\r\n                    <th mat-header-cell *matHeaderCellDef> Add Value</th>\r\n                    <td mat-cell *matCellDef=\"let elementl let i = index\">\r\n                        <i matTooltip=\"Add value\" (click)=\"addValue(element, i)\" matTooltipPosition=\"above\" class=\"material-icons table-icons\"> add </i>\r\n                    </td>\r\n                </ng-container>\r\n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n            </table>\r\n            <button mat-raised-button color=\"primary\" (click)=\"addAlgorithm()\">Add</button>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div class=\"selectAlgorithm\" *ngIf=\"this.listOfAlgorithms\">\r\n    <div class=\"flex column algorithm-list\" *ngFor=\"let algorithm of listOfAlgorithms\">\r\n        <div class=\"flex space-between algorithm-list-item\">\r\n            <span>{{algorithm.algorithmName}}</span>\r\n            <span>\r\n                <i (click)=\"editParams(algorithm.parameters)\" class=\"material-icons\">border_color</i>\r\n                <i (click)=\"deleteAlgorithm(algorithm.id, algorithm.algorithmName)\" class=\"material-icons\">delete</i>\r\n            </span>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"selectAlgorithm\">\r\n    <h4>Select Algorithm:</h4>\r\n    <div *ngIf=\"initialAlgorithm != null\">\r\n        <mat-form-field>\r\n            <mat-select [(ngModel)]=\"initialAlgorithm\" [ngModelOptions]=\"{standalone: true}\" placeholder=\"Select Algorithm\" (selectionChange)=\"getParameters($event.value)\">\r\n                <mat-option *ngFor=\"let algorithm of algorithms\" [value]=\"algorithm\">\r\n                    {{algorithm.algorithmName}}\r\n                </mat-option>\r\n            </mat-select>\r\n        </mat-form-field>\r\n        <h4>Algorithm Details:</h4>\r\n        <div class=\"algorithmDetails\">\r\n            <label class=\"labels\">\r\n                <strong class=\"name\">Algorithm Name:</strong> {{initialAlgorithm.algorithmName}}</label>\r\n            <label class=\"labels bottomLabel\">\r\n                <strong class=\"desc\">Algorithm Description:</strong> {{initialAlgorithm.description}}</label>\r\n            <table *ngIf=\"parameters.length != 0\" mat-table [dataSource]=\"parameters\" class=\"mat-elevation-z8\">\r\n                <ng-container matColumnDef=\"parameterName\">\r\n                    <th mat-header-cell *matHeaderCellDef> Parameter Name </th>\r\n                    <td mat-cell *matCellDef=\"let element\"> {{element.parameterName}} </td>\r\n                </ng-container>\r\n                <ng-container matColumnDef=\"parameterValueType\">\r\n                    <th mat-header-cell *matHeaderCellDef> Parameter Value Type </th>\r\n                    <td mat-cell *matCellDef=\"let element\"> {{element.parameterValueType}} </td>\r\n                </ng-container>\r\n                <ng-container matColumnDef=\"parameterValue\">\r\n                    <th mat-header-cell *matHeaderCellDef> Parameter Value </th>\r\n                    <td mat-cell *matCellDef=\"let element\"> {{element.parameterValues[0] != null ? element.parameterValues[0].value : element.parameterValues[0].value}}\r\n                    </td>\r\n                </ng-container>\r\n                <ng-container matColumnDef=\"actions\">\r\n                    <th mat-header-cell *matHeaderCellDef> Add Value</th>\r\n                    <td mat-cell *matCellDef=\"let element let i = index\">\r\n                        <i matTooltip=\"Add value\" (click)=\"addValue(element, i)\" matTooltipPosition=\"above\" class=\"material-icons table-icons\"> add </i>\r\n                    </td>\r\n                </ng-container>\r\n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n            </table>\r\n            <button mat-raised-button color=\"primary\" (click)=\"addAlgorithm()\">Add</button>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div class=\"selectAlgorithm\" *ngIf=\"this.listOfAlgorithms\">\r\n    <div class=\"flex list-box\">\r\n        <div class=\"flex column\">\r\n            <div class=\"algorithm-list\" *ngFor=\"let algorithm of listOfAlgorithms; let i = index\">\r\n                <div class=\"flex space-between algorithm-list-item\">\r\n                    <span>{{algorithm.algorithmName}}</span>\r\n                    <span>\r\n                        <i (click)=\"editParams(algorithm.parameters, i)\" class=\"material-icons\">border_color</i>\r\n                        <i (click)=\"deleteAlgorithm(algorithm.id, algorithm.algorithmName)\" class=\"material-icons\">delete</i>\r\n                    </span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"flex column status-container\">\r\n            <div *ngIf=\"status\" class=\"status-box flex center\">\r\n                {{status}}\r\n            </div>\r\n            <button mat-raised-button color=\"primary\" (click)=\"analyze()\">Analyze</button>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -190,7 +198,7 @@ module.exports = "<div class=\"selectAlgorithm\">\r\n    <h4>Select Algorithm:</
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n.selectAlgorithm {\n  border: ridge;\n  border-width: 1px;\n  border-color: #757575;\n  margin-left: 15%;\n  margin-right: 15%;\n  margin-top: 2%;\n  margin-bottom: 5%; }\n\nh4 {\n  margin-left: 15px; }\n\n.mat-form-field {\n  margin-left: 40px; }\n\n.labels {\n  padding-left: 35px; }\n\n.algorithmDetails {\n  background: #fafafa;\n  display: -ms-grid;\n  display: grid; }\n\n.name {\n  padding-right: 48px; }\n\n.desc {\n  padding-right: 10px; }\n\n.bottomLabel {\n  margin-top: 20px; }\n\ntable {\n  border-spacing: 0;\n  margin: 40px; }\n\n.algorithm-list {\n  padding: 20px; }\n\n.algorithm-list-item {\n  color: #311B92;\n  font-weight: bold;\n  margin: 10px 0; }\n"
+module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n.selectAlgorithm {\n  border: ridge;\n  border-width: 1px;\n  border-color: #757575;\n  margin-left: 15%;\n  margin-right: 15%;\n  margin-top: 2%;\n  margin-bottom: 5%; }\n\nh4 {\n  margin-left: 15px; }\n\n.mat-form-field {\n  margin-left: 40px; }\n\n.labels {\n  padding-left: 35px; }\n\n.algorithmDetails {\n  background: #fafafa;\n  display: -ms-grid;\n  display: grid; }\n\n.name {\n  padding-right: 48px; }\n\n.desc {\n  padding-right: 10px; }\n\n.bottomLabel {\n  margin-top: 20px; }\n\ntable {\n  border-spacing: 0;\n  margin: 40px; }\n\n.algorithm-list {\n  padding: 20px; }\n\n.algorithm-list-item {\n  color: #311B92;\n  font-weight: bold;\n  margin: 10px 0; }\n\n.status-container {\n  justify-content: center;\n  align-items: flex-end;\n  padding-right: 20px; }\n\n.status-box {\n  padding: 15px;\n  border: 1px solid #311B92;\n  width: 50%;\n  height: 25px;\n  margin-bottom: 30px;\n  font-weight: bold;\n  color: #311B92; }\n\n.list-box > div {\n  width: 50%; }\n"
 
 /***/ }),
 
@@ -212,6 +220,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../shared/services/shared.service */ "./src/app/shared/services/shared.service.ts");
 /* harmony import */ var _shared_services_snackbar_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../shared/services/snackbar.service */ "./src/app/shared/services/snackbar.service.ts");
 /* harmony import */ var _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../dialogs/delete/delete.component */ "./src/app/dialogs/delete/delete.component.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -221,6 +230,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -239,6 +249,7 @@ var AnalyzeComponent = /** @class */ (function () {
         this.parameters = [];
         this.displayedColumns = ['parameterName', 'parameterValueType', 'parameterValue', 'actions'];
         this.selectedAlgorithms = [];
+        this.refreshInterval$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_8__["interval"])(5000);
     }
     AnalyzeComponent.prototype.getParameters = function (algorithm) {
         var _this = this;
@@ -278,20 +289,33 @@ var AnalyzeComponent = /** @class */ (function () {
         var _this = this;
         var dialogRef = this._dialog.open(_dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_1__["AddValueComponent"], {
             width: '850px',
-            data: { type: 'addValueDialog', data: null }
+            data: { type: 'addValueDialog', value: element.parameterValues[0].value }
         });
         dialogRef.afterClosed().subscribe(function (result) {
-            console.log(result);
-            _this.parameters[i].parameterValues[0] = result;
+            if (result) {
+                console.log(result);
+                _this.parameters[i].parameterValues[0] = result;
+            }
         });
     };
-    AnalyzeComponent.prototype.editParams = function (params) {
+    AnalyzeComponent.prototype.editParams = function (params, algorithmIndex) {
+        var _this = this;
         var dialogRef = this._dialog.open(_dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_1__["AddValueComponent"], {
             width: '850px',
             data: { type: 'editParams', data: params }
         });
         dialogRef.afterClosed().subscribe(function (result) {
-            console.log(result);
+            if (result) {
+                _this.listOfAlgorithms[algorithmIndex]['parameters'] = result;
+                _this._analyzeService.saveParams(_this.listOfAlgorithms[algorithmIndex])
+                    .subscribe(function (res) {
+                    // console.log(res);
+                    _this.snackbar.openSnackBar('Parameters updated.', 'Success');
+                }, function (err) {
+                    console.log(err);
+                    _this.snackbar.openSnackBar('Something went wrong.', 'Error');
+                });
+            }
         });
     };
     AnalyzeComponent.prototype.deleteAlgorithm = function (id, name) {
@@ -322,6 +346,7 @@ var AnalyzeComponent = /** @class */ (function () {
             .subscribe(function (res) {
             _this.getListOfAlgorithms();
             _this.getAlgorithms();
+            _this.getStatus();
             // console.log(res);
             _this.snackbar.openSnackBar('Successfully saved.', 'Success');
         }, function (err) {
@@ -329,10 +354,40 @@ var AnalyzeComponent = /** @class */ (function () {
             _this.snackbar.openSnackBar('Something went wrong.', 'Error');
         });
     };
+    AnalyzeComponent.prototype.getStatus = function () {
+        var _this = this;
+        console.log("lala");
+        this._analyzeService.status(this.projectId)
+            .subscribe(function (res) {
+            // console.log(res);
+            _this.status = res['data'];
+        }, function (err) { return console.log(err); });
+    };
+    AnalyzeComponent.prototype.analyze = function () {
+        var _this = this;
+        this._analyzeService.analyze(this.projectId, this.listOfAlgorithms)
+            .subscribe(function (res) {
+            // console.log(res)
+            _this.snackbar.openSnackBar(res['data'], 'Success');
+        }, function (err) {
+            console.log(err);
+            _this.snackbar.openSnackBar(err['data'], 'Error');
+        });
+    };
     AnalyzeComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.projectId = this.sharedService.getProjectId();
         this.getAlgorithms();
         this.getListOfAlgorithms();
+        this.getStatus();
+        // Get Status every 5 seconds
+        this.refreshInterval$.subscribe(function () {
+            return _this.getStatus();
+        });
+    };
+    AnalyzeComponent.prototype.ngOnDestroy = function () {
+        // TO DO
+        // Stop getting Status every 5 seconds
     };
     AnalyzeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["Component"])({
@@ -394,6 +449,18 @@ var AnalyzeService = /** @class */ (function () {
     // Delete Algorithm
     AnalyzeService.prototype.deleteAlgorithm = function (projectId, algorithmId) {
         return this._http.get(this.baseUrl + 'remove/project/' + projectId + '?algorithmId=' + algorithmId);
+    };
+    // Save Parameters
+    AnalyzeService.prototype.saveParams = function (obj) {
+        return this._http.put(this.baseUrl + 'parameters', obj);
+    };
+    // Status request
+    AnalyzeService.prototype.status = function (projectId) {
+        return this._http.get(this.baseUrl + 'status?projectId=' + projectId).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
+    };
+    // Analyze
+    AnalyzeService.prototype.analyze = function (projectId, obj) {
+        return this._http.post(this.baseUrl + 'analyze?projectId=' + projectId, obj).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
     };
     AnalyzeService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -510,28 +577,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _algorithms_algorithms_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./algorithms/algorithms.service */ "./src/app/algorithms/algorithms.service.ts");
 /* harmony import */ var _project_overview_project_overview_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./project-overview/project.overview.service */ "./src/app/project-overview/project.overview.service.ts");
 /* harmony import */ var _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./shared/services/shared.service */ "./src/app/shared/services/shared.service.ts");
-/* harmony import */ var _projects_projects_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./projects/projects.component */ "./src/app/projects/projects.component.ts");
-/* harmony import */ var _dialogs_addProject_add_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./dialogs/addProject/add.component */ "./src/app/dialogs/addProject/add.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./dashboard/dashboard.component */ "./src/app/dashboard/dashboard.component.ts");
-/* harmony import */ var _shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./shared/guards/auth.guard */ "./src/app/shared/guards/auth.guard.ts");
-/* harmony import */ var _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./dialogs/delete/delete.component */ "./src/app/dialogs/delete/delete.component.ts");
-/* harmony import */ var _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./dialogs/copyProject/copy.component */ "./src/app/dialogs/copyProject/copy.component.ts");
-/* harmony import */ var _dataset_dataset_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./dataset/dataset.component */ "./src/app/dataset/dataset.component.ts");
-/* harmony import */ var _data_tab_data_tab_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./data-tab/data-tab.component */ "./src/app/data-tab/data-tab.component.ts");
-/* harmony import */ var _data_tab_data_tab_service__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./data-tab/data-tab.service */ "./src/app/data-tab/data-tab.service.ts");
-/* harmony import */ var _project_overview_project_overview_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./project-overview/project-overview.component */ "./src/app/project-overview/project-overview.component.ts");
-/* harmony import */ var _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./dialogs/add-dataset/add-dataset.component */ "./src/app/dialogs/add-dataset/add-dataset.component.ts");
-/* harmony import */ var _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./dialogs/dataset-detail/dataset-detail.component */ "./src/app/dialogs/dataset-detail/dataset-detail.component.ts");
-/* harmony import */ var _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./dialogs/data-tab-view/data-tab-view.component */ "./src/app/dialogs/data-tab-view/data-tab-view.component.ts");
-/* harmony import */ var _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./algorithms/algorithms.component */ "./src/app/algorithms/algorithms.component.ts");
-/* harmony import */ var _dialogs_addProject_addProject_service__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./dialogs/addProject/addProject.service */ "./src/app/dialogs/addProject/addProject.service.ts");
-/* harmony import */ var _dialogs_copyProject_copyProject_service__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./dialogs/copyProject/copyProject.service */ "./src/app/dialogs/copyProject/copyProject.service.ts");
-/* harmony import */ var _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./dialogs/add-algorithm/add-algorithm.component */ "./src/app/dialogs/add-algorithm/add-algorithm.component.ts");
-/* harmony import */ var _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./dialogs/view-algorithm/view-algorithm.component */ "./src/app/dialogs/view-algorithm/view-algorithm.component.ts");
-/* harmony import */ var _one_project_one_project_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./one-project/one-project.component */ "./src/app/one-project/one-project.component.ts");
-/* harmony import */ var _analyze_analyze_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./analyze/analyze.component */ "./src/app/analyze/analyze.component.ts");
-/* harmony import */ var _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./dialogs/add-value/add-value.component */ "./src/app/dialogs/add-value/add-value.component.ts");
+/* harmony import */ var _dialogs_edit_algorithm_edit_algorithm_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./dialogs/edit-algorithm/edit-algorithm.service */ "./src/app/dialogs/edit-algorithm/edit-algorithm.service.ts");
+/* harmony import */ var _dashboard_dashboard_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./dashboard/dashboard.service */ "./src/app/dashboard/dashboard.service.ts");
+/* harmony import */ var _projects_projects_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./projects/projects.component */ "./src/app/projects/projects.component.ts");
+/* harmony import */ var _dialogs_addProject_add_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./dialogs/addProject/add.component */ "./src/app/dialogs/addProject/add.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./dashboard/dashboard.component */ "./src/app/dashboard/dashboard.component.ts");
+/* harmony import */ var _shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./shared/guards/auth.guard */ "./src/app/shared/guards/auth.guard.ts");
+/* harmony import */ var _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./dialogs/delete/delete.component */ "./src/app/dialogs/delete/delete.component.ts");
+/* harmony import */ var _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./dialogs/copyProject/copy.component */ "./src/app/dialogs/copyProject/copy.component.ts");
+/* harmony import */ var _dataset_dataset_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./dataset/dataset.component */ "./src/app/dataset/dataset.component.ts");
+/* harmony import */ var _data_tab_data_tab_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./data-tab/data-tab.component */ "./src/app/data-tab/data-tab.component.ts");
+/* harmony import */ var _data_tab_data_tab_service__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./data-tab/data-tab.service */ "./src/app/data-tab/data-tab.service.ts");
+/* harmony import */ var _dialogs_edit_algorithm_edit_algorithm_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./dialogs/edit-algorithm/edit-algorithm.component */ "./src/app/dialogs/edit-algorithm/edit-algorithm.component.ts");
+/* harmony import */ var _project_overview_project_overview_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./project-overview/project-overview.component */ "./src/app/project-overview/project-overview.component.ts");
+/* harmony import */ var _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./dialogs/add-dataset/add-dataset.component */ "./src/app/dialogs/add-dataset/add-dataset.component.ts");
+/* harmony import */ var _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./dialogs/dataset-detail/dataset-detail.component */ "./src/app/dialogs/dataset-detail/dataset-detail.component.ts");
+/* harmony import */ var _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./dialogs/data-tab-view/data-tab-view.component */ "./src/app/dialogs/data-tab-view/data-tab-view.component.ts");
+/* harmony import */ var _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./algorithms/algorithms.component */ "./src/app/algorithms/algorithms.component.ts");
+/* harmony import */ var _dialogs_addProject_addProject_service__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./dialogs/addProject/addProject.service */ "./src/app/dialogs/addProject/addProject.service.ts");
+/* harmony import */ var _dialogs_copyProject_copyProject_service__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./dialogs/copyProject/copyProject.service */ "./src/app/dialogs/copyProject/copyProject.service.ts");
+/* harmony import */ var _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./dialogs/add-algorithm/add-algorithm.component */ "./src/app/dialogs/add-algorithm/add-algorithm.component.ts");
+/* harmony import */ var _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./dialogs/view-algorithm/view-algorithm.component */ "./src/app/dialogs/view-algorithm/view-algorithm.component.ts");
+/* harmony import */ var _one_project_one_project_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./one-project/one-project.component */ "./src/app/one-project/one-project.component.ts");
+/* harmony import */ var _analyze_analyze_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./analyze/analyze.component */ "./src/app/analyze/analyze.component.ts");
+/* harmony import */ var _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./dialogs/add-value/add-value.component */ "./src/app/dialogs/add-value/add-value.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -555,7 +625,10 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
 // Components
+
 
 
 
@@ -586,24 +659,25 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["NgModule"])({
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"],
-                _projects_projects_component__WEBPACK_IMPORTED_MODULE_15__["ProjectsComponent"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_17__["LoginComponent"],
-                _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_18__["DashboardComponent"],
-                _dialogs_addProject_add_component__WEBPACK_IMPORTED_MODULE_16__["AddComponent"],
-                _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_20__["DeleteComponent"],
-                _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_21__["CopyComponent"],
-                _dataset_dataset_component__WEBPACK_IMPORTED_MODULE_22__["DatasetComponent"],
-                _data_tab_data_tab_component__WEBPACK_IMPORTED_MODULE_23__["DataTabComponent"],
-                _project_overview_project_overview_component__WEBPACK_IMPORTED_MODULE_25__["ProjectOverviewComponent"],
-                _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_26__["AddDatasetComponent"],
-                _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_27__["DatasetDetailComponent"],
-                _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_28__["DataTabViewComponent"],
-                _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_29__["AlgorithmsComponent"],
-                _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_32__["AddAlgorithmComponent"],
-                _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_33__["ViewAlgorithmComponent"],
-                _one_project_one_project_component__WEBPACK_IMPORTED_MODULE_34__["OneProjectComponent"],
-                _analyze_analyze_component__WEBPACK_IMPORTED_MODULE_35__["AnalyzeComponent"],
-                _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_36__["AddValueComponent"]
+                _projects_projects_component__WEBPACK_IMPORTED_MODULE_17__["ProjectsComponent"],
+                _login_login_component__WEBPACK_IMPORTED_MODULE_19__["LoginComponent"],
+                _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_20__["DashboardComponent"],
+                _dialogs_addProject_add_component__WEBPACK_IMPORTED_MODULE_18__["AddComponent"],
+                _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_22__["DeleteComponent"],
+                _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_23__["CopyComponent"],
+                _dataset_dataset_component__WEBPACK_IMPORTED_MODULE_24__["DatasetComponent"],
+                _data_tab_data_tab_component__WEBPACK_IMPORTED_MODULE_25__["DataTabComponent"],
+                _project_overview_project_overview_component__WEBPACK_IMPORTED_MODULE_28__["ProjectOverviewComponent"],
+                _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_29__["AddDatasetComponent"],
+                _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_30__["DatasetDetailComponent"],
+                _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_31__["DataTabViewComponent"],
+                _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_32__["AlgorithmsComponent"],
+                _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_35__["AddAlgorithmComponent"],
+                _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_36__["ViewAlgorithmComponent"],
+                _one_project_one_project_component__WEBPACK_IMPORTED_MODULE_37__["OneProjectComponent"],
+                _analyze_analyze_component__WEBPACK_IMPORTED_MODULE_38__["AnalyzeComponent"],
+                _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_39__["AddValueComponent"],
+                _dialogs_edit_algorithm_edit_algorithm_component__WEBPACK_IMPORTED_MODULE_27__["EditAlgorithmComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
@@ -618,27 +692,30 @@ var AppModule = /** @class */ (function () {
             ],
             providers: [
                 _shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"],
-                _shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_19__["AuthGuard"],
+                _shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_21__["AuthGuard"],
                 _projects_projects_service__WEBPACK_IMPORTED_MODULE_11__["ProjectsService"],
-                _data_tab_data_tab_service__WEBPACK_IMPORTED_MODULE_24__["DataTabService"],
+                _data_tab_data_tab_service__WEBPACK_IMPORTED_MODULE_26__["DataTabService"],
                 _algorithms_algorithms_service__WEBPACK_IMPORTED_MODULE_12__["AlgorithmsService"],
-                _dialogs_addProject_addProject_service__WEBPACK_IMPORTED_MODULE_30__["AddProjectService"],
-                _dialogs_copyProject_copyProject_service__WEBPACK_IMPORTED_MODULE_31__["CopyProjectService"],
+                _dialogs_addProject_addProject_service__WEBPACK_IMPORTED_MODULE_33__["AddProjectService"],
+                _dialogs_copyProject_copyProject_service__WEBPACK_IMPORTED_MODULE_34__["CopyProjectService"],
                 _project_overview_project_overview_service__WEBPACK_IMPORTED_MODULE_13__["ProjectOverviewService"],
                 _analyze_analyze_service__WEBPACK_IMPORTED_MODULE_0__["AnalyzeService"],
-                _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_14__["SharedService"]
+                _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_14__["SharedService"],
+                _dialogs_edit_algorithm_edit_algorithm_service__WEBPACK_IMPORTED_MODULE_15__["EditAlgorithmService"],
+                _dashboard_dashboard_service__WEBPACK_IMPORTED_MODULE_16__["Dashboardervice"]
             ],
             entryComponents: [
-                _dialogs_addProject_add_component__WEBPACK_IMPORTED_MODULE_16__["AddComponent"],
-                _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_20__["DeleteComponent"],
-                _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_21__["CopyComponent"],
-                _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_26__["AddDatasetComponent"],
-                _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_27__["DatasetDetailComponent"],
-                _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_28__["DataTabViewComponent"],
-                _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_21__["CopyComponent"],
-                _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_32__["AddAlgorithmComponent"],
-                _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_33__["ViewAlgorithmComponent"],
-                _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_36__["AddValueComponent"]
+                _dialogs_addProject_add_component__WEBPACK_IMPORTED_MODULE_18__["AddComponent"],
+                _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_22__["DeleteComponent"],
+                _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_23__["CopyComponent"],
+                _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_29__["AddDatasetComponent"],
+                _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_30__["DatasetDetailComponent"],
+                _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_31__["DataTabViewComponent"],
+                _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_23__["CopyComponent"],
+                _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_35__["AddAlgorithmComponent"],
+                _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_36__["ViewAlgorithmComponent"],
+                _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_39__["AddValueComponent"],
+                _dialogs_edit_algorithm_edit_algorithm_component__WEBPACK_IMPORTED_MODULE_27__["EditAlgorithmComponent"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]],
             schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_4__["CUSTOM_ELEMENTS_SCHEMA"]]
@@ -665,30 +742,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dataset_dataset_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dataset/dataset.component */ "./src/app/dataset/dataset.component.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shared/guards/auth.guard */ "./src/app/shared/guards/auth.guard.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dashboard/dashboard.component */ "./src/app/dashboard/dashboard.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _projects_projects_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./projects/projects.component */ "./src/app/projects/projects.component.ts");
-/* harmony import */ var _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./algorithms/algorithms.component */ "./src/app/algorithms/algorithms.component.ts");
+/* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dashboard/dashboard.component */ "./src/app/dashboard/dashboard.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _projects_projects_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./projects/projects.component */ "./src/app/projects/projects.component.ts");
+/* harmony import */ var _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./algorithms/algorithms.component */ "./src/app/algorithms/algorithms.component.ts");
 
 
 
-
-// Components
 
 
 
 
 
 var routes = [
-    { path: 'projects', component: _projects_projects_component__WEBPACK_IMPORTED_MODULE_7__["ProjectsComponent"] },
-    { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_6__["LoginComponent"] },
-    { path: 'dashboard', component: _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_5__["DashboardComponent"], canActivate: [_shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]] },
+    {
+        path: '',
+        redirectTo: '/login',
+        canActivate: [_shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]],
+        pathMatch: 'full'
+    },
+    { path: 'projects', component: _projects_projects_component__WEBPACK_IMPORTED_MODULE_6__["ProjectsComponent"] },
+    { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_5__["LoginComponent"] },
+    { path: 'dashboard', component: _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_4__["DashboardComponent"], canActivate: [_shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]] },
     { path: 'datasets', component: _dataset_dataset_component__WEBPACK_IMPORTED_MODULE_1__["DatasetComponent"], canActivate: [_shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]] },
     { path: 'one-project', component: _one_project_one_project_component__WEBPACK_IMPORTED_MODULE_0__["OneProjectComponent"] },
     // { path: 'data-tab', component: DataTabComponent, canActivate: [AuthGuard] },
-    { path: 'algorithms', component: _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_8__["AlgorithmsComponent"], canActivate: [_shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]] },
-    { path: '**', component: _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"] }
+    { path: 'algorithms', component: _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_7__["AlgorithmsComponent"], canActivate: [_shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]] },
+    { path: '**', component: _login_login_component__WEBPACK_IMPORTED_MODULE_5__["LoginComponent"] }
 ];
 var AppRoutes = _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(routes, { useHash: true });
 
@@ -702,7 +782,7 @@ var AppRoutes = _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].for
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"dashboardPanel\">\r\n    <h1>Dashboard</h1>\r\n    <div class=\"flex-grid\">\r\n        <div class=\"col\">\r\n            <mat-card class=\"dashboard-card\">\r\n                <mat-title>Projects Overview</mat-title>\r\n            </mat-card>\r\n        </div>\r\n        <div class=\"col\">\r\n            <mat-card class=\"dashboard-card\">\r\n                <mat-title>Analytical Tools Overview</mat-title>\r\n            </mat-card>\r\n        </div>\r\n    </div>\r\n    <div class=\"flex-grid\">\r\n        <div class=\"col\">\r\n            <mat-card class=\"dashboard-card\">\r\n                <mat-title>Datasets Overview</mat-title>\r\n            </mat-card>\r\n        </div>\r\n        <div class=\"col\">\r\n            <mat-card class=\"dashboard-card\">\r\n                <mat-title>System Monitor Overview</mat-title>\r\n            </mat-card>\r\n        </div>\r\n    </div>\r\n    <div class=\"flex-grid\">\r\n        <div class=\"colFullWidth\">\r\n            <mat-card class=\"dashboard-card\">\r\n                <mat-title>Panel Detail</mat-title>\r\n            </mat-card>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<h1>Dashboard</h1>\r\n<div class=\"dashboardPanel\">\r\n  <div class=\"flex-grid\">\r\n    <div class=\"col\">\r\n      <mat-card class=\"dashboard-card\">\r\n        <mat-card-header>\r\n          <mat-title>Projects Overview</mat-title>\r\n        </mat-card-header>\r\n        <mat-divider></mat-divider>\r\n        <mat-card-content *ngIf=\"projects\">\r\n          <mat-nav-list *ngFor=\"let project of projects; let i = index\">\r\n            <mat-list-item (click)=\"projectClick()\" (dblclick)=\"projectDblclick(project.id)\">\r\n              <div class=\"flex space-between list-wrapper\">\r\n                <span> {{project.projectName}}</span>\r\n                <mat-chip-list>\r\n                  <mat-chip [ngStyle]=\"{'backgroundColor':getColor(project.status)}\" selected>{{project.status}}</mat-chip>\r\n                </mat-chip-list>\r\n              </div>\r\n            </mat-list-item>\r\n          </mat-nav-list>\r\n        </mat-card-content>\r\n      </mat-card>\r\n    </div>\r\n    <div class=\"col\">\r\n      <mat-card class=\"dashboard-card\">\r\n        <mat-card-header>\r\n          <mat-title>Datasets Overview</mat-title>\r\n        </mat-card-header>\r\n        <mat-divider></mat-divider>\r\n        <mat-card-content>\r\n          <mat-nav-list *ngFor=\"let datasets of dataset; let i = index\">\r\n            <mat-list-item (click)=\"datasetClick()\" (dblclick)=\"datasetDblclick(datasets.id)\">{{datasets.name}}</mat-list-item>\r\n          </mat-nav-list>\r\n        </mat-card-content>\r\n      </mat-card>\r\n    </div>\r\n    <div class=\"col\">\r\n      <mat-card class=\"dashboard-card\">\r\n        <mat-card-header>\r\n          <mat-title>Analytical Tools Overview</mat-title>\r\n        </mat-card-header>\r\n        <mat-card-content>\r\n          <mat-nav-list *ngFor=\"let algorithms of algorithm; let i = index\">\r\n            <mat-list-item (click)=\"algorithmClick()\" (dblclick)=\"algorithmDblclick(algorithms.id)\">{{algorithms.algorithmName}}</mat-list-item>\r\n          </mat-nav-list>\r\n        </mat-card-content>\r\n      </mat-card>\r\n    </div>\r\n  </div>\r\n  <!-- <div class=\"flex-grid\"> -->\r\n  <!-- <div class=\"col\">\r\n            <mat-card class=\"dashboard-card\">\r\n                <mat-title>System Monitor Overview</mat-title>\r\n            </mat-card>\r\n        </div> -->\r\n  <!-- </div> -->\r\n  <div class=\"flex-grid\">\r\n    <div class=\"colFullHeight\">\r\n      <mat-card class=\"dashboard-card\">\r\n        <mat-card-header>\r\n          <mat-title>Panel Detail</mat-title>\r\n        </mat-card-header>\r\n        <mat-card-content>\r\n         <div>\r\n            <ng-template #projects>\r\n                <span class=\"projects\">\r\n                    <h4 class=\"subtitle\">Project details for project ID: </h4>\r\n                  projects\r\n                  <p></p>\r\n                </span>\r\n              </ng-template>\r\n            <!-- <ng-template #datasets>\r\n                <span class=\"datasets\">\r\n                  datasets\r\n                </span>\r\n              </ng-template> -->\r\n          </div>\r\n          <ng-content></ng-content>\r\n        </mat-card-content>\r\n      </mat-card>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -713,7 +793,7 @@ module.exports = "<div class=\"dashboardPanel\">\r\n    <h1>Dashboard</h1>\r\n  
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n.dashboardPanel {\n  width: 98%;\n  margin-left: 2%; }\n\n.flex-grid {\n  display: flex;\n  justify-content: space-between;\n  margin-bottom: 1%; }\n\n.col {\n  width: 49%;\n  height: 250px;\n  border-width: 1px;\n  border-style: groove;\n  border-color: #E1F5FE; }\n\n.colFullWidth {\n  width: 100%;\n  height: 240px;\n  border-width: 1px;\n  border-style: groove;\n  border-color: #E1F5FE; }\n\nmat-card.dashboard-card {\n  background: #311B92 !important;\n  color: white !important; }\n\n@media (max-width: 400px) {\n  .flex-grid {\n    display: block; }\n  .col {\n    margin-top: 1%;\n    width: 100%; } }\n\nh1 {\n  color: #757575; }\n"
+module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n.dashboardPanel {\n  width: 96%;\n  margin-left: 2%;\n  display: flex;\n  flex-direction: row; }\n\nh1 {\n  margin-left: 2%;\n  color: #757575; }\n\n.flex-grid {\n  width: 95%;\n  flex-direction: column;\n  justify-content: space-between; }\n\n.col {\n  border-width: 1px;\n  border-style: groove;\n  border-color: #E1F5FE;\n  margin: 0 0 5px 0; }\n\n.colFullHeight {\n  width: 100%;\n  height: 800px;\n  border-width: 1px;\n  border-style: groove;\n  border-color: #E1F5FE;\n  margin-left: 2%; }\n\nmat-card {\n  padding: 0 !important;\n  box-shadow: none !important; }\n\nmat-card-header {\n  background: #311B92 !important;\n  color: white !important;\n  padding: 20px; }\n\nmat-card-content {\n  padding: 5px 25px;\n  max-height: 200px;\n  overflow-y: scroll; }\n\n.list-wrapper {\n  width: 100%;\n  align-items: center; }\n\n@media (max-width: 400px) {\n  .flex-grid {\n    display: block; }\n  .col {\n    margin-top: 1%;\n    width: 100%; } }\n"
 
 /***/ }),
 
@@ -728,6 +808,9 @@ module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: co
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashboardComponent", function() { return DashboardComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _dashboard_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dashboard.service */ "./src/app/dashboard/dashboard.service.ts");
+/* harmony import */ var _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/services/shared.service */ "./src/app/shared/services/shared.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -738,10 +821,109 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var DashboardComponent = /** @class */ (function () {
-    function DashboardComponent() {
+    function DashboardComponent(dashboardService, _router, sharedService) {
+        this.dashboardService = dashboardService;
+        this._router = _router;
+        this.sharedService = sharedService;
     }
+    // get All projects - first tab
+    DashboardComponent.prototype.getAllProjects = function () {
+        var _this = this;
+        this.dashboardService.getProjects().subscribe(function (res) {
+            console.log(res);
+            _this.projects = res['data'];
+            console.log(_this.projects);
+            _this.projects = Array.of(_this.projects);
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    // colors for status - projects
+    DashboardComponent.prototype.getColor = function (status) {
+        switch (status) {
+            case 'Not trained':
+                return '$primary';
+            case 'Trained':
+                return '$accent';
+            case 'Learning':
+                return '$warn';
+        }
+    };
+    // get All Datasets - second tab
+    DashboardComponent.prototype.getAllDatasets = function () {
+        var _this = this;
+        this.dashboardService.getDatasets().subscribe(function (res) {
+            console.log(res);
+            _this.dataset = res['data'];
+            console.log(_this.dataset);
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    // get All Algorithms - third tab
+    DashboardComponent.prototype.getAllAlgorithms = function () {
+        var _this = this;
+        this.dashboardService.getAlgorithms().subscribe(function (res) {
+            console.log(res);
+            _this.algorithm = res['data'];
+            console.log(_this.algorithm);
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    // project details click and dbl click function
+    DashboardComponent.prototype.projectClick = function () {
+        console.log('klik');
+        // this.sharedService.setProjectId(id);
+    };
+    DashboardComponent.prototype.projectDblclick = function (id) {
+        console.log('dblklik');
+        // this.sharedService.setProjectId(id);
+        // this._router.navigate(['/one-project']);
+        // this.dashboardService.getProjectsDetails(id).subscribe(
+        //   res => {
+        //     console.log(res);
+        //     // this._router.navigate(['/one-project']);
+        //   },
+        //   err => {
+        //     console.log(err);
+        //   }
+        // );
+    };
+    // dataset details click and dbl click
+    DashboardComponent.prototype.datasetClick = function () {
+        console.log('click');
+    };
+    DashboardComponent.prototype.datasetDblclick = function (id) {
+        console.log('dblklik');
+        this.dashboardService.getDatasetDetails(id).subscribe(function (res) {
+            console.log(res);
+            // this._router.navigate(['/one-project']);
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    // algorithm details click and dbl click
+    DashboardComponent.prototype.algorithmClick = function () {
+        console.log('click');
+    };
+    DashboardComponent.prototype.algorithmDblclick = function (id) {
+        console.log('dblklik');
+        this.dashboardService.getAlgorithmDetails(id).subscribe(function (res) {
+            console.log(res);
+            // this._router.navigate(['/one-project']);
+        }, function (err) {
+            console.log(err);
+        });
+    };
     DashboardComponent.prototype.ngOnInit = function () {
+        this.getAllProjects();
+        this.getAllDatasets();
+        this.getAllAlgorithms();
     };
     DashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -750,9 +932,68 @@ var DashboardComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./dashboard.component.scss */ "./src/app/dashboard/dashboard.component.scss")],
             encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_dashboard_service__WEBPACK_IMPORTED_MODULE_2__["Dashboardervice"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
+            _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_3__["SharedService"]])
     ], DashboardComponent);
     return DashboardComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/dashboard/dashboard.service.ts":
+/*!************************************************!*\
+  !*** ./src/app/dashboard/dashboard.service.ts ***!
+  \************************************************/
+/*! exports provided: Dashboardervice */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Dashboardervice", function() { return Dashboardervice; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var Dashboardervice = /** @class */ (function () {
+    function Dashboardervice(_http) {
+        this._http = _http;
+        this.baseUrl = '/CustomerProfiling/rest/';
+    }
+    Dashboardervice.prototype.getProjects = function () {
+        return this._http.get(this.baseUrl + 'projects');
+    };
+    Dashboardervice.prototype.getDatasets = function () {
+        return this._http.get(this.baseUrl + 'dataset');
+    };
+    Dashboardervice.prototype.getAlgorithms = function () {
+        return this._http.get(this.baseUrl + 'algorithms');
+    };
+    Dashboardervice.prototype.getProjectsDetails = function (id) {
+        return this._http.get(this.baseUrl + 'projects/' + id);
+    };
+    Dashboardervice.prototype.getDatasetDetails = function (id) {
+        return this._http.get(this.baseUrl + 'dataset/' + id);
+    };
+    Dashboardervice.prototype.getAlgorithmDetails = function (id) {
+        return this._http.get(this.baseUrl + 'algorithms/' + id);
+    };
+    Dashboardervice = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], Dashboardervice);
+    return Dashboardervice;
 }());
 
 
@@ -1131,7 +1372,7 @@ var DataTabService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"datasets\">\r\n    <h1>My Datasets </h1>\r\n    <div class=\"aboveTable\">\r\n        <button class=\"addBtn\" (click)=\"addDataset()\" matTooltip=\"Add Dataset\" matTooltipPosition=\"above\" mat-mini-fab>\r\n            <i class=\"material-icons plus\">add</i>\r\n        </button>\r\n    </div>\r\n    <div *ngIf=\"dataSource\">\r\n        <mat-form-field class=\"filterInput\">\r\n            <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Search table\">\r\n        </mat-form-field>\r\n        <table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z8\">\r\n            <ng-container matColumnDef=\"datasetName\">\r\n                <th mat-header-cell *matHeaderCellDef> Dataset Name </th>\r\n                <td mat-cell *matCellDef=\"let dataset\"> {{dataset.name}} </td>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"actions\">\r\n                <th mat-header-cell *matHeaderCellDef> Actions</th>\r\n                <td mat-cell *matCellDef=\"let dataset\">\r\n                    <i matTooltip=\"Delete dateset\" (click)=\"deleteDataset(dataset)\" matTooltipPosition=\"above\" class=\"material-icons table-icons\"> delete </i>\r\n                    <i matTooltip=\"Show dateset\" (click)=\"showDatasetDetail(dataset.id)\" matTooltipPosition=\"above\" class=\"material-icons table-icons\"> visibility </i>\r\n                </td>\r\n            </ng-container>\r\n            <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n            <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n        </table>\r\n        <mat-paginator [length]=\"dataSource.length\" [pageSize]=\"10\" [pageSizeOptions]=\"[1,5, 10, 25, 100]\"></mat-paginator>\r\n    </div>\r\n</div>"
+module.exports = "<div id=\"datasets\" class=\"flex column center\">\r\n\r\n    <div class=\"button-wrapper flex space-between\">\r\n        <!-- Search Input -->\r\n        <mat-form-field class=\"filterInput\">\r\n            <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Search table\">\r\n        </mat-form-field>\r\n        <!-- Add Button -->\r\n        <button (click)=\"addDataset()\" matTooltip=\"Add Dataset\" matTooltipPosition=\"above\" mat-mini-fab>\r\n            <i class=\"material-icons plus\">add</i>\r\n        </button>\r\n    </div>\r\n    <div *ngIf=\"dataSource\">\r\n        <table mat-table [dataSource]=\"dataSource\" class=\"mat-elevation-z8\">\r\n            <ng-container matColumnDef=\"datasetName\">\r\n                <th mat-header-cell *matHeaderCellDef> Dataset Name </th>\r\n                <td mat-cell *matCellDef=\"let dataset\"> {{dataset.name}} </td>\r\n            </ng-container>\r\n            <ng-container matColumnDef=\"actions\">\r\n                <th mat-header-cell *matHeaderCellDef> Actions</th>\r\n                <td mat-cell *matCellDef=\"let dataset\">\r\n                    <i matTooltip=\"Delete dateset\" (click)=\"deleteDataset(dataset)\" matTooltipPosition=\"above\" class=\"material-icons table-icons\">\r\n                        delete </i>\r\n                    <i matTooltip=\"Show dateset\" (click)=\"showDatasetDetail(dataset.id)\" matTooltipPosition=\"above\" class=\"material-icons table-icons\">\r\n                        visibility </i>\r\n                </td>\r\n            </ng-container>\r\n            <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n            <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n        </table>\r\n        <mat-paginator [length]=\"dataSource.length\" [pageSize]=\"10\" [pageSizeOptions]=\"[1,5, 10, 25, 100]\"></mat-paginator>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -1142,7 +1383,7 @@ module.exports = "<div id=\"datasets\">\r\n    <h1>My Datasets </h1>\r\n    <div
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\ntable {\n  width: 70%;\n  margin-left: 15%; }\n\n.aboveTable {\n  margin-left: 15%;\n  margin-right: 15%;\n  margin-bottom: 1%; }\n\nbutton {\n  margin-left: 95%; }\n\nh1 {\n  margin-left: 4%; }\n\n@media (max-width: 1400px) {\n  button {\n    margin-left: 92%; } }\n\n@media (max-width: 750px) {\n  button {\n    margin-left: 87%; } }\n\n@media (max-width: 500px) {\n  button {\n    margin-left: 83%; } }\n\ntr.mat-header-row {\n  background: linear-gradient(#311B92, #7C4DFF); }\n\nth.mat-header-cell {\n  text-align: center;\n  color: white; }\n\ntd {\n  text-align: center; }\n\n.addBtn {\n  background: #311B92;\n  color: white !important; }\n\ntable i {\n  color: #311B92;\n  font-size: 22px; }\n\nh1 {\n  color: #757575; }\n\n.mat-paginator,\n.mat-paginator-page-size .mat-select-trigger {\n  margin-left: 15%;\n  margin-right: 15%; }\n\n.filterInput {\n  margin-left: 15%; }\n"
+module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n#datasets table.mat-table {\n  margin-top: 30px;\n  width: 80%; }\n\n#datasets tr.mat-header-row {\n  background: linear-gradient(to right, #311B92, #7C4DFF); }\n\n#datasets th.mat-header-cell {\n  width: 250px;\n  color: #fff; }\n\n#datasets td.mat-cell {\n  padding: 10px 10px 10px 0 !important; }\n\n#datasets td.mat-cell:first-child, #datasets td.mat-footer-cell:first-child, #datasets th.mat-header-cell:first-child {\n  padding-left: 24px !important; }\n\n#datasets .mat-paginator,\n#datasets .mat-paginator-page-size .mat-select-trigger {\n  margin-left: 15%;\n  margin-right: 15%; }\n\n#datasets .filterInput {\n  margin-left: 15%; }\n"
 
 /***/ }),
 
@@ -1668,7 +1909,7 @@ var AddDatasetComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ONE VALUE -->\r\n<div *ngIf=\"data && data.type == 'addValueDialog'\" id=\"addValue\">\r\n    <h1>Add Value for parameter </h1>\r\n    <mat-divider></mat-divider>\r\n    <mat-dialog-content>\r\n        <form [formGroup]=\"addValueForm\" (ngSubmit)=\"addValue()\">\r\n            <mat-form-field>\r\n                <input matInput formControlName=\"value\" type=\"text\" placeholder=\"Enter value\" autocomplete=\"off\" [(ngModel)]=\"value\">\r\n            </mat-form-field>\r\n            <mat-error *ngIf=\"addValueForm.get('value').touched && addValueForm.get('value').hasError('required')\">\r\n                Value is required!\r\n            </mat-error>\r\n            <mat-dialog-actions class=\"buttons\">\r\n                <button type=\"submit\" mat-raised-button [disabled]=\"addValueForm.invalid\">Add value</button>\r\n            </mat-dialog-actions>\r\n        </form>\r\n    </mat-dialog-content>\r\n</div>\r\n\r\n<!-- MULTIPLE VALUES -->\r\n<div class=\"flex column center dialog\" *ngIf=\"data && data.type == 'editParams'\">\r\n    <table mat-table [dataSource]=\"data.data\" class=\"params-table mat-elevation-z8\">\r\n        <ng-container matColumnDef=\"parameterName\">\r\n            <th mat-header-cell *matHeaderCellDef> Parameter Name </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.parameterName}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"parameterValueType\">\r\n            <th mat-header-cell *matHeaderCellDef> Parameter Value Type </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.parameterValueType}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"parameterValue\">\r\n            <th mat-header-cell *matHeaderCellDef> Parameter Value </th>\r\n            <td mat-cell *matCellDef=\"let element\">\r\n                <mat-form-field>\r\n                    <input matInput type=\"text\" placeholder=\"Enter value\" autocomplete=\"off\" [(ngModel)]=\"element.parameterValues[0] != null ? element.parameterValues[0].value : element.parameterValues[0].value\">\r\n                </mat-form-field>\r\n                <!-- <mat-error *ngIf=\"addValueForm.get('value').touched && addValueForm.get('value').hasError('required')\">\r\n                    Value is required!\r\n                </mat-error> -->\r\n            </td>\r\n        </ng-container>\r\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n    </table>\r\n    <mat-dialog-actions>\r\n        <button mat-dialog-close mat-stroked-button color=\"warn\">Cancel</button>\r\n        <button mat-raised-button color=\"primary\" type=\"submit\" mat-raised-button>Save</button>\r\n    </mat-dialog-actions>\r\n</div>"
+module.exports = "<!-- ONE VALUE -->\r\n<div *ngIf=\"data && data.type == 'addValueDialog'\" id=\"addValue\">\r\n    <h1>Add Value for parameter </h1>\r\n    <mat-divider></mat-divider>\r\n    <mat-dialog-content>\r\n        <form [formGroup]=\"addValueForm\" (ngSubmit)=\"addValue()\">\r\n            <mat-form-field>\r\n                <input matInput formControlName=\"value\" type=\"text\" placeholder=\"Enter value\" autocomplete=\"off\" [(ngModel)]=\"data.value\">\r\n            </mat-form-field>\r\n            <mat-error *ngIf=\"addValueForm.get('value').touched && addValueForm.get('value').hasError('required')\">\r\n                Value is required!\r\n            </mat-error>\r\n            <mat-dialog-actions>\r\n                <button mat-dialog-close mat-stroked-button color=\"warn\">Cancel</button>\r\n                <button mat-raised-button color=\"primary\" type=\"submit\" mat-raised-button [disabled]=\"addValueForm.invalid\">Save</button>\r\n            </mat-dialog-actions>\r\n        </form>\r\n    </mat-dialog-content>\r\n</div>\r\n\r\n<!-- MULTIPLE VALUES -->\r\n<div id=\"editParams\" class=\"flex column center dialog\" *ngIf=\"data && data.type == 'editParams'\">\r\n    <table mat-table [dataSource]=\"data.data\" class=\"params-table mat-elevation-z8\">\r\n        <ng-container matColumnDef=\"parameterName\">\r\n            <th mat-header-cell *matHeaderCellDef> Parameter Name </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.parameterName}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"parameterValueType\">\r\n            <th mat-header-cell *matHeaderCellDef> Parameter Value Type </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.parameterValueType}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"parameterValue\">\r\n            <th mat-header-cell *matHeaderCellDef> Parameter Value </th>\r\n            <td mat-cell *matCellDef=\"let element; let i = index\">\r\n                <mat-form-field>\r\n                    <input (ngModelChange)=\"inputChanged($event, i)\" matInput type=\"text\" placeholder=\"Enter value\" autocomplete=\"off\" [(ngModel)]=\"element.parameterValues[0] != null ? element.parameterValues[0].value : element.parameterValues[0].value\">\r\n                </mat-form-field>\r\n            </td>\r\n        </ng-container>\r\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n    </table>\r\n    <mat-error *ngIf=\"error\">\r\n        Value is required.\r\n    </mat-error>\r\n    <mat-dialog-actions>\r\n        <button mat-dialog-close mat-stroked-button color=\"warn\">Cancel</button>\r\n        <button mat-raised-button color=\"primary\" (click)=\"saveParams()\" mat-raised-button>Save</button>\r\n    </mat-dialog-actions>\r\n</div>"
 
 /***/ }),
 
@@ -1679,7 +1920,7 @@ module.exports = "<!-- ONE VALUE -->\r\n<div *ngIf=\"data && data.type == 'addVa
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n#addValue {\n  display: flex;\n  flex-direction: column;\n  padding-right: 20px; }\n\n#addValue .mat-form-field {\n    width: 100%;\n    padding: 10px 10px 10px 10px; }\n\n#addValue .mat-dialog-content {\n    height: 300px; }\n\n#addValue .buttons {\n    float: right; }\n\n#addValue button {\n    background: #311B92;\n    color: white; }\n\n#addValue button:disabled,\n  #addValue button[disabled] {\n    background-color: #cccccc;\n    color: black; }\n\n#addValue h1 {\n    text-align: center; }\n\n#addValue .mat-error {\n    padding-left: 10px;\n    margin-top: -20px; }\n\n#addValue .mat-dialog-content {\n    margin-top: 50px;\n    margin-bottom: 20px;\n    display: block;\n    padding: 0 24px;\n    max-height: 65vh;\n    overflow: auto;\n    -webkit-overflow-scrolling: touch; }\n\n#addValue .dialog {\n    padding: 30px; }\n\n#addValue mat-dialog-actions {\n    align-self: flex-end !important;\n    margin: 30px 30px 0 !important; }\n\n#addValue mat-dialog-actions > button {\n    margin: 0 10px !important; }\n\n#addValue .params-table {\n    margin: 45px; }\n"
+module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n#addValue {\n  display: flex;\n  flex-direction: column;\n  padding-right: 20px; }\n\n#addValue .mat-form-field {\n    width: 100%;\n    padding: 10px 10px 10px 10px; }\n\n#addValue h1 {\n    text-align: center; }\n\n#addValue .mat-error {\n    padding-left: 10px;\n    margin-top: -20px; }\n\n#addValue .mat-dialog-content {\n    margin-top: 50px;\n    margin-bottom: 20px;\n    display: block;\n    padding: 0 24px;\n    max-height: 65vh;\n    overflow: auto;\n    -webkit-overflow-scrolling: touch; }\n\n#addValue .dialog {\n    padding: 30px; }\n\n#addValue mat-dialog-actions {\n    float: right;\n    margin: 10px 30px 0 !important; }\n\n#addValue mat-dialog-actions > button {\n    margin: 0 5px !important; }\n\n#editParams mat-dialog-actions {\n  align-self: flex-end !important;\n  margin: 10px 30px 0 !important; }\n\n#editParams mat-dialog-actions > button {\n  margin: 0 5px !important; }\n\n#editParams .params-table {\n  margin: 45px; }\n"
 
 /***/ }),
 
@@ -1717,15 +1958,41 @@ var AddValueComponent = /** @class */ (function () {
         this.data = data;
         this._formBuilder = _formBuilder;
         this.displayedColumns = ['parameterName', 'parameterValueType', 'parameterValue'];
+        this.error = false;
     }
     AddValueComponent.prototype.ngOnInit = function () {
         console.log(this.data);
-        // this.addValueForm = this._formBuilder.group({
-        //   value: ['', Validators.required]
-        // });
+        if (this.data.type == 'addValueDialog') {
+            this.addValueForm = this._formBuilder.group({
+                value: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required]
+            });
+        }
+        if (this.data.type == 'editParams') {
+        }
+    };
+    AddValueComponent.prototype.inputChanged = function (ev, i) {
+        this.data.data[i].parameterValues[0].value = ev;
+    };
+    AddValueComponent.prototype.saveParams = function () {
+        var checkArray = [];
+        for (var i = 0; i < this.data.data.length; i++) {
+            if (!this.data.data[i].parameterValues[0].value) {
+                this.error = true;
+            }
+            else {
+                checkArray.push(1);
+            }
+        }
+        if (checkArray.length == this.data.data.length) {
+            this.error = false;
+            this.dialogRef.close(this.data.data);
+        }
     };
     AddValueComponent.prototype.addValue = function () {
-        this.dialogRef.close(this.addValueForm.value);
+        if (this.addValueForm.value)
+            this.dialogRef.close(this.addValueForm.value);
+        else
+            this.dialogRef.close(this.data.value);
     };
     AddValueComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
@@ -2264,6 +2531,238 @@ var DeleteComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/dialogs/edit-algorithm/edit-algorithm.component.html":
+/*!**********************************************************************!*\
+  !*** ./src/app/dialogs/edit-algorithm/edit-algorithm.component.html ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=\"edit-algorithm\">\r\n  <h1 class=\"subtitle\" mat-dialog-title>Edit Algorithm</h1>\r\n  <mat-divider></mat-divider>\r\n  <mat-dialog-content>\r\n    <!-- Form  -->\r\n    <form [formGroup]=\"addAlgorithmForm\" class=\"flex space-between\" autocomplete=\"off\">\r\n      <div class=\"flex column\">\r\n        <h3 class=\"subtitle\">Basic Information</h3>\r\n        <!-- Name -->\r\n        <mat-form-field>\r\n          <input formControlName=\"algorithmName\" matInput placeholder=\"Algorithm Name\">\r\n        </mat-form-field>\r\n        <mat-error *ngIf=\"algorithmName.touched && algorithmName.errors\">\r\n          <strong> You have to enter algorithm name.</strong>\r\n        </mat-error>\r\n        <!-- Library -->\r\n        <mat-form-field>\r\n          <input formControlName=\"library\" matInput placeholder=\"Library\">\r\n        </mat-form-field>\r\n        <mat-error *ngIf=\"library.touched && library.errors\">\r\n          <strong> You have to enter library title.</strong>\r\n        </mat-error>\r\n        <!-- Description -->\r\n        <mat-form-field appearance=\"outline\">\r\n          <textarea formControlName=\"description\" matInput placeholder=\"Description\"></textarea>\r\n          <mat-hint>Enter algorithm description.</mat-hint>\r\n        </mat-form-field>\r\n      </div>\r\n    </form>\r\n    <mat-divider></mat-divider>\r\n    <!-- P A R A M S -->\r\n    <div class=\"flex \">\r\n      <form [formGroup]=\"addParametersForm\" (ngSubmit)=\"addParameter()\" class=\"flex column\">\r\n        <h3 class=\"subtitle\">Add Algorithm Parameters</h3>\r\n        <!-- Param Name -->\r\n        <mat-form-field>\r\n          <input formControlName=\"parameterName\" matInput placeholder=\"Parameter Name\">\r\n        </mat-form-field>\r\n        <mat-error *ngIf=\"parameterName.touched && parameterName.errors\">\r\n          <strong> You have to enter parameter name.</strong>\r\n        </mat-error>\r\n        <!-- Param Type -->\r\n        <mat-form-field>\r\n          <input formControlName=\"parameterValueType\" matInput placeholder=\"Parameter Type\">\r\n        </mat-form-field>\r\n        <mat-error *ngIf=\"parameterValueType.touched && parameterValueType.errors\">\r\n          <strong> You have to enter parameter type.</strong>\r\n        </mat-error>\r\n        <!-- Param Value -->\r\n        <mat-form-field>\r\n          <input formControlName=\"defaultValue\" matInput placeholder=\"Default Value\">\r\n        </mat-form-field>\r\n        <mat-error *ngIf=\"defaultValue.touched && defaultValue.errors\">\r\n          <strong> You have to enter default value.</strong>\r\n        </mat-error>\r\n        <button type=\"submit\" mat-stroked-button color=\"warn\" [disabled]=\"addParametersForm.invalid\">Add Parameter</button>\r\n        <mat-error class=\"message\">\r\n          <strong *ngIf=\"message\"> You cannot enter paramaters with same name.</strong>\r\n        </mat-error>\r\n      </form>\r\n      <div class=\"flex column added-params\">\r\n        <h3 class=\"subtitle\"> Added Parameters</h3>\r\n        <div *ngFor=\"let param of parameters; let i = index\">\r\n          <span class=\"params-show\">\r\n            <mat-icon class=\"unselect-icon\" (click)=\"removeJobParam(param, i)\">close</mat-icon>\r\n            {{i+1}}. {{param.parameterName}}\r\n            <i *ngIf=\"selectedParam != i\" class=\"material-icons params-expand-icon\" (click)=\"expandParamsInfo(i)\">\r\n              expand_more\r\n            </i>\r\n            <i *ngIf=\"expand == true && selectedParam == i\" class=\"material-icons params-expand-icon\" (click)=\"expandParamsInfo(i)\">\r\n              expand_less\r\n            </i>\r\n          </span>\r\n          <div *ngIf=\"expand == true && selectedParam == i\">\r\n            <div class=\"params-expanded\">\r\n              <span class=\"param-value\">\r\n                <strong>Type: </strong>\r\n                <br> {{param.parameterValueType}}\r\n              </span>\r\n              <span class=\"param-description\">\r\n                <strong>Default Value: </strong>\r\n                <br> {{param.defaultValue}}\r\n              </span>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <mat-divider></mat-divider>\r\n  </mat-dialog-content>\r\n  <mat-dialog-actions class=\"buttons\">\r\n    <button mat-stroked-button mat-dialog-close color=\"warn\">Close</button>\r\n    <button mat-raised-button color=\"primary\" [disabled]=\"addAlgorithmForm.invalid\" (click)=\"submit()\">Save</button>\r\n  </mat-dialog-actions>\r\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/dialogs/edit-algorithm/edit-algorithm.component.scss":
+/*!**********************************************************************!*\
+  !*** ./src/app/dialogs/edit-algorithm/edit-algorithm.component.scss ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n#edit-algorithm form {\n  margin: 20px 0; }\n\n#edit-algorithm .mat-form-field {\n  width: 340px; }\n\n#edit-algorithm mat-error {\n  margin-bottom: 30px; }\n\n#edit-algorithm .message {\n  margin-top: 20px; }\n\n#edit-algorithm .params-show {\n  display: flex;\n  align-items: center;\n  font-size: 18px; }\n\n#edit-algorithm .added-params {\n  margin-top: 20px;\n  margin-left: 45px; }\n\n#edit-algorithm .params-expand-icon {\n  padding-top: 2px;\n  font-size: 29px;\n  padding-left: 5px;\n  color: #311B92; }\n\n#edit-algorithm .params-expand-icon:hover {\n  cursor: pointer;\n  color: #424242; }\n\n#edit-algorithm .params-expanded {\n  display: flex;\n  justify-content: space-around;\n  padding: 10px; }\n\n#edit-algorithm .param-value {\n  margin-right: 20px;\n  word-break: break-word;\n  width: 140px; }\n\n#edit-algorithm .param-description {\n  word-break: break-word;\n  width: 140px; }\n\n#edit-algorithm .param-value > strong, #edit-algorithm .param-description > strong {\n  color: #311B92; }\n\n#edit-algorithm .unselect-icon {\n  color: #FF3D00;\n  height: 18px;\n  font-size: 20px;\n  margin-right: 3px;\n  font-weight: 600; }\n\n#edit-algorithm .unselect-icon:hover {\n  cursor: pointer;\n  color: #424242; }\n\n#edit-algorithm mat-dialog-actions {\n  float: right; }\n\n#edit-algorithm mat-dialog-actions > button {\n  margin-top: 30px;\n  margin-left: 15px; }\n"
+
+/***/ }),
+
+/***/ "./src/app/dialogs/edit-algorithm/edit-algorithm.component.ts":
+/*!********************************************************************!*\
+  !*** ./src/app/dialogs/edit-algorithm/edit-algorithm.component.ts ***!
+  \********************************************************************/
+/*! exports provided: EditAlgorithmComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditAlgorithmComponent", function() { return EditAlgorithmComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _node_modules_angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/@angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _edit_algorithm_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit-algorithm.service */ "./src/app/dialogs/edit-algorithm/edit-algorithm.service.ts");
+/* harmony import */ var _shared_services_snackbar_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../shared/services/snackbar.service */ "./src/app/shared/services/snackbar.service.ts");
+/* harmony import */ var _node_modules_angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../node_modules/@angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+var EditAlgorithmComponent = /** @class */ (function () {
+    function EditAlgorithmComponent(fb, service, snackbar, dialogRef, data) {
+        this.fb = fb;
+        this.service = service;
+        this.snackbar = snackbar;
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this.parameters = [];
+        this.message = false;
+        this.expand = false;
+    }
+    // Add Parameter
+    EditAlgorithmComponent.prototype.addParameter = function () {
+        if (this.parameters.length > 0) {
+            for (var i = 0; i < this.parameters.length; i++) {
+                if (this.addParametersForm.value['parameterName'] == this.parameters[i]['parameterName']) {
+                    return this.message = true;
+                }
+                else
+                    this.message = false;
+            }
+        }
+        if (!this.message) {
+            this.parameters.push(this.addParametersForm.value);
+            console.log(this.parameters);
+        }
+    };
+    // Remove Param
+    EditAlgorithmComponent.prototype.removeJobParam = function (param, index) {
+        this.parameters.splice(index, 1);
+    };
+    // Expand Param Info
+    EditAlgorithmComponent.prototype.expandParamsInfo = function (i) {
+        this.expand = !this.expand;
+        if (this.expand)
+            this.selectedParam = i;
+        else
+            this.selectedParam = null;
+    };
+    // SUBIMT FUNCTION
+    EditAlgorithmComponent.prototype.submit = function () {
+        var _this = this;
+        this.data['algorithmName'] = this.addAlgorithmForm.value['algorithmName'];
+        this.data['library'] = this.addAlgorithmForm.value['library'];
+        this.data['description'] = this.addAlgorithmForm.value['description'];
+        this.data['parameters'] = this.parameters;
+        // console.log(this.data);
+        this.service.editAlgorithm(this.data)
+            .subscribe(function (res) {
+            // console.log(res);
+            _this.dialogRef.close();
+            _this.snackbar.openSnackBar(res['data'], 'Success');
+        }, function (err) {
+            console.log(err);
+            _this.snackbar.openSnackBar(err['data'], 'Error');
+        });
+    };
+    EditAlgorithmComponent.prototype.ngOnInit = function () {
+        if (this.data) {
+            console.log(this.data);
+            this.parameters = this.data['parameters'];
+            this.addParametersForm = new _node_modules_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormGroup"]({
+                parameterName: new _node_modules_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', _node_modules_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required),
+                parameterValueType: new _node_modules_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', _node_modules_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required),
+                defaultValue: new _node_modules_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', _node_modules_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required)
+            });
+            this.addAlgorithmForm = this.fb.group({
+                algorithmName: [this.data.algorithmName, _node_modules_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+                library: [this.data.library, _node_modules_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+                description: [this.data.description]
+            });
+        }
+    };
+    Object.defineProperty(EditAlgorithmComponent.prototype, "algorithmName", {
+        // FORM GETTERS
+        get: function () {
+            return this.addAlgorithmForm.get('algorithmName');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(EditAlgorithmComponent.prototype, "library", {
+        get: function () {
+            return this.addAlgorithmForm.get('library');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(EditAlgorithmComponent.prototype, "description", {
+        get: function () {
+            return this.addAlgorithmForm.get('description');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(EditAlgorithmComponent.prototype, "parameterName", {
+        get: function () {
+            return this.addParametersForm.get('parameterName');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(EditAlgorithmComponent.prototype, "parameterValueType", {
+        get: function () {
+            return this.addParametersForm.get('parameterValueType');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(EditAlgorithmComponent.prototype, "defaultValue", {
+        get: function () {
+            return this.addParametersForm.get('defaultValue');
+        },
+        enumerable: true,
+        configurable: true
+    });
+    EditAlgorithmComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-edit-algorithm',
+            template: __webpack_require__(/*! ./edit-algorithm.component.html */ "./src/app/dialogs/edit-algorithm/edit-algorithm.component.html"),
+            styles: [__webpack_require__(/*! ./edit-algorithm.component.scss */ "./src/app/dialogs/edit-algorithm/edit-algorithm.component.scss")]
+        }),
+        __param(4, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_node_modules_angular_material__WEBPACK_IMPORTED_MODULE_4__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [_node_modules_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"], _edit_algorithm_service__WEBPACK_IMPORTED_MODULE_2__["EditAlgorithmService"], _shared_services_snackbar_service__WEBPACK_IMPORTED_MODULE_3__["SnackBarService"], _node_modules_angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialogRef"], Object])
+    ], EditAlgorithmComponent);
+    return EditAlgorithmComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/dialogs/edit-algorithm/edit-algorithm.service.ts":
+/*!******************************************************************!*\
+  !*** ./src/app/dialogs/edit-algorithm/edit-algorithm.service.ts ***!
+  \******************************************************************/
+/*! exports provided: EditAlgorithmService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditAlgorithmService", function() { return EditAlgorithmService; });
+/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var EditAlgorithmService = /** @class */ (function () {
+    function EditAlgorithmService(_http) {
+        this._http = _http;
+        this.baseUrl = 'rest/algorithms/editAlgorithm';
+    }
+    EditAlgorithmService.prototype.editAlgorithm = function (obj) {
+        return this._http.put(this.baseUrl, obj).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
+    };
+    EditAlgorithmService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_http__WEBPACK_IMPORTED_MODULE_0__["Http"]])
+    ], EditAlgorithmService);
+    return EditAlgorithmService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/dialogs/view-algorithm/view-algorithm.component.html":
 /*!**********************************************************************!*\
   !*** ./src/app/dialogs/view-algorithm/view-algorithm.component.html ***!
@@ -2745,7 +3244,7 @@ var ProjectOverviewService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"projects\">\r\n    <button mat-mini-fab color=\"primary\" matTooltip=\"Create Project\" matTooltipPosition=\"above\" (click)=\"openAddDialog()\">\r\n        <i class=\"material-icons\">add</i>\r\n    </button>\r\n    <table mat-table [dataSource]=\"projects\" class=\"mat-elevation-z8\">\r\n        <!-- Name Column -->\r\n        <ng-container matColumnDef=\"id\">\r\n            <th mat-header-cell *matHeaderCellDef> Id </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.id}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"name\">\r\n            <th mat-header-cell *matHeaderCellDef> Name </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.projectName}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"creationDate\">\r\n            <th mat-header-cell *matHeaderCellDef> Creation Date </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.creationDate | date}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"lastOpened\">\r\n            <th mat-header-cell *matHeaderCellDef> Last Opened </th>\r\n            <td mat-cell *matCellDef=\"let element\">\r\n                <span *ngIf=\"element.lastOpened; else noData\">\r\n                    {{element.lastOpened | date}}\r\n                </span>\r\n                <ng-template #noData>\r\n                    <i>No data.</i>\r\n                </ng-template>\r\n            </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"status\">\r\n            <th mat-header-cell *matHeaderCellDef> Status </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.status}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"description\">\r\n            <th mat-header-cell *matHeaderCellDef> Description </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.description}} </td>\r\n        </ng-container>\r\n        <!-- Actions -->\r\n        <ng-container matColumnDef=\"editing\">\r\n            <th mat-header-cell *matHeaderCellDef> Editing</th>\r\n            <td mat-cell *matCellDef=\"let element; let i = index\">\r\n                <span class=\"flex\">\r\n                    <i matTooltip=\"Copy Project\" matTooltipPosition=\"above\" class=\"material-icons table-icons\" (click)=\"openCopyDialog(element, element.id)\">\r\n                        file_copy\r\n                    </i>\r\n                    <i color=\"warn\" matTooltip=\"Delete Project\" matTooltipPosition=\"above\" class=\"material-icons table-icons\" (click)=\"openDeleteDialog(element.id)\">\r\n                        delete\r\n                    </i>\r\n                    <i color=\"warn\" matTooltip=\"Open Project\" matTooltipPosition=\"above\" class=\"material-icons table-icons\" (click)=\"openProject(element.id)\">\r\n                        open_in_new\r\n                    </i>\r\n                </span>\r\n            </td>\r\n        </ng-container>\r\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n    </table>\r\n    <!-- <mat-paginator [length]=\"dataSource.length\" [pageSize]=\"10\" [pageSizeOptions]=\"[1,5, 10, 25, 100]\"></mat-paginator> -->\r\n</div>"
+module.exports = "<div id=\"projects\" class=\"flex column center\">\r\n    <div class=\"button-wrapper\">\r\n        <button mat-mini-fab color=\"accent\" matTooltip=\"Create Project\" matTooltipPosition=\"above\" (click)=\"openAddDialog()\">\r\n            <i class=\"material-icons\">add</i>\r\n        </button>\r\n    </div>\r\n    <table mat-table [dataSource]=\"projects\" class=\"mat-elevation-z8\">\r\n        <!-- Name Column -->\r\n        <ng-container matColumnDef=\"id\">\r\n            <th mat-header-cell *matHeaderCellDef> Id </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.id}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"name\">\r\n            <th mat-header-cell *matHeaderCellDef> Name </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.projectName}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"creationDate\">\r\n            <th mat-header-cell *matHeaderCellDef> Creation Date </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.creationDate | date}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"lastOpened\">\r\n            <th mat-header-cell *matHeaderCellDef> Last Opened </th>\r\n            <td mat-cell *matCellDef=\"let element\">\r\n                <span *ngIf=\"element.lastOpened; else noData\">\r\n                    {{element.lastOpened | date}}\r\n                </span>\r\n                <ng-template #noData>\r\n                    <i>No data.</i>\r\n                </ng-template>\r\n            </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"status\">\r\n            <th mat-header-cell *matHeaderCellDef> Status </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.status}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"description\">\r\n            <th mat-header-cell *matHeaderCellDef> Description </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.description}} </td>\r\n        </ng-container>\r\n        <!-- Actions -->\r\n        <ng-container matColumnDef=\"editing\">\r\n            <th mat-header-cell *matHeaderCellDef> Actions</th>\r\n            <td mat-cell *matCellDef=\"let element; let i = index\">\r\n                <div class=\"flex icons-wrapper\">\r\n                    <i color=\"warn\" matTooltip=\"Open Project\" matTooltipPosition=\"above\" class=\"material-icons table-icons\" (click)=\"openProject(element.id)\">\r\n                        open_in_new\r\n                    </i>\r\n                    <i matTooltip=\"Copy Project\" matTooltipPosition=\"above\" class=\"material-icons table-icons\" (click)=\"openCopyDialog(element, element.id)\">\r\n                        file_copy\r\n                    </i>\r\n                    <i color=\"warn\" matTooltip=\"Delete Project\" matTooltipPosition=\"above\" class=\"material-icons table-icons\" (click)=\"openDeleteDialog(element.id)\">\r\n                        delete\r\n                    </i>\r\n                </div>\r\n            </td>\r\n        </ng-container>\r\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n    </table>\r\n    <!-- <mat-paginator [length]=\"dataSource.length\" [pageSize]=\"10\" [pageSizeOptions]=\"[1,5, 10, 25, 100]\"></mat-paginator> -->\r\n</div>"
 
 /***/ }),
 
@@ -2756,7 +3255,7 @@ module.exports = "<div id=\"projects\">\r\n    <button mat-mini-fab color=\"prim
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n#projects {\n  margin: 5% 10%; }\n\n#projects table {\n    width: 100%; }\n\n#projects button {\n    margin-bottom: 2%; }\n\n#projects .flex i {\n    color: #311B92;\n    margin-right: 10px;\n    font-size: 18px; }\n\n#projects .flex i:hover {\n    cursor: pointer; }\n"
+module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n#projects table.mat-table {\n  margin-top: 30px;\n  width: 80%; }\n\n#projects tr.mat-header-row {\n  background: linear-gradient(to right, #311B92, #7C4DFF); }\n\n#projects th.mat-header-cell {\n  width: 250px;\n  color: #fff; }\n\n#projects td.mat-cell {\n  padding: 10px 10px 10px 0 !important; }\n\n#projects td.mat-cell:first-child, #projects td.mat-footer-cell:first-child, #projects th.mat-header-cell:first-child {\n  padding-left: 24px !important; }\n\n#projects .button-wrapper {\n  width: 80%;\n  margin-top: 100px; }\n\n#projects .button-wrapper > button {\n  float: right; }\n\n#projects .icons-wrapper {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n#projects .table-icons {\n  color: #311B92;\n  font-size: 23px;\n  margin-right: 15px; }\n\n#projects .table-icons:hover {\n  color: #FF3D00;\n  cursor: pointer; }\n"
 
 /***/ }),
 
