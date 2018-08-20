@@ -14,13 +14,14 @@ export class DashboardComponent implements OnInit {
   dataset: any;
   algorithm: any;
   selected: any;
-  projectsArr: Array<Object>;;
+  projectsArr: Array<Object>;
   projectDetails: any;
   algo: any;
   panelProject = false;
   panelData = false;
   panelAlgo = false;
   displayedColumns: string[] = ['Name', 'Average', 'Distinct Count', 'Minimum', 'Maximum'];
+  displayedColumn: string[] = ['Parameter Name', 'Default Value', 'Value Type', 'Parameter Value'];
 
   constructor(
     public dashboardService: Dashboardervice,
