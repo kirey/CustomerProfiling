@@ -20,7 +20,9 @@ export class DashboardComponent implements OnInit {
   panelProject = false;
   panelData = false;
   panelAlgo = false;
+  // Columns for variable table
   displayedColumns: string[] = ['Name', 'Average', 'Distinct Count', 'Minimum', 'Maximum'];
+  // Columns for algorithms param.table
   displayedColumn: string[] = ['Parameter Name', 'Default Value', 'Value Type', 'Parameter Value'];
 
   constructor(

@@ -153,8 +153,8 @@
               <span>
                 <strong>Library: </strong>{{algo.library}}</span>
 
-              <div>
-                <h3 *ngIf="algo.parameters">Parameters Details</h3>
+              <div *ngIf="algo.parameters.length>0">
+                <h3>Parameters Details</h3>
                 <table mat-table [dataSource]="algo.parameters" class="mat-elevation-z8">
 
                   <ng-container matColumnDef="Parameter Name">
@@ -182,8 +182,6 @@
                   <tr mat-row *matRowDef="let row; columns: displayedColumn;"></tr>
                 </table>
               </div>
-
-
             </div>
           </div>
         </mat-card-content>
