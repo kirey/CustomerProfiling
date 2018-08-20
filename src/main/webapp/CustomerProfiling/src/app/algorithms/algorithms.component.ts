@@ -14,11 +14,17 @@ import { EditAlgorithmComponent } from '../dialogs/edit-algorithm/edit-algorithm
 export class AlgorithmsComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'description', 'library', 'actions'];
-  dataSource: MatTableDataSource<any>;
+
+  private dataSource: MatTableDataSource<any>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(public service: AlgorithmsService, public dialog: MatDialog) { }
 
   data: any;
+  
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
   getAll() {
     this.service.getAll()
@@ -29,6 +35,8 @@ export class AlgorithmsComponent implements OnInit {
         },
         err => {
           console.log(err)
+        },()=>{
+          this.dataSource.paginator = this.paginator;
         }
       );
   }
