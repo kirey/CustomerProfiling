@@ -583,25 +583,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dialogs_addProject_add_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./dialogs/addProject/add.component */ "./src/app/dialogs/addProject/add.component.ts");
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
 /* harmony import */ var _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./dashboard/dashboard.component */ "./src/app/dashboard/dashboard.component.ts");
-/* harmony import */ var _shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./shared/guards/auth.guard */ "./src/app/shared/guards/auth.guard.ts");
-/* harmony import */ var _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./dialogs/delete/delete.component */ "./src/app/dialogs/delete/delete.component.ts");
-/* harmony import */ var _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./dialogs/copyProject/copy.component */ "./src/app/dialogs/copyProject/copy.component.ts");
-/* harmony import */ var _dataset_dataset_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./dataset/dataset.component */ "./src/app/dataset/dataset.component.ts");
-/* harmony import */ var _data_tab_data_tab_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./data-tab/data-tab.component */ "./src/app/data-tab/data-tab.component.ts");
-/* harmony import */ var _data_tab_data_tab_service__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./data-tab/data-tab.service */ "./src/app/data-tab/data-tab.service.ts");
-/* harmony import */ var _dialogs_edit_algorithm_edit_algorithm_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./dialogs/edit-algorithm/edit-algorithm.component */ "./src/app/dialogs/edit-algorithm/edit-algorithm.component.ts");
-/* harmony import */ var _project_overview_project_overview_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./project-overview/project-overview.component */ "./src/app/project-overview/project-overview.component.ts");
-/* harmony import */ var _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./dialogs/add-dataset/add-dataset.component */ "./src/app/dialogs/add-dataset/add-dataset.component.ts");
-/* harmony import */ var _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./dialogs/dataset-detail/dataset-detail.component */ "./src/app/dialogs/dataset-detail/dataset-detail.component.ts");
-/* harmony import */ var _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./dialogs/data-tab-view/data-tab-view.component */ "./src/app/dialogs/data-tab-view/data-tab-view.component.ts");
-/* harmony import */ var _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./algorithms/algorithms.component */ "./src/app/algorithms/algorithms.component.ts");
-/* harmony import */ var _dialogs_addProject_addProject_service__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./dialogs/addProject/addProject.service */ "./src/app/dialogs/addProject/addProject.service.ts");
-/* harmony import */ var _dialogs_copyProject_copyProject_service__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./dialogs/copyProject/copyProject.service */ "./src/app/dialogs/copyProject/copyProject.service.ts");
-/* harmony import */ var _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./dialogs/add-algorithm/add-algorithm.component */ "./src/app/dialogs/add-algorithm/add-algorithm.component.ts");
-/* harmony import */ var _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./dialogs/view-algorithm/view-algorithm.component */ "./src/app/dialogs/view-algorithm/view-algorithm.component.ts");
-/* harmony import */ var _one_project_one_project_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./one-project/one-project.component */ "./src/app/one-project/one-project.component.ts");
-/* harmony import */ var _analyze_analyze_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./analyze/analyze.component */ "./src/app/analyze/analyze.component.ts");
-/* harmony import */ var _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./dialogs/add-value/add-value.component */ "./src/app/dialogs/add-value/add-value.component.ts");
+/* harmony import */ var _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./dialogs/delete/delete.component */ "./src/app/dialogs/delete/delete.component.ts");
+/* harmony import */ var _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./dialogs/copyProject/copy.component */ "./src/app/dialogs/copyProject/copy.component.ts");
+/* harmony import */ var _dataset_dataset_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./dataset/dataset.component */ "./src/app/dataset/dataset.component.ts");
+/* harmony import */ var _data_tab_data_tab_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./data-tab/data-tab.component */ "./src/app/data-tab/data-tab.component.ts");
+/* harmony import */ var _data_tab_data_tab_service__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./data-tab/data-tab.service */ "./src/app/data-tab/data-tab.service.ts");
+/* harmony import */ var _dialogs_edit_algorithm_edit_algorithm_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./dialogs/edit-algorithm/edit-algorithm.component */ "./src/app/dialogs/edit-algorithm/edit-algorithm.component.ts");
+/* harmony import */ var _project_overview_project_overview_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./project-overview/project-overview.component */ "./src/app/project-overview/project-overview.component.ts");
+/* harmony import */ var _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./dialogs/add-dataset/add-dataset.component */ "./src/app/dialogs/add-dataset/add-dataset.component.ts");
+/* harmony import */ var _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./dialogs/dataset-detail/dataset-detail.component */ "./src/app/dialogs/dataset-detail/dataset-detail.component.ts");
+/* harmony import */ var _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./dialogs/data-tab-view/data-tab-view.component */ "./src/app/dialogs/data-tab-view/data-tab-view.component.ts");
+/* harmony import */ var _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./algorithms/algorithms.component */ "./src/app/algorithms/algorithms.component.ts");
+/* harmony import */ var _dialogs_addProject_addProject_service__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./dialogs/addProject/addProject.service */ "./src/app/dialogs/addProject/addProject.service.ts");
+/* harmony import */ var _dialogs_copyProject_copyProject_service__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./dialogs/copyProject/copyProject.service */ "./src/app/dialogs/copyProject/copyProject.service.ts");
+/* harmony import */ var _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./dialogs/add-algorithm/add-algorithm.component */ "./src/app/dialogs/add-algorithm/add-algorithm.component.ts");
+/* harmony import */ var _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./dialogs/view-algorithm/view-algorithm.component */ "./src/app/dialogs/view-algorithm/view-algorithm.component.ts");
+/* harmony import */ var _one_project_one_project_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./one-project/one-project.component */ "./src/app/one-project/one-project.component.ts");
+/* harmony import */ var _analyze_analyze_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./analyze/analyze.component */ "./src/app/analyze/analyze.component.ts");
+/* harmony import */ var _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./dialogs/add-value/add-value.component */ "./src/app/dialogs/add-value/add-value.component.ts");
+/* harmony import */ var _shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./shared/guards/auth.guard */ "./src/app/shared/guards/auth.guard.ts");
+/* harmony import */ var _shared_guards_project_ovierview_guard__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./shared/guards/project-ovierview.guard */ "./src/app/shared/guards/project-ovierview.guard.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -638,8 +639,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-
 // import { ProjectOverviewComponent } from './project-overview/project-overview.component';
+
+
 
 
 
@@ -663,21 +665,21 @@ var AppModule = /** @class */ (function () {
                 _login_login_component__WEBPACK_IMPORTED_MODULE_19__["LoginComponent"],
                 _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_20__["DashboardComponent"],
                 _dialogs_addProject_add_component__WEBPACK_IMPORTED_MODULE_18__["AddComponent"],
-                _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_22__["DeleteComponent"],
-                _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_23__["CopyComponent"],
-                _dataset_dataset_component__WEBPACK_IMPORTED_MODULE_24__["DatasetComponent"],
-                _data_tab_data_tab_component__WEBPACK_IMPORTED_MODULE_25__["DataTabComponent"],
-                _project_overview_project_overview_component__WEBPACK_IMPORTED_MODULE_28__["ProjectOverviewComponent"],
-                _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_29__["AddDatasetComponent"],
-                _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_30__["DatasetDetailComponent"],
-                _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_31__["DataTabViewComponent"],
-                _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_32__["AlgorithmsComponent"],
-                _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_35__["AddAlgorithmComponent"],
-                _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_36__["ViewAlgorithmComponent"],
-                _one_project_one_project_component__WEBPACK_IMPORTED_MODULE_37__["OneProjectComponent"],
-                _analyze_analyze_component__WEBPACK_IMPORTED_MODULE_38__["AnalyzeComponent"],
-                _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_39__["AddValueComponent"],
-                _dialogs_edit_algorithm_edit_algorithm_component__WEBPACK_IMPORTED_MODULE_27__["EditAlgorithmComponent"]
+                _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_21__["DeleteComponent"],
+                _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_22__["CopyComponent"],
+                _dataset_dataset_component__WEBPACK_IMPORTED_MODULE_23__["DatasetComponent"],
+                _data_tab_data_tab_component__WEBPACK_IMPORTED_MODULE_24__["DataTabComponent"],
+                _project_overview_project_overview_component__WEBPACK_IMPORTED_MODULE_27__["ProjectOverviewComponent"],
+                _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_28__["AddDatasetComponent"],
+                _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_29__["DatasetDetailComponent"],
+                _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_30__["DataTabViewComponent"],
+                _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_31__["AlgorithmsComponent"],
+                _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_34__["AddAlgorithmComponent"],
+                _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_35__["ViewAlgorithmComponent"],
+                _one_project_one_project_component__WEBPACK_IMPORTED_MODULE_36__["OneProjectComponent"],
+                _analyze_analyze_component__WEBPACK_IMPORTED_MODULE_37__["AnalyzeComponent"],
+                _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_38__["AddValueComponent"],
+                _dialogs_edit_algorithm_edit_algorithm_component__WEBPACK_IMPORTED_MODULE_26__["EditAlgorithmComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
@@ -692,12 +694,13 @@ var AppModule = /** @class */ (function () {
             ],
             providers: [
                 _shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"],
-                _shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_21__["AuthGuard"],
+                _shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_39__["AuthGuard"],
+                _shared_guards_project_ovierview_guard__WEBPACK_IMPORTED_MODULE_40__["POGuard"],
                 _projects_projects_service__WEBPACK_IMPORTED_MODULE_11__["ProjectsService"],
-                _data_tab_data_tab_service__WEBPACK_IMPORTED_MODULE_26__["DataTabService"],
+                _data_tab_data_tab_service__WEBPACK_IMPORTED_MODULE_25__["DataTabService"],
                 _algorithms_algorithms_service__WEBPACK_IMPORTED_MODULE_12__["AlgorithmsService"],
-                _dialogs_addProject_addProject_service__WEBPACK_IMPORTED_MODULE_33__["AddProjectService"],
-                _dialogs_copyProject_copyProject_service__WEBPACK_IMPORTED_MODULE_34__["CopyProjectService"],
+                _dialogs_addProject_addProject_service__WEBPACK_IMPORTED_MODULE_32__["AddProjectService"],
+                _dialogs_copyProject_copyProject_service__WEBPACK_IMPORTED_MODULE_33__["CopyProjectService"],
                 _project_overview_project_overview_service__WEBPACK_IMPORTED_MODULE_13__["ProjectOverviewService"],
                 _analyze_analyze_service__WEBPACK_IMPORTED_MODULE_0__["AnalyzeService"],
                 _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_14__["SharedService"],
@@ -706,16 +709,16 @@ var AppModule = /** @class */ (function () {
             ],
             entryComponents: [
                 _dialogs_addProject_add_component__WEBPACK_IMPORTED_MODULE_18__["AddComponent"],
-                _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_22__["DeleteComponent"],
-                _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_23__["CopyComponent"],
-                _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_29__["AddDatasetComponent"],
-                _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_30__["DatasetDetailComponent"],
-                _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_31__["DataTabViewComponent"],
-                _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_23__["CopyComponent"],
-                _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_35__["AddAlgorithmComponent"],
-                _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_36__["ViewAlgorithmComponent"],
-                _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_39__["AddValueComponent"],
-                _dialogs_edit_algorithm_edit_algorithm_component__WEBPACK_IMPORTED_MODULE_27__["EditAlgorithmComponent"]
+                _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_21__["DeleteComponent"],
+                _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_22__["CopyComponent"],
+                _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_28__["AddDatasetComponent"],
+                _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_29__["DatasetDetailComponent"],
+                _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_30__["DataTabViewComponent"],
+                _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_22__["CopyComponent"],
+                _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_34__["AddAlgorithmComponent"],
+                _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_35__["ViewAlgorithmComponent"],
+                _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_38__["AddValueComponent"],
+                _dialogs_edit_algorithm_edit_algorithm_component__WEBPACK_IMPORTED_MODULE_26__["EditAlgorithmComponent"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]],
             schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_4__["CUSTOM_ELEMENTS_SCHEMA"]]
@@ -746,6 +749,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
 /* harmony import */ var _projects_projects_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./projects/projects.component */ "./src/app/projects/projects.component.ts");
 /* harmony import */ var _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./algorithms/algorithms.component */ "./src/app/algorithms/algorithms.component.ts");
+/* harmony import */ var _shared_guards_project_ovierview_guard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./shared/guards/project-ovierview.guard */ "./src/app/shared/guards/project-ovierview.guard.ts");
+
 
 
 
@@ -765,7 +770,7 @@ var routes = [
     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_5__["LoginComponent"] },
     { path: 'dashboard', component: _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_4__["DashboardComponent"], canActivate: [_shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]] },
     { path: 'datasets', component: _dataset_dataset_component__WEBPACK_IMPORTED_MODULE_1__["DatasetComponent"], canActivate: [_shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]] },
-    { path: 'one-project', component: _one_project_one_project_component__WEBPACK_IMPORTED_MODULE_0__["OneProjectComponent"] },
+    { path: 'one-project', component: _one_project_one_project_component__WEBPACK_IMPORTED_MODULE_0__["OneProjectComponent"], canActivate: [_shared_guards_project_ovierview_guard__WEBPACK_IMPORTED_MODULE_8__["POGuard"]] },
     // { path: 'data-tab', component: DataTabComponent, canActivate: [AuthGuard] },
     { path: 'algorithms', component: _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_7__["AlgorithmsComponent"], canActivate: [_shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]] },
     { path: '**', component: _login_login_component__WEBPACK_IMPORTED_MODULE_5__["LoginComponent"] }
@@ -1041,7 +1046,7 @@ module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: co
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataTabComponent", function() { return DataTabComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _node_modules_angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/@angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _data_tab_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./data-tab.service */ "./src/app/data-tab/data-tab.service.ts");
 /* harmony import */ var _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../dialogs/data-tab-view/data-tab-view.component */ "./src/app/dialogs/data-tab-view/data-tab-view.component.ts");
 /* harmony import */ var _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shared/services/shared.service */ "./src/app/shared/services/shared.service.ts");
@@ -1228,7 +1233,6 @@ var DataTabComponent = /** @class */ (function () {
                 console.log(res['data']);
                 _this.csvArray = res['data'];
                 _this.dialog.open(_dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_3__["DataTabViewComponent"], {
-                    width: '800px',
                     data: _this.csvArray
                 });
             }, function (err) {
@@ -1303,7 +1307,7 @@ var DataTabComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./data-tab.component.scss */ "./src/app/data-tab/data-tab.component.scss")],
             encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None
         }),
-        __metadata("design:paramtypes", [_data_tab_service__WEBPACK_IMPORTED_MODULE_2__["DataTabService"], _node_modules_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"], _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_4__["SharedService"], _project_overview_project_overview_service__WEBPACK_IMPORTED_MODULE_5__["ProjectOverviewService"], _shared_services_snackbar_service__WEBPACK_IMPORTED_MODULE_6__["SnackBarService"]])
+        __metadata("design:paramtypes", [_data_tab_service__WEBPACK_IMPORTED_MODULE_2__["DataTabService"], _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"], _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_4__["SharedService"], _project_overview_project_overview_service__WEBPACK_IMPORTED_MODULE_5__["ProjectOverviewService"], _shared_services_snackbar_service__WEBPACK_IMPORTED_MODULE_6__["SnackBarService"]])
     ], DataTabComponent);
     return DataTabComponent;
 }());
@@ -3016,7 +3020,7 @@ var OneProjectComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"projectOverview\">\r\n  <h1>Project overview</h1>\r\n  <mat-dialog-content *ngIf=\"project\">\r\n    <h4 class=\"subtitle\">Project details for project ID: {{project.id}}</h4>\r\n    <mat-form-field>\r\n      <input matInput placeholder=\"Project name\" [(ngModel)]=\"project.projectName\" autocomplete=\"off\">\r\n    </mat-form-field>\r\n    <br>\r\n    <mat-form-field>\r\n      <textarea matInput placeholder=\"Project description\" [(ngModel)]=\"project.description\" autocomplete=\"off\"></textarea>\r\n    </mat-form-field>\r\n    <div>Created: {{project.creationDate | date}}</div>\r\n    <div>Last opened:\r\n      <span *ngIf=\"project.lastOpened; else noData\"> {{project.lastOpened | date}}</span>\r\n      <ng-template #noData>\r\n        <i>No data.</i>\r\n      </ng-template>\r\n    </div>\r\n    <div>Projects status: {{project.status}}</div>\r\n    <mat-dialog-actions class=\"buttonsFirst\">\r\n      <button type=\"submit\" color=\"primary\" mat-raised-button (click)=\"editProject(project)\">Save</button>\r\n    </mat-dialog-actions>\r\n  </mat-dialog-content>\r\n  <mat-divider></mat-divider>\r\n  <!-- Select dataset -->\r\n  <mat-dialog-content>\r\n    <h4 class=\"subtitle\">Dataset details</h4>\r\n\r\n    <!-- za selektovanje dataseta -  nije zavrseno -->\r\n    <mat-form-field *ngIf=\"linked && dataset\">\r\n      <mat-select [disabled]=\"sharedService.getIsDatasetLinked()\" [(ngModel)]=\"datasetName\" (selectionChange)=\"selectedDataset($event)\"\r\n        placeholder=\"Select dataset\">\r\n        <mat-option *ngFor=\"let data of dataset; let i = index\" [value]=\"data.name\">{{data.name}}</mat-option>\r\n      </mat-select>\r\n    </mat-form-field>\r\n    <div *ngIf=\"details && showDetails\">\r\n      <div class=\"details-item\">\r\n        <strong>Description: </strong>\r\n        {{details.datasetDesc}}\r\n      </div>\r\n      <div class=\"details-item\">\r\n        <strong>Dataset size: </strong>\r\n        {{details.datasetSize}} KB\r\n      </div>\r\n      <div class=\"details-item\">\r\n        <strong>Number of rows: </strong>\r\n        {{details.numberOfRows}}\r\n      </div>\r\n      <div class=\"details-item\">\r\n        <strong>Number of variables: </strong>\r\n        {{details.numberOfVariables}}\r\n      </div>\r\n      <br>\r\n      <!-- List of VARIABLES -->\r\n      <div class=\"column\" *ngIf=\"details.variableDetails.length > 0;else noData\">\r\n        <h4 class=\"subtitle\">Variable details</h4>\r\n        <br>\r\n        <div class=\"flex column-style header-style\">\r\n          <span>Name</span>\r\n          <span>Distinct Count</span>\r\n          <span>Min</span>\r\n          <span>Max</span>\r\n          <span>Average</span>\r\n          <span>Variance</span>\r\n        </div>\r\n        <div class=\"flex  column-style variables-data\" *ngFor=\"let item of  details.variableDetails; let i = index\">\r\n          <span>{{item.variableName}}</span>\r\n          <span>{{item.distinctCount}}</span>\r\n          <span>{{item.min}}</span>\r\n          <span>{{item.max}}</span>\r\n          <span>{{item.average}}</span>\r\n          <span>{{item.variance}}</span>\r\n        </div>\r\n        <ng-template #noData>\r\n          <span>No data.</span>\r\n        </ng-template>\r\n      </div>\r\n    </div>\r\n  </mat-dialog-content>\r\n\r\n  <mat-divider></mat-divider>\r\n  <!-- Projects Properties -->\r\n  <h4 class=\"subtitle\">Project properties</h4>\r\n  <div class=\"cards\">\r\n    <mat-card *ngIf=\"algorithms\">\r\n      <mat-card-header>\r\n        <div mat-card-avatar class=\"example-header-image\"></div>\r\n        <mat-card-title>Algorithms</mat-card-title>\r\n      </mat-card-header>\r\n      <mat-divider></mat-divider>\r\n      <mat-card-content *ngFor=\"let algorithm of algorithms\">\r\n        <span>\r\n          <strong>Algorithm Name:</strong> {{algorithm.algorithmName}}</span>\r\n        <br>\r\n        <span>\r\n          <strong>Algorithm Description:</strong> {{algorithm.description}}</span>\r\n        <br>\r\n        <span>\r\n          <strong>Algorithm Library:</strong> {{algorithm.library}}</span>\r\n      </mat-card-content>\r\n    </mat-card>\r\n    <mat-card class=\"example-card\">\r\n      <mat-card-header>\r\n        <div mat-card-avatar class=\"example-header-image\"></div>\r\n        <mat-card-title>Questions</mat-card-title>\r\n      </mat-card-header>\r\n      <mat-card-content>\r\n        <p>\r\n          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes\r\n          very well with mountainous terrain, the Shiba Inu was originally bred for hunting.\r\n        </p>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </div>\r\n\r\n</div>"
+module.exports = "<div id=\"projectOverview\">\r\n  <h2 class=\"op-title\">Project overview</h2>\r\n  <mat-dialog-content *ngIf=\"project\">\r\n    <!-- ROW 1 -->\r\n    <div class=\"flex space-around align-items-center\">\r\n      <mat-form-field class=\"po-input\">\r\n        <input matInput placeholder=\"Project name\" [(ngModel)]=\"project.projectName\" autocomplete=\"off\">\r\n      </mat-form-field>\r\n      <mat-form-field class=\"po-input\" appearance=\"outline\">\r\n        <textarea matInput placeholder=\"Project description\" [(ngModel)]=\"project.description\" autocomplete=\"off\"></textarea>\r\n      </mat-form-field>\r\n    </div>\r\n    <!-- ROW 2 -->\r\n    <div class=\"flex space-around align-items-center\">\r\n      <div class=\"box\">\r\n        <strong>Created:</strong> {{project.creationDate | date}}\r\n      </div>\r\n      <div class=\"box\">\r\n        <strong>Last opened:</strong>\r\n        <span *ngIf=\"project.lastOpened; else noData\">\r\n          {{project.lastOpened | date}}\r\n        </span>\r\n        <ng-template #noData>\r\n          <i>\r\n            No data.\r\n          </i>\r\n        </ng-template>\r\n      </div>\r\n      <div class=\"box\">\r\n        <strong>Project status:</strong> {{project.status}}\r\n      </div>\r\n    </div>\r\n    <mat-dialog-actions class=\"buttonsFirst\">\r\n      <button type=\"submit\" color=\"primary\" mat-raised-button (click)=\"editProject(project)\">Save</button>\r\n    </mat-dialog-actions>\r\n  </mat-dialog-content>\r\n  <mat-divider></mat-divider>\r\n  <!-- Select dataset -->\r\n  <mat-dialog-content>\r\n    <h2 class=\"op-title\">Dataset details</h2>\r\n    <!-- ROW 1 -->\r\n    <div class=\"flex space-around align-items-center\">\r\n      <!-- Select Dataset -->\r\n      <mat-form-field class=\"po-input\" *ngIf=\"linked && dataset\">\r\n        <mat-select [disabled]=\"disableSelect\" [(ngModel)]=\"datasetName\" (selectionChange)=\"selectedDataset($event)\" placeholder=\"Select dataset\">\r\n          <mat-option *ngFor=\"let data of dataset; let i = index\" [value]=\"data.name\">{{data.name}}</mat-option>\r\n        </mat-select>\r\n      </mat-form-field>\r\n      <!-- Empty div - flexbox -->\r\n      <div *ngIf=\"!details\" class=\"empty-box\"></div>\r\n      <!-- Description -->\r\n      <div *ngIf=\"details\" class=\"details-box justify\">\r\n        <strong>Description</strong>\r\n        <br>\r\n        <br> {{details.datasetDesc}}\r\n      </div>\r\n    </div>\r\n    <div *ngIf=\"details\" class=\"flex space-around align-items-center\">\r\n      <div class=\"box\">\r\n        <strong>Dataset size: </strong>\r\n        {{details.datasetSize}} KB\r\n      </div>\r\n      <div class=\"box\">\r\n        <strong>Number of rows: </strong>\r\n        {{details.numberOfRows}}\r\n      </div>\r\n      <div class=\"box\">\r\n        <strong>Number of variables: </strong>\r\n        {{details.numberOfVariables}}\r\n      </div>\r\n    </div>\r\n    <mat-divider></mat-divider>\r\n    <!-- List of VARIABLES -->\r\n    <div *ngIf=\"details && details.variableDetails\" class=\"flex\">\r\n      <div class=\"flex column variables\" *ngIf=\"details.variableDetails.length> 0;else noData\">\r\n        <h2 class=\"op-title\">Variable details</h2>\r\n        <div class=\"variables-box\">\r\n          <div class=\"flex column-style header-style\">\r\n            <span>Name</span>\r\n            <span>Distinct Count</span>\r\n            <span>Min</span>\r\n            <span>Max</span>\r\n            <span>Average</span>\r\n            <span>Variance</span>\r\n          </div>\r\n          <div class=\"flex  column-style variables-data\" *ngFor=\"let item of  details.variableDetails; let i = index\">\r\n            <span>{{item.variableName}}</span>\r\n            <span>{{item.distinctCount}}</span>\r\n            <span>{{item.min}}</span>\r\n            <span>{{item.max}}</span>\r\n            <span>{{item.average}}</span>\r\n            <span>{{item.variance}}</span>\r\n          </div>\r\n        </div>\r\n        <ng-template #noData>\r\n          <span>No data.</span>\r\n        </ng-template>\r\n      </div>\r\n    </div>\r\n  </mat-dialog-content>\r\n\r\n  <mat-divider></mat-divider>\r\n  <!-- Projects Properties -->\r\n  <h2 class=\"op-title\">Project properties</h2>\r\n  <div class=\"cards\">\r\n    <mat-card *ngIf=\"algorithms\">\r\n      <mat-card-header>\r\n        <div mat-card-avatar class=\"example-header-image\"></div>\r\n        <mat-card-title>Algorithms</mat-card-title>\r\n      </mat-card-header>\r\n      <mat-divider></mat-divider>\r\n      <mat-card-content *ngFor=\"let algorithm of algorithms\">\r\n        <span>\r\n          <strong>Algorithm Name:</strong> {{algorithm.algorithmName}}</span>\r\n        <br>\r\n        <span>\r\n          <strong>Algorithm Description:</strong> {{algorithm.description}}</span>\r\n        <br>\r\n        <span>\r\n          <strong>Algorithm Library:</strong> {{algorithm.library}}</span>\r\n      </mat-card-content>\r\n    </mat-card>\r\n    <mat-card class=\"example-card\">\r\n      <mat-card-header>\r\n        <div mat-card-avatar class=\"example-header-image\"></div>\r\n        <mat-card-title>Questions</mat-card-title>\r\n      </mat-card-header>\r\n      <mat-card-content>\r\n        <p>\r\n          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes\r\n          very well with mountainous terrain, the Shiba Inu was originally bred for hunting.\r\n        </p>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </div>\r\n\r\n</div>"
 
 /***/ }),
 
@@ -3027,7 +3031,7 @@ module.exports = "<div id=\"projectOverview\">\r\n  <h1>Project overview</h1>\r\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%;\n  padding-top: 35px; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n#projectOverview {\n  margin: 5% 15%; }\n\n#projectOverview mat-dialog-content {\n    display: flex;\n    flex-direction: column; }\n\n#projectOverview .buttonsFirst button {\n    float: right; }\n\n#projectOverview .cards {\n    margin-top: 50px;\n    display: flex;\n    flex-direction: row;\n    justify-content: center; }\n\n#projectOverview mat-card {\n    margin: 10px; }\n\n#projectOverview mat-card-content {\n    margin-top: 10px; }\n\n#projectOverview mat-divider {\n    margin: 10px 0; }\n\n#projectOverview h4 {\n    color: #311B92; }\n\n#projectOverview .inline {\n    display: inline-flex; }\n\n#projectOverview .header-style {\n    color: #7C4DFF;\n    font-weight: bold;\n    font-size: 17px;\n    margin: 10px 0; }\n\n#projectOverview .column-style > span {\n    width: 170px; }\n\n#projectOverview .variables-data > span {\n    padding-left: 2px; }\n"
+module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%;\n  padding-top: 35px; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #311B92, #7C4DFF);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #311B92; }\n\n#projectOverview {\n  margin: 50px; }\n\n#projectOverview .op-title {\n    color: #757575;\n    margin: 30px 0; }\n\n#projectOverview .po-input {\n    width: 40%; }\n\n#projectOverview .box {\n    margin: 30px 0;\n    padding: 30px 25px;\n    color: #311B92;\n    font-size: 15px;\n    border: 2px solid #7C4DFF;\n    border-radius: 3px; }\n\n#projectOverview .details-box {\n    margin: 10px 0;\n    padding: 30px 25px;\n    color: #757575;\n    font-size: 15px;\n    border: 2px dotted #FF3D00;\n    border-radius: 3px;\n    width: 40%; }\n\n#projectOverview .empty-box {\n    width: 50%; }\n\n#projectOverview .variables {\n    width: 100%; }\n\n#projectOverview .variables-box {\n    margin-bottom: 30px;\n    border: 1px solid #757575;\n    border-radius: 3px;\n    padding: 20px;\n    width: 90%; }\n\n#projectOverview mat-dialog-content {\n    display: flex;\n    flex-direction: column; }\n\n#projectOverview .buttonsFirst button {\n    float: right;\n    margin: 20px 30px; }\n\n#projectOverview .cards {\n    margin-top: 50px;\n    display: flex;\n    flex-direction: row;\n    justify-content: center; }\n\n#projectOverview mat-card {\n    margin: 10px; }\n\n#projectOverview mat-card-content {\n    margin-top: 10px; }\n\n#projectOverview mat-divider {\n    margin: 10px 0; }\n\n#projectOverview h4 {\n    color: #311B92; }\n\n#projectOverview .inline {\n    display: inline-flex; }\n\n#projectOverview .header-style {\n    color: #7C4DFF;\n    font-weight: bold;\n    font-size: 17px;\n    margin: 10px 0; }\n\n#projectOverview .column-style > span {\n    width: 16%; }\n\n#projectOverview .variables-data > span {\n    padding-left: 2px; }\n"
 
 /***/ }),
 
@@ -3078,6 +3082,7 @@ var ProjectOverviewComponent = /** @class */ (function () {
         var _this = this;
         this.projectOverviewService.getDataset().subscribe(function (res) {
             _this.dataset = res.data;
+            _this.isLinked();
         }, function (err) { return console.log(err); });
     };
     ProjectOverviewComponent.prototype.isLinked = function () {
@@ -3091,19 +3096,25 @@ var ProjectOverviewComponent = /** @class */ (function () {
                     if (_this.dataset[i].id == _this.datasetId) {
                         _this.datasetName = _this.dataset[i].name;
                         _this.selectedDatasetId = _this.dataset[i].id;
+                        _this.getDatasetDetails(_this.selectedDatasetId);
                         // Link Dataset to SHARED service
                         _this.sharedService.setDatasetName(_this.datasetName);
                         _this.sharedService.setDatasetId(_this.datasetId);
                         _this.sharedService.setDatasetLink(true);
                         _this.linked = true;
+                        _this.disableSelect = true;
                         // Enable Tabs
                         _this.disableTabsChange.emit(false);
                     }
                 }
-                console.log(_this.datasetName);
             }
             else {
+                // Link Dataset to SHARED service
+                _this.sharedService.setDatasetName(null);
+                _this.sharedService.setDatasetId(null);
+                _this.sharedService.setDatasetLink(false);
                 _this.linked = true;
+                _this.disableSelect = false;
             }
         }, function (err) { return console.log(err); });
     };
@@ -3119,7 +3130,6 @@ var ProjectOverviewComponent = /** @class */ (function () {
         });
     };
     ProjectOverviewComponent.prototype.selectedDataset = function (ev) {
-        var _this = this;
         if (ev.value) {
             for (var i = 0; i < this.dataset.length; i++) {
                 if (this.dataset[i].name == ev.value) {
@@ -3130,20 +3140,7 @@ var ProjectOverviewComponent = /** @class */ (function () {
             this.details = {};
             this.showDetails = false;
             // this.selectedDatasetId = ev.value.id;
-            this.projectOverviewService.getDatasetDetails(this.selectedDatasetId).subscribe(function (res) {
-                _this.showDetails = true;
-                _this.details = res.data;
-                // console.log(this.details);
-                // Enable Tabs
-                _this.disableTabsChange.emit(false);
-                // Link dataset
-                _this.sharedService.setDatasetId(_this.selectedDatasetId);
-                _this.sharedService.setDatasetName(_this.datasetName);
-                _this.snackbar.openSnackBar('Dataset linked.', 'Success');
-            }, function (err) {
-                console.log(err);
-                _this.snackbar.openSnackBar('Something went wrong.', 'Error');
-            });
+            this.getDatasetDetails(this.selectedDatasetId);
         }
         else {
             // Disable Tabs
@@ -3153,17 +3150,34 @@ var ProjectOverviewComponent = /** @class */ (function () {
             this.sharedService.setDatasetName(null);
         }
     };
+    ProjectOverviewComponent.prototype.getDatasetDetails = function (id) {
+        var _this = this;
+        this.projectOverviewService.getDatasetDetails(id).subscribe(function (res) {
+            _this.showDetails = true;
+            _this.details = res.data;
+            // console.log(this.details);
+            // Enable Tabs
+            _this.disableTabsChange.emit(false);
+            // Link dataset
+            _this.sharedService.setDatasetId(_this.selectedDatasetId);
+            _this.sharedService.setDatasetName(_this.datasetName);
+            _this.snackbar.openSnackBar('Dataset linked.', 'Success');
+        }, function (err) {
+            console.log(err);
+            _this.snackbar.openSnackBar('Something went wrong.', 'Error');
+        });
+    };
     ProjectOverviewComponent.prototype.ngOnInit = function () {
         var _this = this;
+        console.log("init");
         this.linked = false;
         this.projectId = this.sharedService.getProjectId();
         this.datasetName = this.sharedService.getDatasetName();
         this.projectOverviewService.getProject(this.projectId).subscribe(function (res) {
             _this.project = res.data;
         });
-        this.getDataset();
         this.getListOfAlgorithms();
-        this.isLinked();
+        this.getDataset();
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
@@ -3482,6 +3496,54 @@ var AuthGuard = /** @class */ (function () {
         __metadata("design:paramtypes", [_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
     ], AuthGuard);
     return AuthGuard;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/shared/guards/project-ovierview.guard.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/shared/guards/project-ovierview.guard.ts ***!
+  \**********************************************************/
+/*! exports provided: POGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "POGuard", function() { return POGuard; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_shared_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../services/shared.service */ "./src/app/shared/services/shared.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var POGuard = /** @class */ (function () {
+    function POGuard(sharedService, _router) {
+        this.sharedService = sharedService;
+        this._router = _router;
+    }
+    POGuard.prototype.canActivate = function () {
+        if (!this.sharedService.getProjectId()) {
+            this._router.navigate(['/projects']);
+            return false;
+        }
+        return true;
+    };
+    POGuard = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_services_shared_service__WEBPACK_IMPORTED_MODULE_2__["SharedService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+    ], POGuard);
+    return POGuard;
 }());
 
 

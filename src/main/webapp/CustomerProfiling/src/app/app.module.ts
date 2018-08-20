@@ -26,7 +26,6 @@ import { ProjectsComponent } from './projects/projects.component';
 import { AddComponent } from './dialogs/addProject/add.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AuthGuard } from './shared/guards/auth.guard';
 import { DeleteComponent } from './dialogs/delete/delete.component';
 import { CopyComponent } from './dialogs/copyProject/copy.component';
 import { DatasetComponent } from './dataset/dataset.component';
@@ -47,6 +46,9 @@ import { ViewAlgorithmComponent } from './dialogs/view-algorithm/view-algorithm.
 import { OneProjectComponent } from './one-project/one-project.component';
 import { AnalyzeComponent } from './analyze/analyze.component';
 import { AddValueComponent } from './dialogs/add-value/add-value.component';
+
+import { AuthGuard } from './shared/guards/auth.guard';
+import { POGuard } from './shared/guards/project-ovierview.guard';
 
 @NgModule({
   declarations: [
@@ -85,6 +87,7 @@ import { AddValueComponent } from './dialogs/add-value/add-value.component';
   providers: [
     AuthService,
     AuthGuard,
+    POGuard,
     ProjectsService,
     DataTabService,
     AlgorithmsService,

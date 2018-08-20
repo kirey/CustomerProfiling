@@ -19,7 +19,7 @@ export class AddComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public formBuilder: FormBuilder,
     public snackbar: SnackBarService
-  ) {}
+  ) { }
   cancel(): void {
     this.dialogRef.close();
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatDialog } from '../../../node_modules/@angular/material';
+import { MatDialog } from '@angular/material';
 import { DataTabService } from './data-tab.service';
 // Dialog Components
 import { DataTabViewComponent } from '../dialogs/data-tab-view/data-tab-view.component';
@@ -200,7 +200,6 @@ export class DataTabComponent implements OnInit {
             console.log(res['data']);
             this.csvArray = res['data'];
             this.dialog.open(DataTabViewComponent, {
-              width: '800px',
               data: this.csvArray
             })
           },
