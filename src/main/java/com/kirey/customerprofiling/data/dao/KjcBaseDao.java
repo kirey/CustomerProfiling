@@ -1,7 +1,5 @@
 package com.kirey.customerprofiling.data.dao;
 
-import static org.hibernate.criterion.Example.create;
-
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -95,7 +93,6 @@ public class KjcBaseDao {
 		Root<T> root = (Root<T>) query.from(entityClass);
 		query.select(root);
 		Query<T> q = sessionFactory.getCurrentSession().createQuery(query);
-//		List<T> results = sessionFactory.getCurrentSession().createCriteria(entityClass).list();
 		List<T> results = q.getResultList();
 		return results;
 	}

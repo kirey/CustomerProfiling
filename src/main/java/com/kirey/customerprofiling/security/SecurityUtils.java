@@ -12,6 +12,10 @@ import com.kirey.customerprofiling.data.entity.UserAccounts;
 
 public class SecurityUtils {
 	
+	private SecurityUtils() {
+		super();
+	}
+	
 	/**
 	 * Method for getting logged user from security context  
 	 * @return {@link UserAccounts}

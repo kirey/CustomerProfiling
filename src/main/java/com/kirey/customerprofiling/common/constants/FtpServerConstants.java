@@ -6,7 +6,7 @@ public class FtpServerConstants {
 	/**
 	 * Constructor from superClass.
 	 */
-	public FtpServerConstants() {
+	private FtpServerConstants() {
 		super();
 
 	}

@@ -17,23 +17,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
 @Entity
 @Table(name = "datasets")
-//, uniqueConstraints = {
-//	      @UniqueConstraint(
-//	              columnNames = {"name", "project"},
-//	              name="datasets_name_project_uk"
-//	          )
-//	       }
 public class Datasets implements Serializable{
 
 	
@@ -47,6 +41,7 @@ public class Datasets implements Serializable{
 	private String dbQuery;
 	@JsonIgnore
 	private Datasets originalDataset;
+	@JsonBackReference
 	private List<Datasets> derivedDatasets = new ArrayList<>();
 	private Projects project;
 	private String description;
@@ -127,7 +122,7 @@ public class Datasets implements Serializable{
 		this.project = project;
 	}
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "originalDataset")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "originalDataset")
 	public List<Datasets> getDerivedDatasets() {
 		return derivedDatasets;
 	}

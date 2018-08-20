@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kirey.customerprofiling.api.dto.RestResponseDto;
-import com.kirey.customerprofiling.api.dto.UserAccount;
 import com.kirey.customerprofiling.data.dao.UserAccountsDao;
 import com.kirey.customerprofiling.data.entity.UserAccounts;
 
@@ -47,7 +46,7 @@ public class UserController {
 	@RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> addUserAccount(@RequestBody UserAccounts userAccount) {
 		
-		UserAccounts user = (UserAccounts)userAccountsDao.findByUsername(userAccount.getUsername());
+		UserAccounts user = userAccountsDao.findByUsername(userAccount.getUsername());
 		
 		if(user!=null) {
 			return new ResponseEntity<RestResponseDto>(new RestResponseDto("User already exists", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);	
