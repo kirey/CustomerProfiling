@@ -65,22 +65,31 @@
             <div *ngIf="projectDetails && panelProject">
               <h3>Project Details</h3>
               <span>
-                <strong>Project Id: </strong>{{projectDetails.id}},</span>
+                <strong>Project Id: </strong>{{projectDetails.project.id}},</span>
               <br>
               <span>
-                <strong>Project Name: </strong> {{projectDetails.projectName}}</span>
+                <strong>Project Name: </strong> {{projectDetails.project.projectName}}</span>
               <br>
               <span>
-                <strong>Status: </strong>{{projectDetails.status}}</span>
+                <strong>Status: </strong>{{projectDetails.project.status}}</span>
               <br>
               <span>
-                <strong>Desription: </strong>{{projectDetails.description}}</span>
+                <strong>Desription: </strong>{{projectDetails.project.description}}</span>
               <br>
               <span>
-                <strong>Creation Date: </strong>{{projectDetails.creationDate | date}}</span>
+                <strong>Creation Date: </strong>{{projectDetails.project.creationDate | date}}</span>
               <br>
-              <span *ngIf="projectDetails.lastOpened">
-                <strong>Last Opened: </strong>{{projectDetails.lastOpened | date}}</span>
+              <span *ngIf="projectDetails.project.lastOpened">
+                <strong>Last Opened: </strong>{{projectDetails.project.lastOpened | date}}</span>
+              <br>
+              <span *ngIf="projectDetails.dataset">
+                <strong>Dataset Name: </strong>{{projectDetails.dataset.name}}</span>
+              <br>
+              <div *ngIf="projectDetails.algorithms">
+                <strong>Algorithms Name: </strong>
+                <span *ngFor=" let al of projectDetails.algorithms">{{al.algorithmName}},  </span>
+              </div>
+
             </div>
             <div *ngIf="data && panelData">
               <h3>Dataset Details</h3>
