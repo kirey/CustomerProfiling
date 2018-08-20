@@ -21,6 +21,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -40,6 +41,7 @@ public class Datasets implements Serializable{
 	private String dbQuery;
 	@JsonIgnore
 	private Datasets originalDataset;
+	@JsonBackReference
 	private List<Datasets> derivedDatasets = new ArrayList<>();
 	private Projects project;
 	private String description;
