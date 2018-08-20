@@ -15,7 +15,6 @@ export class DashboardComponent implements OnInit {
   algorithm: any;
   selected: any;
   projectsArr: Array<Object>;
-  data: any;
   projectDetails: any;
   algo: any;
   panelProject = false;
@@ -26,7 +25,7 @@ export class DashboardComponent implements OnInit {
     public dashboardService: Dashboardervice,
     private _router: Router,
     public sharedService: SharedService
-  ) {}
+  ) { }
   // get All projects - first tab
   getAllProjects() {
     this.dashboardService.getProjects().subscribe(
