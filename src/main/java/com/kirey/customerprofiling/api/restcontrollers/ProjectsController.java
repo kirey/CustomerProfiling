@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,9 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kirey.customerprofiling.api.dto.RestResponseDto;
 import com.kirey.customerprofiling.common.constants.AppConstants;
+import com.kirey.customerprofiling.data.dao.DatasetsDao;
+import com.kirey.customerprofiling.data.dao.DerivedVariableValuesDao;
+import com.kirey.customerprofiling.data.dao.ParameterValuesDao;
+import com.kirey.customerprofiling.data.dao.ProjectAlgorithmsDao;
 import com.kirey.customerprofiling.data.dao.ProjectsDao;
+import com.kirey.customerprofiling.data.dao.VariablesDao;
+import com.kirey.customerprofiling.data.entity.Datasets;
+import com.kirey.customerprofiling.data.entity.DerivedVariableValue;
+import com.kirey.customerprofiling.data.entity.ParameterValues;
 import com.kirey.customerprofiling.data.entity.Projects;
+import com.kirey.customerprofiling.data.entity.ProjectsAlgorithms;
 import com.kirey.customerprofiling.data.entity.UserAccounts;
+import com.kirey.customerprofiling.data.entity.Variables;
 import com.kirey.customerprofiling.security.SecurityUtils;
 
 /**
@@ -33,20 +42,22 @@ public class ProjectsController {
 	@Autowired
 	private ProjectsDao projectsDao;
 	
+	@Autowired
+	private DatasetsDao datasetsDao;
 	
-	/**
-	 * Returns all projects from db
-	 * @return
-	 */
+	@Autowired
+	private VariablesDao variablesDao;
 	
-//	@GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
-//	@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public ResponseEntity<RestResponseDto> getAllProjects() {	
-//		
-//		return new ResponseEntity<RestResponseDto>(new RestResponseDto(projectsDao.findAll(), HttpStatus.OK.value()), HttpStatus.OK);
-//		
-//	}
+	@Autowired
+	private DerivedVariableValuesDao derivedVariableValuesDao;
 	
+	@Autowired
+	private ProjectAlgorithmsDao projectAlgorithmsDao;
+	
+	@Autowired
+	private ParameterValuesDao parameterValuesDao;
+	
+
 	
 	/**
 	 * Method for getting list of filtered projects by given user
@@ -128,7 +139,33 @@ public class ProjectsController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> deleteProjectDetail(@PathVariable Integer id) {
 		
-		projectsDao.delete(projectsDao.findById(id));
+		
+		Projects project = (Projects)projectsDao.findById(id);
+		Datasets dataset =  project.getDatasets();
+		
+		if ( dataset != null) {
+			List<Variables> listVariables = dataset.getVariables();
+			for (Variables variable : listVariables) {
+				List<DerivedVariableValue> listValues = derivedVariableValuesDao.findByVariable(variable);
+				for (DerivedVariableValue value : listValues) {
+					derivedVariableValuesDao.delete(value);
+				}
+				variablesDao.delete(variable);
+			}
+			int datasetId = dataset.getId();
+			datasetsDao.delete(datasetId);
+		}
+		
+		
+		List<ProjectsAlgorithms> listProjectsAlgorithms = projectAlgorithmsDao.findByProject(project.getId());
+		for (ProjectsAlgorithms projectsAlgorithms : listProjectsAlgorithms) {
+			List<ParameterValues> listParameterValues = parameterValuesDao.findByProjectAlgorithm(projectsAlgorithms.getId());
+			for (ParameterValues parameterValues : listParameterValues) {
+				parameterValuesDao.delete(parameterValues);
+			}
+			projectAlgorithmsDao.delete(projectsAlgorithms);
+		}
+		projectsDao.delete(project);
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Successfully deleted", HttpStatus.OK.value()), HttpStatus.OK);
 	}
@@ -147,11 +184,9 @@ public class ProjectsController {
 		newProject.setProjectName(project.getProjectName());
 		newProject.setCreationDate(new Date());
 		newProject.setStatus(AppConstants.ALGORITHM_STATUS_NOT_TRAINED);
-//		newProject.setDatasets(project.getDatasets());
 		newProject.setDescription(project.getDescription());
 		newProject.setLastOpened(new Date());
 		newProject.setUserAccount(user);
-//		newProject.setProjectsAlgorithmsList(project.getProjectsAlgorithmsList());
 		
 		projectsDao.attachDirty(newProject);
 		

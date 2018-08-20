@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -147,7 +146,7 @@ public class DatasetController {
 		Datasets dataset = datasetsDao.findById(datasetId);
 		File originalFile = new File(dataset.getFilename());//new File("C:\\Temp\\testCSV.csv"); //dataset.getFilename();
 		InputStream is = new FileInputStream(originalFile);
-		String csv = datasetService.createDerivedFromOriginal(is, variables, false, dataset);
+		String csv = datasetService.createDerivedFromOriginal(is, variables, false, dataset, null);
 
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(csv, HttpStatus.OK.value()), HttpStatus.OK);
 	}
@@ -182,7 +181,7 @@ public class DatasetController {
 		
 		File originalFile = new File(originalDataset.getFilename()); //"C:\\Temp\\testCSV.csv"
 		InputStream is = new FileInputStream(originalFile);
-		String derivedCSV = datasetService.createDerivedFromOriginal(is, originalVariables, true, originalDataset);
+		String derivedCSV = datasetService.createDerivedFromOriginal(is, originalVariables, true, originalDataset, project);
 		
 		InputStream derivedIs = new ByteArrayInputStream(derivedCSV.getBytes());
 		datasetService.saveDerivedVariableAndValues(derivedIs, derivedDataset);
@@ -199,7 +198,7 @@ public class DatasetController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "/addNewDataset", method = RequestMethod.POST,consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<RestResponseDto> uploadCsvDataset(@RequestPart(name="csvFile") MultipartFile csvFile, @RequestPart(name="dataset") Datasets dataset) throws IllegalStateException, IOException {
+	public ResponseEntity<RestResponseDto> uploadCsvDataset(@RequestPart(name="csvFile") MultipartFile csvFile, @RequestPart(name="dataset") Datasets dataset) throws IOException {
 		
 		String filePath = datasetService.uploadCSVFile(csvFile);
 		File file = new File(filePath); 
@@ -259,14 +258,13 @@ public class DatasetController {
 	public ResponseEntity<RestResponseDto> deleteDataset(@PathVariable Integer id){
 		
 		Datasets dataset = datasetsDao.findById(id);
+		List<Datasets> derivedDatasets = datasetsDao.findDerivedByOriginal(dataset);
 		
-		if(dataset.getProject() != null) {
-			Projects project = projectDao.findById(dataset.getProject().getId());				
-			project.setDatasets(null);
-			projectDao.attachDirty(project);
+		if( derivedDatasets != null && !derivedDatasets.isEmpty() ) {
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto("Dataset can't be deleted!", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+		}else {
+			datasetsDao.delete(dataset);	
 		}
-		
-		datasetsDao.delete(dataset);
 		
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Dataset successfully deleted!", HttpStatus.OK.value()), HttpStatus.OK);
@@ -281,7 +279,6 @@ public class DatasetController {
 	@RequestMapping(value = "/linkDataset", method = RequestMethod.GET)
 	public ResponseEntity<RestResponseDto> findDatasetBynName(@RequestParam Integer projectId){
 		
-//		datasetsDao.isDatasetLinkedToProject(projectId);
 		Map<Object, Object> responseMap = new HashMap<>();
 		Datasets originalDataset = datasetsDao.findOriginalByProject(projectId);
 		if(originalDataset != null) {

@@ -8,8 +8,8 @@
         </mat-card-header>
         <mat-divider></mat-divider>
         <mat-card-content *ngIf="projectsArr">
-          <mat-nav-list *ngFor="let project of projectsArr; let i = index">
-            <mat-list-item (click)="projectClick()" (dblclick)="projectDblclick(project.id)">
+          <mat-nav-list>
+            <mat-list-item *ngFor="let project of projectsArr; let i = index" (click)="projectClick(project.id)" (dblclick)="projectDblclick(project.id)">
               <div class="flex space-between list-wrapper">
                 <span> {{project.projectName}}</span>
                 <mat-chip-list>
@@ -18,7 +18,7 @@
               </div>
             </mat-list-item>
           </mat-nav-list>
-        </mat-card-content> -->
+        </mat-card-content>
       </mat-card>
     </div>
     <div class="col">
@@ -28,8 +28,8 @@
         </mat-card-header>
         <mat-divider></mat-divider>
         <mat-card-content>
-          <mat-nav-list *ngFor="let datasets of dataset; let i = index">
-            <mat-list-item (click)="datasetClick()" (dblclick)="datasetDblclick(datasets.id)">{{datasets.name}}</mat-list-item>
+          <mat-nav-list>
+            <mat-list-item *ngFor="let datasets of dataset; let i = index" (click)="datasetClick(datasets.id)">{{datasets.name}}</mat-list-item>
           </mat-nav-list>
         </mat-card-content>
       </mat-card>
@@ -40,8 +40,8 @@
           <mat-title>Analytical Tools Overview</mat-title>
         </mat-card-header>
         <mat-card-content>
-          <mat-nav-list *ngFor="let algorithms of algorithm; let i = index">
-            <mat-list-item (click)="algorithmClick()" (dblclick)="algorithmDblclick(algorithms.id)">{{algorithms.algorithmName}}</mat-list-item>
+          <mat-nav-list>
+            <mat-list-item *ngFor="let algorithms of algorithm; let i = index" (click)="algorithmClick(algorithms.id)">{{algorithms.algorithmName}}</mat-list-item>
           </mat-nav-list>
         </mat-card-content>
       </mat-card>
@@ -62,20 +62,77 @@
         </mat-card-header>
         <mat-card-content>
           <div>
-            <ng-template #projects>
-              <span class="projects">
-                <h4 class="subtitle">Project details for project ID: </h4>
-                projects
-                <p></p>
-              </span>
-            </ng-template>
-            <!-- <ng-template #datasets>
-                <span class="datasets">
-                  datasets
-                </span> -->
-              <!-- </ng-template> -->
+            <div *ngIf="projectDetails && panelProject">
+              <h3>Project Details</h3>
+              <span>
+                <strong>Project Id: </strong>{{projectDetails.id}},</span>
+              <br>
+              <span>
+                <strong>Project Name: </strong> {{projectDetails.projectName}}</span>
+              <br>
+              <span>
+                <strong>Status: </strong>{{projectDetails.status}}</span>
+              <br>
+              <span>
+                <strong>Desription: </strong>{{projectDetails.description}}</span>
+              <br>
+              <span>
+                <strong>Creation Date: </strong>{{projectDetails.creationDate | date}}</span>
+              <br>
+              <span *ngIf="projectDetails.lastOpened">
+                <strong>Last Opened: </strong>{{projectDetails.lastOpened}}</span>
+            </div>
+            <div *ngIf="data && panelData">
+              <h3>Dataset Details</h3>
+              <span>
+                <strong>Dataset Name: </strong>{{data.datasetName}}</span>
+              <br>
+              <span>
+                <strong>Dataset Description: </strong>{{data.datasetDesc}}</span>
+              <br>
+              <span>
+                <strong>Dataset Size: </strong>{{data.datasetSize}}</span>
+              <br>
+              <span>
+                <strong>Number Of Rows: </strong>{{data.numberOfRows}}</span>
+              <br>
+              <span>
+                <strong>Number Of Variables: </strong>{{data.numberOfVariables}}</span>
+              <h3>Variable Details</h3>
+              <p *ngFor="let vars of data.variableDetails">
+                <span>Name: {{vars.variableName}},
+                  <br>Average: {{vars.average}},
+                  <br>Distinct Count: {{vars.distinctCount}},
+                  <br>Minimum: {{vars.min}},
+                  <br>Maximum: {{vars.max}}</span>
+              </p>
+            </div>
+            <div *ngIf="algo && panelAlgo">
+              <h3>Algorithm Details</h3>
+              <span>
+                <strong>Algorithm Name: </strong>{{algo.algorithmName}}</span>
+              <br>
+              <span>
+                <strong>Description: </strong>{{algo.description}}</span>
+              <br>
+              <span>
+                <strong>Library: </strong>{{algo.library}}</span>
+              <h3>Parameters Details</h3>
+              <p *ngFor="let par of algo.parameters">
+                <span>
+                  <strong>Parameter Name: </strong>{{par.parameterName}}</span>
+                <br>
+                <span>
+                  <strong>Default Value: </strong>{{par.defaultValue}}</span>
+                <br>
+                <span>
+                  <strong>Value Type: </strong>{{par.parameterValueType}}</span>
+                <br>
+                <span *ngIf="par.parameterValues">
+                  <strong>Parameter Values: </strong>{{par.parameterValues}}</span>
+                </p>
+            </div>
           </div>
-          <ng-content></ng-content>
         </mat-card-content>
       </mat-card>
     </div>

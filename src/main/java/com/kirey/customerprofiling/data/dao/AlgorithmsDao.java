@@ -2,7 +2,6 @@ package com.kirey.customerprofiling.data.dao;
 
 import java.util.List;
 
-import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 
 import org.apache.commons.logging.LogFactory;

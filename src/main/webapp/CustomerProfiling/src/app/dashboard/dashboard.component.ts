@@ -15,24 +15,29 @@ export class DashboardComponent implements OnInit {
   algorithm: any;
   selected: any;
   projectsArr: Array<Object>;
+  data: any;
+  projectDetails: any;
+  algo: any;
+  panelProject = false;
+  panelData = false;
+  panelAlgo = false;
 
   constructor(
     public dashboardService: Dashboardervice,
     private _router: Router,
     public sharedService: SharedService
-  ) { }
+  ) {}
   // get All projects - first tab
   getAllProjects() {
-    this.dashboardService.getProjects()
-      .subscribe(
-        res => {
-          console.log(res);
-          this.projectsArr = res['data'];
-        },
-        err => {
-          console.log(err)
-        }
-      );
+    this.dashboardService.getProjects().subscribe(
+      res => {
+        console.log(res);
+        this.projectsArr = res['data'];
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
   // colors for status - projects
   getColor(status) {
@@ -40,9 +45,9 @@ export class DashboardComponent implements OnInit {
       case 'Not trained':
         return '$primary';
       case 'Trained':
-        return '$accent';
+        return '#7C4DFF';
       case 'Learning':
-        return '$warn';
+        return '#FF3D00';
     }
   }
   // get All Datasets - second tab
@@ -71,53 +76,56 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-  // project details click and dbl click function
-  projectClick() {
+  // project details click - show details in panel details
+  projectClick(id) {
+    this.panelProject = true;
+    this.panelData = false;
+    this.panelAlgo = false;
     console.log('klik');
-    // this.sharedService.setProjectId(id);
-  }
-  projectDblclick(id) {
-    console.log('dblklik');
-    // this.sharedService.setProjectId(id);
-    // this._router.navigate(['/one-project']);
-    // this.dashboardService.getProjectsDetails(id).subscribe(
-    //   res => {
-    //     console.log(res);
-    //     // this._router.navigate(['/one-project']);
-    //   },
-    //   err => {
-    //     console.log(err);
-    //   }
-    // );
-  }
-  // dataset details click and dbl click
-  datasetClick() {
-    console.log('click');
-  }
-  datasetDblclick(id) {
-    console.log('dblklik');
-    this.dashboardService.getDatasetDetails(id).subscribe(
+    this.dashboardService.getProjectsDetails(id).subscribe(
       res => {
         console.log(res);
-        this.data = res['data'];
-        console.log(this.data);
-        // this._router.navigate(['/one-project']);
+        this.projectDetails = res['data'];
+        console.log(this.projectDetails);
       },
       err => {
         console.log(err);
       }
     );
   }
-  // algorithm details click and dbl click
-  algorithmClick() {
-    console.log('click');
-  }
-  algorithmDblclick(id) {
+  // project details dbl click function -  go to overview project page
+  projectDblclick(id) {
     console.log('dblklik');
+    this.sharedService.setProjectId(id);
+    this._router.navigate(['/one-project']);
+  }
+  // dataset details click - show details in panel details
+  datasetClick(id) {
+    this.panelData = true;
+    this.panelProject = false;
+    this.panelAlgo = false;
+    this.dashboardService.getDatasetDetails(id).subscribe(
+      res => {
+        console.log(res);
+        this.data = res['data'];
+        console.log(this.data);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+  // algorithm details click - show algorithms details in panel details
+  algorithmClick(id) {
+    console.log('dblklik');
+    this.panelAlgo = true;
+    this.panelData = false;
+    this.panelProject = false;
     this.dashboardService.getAlgorithmDetails(id).subscribe(
       res => {
         console.log(res);
-        // this._router.navigate(['/one-project']);
+        this.algo = res['data'];
+        console.log(this.algo);
       },
       err => {
         console.log(err);

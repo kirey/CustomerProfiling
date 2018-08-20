@@ -1,9 +1,7 @@
 package com.kirey.customerprofiling.api.restcontrollers;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kirey.customerprofiling.api.dto.RestResponseDto;
@@ -32,7 +29,6 @@ import com.kirey.customerprofiling.data.entity.ParameterValues;
 import com.kirey.customerprofiling.data.entity.Parameters;
 import com.kirey.customerprofiling.data.entity.Projects;
 import com.kirey.customerprofiling.data.entity.ProjectsAlgorithms;
-import com.kirey.customerprofiling.data.entity.Variables;
 
 @RestController
 @RequestMapping("/rest/algorithms")
@@ -212,7 +208,7 @@ public class AlgorithmsController {
 			List<ParameterValues> values = parameter.getParameterValues();
 			for (ParameterValues parameterValue : values) {
 				ParameterValues valueFromDb = parameterValuesDao.findById(parameterValue.getId());
-				valueFromDb.setValue(parameterValue.getValue());;
+				valueFromDb.setValue(parameterValue.getValue());
 				parameterValuesDao.attachDirty(valueFromDb);
 			}
 		}
@@ -276,6 +272,8 @@ public class AlgorithmsController {
 	public ResponseEntity<RestResponseDto> addAlgorithmToProject(@PathVariable Integer projectId, @RequestBody Algorithms algorithm){
 		
 		Projects project = projectsDao.findById(projectId);
+		project.setStatus(AppConstants.ALGORITHM_STATUS_NOT_TRAINED);
+		projectsDao.merge(project);
 		ProjectsAlgorithms projectsAlgorithms = projectAlgorithmsDao.findByProjectAndAlgorithms(project, algorithm);
 		if(projectsAlgorithms == null) {
 			projectsAlgorithms = new ProjectsAlgorithms();	
@@ -341,13 +339,7 @@ public class AlgorithmsController {
 	 */
 	@RequestMapping(value = "/status", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> algorithmStatus(@RequestParam Integer projectId) {
-//		Map<Object, Object> responseMap = new HashMap<>();
-//		List<ProjectsAlgorithms> listProjectAlgorithms = projectAlgorithmsDao.findByProject(projectId);
-//		for (ProjectsAlgorithms projectsAlgorithms : listProjectAlgorithms) {
-//			responseMap.put(projectsAlgorithms.getId(), projectsAlgorithms.getStatus());
-//		}
-		Projects project = projectsDao.findById(projectId);
-		
+		Projects project = projectsDao.findById(projectId);		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(project.getStatus(), HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
