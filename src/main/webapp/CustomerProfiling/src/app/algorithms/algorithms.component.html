@@ -1,46 +1,51 @@
 <div id="algorithms" class="flex column center">
-  <div class="button-wrapper">
-    <button mat-mini-fab color="accent" matTooltip="Add Algorithm" matTooltipPosition="above" (click)="openAddDialog()">
+    <div class="button-wrapper flex space-between">
+        <!-- Search Input -->
+        <mat-form-field class="filterInput">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search table">
+        </mat-form-field>
+        <button mat-mini-fab color="accent" matTooltip="Add Algorithm" matTooltipPosition="above" (click)="openAddDialog()">
       <i class="material-icons">add</i>
     </button>
-  </div>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <!-- Name -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Algorithm Name</th>
-      <td mat-cell *matCellDef="let element"> {{element.algorithmName}} </td>
-    </ng-container>
+    </div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Name -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Algorithm Name</th>
+            <td mat-cell *matCellDef="let element"> {{element.algorithmName}} </td>
+        </ng-container>
 
-    <!-- Description -->
-    <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef> Description </th>
-      <td mat-cell *matCellDef="let element">
-        <div class="justify">{{element.description}} </div>
-      </td>
-    </ng-container>
+        <!-- Description -->
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Description </th>
+            <td mat-cell *matCellDef="let element">
+                <div class="justify">{{element.description}} </div>
+            </td>
+        </ng-container>
 
-    <!-- Library -->
-    <ng-container matColumnDef="library">
-      <th mat-header-cell *matHeaderCellDef> Library </th>
-      <td mat-cell *matCellDef="let element"> {{element.library}} </td>
-    </ng-container>
+        <!-- Library -->
+        <ng-container matColumnDef="library">
+            <th mat-header-cell *matHeaderCellDef> Library </th>
+            <td mat-cell *matCellDef="let element"> {{element.library}} </td>
+        </ng-container>
 
-    <!-- Actions -->
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef> Actions </th>
-      <td mat-cell *matCellDef="let element">
-        <div class="flex icons-wrapper">
-          <i class="material-icons edit-icon" matTooltip="Edit Algorithm" (click)="openEditDialog(element)">
+        <!-- Actions -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element">
+                <div class="flex icons-wrapper">
+                    <i class="material-icons edit-icon" matTooltip="Edit Algorithm" (click)="openEditDialog(element)">
             border_color
           </i>
-          <i class="material-icons view-icon" matTooltip="View Algorithm" (click)="openViewDialog(element)">
+                    <i class="material-icons view-icon" matTooltip="View Algorithm" (click)="openViewDialog(element)">
             visibility
           </i>
-        </div>
-      </td>
-    </ng-container>
+                </div>
+            </td>
+        </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator class="mat-elevation-z8" [pageSize]="10" [pageSizeOptions]="[1,5, 10, 25, 100]"></mat-paginator>
 </div>

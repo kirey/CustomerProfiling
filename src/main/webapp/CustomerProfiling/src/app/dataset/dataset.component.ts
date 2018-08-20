@@ -17,13 +17,9 @@ export class DatasetComponent implements OnInit {
   constructor(private _dialog: MatDialog, private _datasetService: DatasetService, private _snackBarService: SnackBarService) { }
 
   private displayedColumns: string[] = ['datasetName', 'actions'];
-  private dataSource: MatTableDataSource<any> = new MatTableDataSource([]);
-  paginator: MatPaginator;
-  @ViewChild(MatPaginator)
-  set datasourcePaginator(paginator: MatPaginator) {
-    this.paginator = paginator;
-    this.dataSource.paginator = this.paginator;
-  }
+  private dataSource: MatTableDataSource<any>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -32,7 +28,10 @@ export class DatasetComponent implements OnInit {
   ngOnInit() {
     this._datasetService.getDatasets().subscribe(res => {
       this.dataSource = new MatTableDataSource(JSON.parse(res.text()).data);
+      console.log(this.dataSource);
     }, err => { }, () => {
+      this.dataSource.paginator = this.paginator;
+      console.log( this.dataSource.paginator);
       this.dataSource.filterPredicate = function (data, filter: string): boolean {
         return data.name.toLowerCase().includes(filter);
       };
