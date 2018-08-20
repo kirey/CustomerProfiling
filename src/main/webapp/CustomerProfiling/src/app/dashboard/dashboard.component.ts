@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   algorithm: any;
   selected: any;
   projectsArr: Array<Object>;
+  // data: any;
   projectDetails: any;
   algo: any;
   panelProject = false;

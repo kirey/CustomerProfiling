@@ -58,7 +58,7 @@
     <div class="colFullHeight">
       <mat-card class="dashboard-card">
         <mat-card-header>
-          <mat-title>Panel Detail</mat-title>
+          <mat-title>Panel Details</mat-title>
         </mat-card-header>
         <mat-card-content>
           <div>
@@ -80,7 +80,7 @@
                 <strong>Creation Date: </strong>{{projectDetails.creationDate | date}}</span>
               <br>
               <span *ngIf="projectDetails.lastOpened">
-                <strong>Last Opened: </strong>{{projectDetails.lastOpened}}</span>
+                <strong>Last Opened: </strong>{{projectDetails.lastOpened | date}}</span>
             </div>
             <div *ngIf="data && panelData">
               <h3>Dataset Details</h3>
@@ -94,10 +94,11 @@
                 <strong>Dataset Size: </strong>{{data.datasetSize}}</span>
               <br>
               <span>
-                <strong>Number Of Rows: </strong>{{data.numberOfRows}}</span>
+                <strong>Number Of Variables: </strong>{{data.numberOfVariables}}</span>
               <br>
               <span>
-                <strong>Number Of Variables: </strong>{{data.numberOfVariables}}</span>
+                <strong>Number Of Rows: </strong>{{data.numberOfRows}}</span>
+
               <h3>Variable Details</h3>
               <p *ngFor="let vars of data.variableDetails">
                 <span>Name: {{vars.variableName}},
@@ -130,7 +131,7 @@
                 <br>
                 <span *ngIf="par.parameterValues">
                   <strong>Parameter Values: </strong>{{par.parameterValues}}</span>
-                </p>
+              </p>
             </div>
           </div>
         </mat-card-content>
