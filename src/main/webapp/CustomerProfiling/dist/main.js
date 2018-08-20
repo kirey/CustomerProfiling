@@ -390,11 +390,12 @@ var AnalyzeComponent = /** @class */ (function () {
         this.getListOfAlgorithms();
         this.getStatus();
         // Get Status every 5 seconds
-        this.refreshInterval$.subscribe(function () {
+        this.subscription = this.refreshInterval$.subscribe(function () {
             return _this.getStatus();
         });
     };
     AnalyzeComponent.prototype.ngOnDestroy = function () {
+        this.subscription.unsubscribe();
         // TO DO
         // Stop getting Status every 5 seconds
     };

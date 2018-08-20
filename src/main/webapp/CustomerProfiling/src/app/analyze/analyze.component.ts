@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared/services/shared.service';
 import { SnackBarService } from '../shared/services/snackbar.service';
 import { DeleteComponent } from '../dialogs/delete/delete.component';
-import { interval, UnsubscriptionError } from 'rxjs';
+import { interval, UnsubscriptionError, Subscription } from 'rxjs';
 
 
 @Component({
@@ -28,6 +28,7 @@ export class AnalyzeComponent implements OnInit {
   private selectedAlgorithms = [];
   private status: String;
   private refreshInterval$ = interval(5000);
+  subscription: Subscription;
 
   getParameters(algorithm) {
     console.log(this.parameters);
@@ -179,13 +180,13 @@ export class AnalyzeComponent implements OnInit {
     this.getStatus();
 
     // Get Status every 5 seconds
-    this.refreshInterval$.subscribe(() =>
+    this.subscription = this.refreshInterval$.subscribe(() =>
       this.getStatus()
     );
   }
 
   ngOnDestroy() {
-
+    this.subscription.unsubscribe();
     // TO DO
     // Stop getting Status every 5 seconds
   }
