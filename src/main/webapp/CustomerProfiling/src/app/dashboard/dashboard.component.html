@@ -100,13 +100,38 @@
                 <strong>Number Of Rows: </strong>{{data.numberOfRows}}</span>
 
               <h3>Variable Details</h3>
-              <p *ngFor="let vars of data.variableDetails">
-                <span>Name: {{vars.variableName}},
-                  <br>Average: {{vars.average}},
-                  <br>Distinct Count: {{vars.distinctCount}},
-                  <br>Minimum: {{vars.min}},
-                  <br>Maximum: {{vars.max}}</span>
-              </p>
+              <div>
+                <table mat-table [dataSource]="data.variableDetails" class="mat-elevation-z8">
+
+                  <ng-container matColumnDef="Name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.variableName}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Average">
+                    <th mat-header-cell *matHeaderCellDef> Average </th>
+                    <td mat-cell *matCellDef="let element"> {{element.average}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Distinct Count">
+                    <th mat-header-cell *matHeaderCellDef> Distinct Count </th>
+                    <td mat-cell *matCellDef="let element"> {{element.distinctCount}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Minimum">
+                    <th mat-header-cell *matHeaderCellDef> Minimum </th>
+                    <td mat-cell *matCellDef="let element"> {{element.min}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Maximum">
+                    <th mat-header-cell *matHeaderCellDef> Maximum </th>
+                    <td mat-cell *matCellDef="let element"> {{element.max}} </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              </div>
             </div>
             <div *ngIf="algo && panelAlgo">
               <h3>Algorithm Details</h3>
