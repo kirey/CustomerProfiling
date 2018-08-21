@@ -15,6 +15,7 @@ export class SharedService {
     disableTabs: boolean = true;
     datasetName: string;
     isDatasetLinked: boolean = false;
+    params: any;
 
     constructor() { }
 
@@ -52,6 +53,15 @@ export class SharedService {
 
     getIsDatasetLinked() {
         return this.isDatasetLinked;
+    }
+
+    // PARAMS - ONE PROJECT DATA TAB
+    setParams(params: any) {
+        this.params = params;
+    }
+
+    getParams() {
+        return this.params;
     }
 
     // RESET VALUES - ONE PROJECT CMP

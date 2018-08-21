@@ -1,39 +1,39 @@
 <div id="datasetDetail">
-    <mat-dialog-title>
-        <h1>Dataset detail </h1>
-        <mat-divider></mat-divider>
-    </mat-dialog-title>
+    <h1 class="subtitle" mat-dialog-title>Dataset details</h1>
+    <mat-divider></mat-divider>
     <mat-dialog-content>
-        <form>
-            <div class="column">
-                <label>Dataset Name:
-                    <span>{{data.datasetName}}</span>
-                </label>
+        <div *ngIf="data">
+            <h2 class="d-title">Dataset details</h2>
+            <div class="flex space-around align-items-center">
+                <div class="details-item">
+                    <strong>Name </strong>
+                    <br> {{data.datasetName}}
+                </div>
+                <div class="details-item">
+                    <strong>Description </strong>
+                    <br> {{data.datasetDesc}}
+                </div>
             </div>
-            <div class="column">
-                <label>Number of rows:
-                    <span>{{data.numberOfRows}}</span>
-                </label>
+            <div class="flex space-around align-items-center">
+                <div class="details-item-dark">
+                    <strong>Dataset size: </strong>
+                    {{data.datasetSize}} KB
+                </div>
+                <div class="details-item-dark">
+                    <strong>Number of rows: </strong>
+                    {{data.numberOfRows}}
+                </div>
+                <div class="details-item-dark">
+                    <strong>Number of variables: </strong>
+                    {{data.numberOfVariables}}
+                </div>
             </div>
-            <div class="column">
-                <label>Number of Variables:
-                    <span>{{data.numberOfVariables}}</span>
-                </label>
-            </div>
-            <div class="column">
-                <label>Dataset Size:
-                    <span>{{data.datasetSize}} KB</span>
-                </label>
-            </div>
-            <div class="column">
-                <label>Dataset description:
-                    <span>{{data.datasetDesc}}</span>
-                </label>
-            </div>
-            <!-- List of Projects -->
-            <div class="column" *ngIf="data.listProjects.length > 0;else noData">
-                <label class="inline">Project Associated</label>
-                <br>
+        </div>
+        <mat-divider></mat-divider>
+        <!-- List of Projects -->
+        <div class="column" *ngIf="data.listProjects.length > 0;else noData">
+            <h2 class="d-title">Project Associated</h2>
+            <div class="border">
                 <div class="flex column-style header-style">
                     <span>Project Name</span>
                     <span>Description</span>
@@ -46,18 +46,20 @@
                         <span>{{item.projectName}}</span>
                         <span>{{item.description}}</span>
                         <span>{{item.status}}</span>
-                        <span>{{item.creationDate}}</span>
-                        <span>{{item.lastOpened}}</span>
+                        <span>{{item.creationDate | date}}</span>
+                        <span>{{item.lastOpened | date}}</span>
                     </div>
                 </div>
-                <ng-template #noData>
-                    <span>No data.</span>
-                </ng-template>
             </div>
-            <!-- List of VARIABLES -->
-            <div class="column" *ngIf="data.variableDetails.length > 0;else noData">
-                <label class="inline">List of variables</label>
-                <br>
+            <ng-template #noData>
+                <span>No data.</span>
+            </ng-template>
+        </div>
+        <mat-divider></mat-divider>
+        <!-- List of VARIABLES -->
+        <div class="column" *ngIf="data.variableDetails.length > 0;else noData">
+            <h2 class="d-title">List of variables</h2>
+            <div class="border">
                 <div class="flex column-style header-style">
                     <span>Variable Name</span>
                     <span>Distinct Count</span>
@@ -74,10 +76,10 @@
                     <span>{{item.average}}</span>
                     <span>{{item.variance}}</span>
                 </div>
-                <ng-template #noData>
-                    <span>No data.</span>
-                </ng-template>
             </div>
-        </form>
+            <ng-template #noData>
+                <span>No data.</span>
+            </ng-template>
+        </div>
     </mat-dialog-content>
 </div>

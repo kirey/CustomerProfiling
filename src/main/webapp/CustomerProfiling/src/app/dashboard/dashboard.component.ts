@@ -6,8 +6,8 @@ import { SharedService } from '../shared/services/shared.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./dashboard.component.scss']
+  // encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
   data: any;

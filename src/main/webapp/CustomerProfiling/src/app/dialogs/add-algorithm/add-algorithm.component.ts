@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '../../../../node_modules/@angular/forms';
 import { AddAlgorithmService } from './add-algorithm.service';
 import { SnackBarService } from '../../shared/services/snackbar.service';
@@ -8,6 +8,7 @@ import { MatDialogRef } from '../../../../node_modules/@angular/material';
   selector: 'app-add-algorithm',
   templateUrl: './add-algorithm.component.html',
   styleUrls: ['./add-algorithm.component.scss']
+  // encapsulation: ViewEncapsulation.None
 })
 export class AddAlgorithmComponent implements OnInit {
 

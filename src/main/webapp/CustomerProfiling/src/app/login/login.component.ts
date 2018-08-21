@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   private username;
   private password;
 
-  constructor(private _formBuilder: FormBuilder, private _router: Router, private _auth: AuthService,private _snackBarService: SnackBarService) {
+  constructor(private _formBuilder: FormBuilder, private _router: Router, private _auth: AuthService, private _snackBarService: SnackBarService) {
     if (this._auth.isLoggedIn()) {
       this._router.navigate(['/dashboard']);
     }

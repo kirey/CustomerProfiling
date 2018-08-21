@@ -6,8 +6,8 @@ import { SharedService } from '../shared/services/shared.service';
 @Component({
   selector: 'app-project-overview',
   templateUrl: './project-overview.component.html',
-  styleUrls: ['./project-overview.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./project-overview.component.scss']
+  // encapsulation: ViewEncapsulation.None
 })
 export class ProjectOverviewComponent implements OnInit {
 
@@ -33,7 +33,7 @@ export class ProjectOverviewComponent implements OnInit {
     this.projectOverviewService.getListOfAlgorithms(this.projectId).subscribe(
       res => {
         this.algorithms = res.data;
-        // console.log(res);
+        console.log(res);
       },
       err => console.log(err)
     );
@@ -155,7 +155,8 @@ export class ProjectOverviewComponent implements OnInit {
     this.datasetName = this.sharedService.getDatasetName();
 
     this.projectOverviewService.getProject(this.projectId).subscribe(res => {
-      this.project = res.data;
+      this.project = res.data.project;
+      console.log(this.project);
     });
     this.getListOfAlgorithms();
     this.getDataset();

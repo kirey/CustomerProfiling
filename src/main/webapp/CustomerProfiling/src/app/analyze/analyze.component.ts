@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material';
 import { AddValueComponent } from './../dialogs/add-value/add-value.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AnalyzeService } from './analyze.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { SharedService } from '../shared/services/shared.service';
 import { SnackBarService } from '../shared/services/snackbar.service';
 import { DeleteComponent } from '../dialogs/delete/delete.component';
@@ -14,6 +14,7 @@ import { interval, UnsubscriptionError, Subscription } from 'rxjs';
   selector: 'app-analyze',
   templateUrl: './analyze.component.html',
   styleUrls: ['./analyze.component.scss']
+  // encapsulation: ViewEncapsulation.None
 })
 export class AnalyzeComponent implements OnInit {
 

@@ -1,7 +1,7 @@
 import { DeleteComponent } from './../dialogs/delete/delete.component';
 import { DatasetService } from './dataset.service';
 import { DatasetDetailComponent } from './../dialogs/dataset-detail/dataset-detail.component';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatPaginator, PageEvent, MatTableDataSource } from '@angular/material';
 import { AddDatasetComponent } from '../dialogs/add-dataset/add-dataset.component';
 import { SnackBarService } from '../shared/services/snackbar.service';
@@ -11,6 +11,7 @@ import { SnackBarService } from '../shared/services/snackbar.service';
   selector: 'app-dataset',
   templateUrl: './dataset.component.html',
   styleUrls: ['./dataset.component.scss']
+  // encapsulation: ViewEncapsulation.None
 })
 export class DatasetComponent implements OnInit {
 
@@ -31,7 +32,7 @@ export class DatasetComponent implements OnInit {
       console.log(this.dataSource);
     }, err => { }, () => {
       this.dataSource.paginator = this.paginator;
-      console.log( this.dataSource.paginator);
+      console.log(this.dataSource.paginator);
       this.dataSource.filterPredicate = function (data, filter: string): boolean {
         return data.name.toLowerCase().includes(filter);
       };

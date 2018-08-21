@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ProjectsService } from './projects.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatPaginator, PageEvent, MatTableDataSource, MatSort } from '@angular/material';
 // dialogs
@@ -14,6 +14,7 @@ import { SharedService } from '../shared/services/shared.service';
   selector: 'app-projects',
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss']
+  // encapsulation: ViewEncapsulation.None
 })
 export class ProjectsComponent implements OnInit {
   // dataSource: any;

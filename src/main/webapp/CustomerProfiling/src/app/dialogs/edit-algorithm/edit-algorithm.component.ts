@@ -1,13 +1,15 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '../../../../node_modules/@angular/forms';
 import { EditAlgorithmService } from './edit-algorithm.service';
 import { SnackBarService } from '../../shared/services/snackbar.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '../../../../node_modules/@angular/material';
 
+
 @Component({
   selector: 'app-edit-algorithm',
   templateUrl: './edit-algorithm.component.html',
   styleUrls: ['./edit-algorithm.component.scss']
+  // encapsulation: ViewEncapsulation.None
 })
 export class EditAlgorithmComponent implements OnInit {
 
