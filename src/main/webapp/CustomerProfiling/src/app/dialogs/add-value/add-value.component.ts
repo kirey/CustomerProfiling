@@ -5,8 +5,8 @@ import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 @Component({
   selector: 'app-add-value',
   templateUrl: './add-value.component.html',
-  styleUrls: ['./add-value.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./add-value.component.scss']
+  // encapsulation: ViewEncapsulation.None
 })
 export class AddValueComponent implements OnInit {
 

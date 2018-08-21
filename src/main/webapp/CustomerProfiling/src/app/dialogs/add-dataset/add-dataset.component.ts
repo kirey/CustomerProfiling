@@ -8,8 +8,8 @@ import { SnackBarService } from '../../shared/services/snackbar.service';
 @Component({
   selector: 'app-add-dataset',
   templateUrl: './add-dataset.component.html',
-  styleUrls: ['./add-dataset.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./add-dataset.component.scss']
+  // encapsulation: ViewEncapsulation.None
 })
 export class AddDatasetComponent implements OnInit {
 
@@ -45,8 +45,8 @@ export class AddDatasetComponent implements OnInit {
       dbQuery: null,
       originalDataset: null,
       project: null,
-      variables:null,
-      derivedDatasets:null
+      variables: null,
+      derivedDatasets: null
     }
     let formData: FormData = new FormData();
     formData.append('csvFile', this.csvFile);
@@ -55,11 +55,11 @@ export class AddDatasetComponent implements OnInit {
         type: "application/json"
       }));
     this._datasetService.addDataset(formData).subscribe(res => {
-    }, err => { 
-     },()=>{
+    }, err => {
+    }, () => {
       this.dialogRef.close();
       this._snackBarService.openSnackBar('Success', 'You have successfuly added dataset!');
-     });
+    });
   }
 
 }

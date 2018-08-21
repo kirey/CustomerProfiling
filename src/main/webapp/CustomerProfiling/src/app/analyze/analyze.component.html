@@ -1,19 +1,22 @@
-<div class="selectAlgorithm">
-    <h4>Select Algorithm:</h4>
-    <div *ngIf="initialAlgorithm != null">
-        <mat-form-field>
-            <mat-select [(ngModel)]="initialAlgorithm" [ngModelOptions]="{standalone: true}" placeholder="Select Algorithm" (selectionChange)="getParameters($event.value)">
-                <mat-option *ngFor="let algorithm of algorithms" [value]="algorithm">
-                    {{algorithm.algorithmName}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <h4>Algorithm Details:</h4>
+<div id="analyze">
+    <div *ngIf="initialAlgorithm != null" class="flex column border">
+        <!-- Name & Description -->
+        <h2 class="a-title">Algorithm Details</h2>
+        <div class=" flex space-around align-items-center">
+            <mat-form-field class="a-input">
+                <mat-select [(ngModel)]="initialAlgorithm" [ngModelOptions]="{standalone: true}" placeholder="Select Algorithm" (selectionChange)="getParameters($event.value)">
+                    <mat-option *ngFor="let algorithm of algorithms" [value]="algorithm">
+                        {{algorithm.algorithmName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="description-box">
+                <strong>Description</strong>
+                <br> {{initialAlgorithm.description}}
+            </div>
+        </div>
+        <!-- TABLE -->
         <div class="algorithmDetails">
-            <label class="labels">
-                <strong class="name">Algorithm Name:</strong> {{initialAlgorithm.algorithmName}}</label>
-            <label class="labels bottomLabel">
-                <strong class="desc">Algorithm Description:</strong> {{initialAlgorithm.description}}</label>
             <table *ngIf="parameters.length != 0" mat-table [dataSource]="parameters" class="mat-elevation-z8">
                 <ng-container matColumnDef="parameterName">
                     <th mat-header-cell *matHeaderCellDef> Parameter Name </th>
@@ -37,28 +40,30 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
-            <button mat-raised-button color="primary" (click)="addAlgorithm()">Add</button>
+            <button class="add" mat-raised-button color="primary" (click)="addAlgorithm()">Add</button>
         </div>
     </div>
-</div>
-<div class="selectAlgorithm" *ngIf="this.listOfAlgorithms">
-    <div class="flex list-box">
-        <div class="flex column">
-            <div class="algorithm-list" *ngFor="let algorithm of listOfAlgorithms; let i = index">
-                <div class="flex space-between algorithm-list-item">
-                    <span>{{algorithm.algorithmName}}</span>
-                    <span>
-                        <i (click)="editParams(algorithm.parameters, i)" class="material-icons">border_color</i>
-                        <i (click)="deleteAlgorithm(algorithm.id, algorithm.algorithmName)" class="material-icons">delete</i>
-                    </span>
+    <!-- LIST -->
+    <div class="border" *ngIf="this.listOfAlgorithms">
+        <h2 class="a-title">Selected Algorithms</h2>
+        <div class="flex list-box">
+            <div class="flex column">
+                <div class="algorithm-list" *ngFor="let algorithm of listOfAlgorithms; let i = index">
+                    <div class="flex space-between algorithm-list-item">
+                        <span>{{algorithm.algorithmName}}</span>
+                        <span>
+                            <i (click)="editParams(algorithm.parameters, i)" class="list-icons material-icons">border_color</i>
+                            <i (click)="deleteAlgorithm(algorithm.id, algorithm.algorithmName)" class=" list-icons material-icons">delete</i>
+                        </span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="flex column status-container">
-            <div *ngIf="status" class="status-box flex center">
-                {{status}}
+            <div class="flex column status-container">
+                <div *ngIf="status" class="status-box flex center">
+                    {{status}}
+                </div>
+                <button mat-raised-button color="primary" (click)="analyze()">Analyze</button>
             </div>
-            <button mat-raised-button color="primary" (click)="analyze()">Analyze</button>
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AlgorithmsService } from './algorithms.service';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { MatDialog } from '@angular/material';
@@ -10,15 +10,22 @@ import { EditAlgorithmComponent } from '../dialogs/edit-algorithm/edit-algorithm
   selector: 'app-algorithms',
   templateUrl: './algorithms.component.html',
   styleUrls: ['./algorithms.component.scss']
+  // encapsulation: ViewEncapsulation.None
 })
 export class AlgorithmsComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'description', 'library', 'actions'];
-  dataSource: MatTableDataSource<any>;
+
+  private dataSource: MatTableDataSource<any>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(public service: AlgorithmsService, public dialog: MatDialog) { }
 
   data: any;
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
   getAll() {
     this.service.getAll()
@@ -29,6 +36,8 @@ export class AlgorithmsComponent implements OnInit {
         },
         err => {
           console.log(err)
+        }, () => {
+          this.dataSource.paginator = this.paginator;
         }
       );
   }

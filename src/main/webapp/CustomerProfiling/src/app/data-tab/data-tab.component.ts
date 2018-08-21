@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatDialog } from '../../../node_modules/@angular/material';
+import { MatDialog } from '@angular/material';
 import { DataTabService } from './data-tab.service';
 // Dialog Components
 import { DataTabViewComponent } from '../dialogs/data-tab-view/data-tab-view.component';
@@ -10,8 +10,8 @@ import { SnackBarService } from '../shared/services/snackbar.service';
 @Component({
   selector: 'app-data-tab',
   templateUrl: './data-tab.component.html',
-  styleUrls: ['./data-tab.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./data-tab.component.scss']
+  // encapsulation: ViewEncapsulation.None
 })
 export class DataTabComponent implements OnInit {
 
@@ -123,7 +123,6 @@ export class DataTabComponent implements OnInit {
     if (type == 'typeOfData' && this.variables[index]['params']) {
       delete this.variables[index]['params'];
     }
-    console.log(this.variables);
   }
 
   paramsChanged(ev, index, type) {
@@ -164,6 +163,7 @@ export class DataTabComponent implements OnInit {
         break;
     }
     console.log(this.variables);
+    this.sharedService.setParams(this.variables);
   }
 
   viewObject() {
@@ -194,15 +194,23 @@ export class DataTabComponent implements OnInit {
     // Send request after check
     if (checkArray.length == this.variables.length) {
 
+      for (let i = 0; i < this.variables.length; i++) {
+        delete this.variables[i]['params'];
+        delete this.variables[i]['operationTypes'];
+      }
+
       this.dataTabService.getProcessingView(this.datasetId, this.variables)
         .subscribe(
           res => {
             console.log(res['data']);
             this.csvArray = res['data'];
-            this.dialog.open(DataTabViewComponent, {
-              width: '800px',
+            let dialogRef = this.dialog.open(DataTabViewComponent, {
               data: this.csvArray
             })
+            dialogRef.afterClosed().subscribe(res => {
+              this.variables = this.sharedService.getParams();
+              console.log(this.variables);
+            });
           },
           err => {
             console.log(err);

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CopyProjectService } from './copyProject.service';
 import { SnackBarService } from './../../shared/services/snackbar.service';
@@ -7,6 +7,7 @@ import { SnackBarService } from './../../shared/services/snackbar.service';
   selector: 'app-copy',
   templateUrl: './copy.component.html',
   styleUrls: ['./copy.component.scss']
+  // encapsulation: ViewEncapsulation.None
 })
 export class CopyComponent implements OnInit {
   selected = 'option2';

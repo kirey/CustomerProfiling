@@ -6,8 +6,8 @@ import { SharedService } from '../shared/services/shared.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./dashboard.component.scss']
+  // encapsulation: ViewEncapsulation.None
 })
 export class DashboardComponent implements OnInit {
   data: any;
@@ -20,6 +20,10 @@ export class DashboardComponent implements OnInit {
   panelProject = false;
   panelData = false;
   panelAlgo = false;
+  // Columns for variable table
+  displayedColumns: string[] = ['Name', 'Average', 'Distinct Count', 'Minimum', 'Maximum'];
+  // Columns for algorithms param.table
+  displayedColumn: string[] = ['Parameter Name', 'Default Value', 'Value Type', 'Parameter Value'];
 
   constructor(
     public dashboardService: Dashboardervice,
@@ -42,11 +46,11 @@ export class DashboardComponent implements OnInit {
   getColor(status) {
     switch (status) {
       case 'Not trained':
-        return '$primary';
-      case 'Trained':
-        return '#7C4DFF';
-      case 'Learning':
         return '#FF3D00';
+      case 'Trained':
+        return '#00897B';
+      case 'Learning':
+        return '#4DB6AC';
     }
   }
   // get All Datasets - second tab

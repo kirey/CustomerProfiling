@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ProjectsService } from './projects.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatPaginator, PageEvent, MatTableDataSource } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatPaginator, PageEvent, MatTableDataSource, MatSort } from '@angular/material';
 // dialogs
 import { AddComponent } from '../dialogs/addProject/add.component';
 import { DeleteComponent } from '../dialogs/delete/delete.component';
@@ -14,32 +14,36 @@ import { SharedService } from '../shared/services/shared.service';
   selector: 'app-projects',
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss']
+  // encapsulation: ViewEncapsulation.None
 })
 export class ProjectsComponent implements OnInit {
   // dataSource: any;
   name: string;
   data: any;
   displayedColumns: string[] = ['id', 'name', 'creationDate', 'lastOpened', 'status', 'description', 'editing'];
-  projects: any;
 
   constructor(public projectsService: ProjectsService, public dialog: MatDialog, public snackbar: SnackBarService, private _router: Router, public sharedService: SharedService) { }
-  private dataSource: MatTableDataSource<any> = new MatTableDataSource([]);
-  paginator: MatPaginator;
-  @ViewChild(MatPaginator)
-  set datasourcePaginator(paginator: MatPaginator) {
-    this.paginator = paginator;
-    this.dataSource.paginator = this.paginator;
-  }
+
+  private dataSource: MatTableDataSource<any>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
   // Get Projects
   getProjects() {
     this.projectsService.getProjects().subscribe(
       res => {
         console.log(res);
-        this.projects = res.data;
-        console.log(this.projects);
-      },
-      err => console.log(err)
+        this.dataSource = new MatTableDataSource(res.data);
+      }, err => console.log(err),
+      () => {
+        console.log(this.dataSource);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
     );
+  }
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   openProject(id) {

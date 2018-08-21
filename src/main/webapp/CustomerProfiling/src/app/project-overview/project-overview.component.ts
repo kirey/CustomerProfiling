@@ -6,8 +6,8 @@ import { SharedService } from '../shared/services/shared.service';
 @Component({
   selector: 'app-project-overview',
   templateUrl: './project-overview.component.html',
-  styleUrls: ['./project-overview.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./project-overview.component.scss']
+  // encapsulation: ViewEncapsulation.None
 })
 export class ProjectOverviewComponent implements OnInit {
 
@@ -25,6 +25,7 @@ export class ProjectOverviewComponent implements OnInit {
   selectedDatasetId: number;
   datasetName: string;
   linked: boolean;
+  disableSelect: boolean;
 
   constructor(public projectOverviewService: ProjectOverviewService, public snackbar: SnackBarService, public sharedService: SharedService) { }
 
@@ -32,7 +33,7 @@ export class ProjectOverviewComponent implements OnInit {
     this.projectOverviewService.getListOfAlgorithms(this.projectId).subscribe(
       res => {
         this.algorithms = res.data;
-        // console.log(res);
+        console.log(res);
       },
       err => console.log(err)
     );
@@ -42,6 +43,7 @@ export class ProjectOverviewComponent implements OnInit {
     this.projectOverviewService.getDataset().subscribe(
       res => {
         this.dataset = res.data;
+        this.isLinked();
       },
       err => console.log(err)
     );
@@ -59,6 +61,7 @@ export class ProjectOverviewComponent implements OnInit {
               if (this.dataset[i].id == this.datasetId) {
                 this.datasetName = this.dataset[i].name;
                 this.selectedDatasetId = this.dataset[i].id;
+                this.getDatasetDetails(this.selectedDatasetId);
 
                 // Link Dataset to SHARED service
                 this.sharedService.setDatasetName(this.datasetName);
@@ -66,14 +69,19 @@ export class ProjectOverviewComponent implements OnInit {
                 this.sharedService.setDatasetLink(true);
 
                 this.linked = true;
+                this.disableSelect = true;
                 // Enable Tabs
                 this.disableTabsChange.emit(false);
               }
             }
-            console.log(this.datasetName);
           }
           else {
+            // Link Dataset to SHARED service
+            this.sharedService.setDatasetName(null);
+            this.sharedService.setDatasetId(null);
+            this.sharedService.setDatasetLink(false);
             this.linked = true;
+            this.disableSelect = false;
           }
         },
         err => console.log(err)
@@ -105,27 +113,7 @@ export class ProjectOverviewComponent implements OnInit {
       this.details = {};
       this.showDetails = false;
       // this.selectedDatasetId = ev.value.id;
-
-      this.projectOverviewService.getDatasetDetails(this.selectedDatasetId).subscribe(
-        res => {
-          this.showDetails = true;
-          this.details = res.data;
-          // console.log(this.details);
-
-          // Enable Tabs
-          this.disableTabsChange.emit(false);
-
-          // Link dataset
-          this.sharedService.setDatasetId(this.selectedDatasetId);
-          this.sharedService.setDatasetName(this.datasetName);
-
-          this.snackbar.openSnackBar('Dataset linked.', 'Success');
-        },
-        err => {
-          console.log(err);
-          this.snackbar.openSnackBar('Something went wrong.', 'Error');
-        }
-      );
+      this.getDatasetDetails(this.selectedDatasetId);
     }
     else {
       // Disable Tabs
@@ -137,17 +125,41 @@ export class ProjectOverviewComponent implements OnInit {
     }
   }
 
+  getDatasetDetails(id) {
+    this.projectOverviewService.getDatasetDetails(id).subscribe(
+      res => {
+        this.showDetails = true;
+        this.details = res.data;
+        // console.log(this.details);
+
+        // Enable Tabs
+        this.disableTabsChange.emit(false);
+
+        // Link dataset
+        this.sharedService.setDatasetId(this.selectedDatasetId);
+        this.sharedService.setDatasetName(this.datasetName);
+
+        this.snackbar.openSnackBar('Dataset linked.', 'Success');
+      },
+      err => {
+        console.log(err);
+        this.snackbar.openSnackBar('Something went wrong.', 'Error');
+      }
+    );
+  }
+
   ngOnInit() {
+    console.log("init");
     this.linked = false;
     this.projectId = this.sharedService.getProjectId();
     this.datasetName = this.sharedService.getDatasetName();
 
     this.projectOverviewService.getProject(this.projectId).subscribe(res => {
-      this.project = res.data;
+      this.project = res.data.project;
+      console.log(this.project);
     });
-    this.getDataset();
     this.getListOfAlgorithms();
-    this.isLinked();
+    this.getDataset();
   }
 
 }

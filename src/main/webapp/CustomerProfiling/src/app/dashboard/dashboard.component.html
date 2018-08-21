@@ -1,3 +1,4 @@
+
 <h1>Dashboard</h1>
 <div class="dashboardPanel">
   <div class="flex-grid">
@@ -58,29 +59,38 @@
     <div class="colFullHeight">
       <mat-card class="dashboard-card">
         <mat-card-header>
-          <mat-title>Panel Detail</mat-title>
+          <mat-title>Panel Details</mat-title>
         </mat-card-header>
         <mat-card-content>
           <div>
             <div *ngIf="projectDetails && panelProject">
               <h3>Project Details</h3>
               <span>
-                <strong>Project Id: </strong>{{projectDetails.id}},</span>
+                <strong>Project Id: </strong>{{projectDetails.project.id}},</span>
               <br>
               <span>
-                <strong>Project Name: </strong> {{projectDetails.projectName}}</span>
+                <strong>Project Name: </strong> {{projectDetails.project.projectName}}</span>
               <br>
               <span>
-                <strong>Status: </strong>{{projectDetails.status}}</span>
+                <strong>Status: </strong>{{projectDetails.project.status}}</span>
               <br>
               <span>
-                <strong>Desription: </strong>{{projectDetails.description}}</span>
+                <strong>Desription: </strong>{{projectDetails.project.description}}</span>
               <br>
               <span>
-                <strong>Creation Date: </strong>{{projectDetails.creationDate | date}}</span>
+                <strong>Creation Date: </strong>{{projectDetails.project.creationDate | date}}</span>
               <br>
-              <span *ngIf="projectDetails.lastOpened">
-                <strong>Last Opened: </strong>{{projectDetails.lastOpened}}</span>
+              <span *ngIf="projectDetails.project.lastOpened">
+                <strong>Last Opened: </strong>{{projectDetails.project.lastOpened | date}}</span>
+              <br>
+              <span *ngIf="projectDetails.dataset">
+                <strong>Dataset Name: </strong>{{projectDetails.dataset.name}}</span>
+              <br>
+              <div *ngIf="projectDetails.algorithms">
+                <strong>Algorithms Name: </strong>
+                <span *ngFor=" let al of projectDetails.algorithms">{{al.algorithmName}}, </span>
+              </div>
+
             </div>
             <div *ngIf="data && panelData">
               <h3>Dataset Details</h3>
@@ -94,18 +104,44 @@
                 <strong>Dataset Size: </strong>{{data.datasetSize}}</span>
               <br>
               <span>
-                <strong>Number Of Rows: </strong>{{data.numberOfRows}}</span>
+                <strong>Number Of Variables: </strong>{{data.numberOfVariables}}</span>
               <br>
               <span>
-                <strong>Number Of Variables: </strong>{{data.numberOfVariables}}</span>
+                <strong>Number Of Rows: </strong>{{data.numberOfRows}}</span>
+
               <h3>Variable Details</h3>
-              <p *ngFor="let vars of data.variableDetails">
-                <span>Name: {{vars.variableName}},
-                  <br>Average: {{vars.average}},
-                  <br>Distinct Count: {{vars.distinctCount}},
-                  <br>Minimum: {{vars.min}},
-                  <br>Maximum: {{vars.max}}</span>
-              </p>
+              <div>
+                <table mat-table [dataSource]="data.variableDetails" class="mat-elevation-z8">
+
+                  <ng-container matColumnDef="Name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.variableName}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Average">
+                    <th mat-header-cell *matHeaderCellDef> Average </th>
+                    <td mat-cell *matCellDef="let element"> {{element.average}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Distinct Count">
+                    <th mat-header-cell *matHeaderCellDef> Distinct Count </th>
+                    <td mat-cell *matCellDef="let element"> {{element.distinctCount}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Minimum">
+                    <th mat-header-cell *matHeaderCellDef> Minimum </th>
+                    <td mat-cell *matCellDef="let element"> {{element.min}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Maximum">
+                    <th mat-header-cell *matHeaderCellDef> Maximum </th>
+                    <td mat-cell *matCellDef="let element"> {{element.max}} </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              </div>
             </div>
             <div *ngIf="algo && panelAlgo">
               <h3>Algorithm Details</h3>
@@ -117,20 +153,36 @@
               <br>
               <span>
                 <strong>Library: </strong>{{algo.library}}</span>
-              <h3>Parameters Details</h3>
-              <p *ngFor="let par of algo.parameters">
-                <span>
-                  <strong>Parameter Name: </strong>{{par.parameterName}}</span>
-                <br>
-                <span>
-                  <strong>Default Value: </strong>{{par.defaultValue}}</span>
-                <br>
-                <span>
-                  <strong>Value Type: </strong>{{par.parameterValueType}}</span>
-                <br>
-                <span *ngIf="par.parameterValues">
-                  <strong>Parameter Values: </strong>{{par.parameterValues}}</span>
-                </p>
+
+              <div *ngIf="algo.parameters.length>0">
+                <h3>Parameters Details</h3>
+                <table mat-table [dataSource]="algo.parameters" class="mat-elevation-z8">
+
+                  <ng-container matColumnDef="Parameter Name">
+                    <th mat-header-cell *matHeaderCellDef> Parameter Name </th>
+                    <td mat-cell *matCellDef="let param"> {{param.parameterName}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Default Value">
+                    <th mat-header-cell *matHeaderCellDef> Default Value </th>
+                    <td mat-cell *matCellDef="let param"> {{param.defaultValue}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Value Type">
+                    <th mat-header-cell *matHeaderCellDef> Value Type </th>
+                    <td mat-cell *matCellDef="let param"> {{param.parameterValueType}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Parameter Value">
+                    <th mat-header-cell *matHeaderCellDef> Parameter Value </th>
+                    <td mat-cell *matCellDef="let param">
+                      <span *ngIf="param.parameterValues">{{param.parameterValues}}</span>
+                    </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumn"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumn;"></tr>
+                </table>
+              </div>
             </div>
           </div>
         </mat-card-content>

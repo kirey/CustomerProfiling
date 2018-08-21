@@ -1,61 +1,62 @@
 <div id="data-tab">
   <!-- Basic info -->
   <h2 class="subtitle">DATASET - Info & Stats</h2>
-  <div class="flex space-around border">
+  <div class="flex column border">
     <!-- DATASET DETAILS -->
-    <mat-card class="info-box justify">
-      <div *ngIf="details">
+
+    <div *ngIf="details">
+      <div class="flex space-around align-items-center">
         <div class="details-item">
-          <strong>Dataset: </strong>
-          {{details.datasetName}}
+          <strong>Name </strong>
+          <br> {{details.datasetName}}
         </div>
         <div class="details-item">
-          <strong>Description: </strong>
-          {{details.datasetDesc}}
+          <strong>Description </strong>
+          <br> {{details.datasetDesc}}
         </div>
-        <div class="details-item">
+      </div>
+      <div class="flex space-around align-items-center">
+        <div class="details-item-dark">
           <strong>Dataset size: </strong>
           {{details.datasetSize}} KB
         </div>
-        <div class="details-item">
+        <div class="details-item-dark">
           <strong>Number of rows: </strong>
           {{details.numberOfRows}}
         </div>
-        <div class="details-item">
+        <div class="details-item-dark">
           <strong>Number of variables: </strong>
           {{details.numberOfVariables}}
         </div>
       </div>
-    </mat-card>
-    <!-- LIST OF VARIABLES -->
-    <mat-card class="info-box justify">
-      <div *ngIf="details && details.variableDetails.length > 0">
-        <div>
-          <strong>Variable details: </strong>
+    </div>
+    <!-- List of VARIABLES -->
+    <div *ngIf="details && details.variableDetails" class="flex">
+      <div class="flex column variables" *ngIf="details.variableDetails.length> 0;else noData">
+        <h2 class="op-title">Variable details</h2>
+        <div class="variables-box">
+          <div class="flex column-style header-style">
+            <span>Name</span>
+            <span>Distinct Count</span>
+            <span>Min</span>
+            <span>Max</span>
+            <span>Average</span>
+            <span>Variance</span>
+          </div>
+          <div class="flex  column-style variables-data" *ngFor="let item of  details.variableDetails; let i = index">
+            <span>{{item.variableName}}</span>
+            <span>{{item.distinctCount}}</span>
+            <span>{{item.min}}</span>
+            <span>{{item.max}}</span>
+            <span>{{item.average}}</span>
+            <span>{{item.variance}}</span>
+          </div>
         </div>
-        <div *ngFor="let item of  details.variableDetails; let i = index">
-          <span>{{i+1}}. </span>
-          <span>
-            <strong>Name:</strong> {{item.variableName}} </span>
-          <span>
-            <br>
-            <strong>Variance:</strong> {{item.variance}} </span>
-          <span>
-            <br>
-            <strong>Min:</strong> {{item.min}} </span>
-          <span>
-            <strong>Max:</strong> {{item.max}} </span>
-          <span>
-            <br>
-            <strong>Distinct Count:</strong> {{item.distinctCount}} </span>
-          <br>
-          <span>
-            <strong>Average:</strong> {{item.average}} </span>
-          <br>
-          <br>
-        </div>
+        <ng-template #noData>
+          <span>No data.</span>
+        </ng-template>
       </div>
-    </mat-card>
+    </div>
   </div>
   <!-- Pre Processing -->
   <h2 *ngIf="!isDatasetLinked" class="subtitle">DATASET - Pre Processing</h2>

@@ -1,7 +1,5 @@
 @import '../app.component.scss';
-
 #algorithms {
-
     // Table Classes
     table.mat-table {
         margin-top: 30px;
@@ -16,12 +14,13 @@
     }
     td.mat-cell {
         padding: 10px 10px 10px 0!important;
-      }
-      td.mat-cell:first-child, td.mat-footer-cell:first-child, th.mat-header-cell:first-child {
+    }
+    td.mat-cell:first-child,
+    td.mat-footer-cell:first-child,
+    th.mat-header-cell:first-child {
         padding-left: 24px!important;
     }
-
-    // Icons
+    // Add Button
     .button-wrapper {
         width: 80%;
         margin-top: 100px;
@@ -29,22 +28,36 @@
     .button-wrapper>button {
         float: right;
     }
+    // Icons
     .icons-wrapper {
         align-items: flex-start;
         justify-content: flex-start;
     }
-    .view-icon, .edit-icon {
+    .table-icons {
+        color: $primary;
+        font-size: 23px;
+        margin-right: 15px;
+    }
+    .table-icons:hover {
+        color: $warn;
+        cursor: pointer;
+    }
+    .mat-paginator,
+    .mat-paginator-page-size .mat-select-trigger {
+        width: 80%;
+    }
+    .view-icon,
+    .edit-icon {
         color: $primary;
         font-size: 22px;
         margin-right: 15px;
     }
-    .view-icon:hover, .edit-icon:hover{
+    .view-icon:hover,
+    .edit-icon:hover {
         color: $warn;
         cursor: pointer;
     }
     .view-icon {
         font-size: 24px;
     }
-   
-
 }
