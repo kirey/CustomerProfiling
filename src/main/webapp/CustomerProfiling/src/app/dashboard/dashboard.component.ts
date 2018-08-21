@@ -46,11 +46,11 @@ export class DashboardComponent implements OnInit {
   getColor(status) {
     switch (status) {
       case 'Not trained':
-        return '$primary';
-      case 'Trained':
-        return '#7C4DFF';
-      case 'Learning':
         return '#FF3D00';
+      case 'Trained':
+        return '#00897B';
+      case 'Learning':
+        return '#4DB6AC';
     }
   }
   // get All Datasets - second tab
