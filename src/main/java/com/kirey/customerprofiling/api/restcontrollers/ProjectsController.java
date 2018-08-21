@@ -1,6 +1,7 @@
 package com.kirey.customerprofiling.api.restcontrollers;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import com.kirey.customerprofiling.data.dao.ParameterValuesDao;
 import com.kirey.customerprofiling.data.dao.ProjectAlgorithmsDao;
 import com.kirey.customerprofiling.data.dao.ProjectsDao;
 import com.kirey.customerprofiling.data.dao.VariablesDao;
+import com.kirey.customerprofiling.data.entity.Algorithms;
 import com.kirey.customerprofiling.data.entity.Datasets;
 import com.kirey.customerprofiling.data.entity.DerivedVariableValue;
 import com.kirey.customerprofiling.data.entity.ParameterValues;
@@ -87,12 +89,18 @@ public class ProjectsController {
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> getProjectDetails(@PathVariable Integer id) {	
-		
+		HashMap<String, Object> responeseMap = new HashMap<>();
 		boolean belong = projectsDao.belongToLoggedUser(id);
 		if(!belong) {
 			return new ResponseEntity<RestResponseDto>(new RestResponseDto("You are not authorized to view details for this project", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
 		}else {
-			return new ResponseEntity<RestResponseDto>(new RestResponseDto(projectsDao.findById(id), HttpStatus.OK.value()), HttpStatus.OK);
+			Projects project = projectsDao.findById(id);
+			responeseMap.put("project", project);
+			List<Algorithms> algorithms = projectAlgorithmsDao.findAlgorithmsByProject(project.getId());
+			responeseMap.put("algorithms", algorithms);
+			Datasets dataset = datasetsDao.findOriginalByProject(project.getId());
+			responeseMap.put("dataset", dataset);
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto(responeseMap, HttpStatus.OK.value()), HttpStatus.OK);
 		}
 		
 	}
