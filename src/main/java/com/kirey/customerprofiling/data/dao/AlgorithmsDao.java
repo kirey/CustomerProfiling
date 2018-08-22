@@ -56,6 +56,17 @@ public class AlgorithmsDao extends KjcBaseDao {
 			return false;
 		}
 	}
+
+	/**
+	 * Method for getting {@link Algorithms} by given id 
+	 * @param id 
+	 * @return {@link Algorithms}
+	 */
+	public Algorithms findByIdQuery(Integer id) {
+		String hql = "from Algorithms alg where alg.id = :id";
+		Algorithms algorithm = (Algorithms) sessionFactory.getCurrentSession().createQuery(hql).setParameter("id", id).uniqueResult();
+		return algorithm;
+	}
 }
 
 

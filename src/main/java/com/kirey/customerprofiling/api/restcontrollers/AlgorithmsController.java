@@ -78,7 +78,8 @@ public class AlgorithmsController {
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> getAlgorithmDetails(@PathVariable Integer id){
-		Algorithms algorithm = algorithmsDao.findById(id);
+		Algorithms algorithm = algorithmsDao.findByIdQuery(id);
+//		Algorithms algorithm = algorithmsDao.findById(id);
 		List<Parameters> listParameters = algorithm.getParameters();
 		for (Parameters parameter : listParameters) {
 			parameter.setParameterValues(null);
@@ -95,14 +96,14 @@ public class AlgorithmsController {
 	public ResponseEntity<RestResponseDto> addAlgorithm(@RequestBody Algorithms algorithm){
 		
 		List<Parameters> parametersList = algorithm.getParameters();
-		algorithmsDao.attachDirty(algorithm);	
+		algorithmsDao.attachDirty(algorithm);		
 
 		for (Parameters parameter : parametersList) {
 			parameter.setAlgorithm(algorithm);
 			parametersDao.attachDirty(parameter);
 		}
 				
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Algorithm added", HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.OK.value(), "Algorithm added"), HttpStatus.OK);
 	}
 	
 	/**
@@ -119,7 +120,7 @@ public class AlgorithmsController {
 		projectAlgorithm.setAlgorithm(algorithmsDao.findById(algorithmId));
 		projectAlgorithmsDao.attachDirty(projectAlgorithm);
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Algorithm added to project", HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.OK.value(), "Algorithm added to project"), HttpStatus.OK);
 	}
 	
 	
@@ -133,11 +134,11 @@ public class AlgorithmsController {
 	public ResponseEntity<RestResponseDto> deleteAlgorithm(@PathVariable Integer algorithmId){
 		
 		if( algorithmsDao.findById(algorithmId) == null)
-			return new ResponseEntity<RestResponseDto>(new RestResponseDto("Algorithm doesn't exist", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.BAD_REQUEST.value(), "Algorithm doesn't exist"), HttpStatus.BAD_REQUEST);
 		
 		
 		if(algorithmsDao.relatedWithProject(algorithmId)) {
-			return new ResponseEntity<RestResponseDto>(new RestResponseDto("Algorithm already exist in project,can't be deleted", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.BAD_REQUEST.value(), "Algorithm already exist in project,can't be deleted"), HttpStatus.BAD_REQUEST);
 		} 
 		
 		Algorithms algorithm = (Algorithms)algorithmsDao.findById(algorithmId);
@@ -148,7 +149,7 @@ public class AlgorithmsController {
 		}
 		algorithmsDao.delete(algorithm);
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Deleted successfully", HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.OK.value(), "Deleted successfully"), HttpStatus.OK);
 	}
 	
 	
@@ -169,7 +170,7 @@ public class AlgorithmsController {
 		algorithmsDao.attachDirty(algorithm);
 	
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Edited successfully", HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.OK.value(), "Edited successfully"), HttpStatus.OK);
 	}
 	
 	
@@ -212,7 +213,7 @@ public class AlgorithmsController {
 				parameterValuesDao.attachDirty(valueFromDb);
 			}
 		}
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Parameters updated", HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.OK.value(), "Parameters updated"), HttpStatus.OK);
 	}
 	
 	/**
@@ -231,7 +232,7 @@ public class AlgorithmsController {
 			parameterValuesDao.delete(paramValue);
 		}
 		projectAlgorithmsDao.delete(projectAlgorithm);
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Algorithm removed", HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.OK.value(), "Algorithm removed"), HttpStatus.OK);
 	}
 	
 	/**
@@ -292,7 +293,7 @@ public class AlgorithmsController {
 			}
 		}
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Successfully saved", HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.OK.value(), "Successfully saved"), HttpStatus.OK);
 	}
 	
 	
@@ -311,7 +312,7 @@ public class AlgorithmsController {
 		Projects project = projectsDao.findById(projectId);
 		Datasets derivedDataset = datasetsDao.getDerivedFromProject(projectId);
 		if(derivedDataset == null) {
-			return new ResponseEntity<RestResponseDto>(new RestResponseDto("There is no derived dataset connected to project!", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.BAD_REQUEST.value(), "There is no derived dataset connected to project!"), HttpStatus.BAD_REQUEST);
 		}else {
 			project.setStatus(AppConstants.PROJECT_STATUS_LEARNING);
 			projectsDao.merge(project);
@@ -329,7 +330,7 @@ public class AlgorithmsController {
 			projectsDao.merge(project);
 		}
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Allgorithms trained", HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.OK.value(), "Allgorithms trained"), HttpStatus.OK);
 	}
 	
 	/**
@@ -375,7 +376,7 @@ public class AlgorithmsController {
 		}
 		
 		projectsDao.merge(project);
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Successfully updated project", HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.OK.value(), "Successfully updated project"), HttpStatus.OK);
 	}
 	
 }
