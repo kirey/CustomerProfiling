@@ -2,6 +2,8 @@ package com.kirey.customerprofiling.api.dto;
 
 import java.io.Serializable;
 
+import org.springframework.http.HttpStatus;
+
 /**
  * Custom DTO used for rest responses and validation
  */
@@ -20,8 +22,14 @@ public class RestResponseDto implements Serializable {
 	
 	
 	public RestResponseDto(Object data, int statusCode){
-		this.data = data;
-		this.statusCode = statusCode;
+		if(statusCode == HttpStatus.BAD_REQUEST.value()) {
+			this.errorCode = (String) data;
+			this.statusCode = statusCode;	
+		}else {
+			this.data = data;
+			this.statusCode = statusCode;	
+		}
+		
 	}
 	
     public RestResponseDto(Object data, int status, String msg){
