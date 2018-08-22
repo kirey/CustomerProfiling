@@ -29,12 +29,12 @@ export class AddComponent implements OnInit {
     this.addProjectService.addProject(project).subscribe(
       res => {
         console.log(res);
-        this.snackbar.openSnackBar(res['data'], 'Success');
+        this.snackbar.openSnackBar(res['message'], 'Success');
         this.dialogRef.close();
       },
       err => {
         console.log(err);
-        this.snackbar.openSnackBar('Something went wrong.', 'Error');
+        this.snackbar.openSnackBar(err['message'], 'Error');
       }
     );
   }

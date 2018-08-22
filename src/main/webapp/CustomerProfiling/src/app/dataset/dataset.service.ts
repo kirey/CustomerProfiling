@@ -1,4 +1,4 @@
-import { Http} from '@angular/http';
+import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 
@@ -20,12 +20,12 @@ export class DatasetService {
     return this._http.post(this.baseUrl + 'addNewDataset', formData);
   }
 
-  getDataset(id){
+  getDataset(id) {
     return this._http.get(this.baseUrl + id);
   }
 
-  deleteDataset(id){
-    return this._http.delete(this.baseUrl + id);
+  deleteDataset(id) {
+    return this._http.delete(this.baseUrl + id).pipe(map(res => res.json()));
   }
 
 

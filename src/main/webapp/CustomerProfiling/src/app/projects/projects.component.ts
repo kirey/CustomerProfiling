@@ -79,14 +79,14 @@ export class ProjectsComponent implements OnInit {
       data: { name: item.projectName, type: 'project' }
     });
     dialogRef.afterClosed().subscribe(res => {
-      if (res === true) {
+      if (res) {
         this.projectsService.deleteProject(item.id).subscribe(
           res => {
-            this.snackbar.openSnackBar(res['data'], 'Successful');
+            this.snackbar.openSnackBar(res['message'], 'Success');
             this.getProjects();
           },
           err => {
-            this.snackbar.openSnackBar(res['error']['message'], 'Error');
+            this.snackbar.openSnackBar(err['message'], 'Error');
           }
         );
       }

@@ -66,16 +66,21 @@ export class DatasetComponent implements OnInit {
       data: { name: dataset.name, type: 'dataset' }
     });
     dialogRef.afterClosed().subscribe(res => {
-      if (res == true) {
-        this._datasetService.deleteDataset(dataset.id).subscribe(res => {
-        }, err => {
-          this._snackBarService.openSnackBar('Error', 'Something went wrong!');
-        }, () => {
-          this._snackBarService.openSnackBar('Success', 'You have successfuly deleted dataset!');
-          this._datasetService.getDatasets().subscribe(res => {
-            this.dataSource = new MatTableDataSource(JSON.parse(res.text()).data);
-          });
-        });
+      if (res) {
+        this._datasetService.deleteDataset(dataset.id)
+          .subscribe(
+            res => {
+              console.log(res);
+              this._snackBarService.openSnackBar(res['message'], 'Success');
+              this._datasetService.getDatasets().subscribe(
+                res => {
+                  this.dataSource = new MatTableDataSource(JSON.parse(res.text()).data);
+                });
+            },
+            err => {
+              console.log(err);
+              this._snackBarService.openSnackBar(err['message'], 'Error');
+            });
       }
     });
   }
