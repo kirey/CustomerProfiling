@@ -18,6 +18,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -132,6 +134,7 @@ public class Datasets implements Serializable{
 	
 	@OneToMany(mappedBy = "dataset", cascade = CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
+	@Fetch(FetchMode.SUBSELECT)
 	public List<Variables> getVariables() {
 		return variables;
 	}

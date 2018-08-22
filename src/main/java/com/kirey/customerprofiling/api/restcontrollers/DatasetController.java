@@ -162,11 +162,11 @@ public class DatasetController {
 	public ResponseEntity<RestResponseDto> saveTransformedCSV(@RequestBody List<Variables> originalVariables, @RequestParam Integer datasetId, @RequestParam Integer projectId) throws FileNotFoundException{
 		boolean belong = projectDao.belongToLoggedUser(projectId);
 		if(!belong) {
-			return new ResponseEntity<RestResponseDto>(new RestResponseDto("You are not authorized to view details for this project", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.BAD_REQUEST.value(), "You are not authorized to view details for this project"), HttpStatus.BAD_REQUEST);
 		}
 		Datasets derivedDatast = datasetsDao.getDerivedFromProject(projectId);
 		if(derivedDatast != null) {
-			return new ResponseEntity<RestResponseDto>(new RestResponseDto("Derived dataset already exist for current project", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.BAD_REQUEST.value(), "Derived dataset already exist for current project"), HttpStatus.BAD_REQUEST);
 		}
 		Datasets originalDataset = datasetsDao.findById(datasetId);
 		Projects project = projectDao.findById(projectId);
@@ -186,7 +186,7 @@ public class DatasetController {
 		InputStream derivedIs = new ByteArrayInputStream(derivedCSV.getBytes());
 		datasetService.saveDerivedVariableAndValues(derivedIs, derivedDataset);
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Derived dataset successfully saved with derived variables and values", HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.OK.value(), "Derived dataset successfully saved with derived variables and values"), HttpStatus.OK);
 	}
 	
 	/**
@@ -225,7 +225,7 @@ public class DatasetController {
 			variable.setDataset(newDataset);
 			variablesDao.attachDirty(variable);
 		}
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Dataset successfully created", HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.OK.value(), "Dataset successfully created"), HttpStatus.OK);
 	}
 	
 	/**
@@ -261,13 +261,13 @@ public class DatasetController {
 		List<Datasets> derivedDatasets = datasetsDao.findDerivedByOriginal(dataset);
 		
 		if( derivedDatasets != null && !derivedDatasets.isEmpty() ) {
-			return new ResponseEntity<RestResponseDto>(new RestResponseDto("Dataset can't be deleted!", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.BAD_REQUEST.value(), "Dataset can't be deleted!"), HttpStatus.BAD_REQUEST);
 		}else {
 			datasetsDao.delete(dataset);	
 		}
 		
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Dataset successfully deleted!", HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.OK.value(), "Dataset successfully deleted!"), HttpStatus.OK);
 	}
 	
 	/**

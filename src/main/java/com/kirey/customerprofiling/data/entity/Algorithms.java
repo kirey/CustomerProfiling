@@ -15,6 +15,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -72,6 +75,7 @@ public class Algorithms implements Serializable {
 	}
 
 	@OneToMany(mappedBy = "algorithm", fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
 	public List<Parameters> getParameters() {
 		return parameters;
 	}
