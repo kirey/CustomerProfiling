@@ -70,7 +70,7 @@ public class ProjectsController {
 		
 		UserAccounts user = SecurityUtils.getUserFromContext();
 		if(user == null) {
-			return new ResponseEntity<RestResponseDto>(new RestResponseDto("You need to be logged to access projects", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.BAD_REQUEST.value(), "You need to be logged to access projects"), HttpStatus.BAD_REQUEST);
 		}
 		
 		List<Projects> listProjects = projectsDao.findFilteredByUser(user.getId());
@@ -92,7 +92,7 @@ public class ProjectsController {
 		HashMap<String, Object> responeseMap = new HashMap<>();
 		boolean belong = projectsDao.belongToLoggedUser(id);
 		if(!belong) {
-			return new ResponseEntity<RestResponseDto>(new RestResponseDto("You are not authorized to view details for this project", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.BAD_REQUEST.value(), "You are not authorized to view details for this project"), HttpStatus.BAD_REQUEST);
 		}else {
 			Projects project = projectsDao.findById(id);
 			responeseMap.put("project", project);
@@ -120,7 +120,7 @@ public class ProjectsController {
 		project.setUserAccount(user);
 		projectsDao.persist(project);
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Successfully added", HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.OK.value(), "Successfully added"), HttpStatus.OK);
 	}
 	
 	/**
@@ -135,7 +135,7 @@ public class ProjectsController {
 		project.setUserAccount(user);
 		projectsDao.attachDirty(project);
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Successfully edited", HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.OK.value(), "Successfully edited"), HttpStatus.OK);
 	}
 	
 	/**
@@ -175,7 +175,7 @@ public class ProjectsController {
 		}
 		projectsDao.delete(project);
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Successfully deleted", HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.OK.value(), "Successfully deleted"), HttpStatus.OK);
 	}
 	
 	/**
@@ -198,7 +198,7 @@ public class ProjectsController {
 		
 		projectsDao.attachDirty(newProject);
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("Successfully copied", HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.OK.value(), "Successfully copied"), HttpStatus.OK);
 	}
 	
 	

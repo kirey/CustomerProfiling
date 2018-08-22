@@ -49,13 +49,13 @@ public class UserController {
 		UserAccounts user = userAccountsDao.findByUsername(userAccount.getUsername());
 		
 		if(user!=null) {
-			return new ResponseEntity<RestResponseDto>(new RestResponseDto("User already exists", HttpStatus.BAD_REQUEST.value()), HttpStatus.BAD_REQUEST);	
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.BAD_REQUEST.value(), "User already exists"), HttpStatus.BAD_REQUEST);	
 		}
 		
 		userAccount.setPassword(encoder.encode(userAccount.getPassword()));
 		userAccountsDao.attachDirty(userAccount);
 		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto("User successfully added", HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.OK.value(), "User successfully added"), HttpStatus.OK);
 	}
 	
 	

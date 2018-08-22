@@ -2,7 +2,6 @@ package com.kirey.customerprofiling.api.dto;
 
 import java.io.Serializable;
 
-import org.springframework.http.HttpStatus;
 
 /**
  * Custom DTO used for rest responses and validation
@@ -10,44 +9,23 @@ import org.springframework.http.HttpStatus;
 public class RestResponseDto implements Serializable {
 
 	private static final long serialVersionUID = -4990734081656652299L;
-	
+
 	private String message;
-    private String errorCode;
-    private int statusCode;
-    private Object data;
-    private Object validationObject;
-   	
+	private int statusCode;
+	private Object data;
+	private Object validationObject;
 
-	public RestResponseDto(){}
-	
-	
-	public RestResponseDto(Object data, int statusCode){
-		if(statusCode == HttpStatus.BAD_REQUEST.value()) {
-			this.errorCode = (String) data;
-			this.statusCode = statusCode;	
-		}else {
-			this.data = data;
-			this.statusCode = statusCode;	
-		}
-		
-	}
-	
-    public RestResponseDto(Object data, int status, String msg){
-    	this.data = data;
-    	this.statusCode = status;
-		this.message = msg;
+	public RestResponseDto() {
 	}
 
-	
-    public RestResponseDto(int status, String msg){
+	public RestResponseDto(Object data, int statusCode) {
+		this.data = data;
+		this.statusCode = statusCode;
+	}
+
+	public RestResponseDto(int status, String msg) {
 		this.message = msg;
 		this.statusCode = status;
-	}
-    
-    public RestResponseDto(int status, String errorCode, String msg){
-    	this.statusCode = status;
-		this.message = msg;
-		this.errorCode = errorCode;
 	}
 
 	public String getMessage() {
@@ -64,14 +42,6 @@ public class RestResponseDto implements Serializable {
 
 	public void setStatusCode(int statusCode) {
 		this.statusCode = statusCode;
-	}
-
-	public String getErrorCode() {
-		return errorCode;
-	}
-
-	public void setErrorCode(String errorCode) {
-		this.errorCode = errorCode;
 	}
 
 	public Object getData() {
