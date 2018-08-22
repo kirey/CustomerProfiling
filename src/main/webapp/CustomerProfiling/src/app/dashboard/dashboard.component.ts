@@ -52,6 +52,7 @@ export class DashboardComponent implements OnInit {
       case 'Learning':
         return '#4DB6AC';
     }
+
   }
   // get All Datasets - second tab
   getAllDatasets() {

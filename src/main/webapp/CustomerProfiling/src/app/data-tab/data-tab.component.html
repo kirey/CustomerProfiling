@@ -96,8 +96,8 @@
 
         <!-- Data Type -->
         <mat-form-field>
-          <mat-select [disabled]="variables[i].typeOfData =='TEXT'" [(ngModel)]="variables[i].typeOfData" (selectionChange)="selectionChanged($event, i, 'typeOfData')"
-            placeholder="Data Type">
+          <mat-select [disabled]="variables[i].typeOfData =='TEXT' && !variablesHelperArr[i].typeOfDataChanged" [(ngModel)]="variables[i].typeOfData"
+            (selectionChange)="selectionChanged($event, i, 'typeOfData')" placeholder="Data Type">
             <mat-option *ngFor="let type of dataTypes" [value]="type">
               {{type}}
             </mat-option>
@@ -127,8 +127,8 @@
         <!--  P A R A M S -->
         <span class="params">
           <!-- Min & Max -->
-          <div *ngIf="variables[i]['params']; else noData">
-            <span *ngIf="variables[i]['params']['minmax'] == true">
+          <div *ngIf="variablesHelperArr[i]['params']; else noData">
+            <span *ngIf="variablesHelperArr[i]['params']['minmax'] == true">
               <mat-form-field class="small-input">
                 <input type="number" (change)="paramsChanged($event, i, 'scaleMin')" matInput placeholder="Min">
               </mat-form-field>
@@ -137,7 +137,7 @@
               </mat-form-field>
             </span>
             <!-- Bins -->
-            <span *ngIf="variables[i]['params']['bins'] == true">
+            <span *ngIf="variablesHelperArr[i]['params']['bins'] == true">
               <mat-form-field class="small-input">
                 <input type="number" (change)="paramsChanged($event, i, 'bins')" matInput placeholder="Bins">
               </mat-form-field>

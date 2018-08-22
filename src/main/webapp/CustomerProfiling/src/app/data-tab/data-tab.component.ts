@@ -18,6 +18,7 @@ export class DataTabComponent implements OnInit {
   constructor(public dataTabService: DataTabService, public dialog: MatDialog, public sharedService: SharedService, public projectOverviewService: ProjectOverviewService, public snackbar: SnackBarService) { }
 
   variables: any;
+  variablesHelperArr: any;
   variableTypes: any;
   dataTypes: any;
   operationTypes: any;
@@ -30,12 +31,14 @@ export class DataTabComponent implements OnInit {
   csvArray: any;
   isDatasetLinked: boolean;
 
+
   getVariables() {
     this.dataTabService.getVariables(this.datasetId)
       .subscribe(
         res => {
-          console.log(res);
           this.variables = res['data'];
+          this.variablesHelperArr = res['data'];
+          console.log(this.variables);
         },
         err => {
           console.log(err);
@@ -120,9 +123,11 @@ export class DataTabComponent implements OnInit {
       if (this.variables[index]['bins']) this.variables[index]['bins'] = null;
     }
 
-    if (type == 'typeOfData' && this.variables[index]['params']) {
-      delete this.variables[index]['params'];
-    }
+    this.variablesHelperArr[index]['typeOfDataChanged'] = true;
+
+    // if (type == 'typeOfData' && this.variables[index]['params']) {
+    //   delete this.variables[index]['params'];
+    // }
   }
 
   paramsChanged(ev, index, type) {
@@ -134,13 +139,13 @@ export class DataTabComponent implements OnInit {
   setParams(ev, index) {
     switch (ev.value) {
       case 'Scaling operation':
-        this.variables[index]['params'] = { 'minmax': true, 'bins': false };
+        this.variablesHelperArr[index]['params'] = { 'minmax': true, 'bins': false };
         if (this.variables[index]['bins']) this.variables[index]['bins'] = null;
         this.variables[index]['distinct'] = false;
         this.variables[index]['leaveAsItIs'] = false;
         break;
       case 'Binning operation':
-        this.variables[index]['params'] = { 'minmax': false, 'bins': true };
+        this.variablesHelperArr[index]['params'] = { 'minmax': false, 'bins': true };
         if (this.variables[index]['scaleMin']) this.variables[index]['scaleMin'] = null;
         if (this.variables[index]['scaleMax']) this.variables[index]['scaleMax'] = null;
         this.variables[index]['distinct'] = false;
@@ -195,7 +200,7 @@ export class DataTabComponent implements OnInit {
     if (checkArray.length == this.variables.length) {
 
       for (let i = 0; i < this.variables.length; i++) {
-        delete this.variables[i]['params'];
+        // delete this.variables[i]['params'];
         delete this.variables[i]['operationTypes'];
       }
 
@@ -261,16 +266,18 @@ export class DataTabComponent implements OnInit {
       // Variables has params property
       // 
       for (let i = 0; i < data.length; i++) {
-        delete data[i]['params'];
+        // delete data[i]['params'];
         delete data[i]['operationTypes'];
       }
       this, this.dataTabService.save(this.datasetId, this.projectId, data)
         .subscribe(
           res => {
             console.log(res);
+            this.snackbar.openSnackBar(res['data'], 'Success');
           },
           err => {
             console.log(err);
+            this.snackbar.openSnackBar(err.error.errorCode, 'Error');
           }
         );
     }

@@ -47,7 +47,7 @@
     <div class="border" *ngIf="this.listOfAlgorithms">
         <h2 class="a-title">Selected Algorithms</h2>
         <div class="flex list-box">
-            <div class="flex column">
+            <div class="flex column" *ngIf="listOfAlgorithms.length>0; else noData">
                 <div class="algorithm-list" *ngFor="let algorithm of listOfAlgorithms; let i = index">
                     <div class="flex space-between algorithm-list-item">
                         <span>{{algorithm.algorithmName}}</span>
@@ -58,6 +58,9 @@
                     </div>
                 </div>
             </div>
+            <ng-template #noData>
+                <i>No selected algorithms.</i>
+            </ng-template>
             <div class="flex column status-container">
                 <div *ngIf="status" class="status-box flex center">
                     {{status}}
