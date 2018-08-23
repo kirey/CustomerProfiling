@@ -90,7 +90,7 @@ var AlgorithmsComponent = /** @class */ (function () {
         var _this = this;
         this.service.getAll()
             .subscribe(function (res) {
-            console.log(res);
+            // console.log(res);
             _this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](res['data']);
         }, function (err) {
             console.log(err);
@@ -262,26 +262,26 @@ var AnalyzeComponent = /** @class */ (function () {
     }
     AnalyzeComponent.prototype.getParameters = function (algorithm) {
         var _this = this;
-        console.log(this.parameters);
+        // console.log(this.parameters);
         this.parameters = [];
         algorithm.parameters.forEach(function (element) {
             _this.parameters.push(element);
-            console.log(element);
+            // console.log(element);
             // console.log(element.parameterValues[0]);
         });
-        console.log(this.parameters);
+        // console.log(this.parameters);
     };
     AnalyzeComponent.prototype.getAlgorithms = function () {
         var _this = this;
         this._analyzeService.getAlgorithms(this.projectId).subscribe(function (res) {
             _this.algorithms = JSON.parse(res.text()).data;
-            console.log(_this.algorithms);
+            // console.log(this.algorithms);
         }, function (err) {
             _this.snackbar.openSnackBar('Something went wrong.', 'Error');
         }, function () {
             if (_this.algorithms.length > 0) {
                 _this.initialAlgorithm = _this.algorithms[0];
-                console.log(_this.initialAlgorithm);
+                // console.log(this.initialAlgorithm);
                 _this.getParameters(_this.initialAlgorithm);
             }
         });
@@ -290,7 +290,7 @@ var AnalyzeComponent = /** @class */ (function () {
         var _this = this;
         this._analyzeService.getListOfAlgorithms(this.projectId)
             .subscribe(function (res) {
-            console.log(res);
+            // console.log(res);
             _this.listOfAlgorithms = res['data'];
         }, function (err) { return console.log(err); });
     };
@@ -302,7 +302,7 @@ var AnalyzeComponent = /** @class */ (function () {
         });
         dialogRef.afterClosed().subscribe(function (result) {
             if (result) {
-                console.log(result);
+                // console.log(result);
                 _this.parameters[i].parameterValues[0] = result;
             }
         });
@@ -350,7 +350,7 @@ var AnalyzeComponent = /** @class */ (function () {
     // SAVE button
     AnalyzeComponent.prototype.addAlgorithm = function () {
         var _this = this;
-        console.log(this.initialAlgorithm);
+        // console.log(this.initialAlgorithm);
         this._analyzeService.save(this.projectId, this.initialAlgorithm)
             .subscribe(function (res) {
             _this.getListOfAlgorithms();
@@ -365,7 +365,7 @@ var AnalyzeComponent = /** @class */ (function () {
     };
     AnalyzeComponent.prototype.getStatus = function () {
         var _this = this;
-        console.log("lala");
+        // console.log("lala");
         this._analyzeService.status(this.projectId)
             .subscribe(function (res) {
             // console.log(res);
@@ -856,7 +856,7 @@ var DashboardComponent = /** @class */ (function () {
     DashboardComponent.prototype.getAllProjects = function () {
         var _this = this;
         this.dashboardService.getProjects().subscribe(function (res) {
-            console.log(res);
+            // console.log(res);
             _this.projectsArr = res['data'];
         }, function (err) {
             console.log(err);
@@ -877,9 +877,9 @@ var DashboardComponent = /** @class */ (function () {
     DashboardComponent.prototype.getAllDatasets = function () {
         var _this = this;
         this.dashboardService.getDatasets().subscribe(function (res) {
-            console.log(res);
+            // console.log(res);
             _this.dataset = res['data'];
-            console.log(_this.dataset);
+            // console.log(this.dataset);
         }, function (err) {
             console.log(err);
         });
@@ -888,9 +888,9 @@ var DashboardComponent = /** @class */ (function () {
     DashboardComponent.prototype.getAllAlgorithms = function () {
         var _this = this;
         this.dashboardService.getAlgorithms().subscribe(function (res) {
-            console.log(res);
+            // console.log(res);
             _this.algorithm = res['data'];
-            console.log(_this.algorithm);
+            // console.log(this.algorithm);
         }, function (err) {
             console.log(err);
         });
@@ -901,18 +901,18 @@ var DashboardComponent = /** @class */ (function () {
         this.panelProject = true;
         this.panelData = false;
         this.panelAlgo = false;
-        console.log('klik');
+        // console.log('klik');
         this.dashboardService.getProjectsDetails(id).subscribe(function (res) {
-            console.log(res);
+            // console.log(res);
             _this.projectDetails = res['data'];
-            console.log(_this.projectDetails);
+            // console.log(this.projectDetails);
         }, function (err) {
             console.log(err);
         });
     };
     // project details dbl click function -  go to overview project page
     DashboardComponent.prototype.projectDblclick = function (id) {
-        console.log('dblklik');
+        // console.log('dblklik');
         this.sharedService.setProjectId(id);
         this._router.navigate(['/one-project']);
     };
@@ -923,9 +923,9 @@ var DashboardComponent = /** @class */ (function () {
         this.panelProject = false;
         this.panelAlgo = false;
         this.dashboardService.getDatasetDetails(id).subscribe(function (res) {
-            console.log(res);
+            // console.log(res);
             _this.data = res['data'];
-            console.log(_this.data);
+            // console.log(this.data);
         }, function (err) {
             console.log(err);
         });
@@ -933,14 +933,14 @@ var DashboardComponent = /** @class */ (function () {
     // algorithm details click - show algorithms details in panel details
     DashboardComponent.prototype.algorithmClick = function (id) {
         var _this = this;
-        console.log('dblklik');
+        // console.log('dblklik');
         this.panelAlgo = true;
         this.panelData = false;
         this.panelProject = false;
         this.dashboardService.getAlgorithmDetails(id).subscribe(function (res) {
-            console.log(res);
+            // console.log(res);
             _this.algo = res['data'];
-            console.log(_this.algo);
+            // console.log(this.algo);
         }, function (err) {
             console.log(err);
         });
@@ -1099,7 +1099,7 @@ var DataTabComponent = /** @class */ (function () {
             .subscribe(function (res) {
             _this.variables = res['data'];
             _this.variablesHelperArr = res['data'];
-            console.log(_this.variables);
+            // console.log(this.variables);
         }, function (err) {
             console.log(err);
         });
@@ -1128,7 +1128,7 @@ var DataTabComponent = /** @class */ (function () {
         var _this = this;
         this.projectOverviewService.getDatasetDetails(this.datasetId).subscribe(function (res) {
             _this.details = res.data;
-            console.log(_this.details);
+            // console.log(this.details);
         }, function (err) {
             console.log(err);
             _this.snackbar.openSnackBar('Something went wrong.', 'Error');
@@ -1141,7 +1141,7 @@ var DataTabComponent = /** @class */ (function () {
         var _this = this;
         this.dataTabService.getOperationTypes('NUMERIC')
             .subscribe(function (res) {
-            console.log(res);
+            // console.log(res);
             _this.numericOperationTypes = res['data'];
             // this.variables[index]['operationTypes'] = res['data'];
         }, function (err) {
@@ -1149,7 +1149,7 @@ var DataTabComponent = /** @class */ (function () {
         });
         this.dataTabService.getOperationTypes('TEXT')
             .subscribe(function (res) {
-            console.log(res);
+            // console.log(res);
             _this.textOperationTypes = res['data'];
             // this.variables[index]['operationTypes'] = res['data'];
         }, function (err) {
@@ -1214,7 +1214,7 @@ var DataTabComponent = /** @class */ (function () {
                     this.variables[index]['scaleMax'] = null;
                 break;
         }
-        console.log(this.variables);
+        // console.log(this.variables);
         this.sharedService.setParams(this.variables);
     };
     DataTabComponent.prototype.viewObject = function () {
@@ -1250,14 +1250,14 @@ var DataTabComponent = /** @class */ (function () {
             }
             this.dataTabService.getProcessingView(this.datasetId, this.variables)
                 .subscribe(function (res) {
-                console.log(res['data']);
+                // console.log(res['data']);
                 _this.csvArray = res['data'];
                 var dialogRef = _this.dialog.open(_dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_3__["DataTabViewComponent"], {
                     data: _this.csvArray
                 });
                 dialogRef.afterClosed().subscribe(function (res) {
                     _this.variables = _this.sharedService.getParams();
-                    console.log(_this.variables);
+                    // console.log(this.variables);
                 });
             }, function (err) {
                 console.log(err);
@@ -1273,7 +1273,7 @@ var DataTabComponent = /** @class */ (function () {
     DataTabComponent.prototype.submit = function () {
         var _this = this;
         var checkArray = [];
-        console.log(this.variables);
+        // console.log(this.variables);
         // Check for empty fields
         for (var i = 0; i < this.variables.length; i++) {
             if (!this.variables[i]['typeOfVariable']) {
@@ -1300,16 +1300,14 @@ var DataTabComponent = /** @class */ (function () {
         if (checkArray.length == this.variables.length) {
             this.message = '';
             var data = this.variables;
-            // 
             // Variables has params property
-            // 
             for (var i = 0; i < data.length; i++) {
                 // delete data[i]['params'];
                 delete data[i]['operationTypes'];
             }
             this, this.dataTabService.save(this.datasetId, this.projectId, data)
                 .subscribe(function (res) {
-                console.log(res);
+                // console.log(res);
                 _this.snackbar.openSnackBar(res['message'], 'Success');
                 _this.isDatasetLinked = true;
                 _this.sharedService.setDatasetLink(true);
@@ -1470,10 +1468,10 @@ var DatasetComponent = /** @class */ (function () {
         var _this = this;
         this._datasetService.getDatasets().subscribe(function (res) {
             _this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](JSON.parse(res.text()).data);
-            console.log(_this.dataSource);
+            // console.log(this.dataSource);
         }, function (err) { }, function () {
             _this.dataSource.paginator = _this.paginator;
-            console.log(_this.dataSource.paginator);
+            // console.log(this.dataSource.paginator);
             _this.dataSource.filterPredicate = function (data, filter) {
                 return data.name.toLowerCase().includes(filter);
             };
@@ -1512,7 +1510,7 @@ var DatasetComponent = /** @class */ (function () {
             if (res) {
                 _this._datasetService.deleteDataset(dataset.id)
                     .subscribe(function (res) {
-                    console.log(res);
+                    // console.log(res);
                     _this._snackBarService.openSnackBar(JSON.parse(res.text()).message, 'Success');
                     _this._datasetService.getDatasets().subscribe(function (res) {
                         _this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](JSON.parse(res.text()).data);
@@ -1670,7 +1668,7 @@ var AddAlgorithmComponent = /** @class */ (function () {
         }
         if (!this.message) {
             this.parameters.push(this.addParametersForm.value);
-            console.log(this.parameters);
+            // console.log(this.parameters);
         }
     };
     // Remove Param
@@ -1688,11 +1686,11 @@ var AddAlgorithmComponent = /** @class */ (function () {
     // SUBIMT
     AddAlgorithmComponent.prototype.submit = function () {
         var _this = this;
-        console.log(this.addAlgorithmForm.value);
+        // console.log(this.addAlgorithmForm.value);
         this.addAlgorithmForm.value['parameters'] = this.parameters;
         this.service.addAlgorithm(this.addAlgorithmForm.value)
             .subscribe(function (res) {
-            console.log(res);
+            // console.log(res);
             _this.dialogRef.close();
             _this.snackbar.openSnackBar(JSON.parse(res.text()).message, 'Success');
         }, function (err) {
@@ -1990,7 +1988,7 @@ var AddValueComponent = /** @class */ (function () {
         this.error = false;
     }
     AddValueComponent.prototype.ngOnInit = function () {
-        console.log(this.data);
+        // console.log(this.data);
         if (this.data.type == 'addValueDialog') {
             this.addValueForm = this._formBuilder.group({
                 value: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required]
@@ -2107,9 +2105,9 @@ var AddComponent = /** @class */ (function () {
     AddComponent.prototype.addProject = function () {
         var _this = this;
         var project = this.addProjectForm.value;
-        console.log(project);
+        // console.log(project);
         this.addProjectService.addProject(project).subscribe(function (res) {
-            console.log(res);
+            // console.log(res);
             _this.snackbar.openSnackBar(res['message'], 'Success');
             _this.dialogRef.close();
         }, function (err) {
@@ -2246,9 +2244,9 @@ var CopyComponent = /** @class */ (function () {
     CopyComponent.prototype.copyProject = function (obj) {
         var _this = this;
         obj['id'] = this.data.id;
-        console.log(obj);
+        // console.log(obj);
         this.copyProjectService.copyProjects(obj).subscribe(function (res) {
-            console.log(res);
+            // console.log(res);
             _this.snackbar.openSnackBar(res['message'], 'Success');
             _this.dialogRef.close();
         }, function (err) {
@@ -2260,7 +2258,7 @@ var CopyComponent = /** @class */ (function () {
         this.dialogRef.close();
     };
     CopyComponent.prototype.ngOnInit = function () {
-        console.log(this.data);
+        // console.log(this.data);
     };
     CopyComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2467,7 +2465,7 @@ var DatasetDetailComponent = /** @class */ (function () {
         this.data = data;
     }
     DatasetDetailComponent.prototype.ngOnInit = function () {
-        console.log(this.data);
+        // console.log(this.data);
     };
     DatasetDetailComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2635,7 +2633,7 @@ var EditAlgorithmComponent = /** @class */ (function () {
         }
         if (!this.message) {
             this.parameters.push(this.addParametersForm.value);
-            console.log(this.parameters);
+            // console.log(this.parameters);
         }
     };
     // Remove Param
@@ -2670,7 +2668,7 @@ var EditAlgorithmComponent = /** @class */ (function () {
     };
     EditAlgorithmComponent.prototype.ngOnInit = function () {
         if (this.data) {
-            console.log(this.data);
+            // console.log(this.data);
             this.parameters = this.data['parameters'];
             this.addParametersForm = new _node_modules_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormGroup"]({
                 parameterName: new _node_modules_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', _node_modules_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required),
@@ -2867,7 +2865,7 @@ var ViewAlgorithmComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"loginBgr\">\r\n  <div class=\"logImg wrap\">\r\n  </div>\r\n<mat-card class=\"loginCard wrap\">\r\n    <mat-card-title>Login</mat-card-title>\r\n    <form class=\"loginForm\" [formGroup]=\"loginForm\" (ngSubmit)=\"login()\">\r\n        <mat-form-field class=\"loginFormField\">\r\n            <input matInput placeholder=\"Username*\" formControlName=\"username\" [(ngModel)]=\"username\">\r\n        </mat-form-field>\r\n        <mat-error *ngIf=\"loginForm.get('username').touched && loginForm.get('username').hasError('required')\">\r\n            Username is required!\r\n        </mat-error>\r\n        <mat-form-field class=\"loginFormField\">\r\n            <input matInput placeholder=\"Password*\" type=\"password\" formControlName=\"password\" [(ngModel)]=\"password\">\r\n        </mat-form-field>\r\n        <mat-error *ngIf=\"loginForm.get('password').touched && loginForm.get('password').hasError('required')\">\r\n            Password is required!\r\n        </mat-error>\r\n        <mat-card-actions class=\"loginActions\">\r\n            <button mat-button [disabled]=\"loginForm.invalid\">SIGN IN</button>\r\n            <button mat-button class=\"signUp\">SIGN UP</button>\r\n        </mat-card-actions>\r\n    </form>\r\n</mat-card>\r\n</div>\r\n"
+module.exports = "<div id=\"loginBgr\">\r\n  <div class=\"logImg wrap\">\r\n    <img src=\"CustomerProfiling/src/assets/usr.png\">\r\n  </div>\r\n<mat-card class=\"loginCard wrap\">\r\n    <mat-card-title>Login</mat-card-title>\r\n    <form class=\"loginForm\" [formGroup]=\"loginForm\" (ngSubmit)=\"login()\">\r\n        <mat-form-field class=\"loginFormField\">\r\n            <input matInput placeholder=\"Username*\" formControlName=\"username\" [(ngModel)]=\"username\">\r\n        </mat-form-field>\r\n        <mat-error *ngIf=\"loginForm.get('username').touched && loginForm.get('username').hasError('required')\">\r\n            Username is required!\r\n        </mat-error>\r\n        <mat-form-field class=\"loginFormField\">\r\n            <input matInput placeholder=\"Password*\" type=\"password\" formControlName=\"password\" [(ngModel)]=\"password\">\r\n        </mat-form-field>\r\n        <mat-error *ngIf=\"loginForm.get('password').touched && loginForm.get('password').hasError('required')\">\r\n            Password is required!\r\n        </mat-error>\r\n        <mat-card-actions class=\"loginActions\">\r\n            <button mat-button [disabled]=\"loginForm.invalid\">SIGN IN</button>\r\n            <button mat-button class=\"signUp\">SIGN UP</button>\r\n        </mat-card-actions>\r\n    </form>\r\n</mat-card>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2878,7 +2876,7 @@ module.exports = "<div id=\"loginBgr\">\r\n  <div class=\"logImg wrap\">\r\n  </
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%;\n  padding-top: 35px; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #00897B, #4DB6AC);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #00897B; }\n\n.add-mini-fab-btn {\n  color: #fff; }\n\n.loginForm {\n  width: 100%; }\n\n.loginFormField {\n  width: 90%;\n  margin-left: 5%; }\n\n.loginCard {\n  min-width: 150px;\n  max-width: 350px;\n  width: 90%;\n  padding: 50px 10px;\n  background: white;\n  color: #00897B; }\n\n.loginActions {\n  margin-bottom: -15px; }\n\n#loginBgr {\n  margin-top: 10%;\n  height: 50%;\n  display: flex;\n  flex-direction: row;\n  width: 70%;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\n  background: linear-gradient(to right, #00897B, #4DB6AC);\n  padding: 5% 0; }\n\n.logImg {\n  width: 350px;\n  height: 370px;\n  background-image: url('/CustomerProfiling/CustomerProfiling/dist/usr.png');\n  background-size: cover;\n  background-repeat: no-repeat;\n  margin-left: 10%;\n  margin-right: 5%; }\n\n.signUp:hover {\n  background-color: #00897B;\n  color: white;\n  transition: 1s; }\n\n.wrap {\n  flex-wrap: wrap; }\n\nmat-card-title {\n  text-align: center;\n  padding-top: 5%; }\n\nmat-error {\n  margin-left: 5%; }\n\n.mat-card-actions {\n  margin-left: 0px !important; }\n"
+module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%;\n  padding-top: 35px; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #00897B, #4DB6AC);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #00897B; }\n\n.add-mini-fab-btn {\n  color: #fff; }\n\n.loginForm {\n  width: 100%; }\n\n.loginFormField {\n  width: 90%;\n  margin-left: 5%; }\n\n.loginCard {\n  min-width: 150px;\n  max-width: 350px;\n  width: 90%;\n  padding: 50px 10px;\n  background: white;\n  color: #00897B; }\n\n.loginActions {\n  margin-bottom: -15px; }\n\n#loginBgr {\n  margin-top: 10%;\n  height: 50%;\n  display: flex;\n  flex-direction: row;\n  width: 70%;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\n  background: linear-gradient(to right, #00897B, #4DB6AC);\n  padding: 5% 0; }\n\n.logImg {\n  width: 50%;\n  height: 350px;\n  background-repeat: no-repeat;\n  margin-right: 5%; }\n\n.logImg img {\n  width: 90%;\n  height: 130%;\n  margin-left: 5%; }\n\n.signUp:hover {\n  background-color: #00897B;\n  color: white;\n  transition: 1s; }\n\n.wrap {\n  flex-wrap: wrap; }\n\nmat-card-title {\n  text-align: center;\n  padding-top: 5%; }\n\nmat-error {\n  margin-left: 5%; }\n\n.mat-card-actions {\n  margin-left: 0px !important; }\n"
 
 /***/ }),
 
@@ -3092,7 +3090,7 @@ var ProjectOverviewComponent = /** @class */ (function () {
         var _this = this;
         this.projectOverviewService.getListOfAlgorithms(this.projectId).subscribe(function (res) {
             _this.algorithms = res.data;
-            console.log(res);
+            // console.log(res);
         }, function (err) { return console.log(err); });
     };
     ProjectOverviewComponent.prototype.getDataset = function () {
@@ -3106,7 +3104,7 @@ var ProjectOverviewComponent = /** @class */ (function () {
         var _this = this;
         this.projectOverviewService.isLinked(this.projectId)
             .subscribe(function (res) {
-            console.log(res);
+            // console.log(res);
             if (res['data']['true'] && _this.dataset) {
                 _this.datasetId = res['data']['true'];
                 for (var i = 0; i < _this.dataset.length; i++) {
@@ -3185,13 +3183,13 @@ var ProjectOverviewComponent = /** @class */ (function () {
     };
     ProjectOverviewComponent.prototype.ngOnInit = function () {
         var _this = this;
-        console.log("init");
+        // console.log("init");
         this.linked = false;
         this.projectId = this.sharedService.getProjectId();
         this.datasetName = this.sharedService.getDatasetName();
         this.projectOverviewService.getProject(this.projectId).subscribe(function (res) {
             _this.project = res.data.project;
-            console.log(_this.project);
+            // console.log(this.project);
         });
         this.getListOfAlgorithms();
         this.getDataset();
@@ -3346,10 +3344,10 @@ var ProjectsComponent = /** @class */ (function () {
     ProjectsComponent.prototype.getProjects = function () {
         var _this = this;
         this.projectsService.getProjects().subscribe(function (res) {
-            console.log(res);
+            // console.log(res);
             _this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatTableDataSource"](res.data);
         }, function (err) { return console.log(err); }, function () {
-            console.log(_this.dataSource);
+            // console.log(this.dataSource);
             _this.dataSource.paginator = _this.paginator;
             _this.dataSource.sort = _this.sort;
         });
@@ -3954,7 +3952,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Projects\CustomerProfiling\src\main\webapp\CustomerProfiling\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! D:\Eclipse projects\CustomerProfiling\src\main\webapp\CustomerProfiling\src\main.ts */"./src/main.ts");
 
 
 /***/ })
