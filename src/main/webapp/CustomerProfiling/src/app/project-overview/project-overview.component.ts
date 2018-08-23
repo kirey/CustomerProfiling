@@ -33,7 +33,7 @@ export class ProjectOverviewComponent implements OnInit {
     this.projectOverviewService.getListOfAlgorithms(this.projectId).subscribe(
       res => {
         this.algorithms = res.data;
-        console.log(res);
+        // console.log(res);
       },
       err => console.log(err)
     );
@@ -53,7 +53,7 @@ export class ProjectOverviewComponent implements OnInit {
     this.projectOverviewService.isLinked(this.projectId)
       .subscribe(
         res => {
-          console.log(res);
+          // console.log(res);
           if (res['data']['true'] && this.dataset) {
             this.datasetId = res['data']['true'];
 
@@ -147,14 +147,14 @@ export class ProjectOverviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("init");
+    // console.log("init");
     this.linked = false;
     this.projectId = this.sharedService.getProjectId();
     this.datasetName = this.sharedService.getDatasetName();
 
     this.projectOverviewService.getProject(this.projectId).subscribe(res => {
       this.project = res.data.project;
-      console.log(this.project);
+      // console.log(this.project);
     });
     this.getListOfAlgorithms();
     this.getDataset();

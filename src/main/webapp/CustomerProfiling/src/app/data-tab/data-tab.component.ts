@@ -38,7 +38,7 @@ export class DataTabComponent implements OnInit {
         res => {
           this.variables = res['data'];
           this.variablesHelperArr = res['data'];
-          console.log(this.variables);
+          // console.log(this.variables);
         },
         err => {
           console.log(err);
@@ -76,7 +76,7 @@ export class DataTabComponent implements OnInit {
     this.projectOverviewService.getDatasetDetails(this.datasetId).subscribe(
       res => {
         this.details = res.data;
-        console.log(this.details);
+        // console.log(this.details);
       },
       err => {
         console.log(err);
@@ -93,7 +93,7 @@ export class DataTabComponent implements OnInit {
     this.dataTabService.getOperationTypes('NUMERIC')
       .subscribe(
         res => {
-          console.log(res);
+          // console.log(res);
           this.numericOperationTypes = res['data'];
           // this.variables[index]['operationTypes'] = res['data'];
         },
@@ -104,7 +104,7 @@ export class DataTabComponent implements OnInit {
     this.dataTabService.getOperationTypes('TEXT')
       .subscribe(
         res => {
-          console.log(res);
+          // console.log(res);
           this.textOperationTypes = res['data'];
           // this.variables[index]['operationTypes'] = res['data'];
         },
@@ -166,7 +166,7 @@ export class DataTabComponent implements OnInit {
         if (this.variables[index]['scaleMax']) this.variables[index]['scaleMax'] = null;
         break;
     }
-    console.log(this.variables);
+    // console.log(this.variables);
     this.sharedService.setParams(this.variables);
   }
 
@@ -206,14 +206,14 @@ export class DataTabComponent implements OnInit {
       this.dataTabService.getProcessingView(this.datasetId, this.variables)
         .subscribe(
           res => {
-            console.log(res['data']);
+            // console.log(res['data']);
             this.csvArray = res['data'];
             let dialogRef = this.dialog.open(DataTabViewComponent, {
               data: this.csvArray
             })
             dialogRef.afterClosed().subscribe(res => {
               this.variables = this.sharedService.getParams();
-              console.log(this.variables);
+              // console.log(this.variables);
             });
           },
           err => {
@@ -232,7 +232,7 @@ export class DataTabComponent implements OnInit {
 
   submit() {
     let checkArray = [];
-    console.log(this.variables);
+    // console.log(this.variables);
 
     // Check for empty fields
     for (let i = 0; i < this.variables.length; i++) {
@@ -261,9 +261,8 @@ export class DataTabComponent implements OnInit {
       this.message = '';
 
       let data = this.variables;
-      // 
+
       // Variables has params property
-      // 
       for (let i = 0; i < data.length; i++) {
         // delete data[i]['params'];
         delete data[i]['operationTypes'];
@@ -271,7 +270,7 @@ export class DataTabComponent implements OnInit {
       this, this.dataTabService.save(this.datasetId, this.projectId, data)
         .subscribe(
           res => {
-            console.log(res);
+            // console.log(res);
             this.snackbar.openSnackBar(res['message'], 'Success');
             this.isDatasetLinked = true;
             this.sharedService.setDatasetLink(true);

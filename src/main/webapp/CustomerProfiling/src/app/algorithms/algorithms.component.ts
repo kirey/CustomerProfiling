@@ -31,7 +31,7 @@ export class AlgorithmsComponent implements OnInit {
     this.service.getAll()
       .subscribe(
         res => {
-          console.log(res);
+          // console.log(res);
           this.dataSource = new MatTableDataSource(res['data']);
         },
         err => {

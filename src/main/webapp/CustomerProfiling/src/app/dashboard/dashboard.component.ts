@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
   getAllProjects() {
     this.dashboardService.getProjects().subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.projectsArr = res['data'];
       },
       err => {
@@ -58,9 +58,9 @@ export class DashboardComponent implements OnInit {
   getAllDatasets() {
     this.dashboardService.getDatasets().subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.dataset = res['data'];
-        console.log(this.dataset);
+        // console.log(this.dataset);
       },
       err => {
         console.log(err);
@@ -71,9 +71,9 @@ export class DashboardComponent implements OnInit {
   getAllAlgorithms() {
     this.dashboardService.getAlgorithms().subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.algorithm = res['data'];
-        console.log(this.algorithm);
+        // console.log(this.algorithm);
       },
       err => {
         console.log(err);
@@ -85,12 +85,12 @@ export class DashboardComponent implements OnInit {
     this.panelProject = true;
     this.panelData = false;
     this.panelAlgo = false;
-    console.log('klik');
+    // console.log('klik');
     this.dashboardService.getProjectsDetails(id).subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.projectDetails = res['data'];
-        console.log(this.projectDetails);
+        // console.log(this.projectDetails);
       },
       err => {
         console.log(err);
@@ -99,7 +99,7 @@ export class DashboardComponent implements OnInit {
   }
   // project details dbl click function -  go to overview project page
   projectDblclick(id) {
-    console.log('dblklik');
+    // console.log('dblklik');
     this.sharedService.setProjectId(id);
     this._router.navigate(['/one-project']);
   }
@@ -110,9 +110,9 @@ export class DashboardComponent implements OnInit {
     this.panelAlgo = false;
     this.dashboardService.getDatasetDetails(id).subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.data = res['data'];
-        console.log(this.data);
+        // console.log(this.data);
       },
       err => {
         console.log(err);
@@ -121,15 +121,15 @@ export class DashboardComponent implements OnInit {
   }
   // algorithm details click - show algorithms details in panel details
   algorithmClick(id) {
-    console.log('dblklik');
+    // console.log('dblklik');
     this.panelAlgo = true;
     this.panelData = false;
     this.panelProject = false;
     this.dashboardService.getAlgorithmDetails(id).subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.algo = res['data'];
-        console.log(this.algo);
+        // console.log(this.algo);
       },
       err => {
         console.log(err);

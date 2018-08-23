@@ -25,10 +25,10 @@ export class AddComponent implements OnInit {
   }
   addProject() {
     const project = this.addProjectForm.value;
-    console.log(project);
+    // console.log(project);
     this.addProjectService.addProject(project).subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.snackbar.openSnackBar(res['message'], 'Success');
         this.dialogRef.close();
       },
