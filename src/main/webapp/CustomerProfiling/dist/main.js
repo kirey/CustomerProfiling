@@ -808,7 +808,7 @@ module.exports = "<!-- <h1>\r\n  Dashboard</h1> -->\r\n<div class=\"dashboardPan
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%;\n  padding-top: 35px; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #00897B, #4DB6AC);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #00897B; }\n\n.add-mini-fab-btn {\n  color: #fff; }\n\n.dashboardPanel {\n  width: 96%;\n  margin-left: 2%;\n  display: flex;\n  flex-direction: row;\n  margin-top: 3%; }\n\ntable {\n  width: 100%; }\n\nh1 {\n  margin-left: 2%;\n  color: #757575; }\n\nh3 {\n  color: #4DB6AC; }\n\nh4 {\n  background-color: #00897B;\n  padding: 20px 30px;\n  color: white;\n  font-weight: 100;\n  margin-top: 0; }\n\n.flex-grid {\n  width: 95%;\n  flex-direction: column;\n  justify-content: space-between; }\n\n.col {\n  border-width: 1px;\n  border-style: groove;\n  border-color: #E1F5FE;\n  margin: 0 0 6px 0; }\n\n.colFullHeight::-moz-selection, h3::-moz-selection, h4::-moz-selection, span::-moz-selection, strong::-moz-selection, td::-moz-selection, th::-moz-selection {\n  background: #00897B;\n  color: white; }\n\n.colFullHeight::selection, h3::selection, h4::selection, span::selection, strong::selection, td::selection, th::selection {\n  background: #00897B;\n  color: white; }\n\n.colFullHeight {\n  width: 100%;\n  height: 793px;\n  max-height: 793px;\n  border-width: 1px;\n  border-style: groove;\n  border-color: #E1F5FE;\n  margin-left: 2%;\n  background-color: white; }\n\n.panelDetails {\n  padding: 0 30px; }\n\nstrong {\n  margin-right: 5px;\n  color: #424242;\n  font-size: 16px; }\n\nspan {\n  font-size: 16px; }\n\nmat-card {\n  padding: 0 !important;\n  box-shadow: none !important;\n  font-size: 16px; }\n\nmat-card-header {\n  background: #00897B !important;\n  color: white !important;\n  padding: 20px; }\n\nmat-card-content {\n  padding: 5px 25px;\n  max-height: 190px;\n  overflow-y: scroll; }\n\n.list-wrapper {\n  width: 100%;\n  align-items: center; }\n\n@media (max-width: 400px) {\n  .flex-grid {\n    display: block; }\n  .col {\n    margin-top: 1%;\n    width: 100%; } }\n"
+module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%;\n  padding-top: 35px; }\n\n.mainContent {\n  width: 80%;\n  margin-left: 20% !important; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #00897B, #4DB6AC);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #00897B; }\n\n.add-mini-fab-btn {\n  color: #fff; }\n\n.dashboardPanel {\n  width: 96%;\n  margin-left: 2%;\n  display: flex;\n  flex-direction: row;\n  margin-top: 3%; }\n\ntable {\n  width: 100%; }\n\nh1 {\n  margin-left: 2%;\n  color: #757575; }\n\nh3 {\n  color: #4DB6AC; }\n\nh4 {\n  background-color: #00897B;\n  padding: 20px 30px;\n  color: white;\n  font-weight: 100;\n  margin-top: 0; }\n\n.flex-grid {\n  width: 95%;\n  flex-direction: column;\n  justify-content: space-between; }\n\n.col {\n  border-width: 1px;\n  border-style: groove;\n  border-color: #E1F5FE;\n  margin: 0 0 6px 0; }\n\n.colFullHeight::-moz-selection, h3::-moz-selection, h4::-moz-selection, span::-moz-selection, strong::-moz-selection, td::-moz-selection, th::-moz-selection {\n  background: #00897B;\n  color: white; }\n\n.colFullHeight::selection, h3::selection, h4::selection, span::selection, strong::selection, td::selection, th::selection {\n  background: #00897B;\n  color: white; }\n\n.colFullHeight {\n  width: 100%;\n  height: 755px;\n  max-height: 755px;\n  border-width: 1px;\n  border-style: groove;\n  border-color: #E1F5FE;\n  margin-left: 2%;\n  background-color: white; }\n\n.panelDetails {\n  padding: 0 30px; }\n\nstrong {\n  margin-right: 5px;\n  color: #424242;\n  font-size: 16px; }\n\nspan {\n  font-size: 16px; }\n\nmat-card {\n  padding: 0 !important;\n  box-shadow: none !important;\n  font-size: 16px; }\n\nmat-card-header {\n  background: #00897B !important;\n  color: white !important;\n  padding: 20px; }\n\nmat-card-content {\n  padding: 5px 25px;\n  max-height: 190px;\n  overflow-y: scroll; }\n\n.list-wrapper {\n  width: 100%;\n  align-items: center; }\n\n@media (max-width: 400px) {\n  .flex-grid {\n    display: block; }\n  .col {\n    margin-top: 1%;\n    width: 100%; } }\n"
 
 /***/ }),
 
@@ -1165,8 +1165,8 @@ var DataTabComponent = /** @class */ (function () {
                 this.variables[index]['scaleMax'] = null;
             if (this.variables[index]['bins'])
                 this.variables[index]['bins'] = null;
+            this.variablesHelperArr[index]['typeOfDataChanged'] = true;
         }
-        this.variablesHelperArr[index]['typeOfDataChanged'] = true;
         // if (type == 'typeOfData' && this.variables[index]['params']) {
         //   delete this.variables[index]['params'];
         // }
@@ -1310,10 +1310,12 @@ var DataTabComponent = /** @class */ (function () {
             this, this.dataTabService.save(this.datasetId, this.projectId, data)
                 .subscribe(function (res) {
                 console.log(res);
-                _this.snackbar.openSnackBar(res['data'], 'Success');
+                _this.snackbar.openSnackBar(res['message'], 'Success');
+                _this.isDatasetLinked = true;
+                _this.sharedService.setDatasetLink(true);
             }, function (err) {
                 console.log(err);
-                _this.snackbar.openSnackBar(err.error.errorCode, 'Error');
+                _this.snackbar.openSnackBar(err['message'], 'Error');
             });
         }
     };
@@ -1511,13 +1513,13 @@ var DatasetComponent = /** @class */ (function () {
                 _this._datasetService.deleteDataset(dataset.id)
                     .subscribe(function (res) {
                     console.log(res);
-                    _this._snackBarService.openSnackBar(res['message'], 'Success');
+                    _this._snackBarService.openSnackBar(JSON.parse(res.text()).message, 'Success');
                     _this._datasetService.getDatasets().subscribe(function (res) {
                         _this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableDataSource"](JSON.parse(res.text()).data);
                     });
                 }, function (err) {
                     console.log(err);
-                    _this._snackBarService.openSnackBar(err['message'], 'Error');
+                    _this._snackBarService.openSnackBar(JSON.parse(err.text()).message, 'Error');
                 });
             }
         });
@@ -1553,7 +1555,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DatasetService", function() { return DatasetService; });
 /* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1563,7 +1564,6 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
 
 
 var DatasetService = /** @class */ (function () {
@@ -1581,7 +1581,7 @@ var DatasetService = /** @class */ (function () {
         return this._http.get(this.baseUrl + id);
     };
     DatasetService.prototype.deleteDataset = function (id) {
-        return this._http.delete(this.baseUrl + id).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (res) { return res.json(); }));
+        return this._http.delete(this.baseUrl + id);
     };
     DatasetService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -1685,7 +1685,7 @@ var AddAlgorithmComponent = /** @class */ (function () {
         else
             this.selectedParam = null;
     };
-    // SUBIMT FUNCTION
+    // SUBIMT
     AddAlgorithmComponent.prototype.submit = function () {
         var _this = this;
         console.log(this.addAlgorithmForm.value);
@@ -1694,9 +1694,10 @@ var AddAlgorithmComponent = /** @class */ (function () {
             .subscribe(function (res) {
             console.log(res);
             _this.dialogRef.close();
-            _this.snackbar.openSnackBar('Algorithm added successfully.', 'Success');
+            _this.snackbar.openSnackBar(JSON.parse(res.text()).message, 'Success');
         }, function (err) {
             console.log(err);
+            _this.snackbar.openSnackBar(JSON.parse(err.text()).message, 'Error');
         });
     };
     AddAlgorithmComponent.prototype.ngOnInit = function () {
@@ -1907,10 +1908,10 @@ var AddDatasetComponent = /** @class */ (function () {
             type: "application/json"
         }));
         this._datasetService.addDataset(formData).subscribe(function (res) {
-        }, function (err) {
-        }, function () {
             _this.dialogRef.close();
-            _this._snackBarService.openSnackBar('Success', 'You have successfuly added dataset!');
+            _this._snackBarService.openSnackBar(JSON.parse(res.text()).message, 'Success');
+        }, function (err) {
+            _this._snackBarService.openSnackBar(JSON.parse(err.text()).message, 'Error');
         });
     };
     AddDatasetComponent = __decorate([
@@ -2661,10 +2662,10 @@ var EditAlgorithmComponent = /** @class */ (function () {
             .subscribe(function (res) {
             // console.log(res);
             _this.dialogRef.close();
-            _this.snackbar.openSnackBar(res['data'], 'Success');
+            _this.snackbar.openSnackBar(res['message'], 'Success');
         }, function (err) {
             console.log(err);
-            _this.snackbar.openSnackBar(err['data'], 'Error');
+            _this.snackbar.openSnackBar(err['message'], 'Error');
         });
     };
     EditAlgorithmComponent.prototype.ngOnInit = function () {
@@ -3139,10 +3140,10 @@ var ProjectOverviewComponent = /** @class */ (function () {
         this.projectOverviewService.editProject(obj)
             .subscribe(function (res) {
             // console.log(res);
-            _this.snackbar.openSnackBar(res['data'], 'Success');
+            _this.snackbar.openSnackBar(res['message'], 'Success');
         }, function (err) {
             console.log(err);
-            _this.snackbar.openSnackBar('Something went wrong.', 'Error');
+            _this.snackbar.openSnackBar(err['message'], 'Error');
         });
     };
     ProjectOverviewComponent.prototype.selectedDataset = function (ev) {
@@ -3177,10 +3178,9 @@ var ProjectOverviewComponent = /** @class */ (function () {
             // Link dataset
             _this.sharedService.setDatasetId(_this.selectedDatasetId);
             _this.sharedService.setDatasetName(_this.datasetName);
-            _this.snackbar.openSnackBar('Dataset linked.', 'Success');
         }, function (err) {
             console.log(err);
-            _this.snackbar.openSnackBar('Something went wrong.', 'Error');
+            _this.snackbar.openSnackBar(err['message'], 'Error');
         });
     };
     ProjectOverviewComponent.prototype.ngOnInit = function () {
