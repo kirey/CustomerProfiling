@@ -121,9 +121,8 @@ export class DataTabComponent implements OnInit {
       if (this.variables[index]['scaleMin']) this.variables[index]['scaleMin'] = null;
       if (this.variables[index]['scaleMax']) this.variables[index]['scaleMax'] = null;
       if (this.variables[index]['bins']) this.variables[index]['bins'] = null;
+      this.variablesHelperArr[index]['typeOfDataChanged'] = true;
     }
-
-    this.variablesHelperArr[index]['typeOfDataChanged'] = true;
 
     // if (type == 'typeOfData' && this.variables[index]['params']) {
     //   delete this.variables[index]['params'];
@@ -273,11 +272,13 @@ export class DataTabComponent implements OnInit {
         .subscribe(
           res => {
             console.log(res);
-            this.snackbar.openSnackBar(res['data'], 'Success');
+            this.snackbar.openSnackBar(res['message'], 'Success');
+            this.isDatasetLinked = true;
+            this.sharedService.setDatasetLink(true);
           },
           err => {
             console.log(err);
-            this.snackbar.openSnackBar(err.error.errorCode, 'Error');
+            this.snackbar.openSnackBar(err['message'], 'Error');
           }
         );
     }

@@ -65,11 +65,11 @@ export class EditAlgorithmComponent implements OnInit {
         res => {
           // console.log(res);
           this.dialogRef.close();
-          this.snackbar.openSnackBar(res['data'], 'Success');
+          this.snackbar.openSnackBar(res['message'], 'Success');
         },
         err => {
           console.log(err);
-          this.snackbar.openSnackBar(err['data'], 'Error');
+          this.snackbar.openSnackBar(err['message'], 'Error');
         }
       );
   }

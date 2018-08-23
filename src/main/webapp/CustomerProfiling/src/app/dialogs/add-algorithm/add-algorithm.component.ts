@@ -50,7 +50,7 @@ export class AddAlgorithmComponent implements OnInit {
 
   }
 
-  // SUBIMT FUNCTION
+  // SUBIMT
   submit() {
     console.log(this.addAlgorithmForm.value);
     this.addAlgorithmForm.value['parameters'] = this.parameters;
@@ -60,10 +60,11 @@ export class AddAlgorithmComponent implements OnInit {
         res => {
           console.log(res);
           this.dialogRef.close();
-          this.snackbar.openSnackBar('Algorithm added successfully.', 'Success');
+          this.snackbar.openSnackBar(JSON.parse(res.text()).message, 'Success');
         },
         err => {
-          console.log(err)
+          console.log(err);
+          this.snackbar.openSnackBar(JSON.parse(err.text()).message, 'Error');
         }
       );
   }

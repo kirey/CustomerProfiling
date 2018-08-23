@@ -71,7 +71,7 @@ export class DatasetComponent implements OnInit {
           .subscribe(
             res => {
               console.log(res);
-              this._snackBarService.openSnackBar(res['message'], 'Success');
+              this._snackBarService.openSnackBar(JSON.parse(res.text()).message, 'Success');
               this._datasetService.getDatasets().subscribe(
                 res => {
                   this.dataSource = new MatTableDataSource(JSON.parse(res.text()).data);
@@ -79,7 +79,7 @@ export class DatasetComponent implements OnInit {
             },
             err => {
               console.log(err);
-              this._snackBarService.openSnackBar(err['message'], 'Error');
+              this._snackBarService.openSnackBar(JSON.parse(err.text()).message, 'Error');
             });
       }
     });

@@ -93,11 +93,11 @@ export class ProjectOverviewComponent implements OnInit {
       .subscribe(
         res => {
           // console.log(res);
-          this.snackbar.openSnackBar(res['data'], 'Success');
+          this.snackbar.openSnackBar(res['message'], 'Success');
         },
         err => {
           console.log(err);
-          this.snackbar.openSnackBar('Something went wrong.', 'Error');
+          this.snackbar.openSnackBar(err['message'], 'Error');
         }
       );
   }
@@ -138,12 +138,10 @@ export class ProjectOverviewComponent implements OnInit {
         // Link dataset
         this.sharedService.setDatasetId(this.selectedDatasetId);
         this.sharedService.setDatasetName(this.datasetName);
-
-        this.snackbar.openSnackBar('Dataset linked.', 'Success');
       },
       err => {
         console.log(err);
-        this.snackbar.openSnackBar('Something went wrong.', 'Error');
+        this.snackbar.openSnackBar(err['message'], 'Error');
       }
     );
   }

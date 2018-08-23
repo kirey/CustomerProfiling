@@ -54,12 +54,15 @@ export class AddDatasetComponent implements OnInit {
       {
         type: "application/json"
       }));
-    this._datasetService.addDataset(formData).subscribe(res => {
-    }, err => {
-    }, () => {
-      this.dialogRef.close();
-      this._snackBarService.openSnackBar('Success', 'You have successfuly added dataset!');
-    });
+    this._datasetService.addDataset(formData).subscribe(
+      res => {
+        this.dialogRef.close();
+        this._snackBarService.openSnackBar(JSON.parse(res.text()).message, 'Success');
+      },
+      err => {
+        this._snackBarService.openSnackBar(JSON.parse(err.text()).message, 'Error');
+      }
+    );
   }
 
 }

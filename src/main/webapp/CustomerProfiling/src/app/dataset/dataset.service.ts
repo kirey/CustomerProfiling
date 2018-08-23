@@ -25,8 +25,8 @@ export class DatasetService {
   }
 
   deleteDataset(id) {
-    return this._http.delete(this.baseUrl + id).pipe(map(res => res.json()));
+    return this._http.delete(this.baseUrl + id);
+
+
   }
-
-
 }
