@@ -16,6 +16,13 @@
         border-radius: 3px;
         width: 40%;
     }
+    .edit-icon {
+        color: $primary;
+    }
+    .edit-icon:hover {
+        color: $warn;
+        cursor: pointer;
+    }
     
     .border {
         border: 1px solid #E0E0E0;

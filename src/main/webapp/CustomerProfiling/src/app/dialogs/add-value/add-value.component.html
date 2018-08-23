@@ -1,6 +1,6 @@
 <!-- ONE VALUE -->
 <div *ngIf="data && data.type == 'addValueDialog'" id="addValue">
-    <h1>Add Value for parameter </h1>
+    <h1 class="subtitle" mat-dialog-title>Add Algorithm</h1>
     <mat-divider></mat-divider>
     <mat-dialog-content>
         <form [formGroup]="addValueForm" (ngSubmit)="addValue()">
