@@ -40,3 +40,10 @@ span {
 .column-style>span {
     width: 170px;
 }
+ // Button
+ mat-dialog-actions {
+  float: right;
+}
+button {
+  margin-top: 30px;
+}
