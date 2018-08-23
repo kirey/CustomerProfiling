@@ -139,11 +139,11 @@ export class AnalyzeComponent implements OnInit {
           this.getAlgorithms();
           this.getStatus();
           // console.log(res);
-          this.snackbar.openSnackBar('Successfully saved.', 'Success');
+          this.snackbar.openSnackBar(JSON.parse(res.text()).message, 'Success');
         },
         err => {
           console.log(err);
-          this.snackbar.openSnackBar('Something went wrong.', 'Error');
+          this.snackbar.openSnackBar(JSON.parse(err.text()).message, 'Error');
         }
       )
   }
@@ -165,11 +165,11 @@ export class AnalyzeComponent implements OnInit {
       .subscribe(
         res => {
           // console.log(res)
-          this.snackbar.openSnackBar(res['data'], 'Success');
+          this.snackbar.openSnackBar(res['message'], 'Success');
         },
         err => {
           console.log(err);
-          this.snackbar.openSnackBar(err['data'], 'Error');
+          this.snackbar.openSnackBar(err['message'], 'Error');
         }
       );
   }
