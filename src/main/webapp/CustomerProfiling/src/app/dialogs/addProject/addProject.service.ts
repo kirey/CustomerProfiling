@@ -14,13 +14,4 @@ export class AddProjectService {
   addProject(project): Observable<any> {
     return this._http.post(this.baseUrl + 'projects', project);
   }
-  // getEvents(): Observable<any> {
-  //   return this._http.get(this.baseUrl + 'events');
-  // }
-  // editJobs(obj): Observable<any> {
-  //   return this._http.put(this.baseUrl + 'events', obj);
-  // }
-  // getJobs(): Observable<any> {
-  //   return this._http.get(this.baseUrl + 'events');
-  // }
 }

@@ -34,7 +34,7 @@ export class EditAlgorithmComponent implements OnInit {
     }
     if (!this.message) {
       this.parameters.push(this.addParametersForm.value);
-      console.log(this.parameters);
+      // console.log(this.parameters);
     }
   }
   // Remove Param
@@ -76,7 +76,7 @@ export class EditAlgorithmComponent implements OnInit {
 
   ngOnInit() {
     if (this.data) {
-      console.log(this.data);
+      // console.log(this.data);
 
       this.parameters = this.data['parameters'];
 

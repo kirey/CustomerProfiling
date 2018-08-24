@@ -32,27 +32,27 @@ export class AnalyzeComponent implements OnInit {
   subscription: Subscription;
 
   getParameters(algorithm) {
-    console.log(this.parameters);
+    // console.log(this.parameters);
     this.parameters = [];
     algorithm.parameters.forEach(element => {
       this.parameters.push(element);
-      console.log(element);
+      // console.log(element);
       // console.log(element.parameterValues[0]);
     });
-    console.log(this.parameters);
+    // console.log(this.parameters);
   }
 
   getAlgorithms() {
     this._analyzeService.getAlgorithms(this.projectId).subscribe(res => {
       this.algorithms = JSON.parse(res.text()).data;
-      console.log(this.algorithms);
+      // console.log(this.algorithms);
     },
       err => {
         this.snackbar.openSnackBar('Something went wrong.', 'Error');
       }, () => {
         if (this.algorithms.length > 0) {
           this.initialAlgorithm = this.algorithms[0];
-          console.log(this.initialAlgorithm);
+          // console.log(this.initialAlgorithm);
           this.getParameters(this.initialAlgorithm);
         }
       });
@@ -62,7 +62,7 @@ export class AnalyzeComponent implements OnInit {
     this._analyzeService.getListOfAlgorithms(this.projectId)
       .subscribe(
         res => {
-          console.log(res);
+          // console.log(res);
           this.listOfAlgorithms = res['data'];
         },
         err => console.log(err)
@@ -76,7 +76,7 @@ export class AnalyzeComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
+        // console.log(result);
         this.parameters[i].parameterValues[0] = result;
       }
     });
@@ -131,7 +131,7 @@ export class AnalyzeComponent implements OnInit {
 
   // SAVE button
   addAlgorithm() {
-    console.log(this.initialAlgorithm);
+    // console.log(this.initialAlgorithm);
     this._analyzeService.save(this.projectId, this.initialAlgorithm)
       .subscribe(
         res => {
@@ -149,7 +149,7 @@ export class AnalyzeComponent implements OnInit {
   }
 
   getStatus() {
-    console.log("lala");
+    // console.log("lala");
     this._analyzeService.status(this.projectId)
       .subscribe(
         res => {

@@ -33,7 +33,7 @@ export class AddAlgorithmComponent implements OnInit {
     }
     if (!this.message) {
       this.parameters.push(this.addParametersForm.value);
-      console.log(this.parameters);
+      // console.log(this.parameters);
     }
   }
   // Remove Param
@@ -52,13 +52,13 @@ export class AddAlgorithmComponent implements OnInit {
 
   // SUBIMT
   submit() {
-    console.log(this.addAlgorithmForm.value);
+    // console.log(this.addAlgorithmForm.value);
     this.addAlgorithmForm.value['parameters'] = this.parameters;
 
     this.service.addAlgorithm(this.addAlgorithmForm.value)
       .subscribe(
         res => {
-          console.log(res);
+          // console.log(res);
           this.dialogRef.close();
           this.snackbar.openSnackBar(JSON.parse(res.text()).message, 'Success');
         },

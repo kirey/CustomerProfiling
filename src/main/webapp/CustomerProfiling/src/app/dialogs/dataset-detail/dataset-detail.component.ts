@@ -12,7 +12,7 @@ export class DatasetDetailComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<DatasetDetailComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
-    console.log(this.data);
+    // console.log(this.data);
   }
 
 }

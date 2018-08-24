@@ -29,10 +29,10 @@ export class DatasetComponent implements OnInit {
   ngOnInit() {
     this._datasetService.getDatasets().subscribe(res => {
       this.dataSource = new MatTableDataSource(JSON.parse(res.text()).data);
-      console.log(this.dataSource);
+      // console.log(this.dataSource);
     }, err => { }, () => {
       this.dataSource.paginator = this.paginator;
-      console.log(this.dataSource.paginator);
+      // console.log(this.dataSource.paginator);
       this.dataSource.filterPredicate = function (data, filter: string): boolean {
         return data.name.toLowerCase().includes(filter);
       };
@@ -70,7 +70,7 @@ export class DatasetComponent implements OnInit {
         this._datasetService.deleteDataset(dataset.id)
           .subscribe(
             res => {
-              console.log(res);
+              // console.log(res);
               this._snackBarService.openSnackBar(JSON.parse(res.text()).message, 'Success');
               this._datasetService.getDatasets().subscribe(
                 res => {

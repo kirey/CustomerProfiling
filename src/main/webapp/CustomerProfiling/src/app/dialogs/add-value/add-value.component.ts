@@ -18,7 +18,7 @@ export class AddValueComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.data);
+    // console.log(this.data);
     if (this.data.type == 'addValueDialog') {
       this.addValueForm = this._formBuilder.group({
         value: ['', Validators.required]

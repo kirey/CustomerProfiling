@@ -32,11 +32,11 @@ export class ProjectsComponent implements OnInit {
   getProjects() {
     this.projectsService.getProjects().subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.dataSource = new MatTableDataSource(res.data);
       }, err => console.log(err),
       () => {
-        console.log(this.dataSource);
+        // console.log(this.dataSource);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }

@@ -31,15 +31,4 @@ export class Dashboardervice {
   getAlgorithmDetails(id) {
     return this._http.get(this.baseUrl + 'algorithms/' + id);
   }
-  // getDataTypes() {
-  //     return this._http.get(this.baseUrl + 'dataTypes');
-  // }
-
-  // getVariableTypes() {
-  //     return this._http.get(this.baseUrl + 'columnTypes');
-  // }
-
-  // getOperationTypes(type) {
-  //     return this._http.get(this.baseUrl + 'operationTypes?dataType=' + type);
-  // }
 }

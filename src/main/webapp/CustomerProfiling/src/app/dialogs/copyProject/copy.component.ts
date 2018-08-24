@@ -19,10 +19,10 @@ export class CopyComponent implements OnInit {
   ) { }
   copyProject(obj) {
     obj['id'] = this.data.id;
-    console.log(obj);
+    // console.log(obj);
     this.copyProjectService.copyProjects(obj).subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this.snackbar.openSnackBar(res['message'], 'Success');
         this.dialogRef.close();
       },
@@ -36,6 +36,6 @@ export class CopyComponent implements OnInit {
     this.dialogRef.close();
   }
   ngOnInit() {
-    console.log(this.data);
+    // console.log(this.data);
   }
 }
