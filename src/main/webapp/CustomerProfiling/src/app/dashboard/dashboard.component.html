@@ -61,35 +61,128 @@
       <div class="panelDetails">
         <div *ngIf="projectDetails && panelProject">
           <h3>Project Details</h3>
-          <span>
-            <strong>Project Id: </strong>{{projectDetails.project.id}},</span>
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>Project Id: </strong>
+                </td>
+                <td>{{projectDetails.project.id}},</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Project Name: </strong>
+                </td>
+                <td>{{projectDetails.project.projectName}}</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Status: </strong>
+                </td>
+                <td>{{projectDetails.project.status}}</td>
+              </tr>
+              <tr *ngIf="projectDetails.project.description">
+                <td>
+                  <strong>Desription: </strong>
+                </td>
+                <td>{{projectDetails.project.description}}</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Creation Date: </strong>
+                </td>
+                <td>{{projectDetails.project.creationDate | date}}</td>
+              </tr>
+              <tr *ngIf="projectDetails.project.lastOpened">
+                <td>
+                  <strong>Last Opened: </strong>
+                </td>
+                <td>{{projectDetails.project.lastOpened | date}}</td>
+              </tr>
+              <tr *ngIf="projectDetails.dataset">
+                <td>
+                  <strong>Dataset Name: </strong>
+                </td>
+                <td>{{projectDetails.dataset.name}}</td>
+              </tr>
+              <tr *ngIf="projectDetails.algorithms.length>0">
+                <td>
+                  <strong>Algorithms Name: </strong>
+                </td>
+                <td>
+                  <span *ngFor=" let al of projectDetails.algorithms">
+                    {{al.algorithmName}},
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- ***************************** TABLE End**************************************** -->
+          <!-- <span>
+            <strong>Project Id: </strong><div class="ïnfo"><span>{{projectDetails.project.id}},</span></div></span>
           <br>
           <span>
-            <strong>Project Name: </strong> {{projectDetails.project.projectName}}</span>
+            <strong>Project Name: </strong> <div class="ïnfo"><span>{{projectDetails.project.projectName}}</span></div></span>
           <br>
           <span>
-            <strong>Status: </strong>{{projectDetails.project.status}}</span>
+            <strong>Status: </strong><div class="ïnfo"><span>{{projectDetails.project.status}}</span></div></span>
           <br>
           <span>
-            <strong>Desription: </strong>{{projectDetails.project.description}}</span>
+            <strong>Desription: </strong><div class="ïnfo"><span>{{projectDetails.project.description}}</span></div></span>
           <br>
           <span>
-            <strong>Creation Date: </strong>{{projectDetails.project.creationDate | date}}</span>
+            <strong>Creation Date: </strong><div class="ïnfo"><span>{{projectDetails.project.creationDate | date}}</span></div></span>
           <br>
           <span *ngIf="projectDetails.project.lastOpened">
-            <strong>Last Opened: </strong>{{projectDetails.project.lastOpened | date}}</span>
+            <strong>Last Opened: </strong><div class="ïnfo"><span>{{projectDetails.project.lastOpened | date}}</span></div></span>
           <br>
-          <span *ngIf="projectDetails.dataset">
-            <strong>Dataset Name: </strong>{{projectDetails.dataset.name}}</span>
+          <div *ngIf="projectDetails.dataset">
+            <strong>Dataset Name: </strong><span class="ïnfo">{{projectDetails.dataset.name}}</span></div>
           <br>
           <div *ngIf="projectDetails.algorithms.length>0">
             <strong>Algorithms Name: </strong>
-            <span *ngFor=" let al of projectDetails.algorithms"> {{al.algorithmName}},</span>
-          </div>
+            <span *ngFor=" let al of projectDetails.algorithms"> <div class="ïnfo"><span>{{al.algorithmName}},</span></div></span>
+          </div> -->
         </div>
         <div *ngIf="data && panelData">
           <h3>Dataset Details</h3>
-          <span>
+          <!-- **************************Table**************************************** -->
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>Dataset Name: </strong>
+                </td>
+                <td>{{data.datasetName}}</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Dataset Description: </strong>
+                </td>
+                <td>{{data.datasetDesc}}</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Dataset Size: </strong>
+                </td>
+                <td>{{data.datasetSize}}</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Number Of Variables: </strong>
+                </td>
+                <td>{{data.numberOfVariables}}</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Number Of Rows: </strong>
+                </td>
+                <td>{{data.numberOfRows}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- ********************************END***************************************** -->
+          <!-- <span>
             <strong>Dataset Name: </strong>{{data.datasetName}}</span>
           <br>
           <span>
@@ -102,7 +195,7 @@
             <strong>Number Of Variables: </strong>{{data.numberOfVariables}}</span>
           <br>
           <span>
-            <strong>Number Of Rows: </strong>{{data.numberOfRows}}</span>
+            <strong>Number Of Rows: </strong>{{data.numberOfRows}}</span> -->
 
           <h3>Variable Details</h3>
           <div>
@@ -140,14 +233,30 @@
         </div>
         <div *ngIf="algo && panelAlgo">
           <h3>Algorithm Details</h3>
-          <span>
+          <!-- ************* Table for algorithms******************** -->
+          <table>
+            <tr>
+              <td><strong>Algorithm Name: </strong></td>
+              <td>{{algo.algorithmName}}</td>
+            </tr>
+            <tr>
+                <td><strong>Description: </strong></td>
+                <td>{{algo.description}}</td>
+              </tr>
+              <tr>
+                  <td><strong>Library: </strong></td>
+                  <td>{{algo.library}}</td>
+                </tr>
+          </table>
+          <!-- ***************************end************************ -->
+          <!-- <span>
             <strong>Algorithm Name: </strong>{{algo.algorithmName}}</span>
           <br>
           <span>
             <strong>Description: </strong>{{algo.description}}</span>
           <br>
           <span>
-            <strong>Library: </strong>{{algo.library}}</span>
+            <strong>Library: </strong>{{algo.library}}</span> -->
 
           <div *ngIf="algo.parameters.length>0">
             <h3>Parameters Details</h3>
