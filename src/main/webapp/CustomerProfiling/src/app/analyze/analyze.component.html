@@ -53,8 +53,8 @@
                     <div class="flex space-between algorithm-list-item">
                         <span>{{algorithm.algorithmName}}</span>
                         <span>
-                            <i (click)="editParams(algorithm.parameters, i)" class="list-icons material-icons">border_color</i>
-                            <i (click)="deleteAlgorithm(algorithm.id, algorithm.algorithmName)" class=" list-icons material-icons">delete</i>
+                            <i matTooltip="Edit Parameters" matTooltipPosition="above" (click)="editParams(algorithm.parameters, i)" class="list-icons material-icons">border_color</i>
+                            <i matTooltip="Delete Algorithm" matTooltipPosition="above" (click)="deleteAlgorithm(algorithm.id, algorithm.algorithmName)" class=" list-icons material-icons">delete</i>
                         </span>
                     </div>
                 </div>
