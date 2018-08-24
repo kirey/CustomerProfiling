@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routes';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Modules
 import { MaterialModule } from './shared/modules/material.module';
@@ -49,6 +50,7 @@ import { AddValueComponent } from './dialogs/add-value/add-value.component';
 
 import { AuthGuard } from './shared/guards/auth.guard';
 import { POGuard } from './shared/guards/project-ovierview.guard';
+import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -85,6 +87,11 @@ import { POGuard } from './shared/guards/project-ovierview.guard';
     MaterialModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
     AuthService,
     AuthGuard,
     POGuard,

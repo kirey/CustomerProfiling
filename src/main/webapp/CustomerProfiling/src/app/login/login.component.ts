@@ -37,13 +37,15 @@ export class LoginComponent implements OnInit {
     };
     this._auth.login(loginObj).subscribe(
       res => {
-      },
-      err => {
-        this._snackBarService.openSnackBar('Error', 'Wrong username or password!');
-      }, () => {
         localStorage.setItem('username', loginObj.username);
         this._router.navigate(['/dashboard']);
-      });
+      },
+      err => {
+        if (localStorage.getItem('username')) {
+          localStorage.removeItem('username')
+        }
+        this._snackBarService.openSnackBar(err['message'], 'Error');
+      }
+    )
   }
-
 }
