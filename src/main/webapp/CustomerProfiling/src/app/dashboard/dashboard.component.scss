@@ -65,6 +65,12 @@ tbody tr td:first-child {
   width: 11em;
   font-weight: normal;
  }
+ #projectTable tr, td, span {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+   padding: 2px 0;
+ }
 // mat card style
 mat-card {
   padding: 0 !important;

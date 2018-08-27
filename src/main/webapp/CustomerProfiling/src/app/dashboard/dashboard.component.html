@@ -61,7 +61,7 @@
       <div class="panelDetails">
         <div *ngIf="projectDetails && panelProject">
           <h3>Project Details</h3>
-          <table>
+          <table id="projectTable">
             <tbody>
               <tr>
                 <td>
@@ -110,8 +110,14 @@
                   <strong>Algorithms Name: </strong>
                 </td>
                 <td>
-                  <span *ngFor=" let al of projectDetails.algorithms">
-                    {{al.algorithmName}},
+                  <span *ngFor=" let al of projectDetails.algorithms; let i = index">
+                    <span *ngIf="i < projectDetails.algorithms.length-1 ">
+                      {{al.algorithmName}},
+                    </span>
+                    <span *ngIf="i == projectDetails.algorithms.length-1 ">
+                      {{al.algorithmName}}
+                    </span>
+
                   </span>
                 </td>
               </tr>
@@ -236,17 +242,23 @@
           <!-- ************* Table for algorithms******************** -->
           <table>
             <tr>
-              <td><strong>Algorithm Name: </strong></td>
+              <td>
+                <strong>Algorithm Name: </strong>
+              </td>
               <td>{{algo.algorithmName}}</td>
             </tr>
             <tr>
-                <td><strong>Description: </strong></td>
-                <td>{{algo.description}}</td>
-              </tr>
-              <tr>
-                  <td><strong>Library: </strong></td>
-                  <td>{{algo.library}}</td>
-                </tr>
+              <td>
+                <strong>Description: </strong>
+              </td>
+              <td>{{algo.description}}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Library: </strong>
+              </td>
+              <td>{{algo.library}}</td>
+            </tr>
           </table>
           <!-- ***************************end************************ -->
           <!-- <span>
