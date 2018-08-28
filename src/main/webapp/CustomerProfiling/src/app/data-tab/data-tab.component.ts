@@ -38,6 +38,8 @@ export class DataTabComponent implements OnInit {
         res => {
           this.variables = res['data'];
           this.variablesHelperArr = res['data'];
+          this.setOperationTypes();
+          this.setTypeOfOperation();
           // console.log(this.variables);
         },
         err => {
@@ -93,7 +95,7 @@ export class DataTabComponent implements OnInit {
     this.dataTabService.getOperationTypes('NUMERIC')
       .subscribe(
         res => {
-          // console.log(res);
+          console.log(res);
           this.numericOperationTypes = res['data'];
           // this.variables[index]['operationTypes'] = res['data'];
         },
@@ -101,10 +103,11 @@ export class DataTabComponent implements OnInit {
           console.log(err);
         }
       );
+
     this.dataTabService.getOperationTypes('TEXT')
       .subscribe(
         res => {
-          // console.log(res);
+          console.log(res);
           this.textOperationTypes = res['data'];
           // this.variables[index]['operationTypes'] = res['data'];
         },
@@ -113,7 +116,9 @@ export class DataTabComponent implements OnInit {
         }
       );
   }
-
+  test() {
+    return 'Live as it is';
+  }
   selectionChanged(ev, index, type) {
     this.variables[index][type] = ev.value;
 
@@ -127,6 +132,28 @@ export class DataTabComponent implements OnInit {
     // if (type == 'typeOfData' && this.variables[index]['params']) {
     //   delete this.variables[index]['params'];
     // }
+  }
+
+  setTypeOfOperation() {
+    console.log("f-ja");
+    for (let i = 0; i < this.variables.length; i++) {
+      if (this.variables[i].distinct) {
+        console.log("1");
+        this.variables[i]['typeOfOperation'] = 'Unfolding with distinct categories';
+      }
+      else if (this.variables[i].leaveAsItIs) {
+        console.log("2");
+        this.variables[i]['typeOfOperation'] = 'Live as it is';
+      }
+      else if (this.variables[i].bins != null) {
+        console.log("3");
+        this.variables[i]['typeOfOperation'] = 'Binning operation';
+      }
+      else if (this.variables[i].scaleMin != null || this.variables[i].scaleMax != null) {
+        console.log("4");
+        this.variables[i]['typeOfOperation'] = 'Scaling operation';
+      }
+    }
   }
 
   paramsChanged(ev, index, type) {
@@ -166,12 +193,12 @@ export class DataTabComponent implements OnInit {
         if (this.variables[index]['scaleMax']) this.variables[index]['scaleMax'] = null;
         break;
     }
-    // console.log(this.variables);
-    this.sharedService.setParams(this.variables);
   }
 
   viewObject() {
     let checkArray = [];
+
+    console.log(this.variables);
 
     // Check for empty fields
     for (let i = 0; i < this.variables.length; i++) {
@@ -212,7 +239,6 @@ export class DataTabComponent implements OnInit {
               data: this.csvArray
             })
             dialogRef.afterClosed().subscribe(res => {
-              this.variables = this.sharedService.getParams();
               // console.log(this.variables);
             });
           },
@@ -290,7 +316,6 @@ export class DataTabComponent implements OnInit {
     this.getVariables();
     this.getDataTypes();
     this.getVariableTypes();
-    this.setOperationTypes();
     this.getDatasetDetails();
     this.getIsDatasetLinked();
   }

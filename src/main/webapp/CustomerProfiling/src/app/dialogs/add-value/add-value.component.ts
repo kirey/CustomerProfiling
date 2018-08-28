@@ -15,9 +15,10 @@ export class AddValueComponent implements OnInit {
   private addValueForm: FormGroup;
   private displayedColumns: string[] = ['parameterName', 'parameterValueType', 'parameterValue'];
   private error: boolean = false;
-
+  private valuesData: any;
 
   ngOnInit() {
+
     // console.log(this.data);
     if (this.data.type == 'addValueDialog') {
       this.addValueForm = this._formBuilder.group({
@@ -25,18 +26,26 @@ export class AddValueComponent implements OnInit {
       });
     }
     if (this.data.type == 'editParams') {
-
+      this.valuesData = this.data.data;
     }
   }
   inputChanged(ev, i) {
-    this.data.data[i].parameterValues[0].value = ev;
+    // if (ev.length > 0) {
+    //   this.valuesData[i].parameterValues[0].value = ev;
+    // }
   }
 
+  // MULTIPLE VALUES CANCEL
+  cancel() {
+    this.dialogRef.close();
+  }
+
+  // MULTIPLE VALUES
   saveParams() {
     let checkArray = [];
 
-    for (let i = 0; i < this.data.data.length; i++) {
-      if (!this.data.data[i].parameterValues[0].value) {
+    for (let i = 0; i < this.valuesData.length; i++) {
+      if (!this.valuesData[i].parameterValues[0].value) {
         this.error = true;
       }
       else {
@@ -49,6 +58,7 @@ export class AddValueComponent implements OnInit {
     }
   }
 
+  // ONE VALUE
   addValue() {
     if (this.addValueForm.value) this.dialogRef.close(this.addValueForm.value);
     else this.dialogRef.close(this.data.value);

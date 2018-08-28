@@ -71,7 +71,6 @@ export class AnalyzeComponent implements OnInit {
 
   addValue(element, i) {
     const dialogRef = this._dialog.open(AddValueComponent, {
-      width: '850px',
       data: { type: 'addValueDialog', value: element.parameterValues[0].value }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -83,25 +82,28 @@ export class AnalyzeComponent implements OnInit {
   }
 
   editParams(params, algorithmIndex) {
+    let paramsOld = params;
     const dialogRef = this._dialog.open(AddValueComponent, {
-      width: '850px',
       data: { type: 'editParams', data: params }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.listOfAlgorithms[algorithmIndex]['parameters'] = result;
+        // this.listOfAlgorithms[algorithmIndex]['parameters'] = result;
 
         this._analyzeService.saveParams(this.listOfAlgorithms[algorithmIndex])
           .subscribe(
             res => {
-              // console.log(res);
-              this.snackbar.openSnackBar('Parameters updated.', 'Success');
+              console.log(res);
+              this.snackbar.openSnackBar(JSON.parse(res.text()).message, 'Success');
             },
             err => {
               console.log(err);
-              this.snackbar.openSnackBar('Something went wrong.', 'Error');
+              this.snackbar.openSnackBar(JSON.parse(err.text()).message, 'Error');
             }
           );
+      }
+      else {
+        this.algorithms[algorithmIndex]['parameters'] = paramsOld;
       }
     });
   }
@@ -118,11 +120,11 @@ export class AnalyzeComponent implements OnInit {
             res => {
               // console.log(res);
               this.getListOfAlgorithms();
-              this.snackbar.openSnackBar('Successfully deleted.', 'Success');
+              this.snackbar.openSnackBar(JSON.parse(res.text()).message, 'Success');
             },
             err => {
               console.log(err);
-              this.snackbar.openSnackBar('Something went wrong.', 'Error');
+              this.snackbar.openSnackBar(JSON.parse(err.text()).message, 'Error');
             }
           )
       }

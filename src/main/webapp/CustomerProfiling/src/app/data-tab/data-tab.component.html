@@ -87,7 +87,7 @@
 
         <!-- Variable Type -->
         <mat-form-field>
-          <mat-select (selectionChange)="selectionChanged($event, i, 'typeOfVariable')" placeholder="Variable Type">
+          <mat-select (selectionChange)="selectionChanged($event, i, 'typeOfVariable')" placeholder="Variable Type" [(ngModel)]="variables[i].typeOfVariable">
             <mat-option *ngFor="let type of variableTypes" [value]="type">
               {{type}}
             </mat-option>
@@ -108,7 +108,7 @@
         <div>
           <!-- Numeric -->
           <mat-form-field *ngIf="variables[i].typeOfData == 'NUMERIC'">
-            <mat-select (selectionChange)="setParams($event, i)" placeholder="Operation Type">
+            <mat-select [(ngModel)]="variables[i].typeOfOperation" (selectionChange)="setParams($event, i)" placeholder="Operation Type">
               <mat-option *ngFor="let type of numericOperationTypes" [value]="type">
                 {{type}}
               </mat-option>
@@ -116,7 +116,7 @@
           </mat-form-field>
           <!-- Text -->
           <mat-form-field *ngIf="variables[i].typeOfData == 'TEXT'">
-            <mat-select (selectionChange)="setParams($event, i)" placeholder="Operation Type">
+            <mat-select [(ngModel)]="variables[i].typeOfOperation" (selectionChange)="setParams($event, i)" placeholder="Operation Type">
               <mat-option *ngFor="let type of textOperationTypes" [value]="type">
                 {{type}}
               </mat-option>
