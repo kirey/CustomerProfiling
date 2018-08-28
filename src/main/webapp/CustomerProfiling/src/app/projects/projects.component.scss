@@ -23,7 +23,7 @@
     // Add Button
     .button-wrapper {
         width: 80%;
-        margin-top: 100px;
+        margin-top: 50px;
     }
     .button-wrapper>button {
         float: right;
@@ -45,5 +45,6 @@
     .mat-paginator,
     .mat-paginator-page-size .mat-select-trigger {
         width: 80%;
+        margin-bottom: 5%;
     }
 }
