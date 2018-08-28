@@ -7,8 +7,8 @@ import { MatDialogRef } from '../../../../node_modules/@angular/material';
 @Component({
   selector: 'app-add-algorithm',
   templateUrl: './add-algorithm.component.html',
-  styleUrls: ['./add-algorithm.component.scss']
-  // encapsulation: ViewEncapsulation.None
+  styleUrls: ['./add-algorithm.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AddAlgorithmComponent implements OnInit {
 

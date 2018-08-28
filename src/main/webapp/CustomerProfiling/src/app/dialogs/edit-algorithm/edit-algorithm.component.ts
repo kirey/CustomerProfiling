@@ -8,8 +8,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '../../../../node_modules/@angular
 @Component({
   selector: 'app-edit-algorithm',
   templateUrl: './edit-algorithm.component.html',
-  styleUrls: ['./edit-algorithm.component.scss']
-  // encapsulation: ViewEncapsulation.None
+  styleUrls: ['./edit-algorithm.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class EditAlgorithmComponent implements OnInit {
 

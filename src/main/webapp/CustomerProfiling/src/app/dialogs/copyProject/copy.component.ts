@@ -6,8 +6,8 @@ import { SnackBarService } from './../../shared/services/snackbar.service';
 @Component({
   selector: 'app-copy',
   templateUrl: './copy.component.html',
-  styleUrls: ['./copy.component.scss']
-  // encapsulation: ViewEncapsulation.None
+  styleUrls: ['./copy.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CopyComponent implements OnInit {
   selected = 'option2';

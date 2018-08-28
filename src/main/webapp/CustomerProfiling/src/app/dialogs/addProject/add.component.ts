@@ -7,8 +7,8 @@ import { SnackBarService } from './../../shared/services/snackbar.service';
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
-  // encapsulation: ViewEncapsulation.None
+  styleUrls: ['./add.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AddComponent implements OnInit {
   addProjectForm: FormGroup;

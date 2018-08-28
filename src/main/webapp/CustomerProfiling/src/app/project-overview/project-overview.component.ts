@@ -6,8 +6,8 @@ import { SharedService } from '../shared/services/shared.service';
 @Component({
   selector: 'app-project-overview',
   templateUrl: './project-overview.component.html',
-  styleUrls: ['./project-overview.component.scss']
-  // encapsulation: ViewEncapsulation.None
+  styleUrls: ['./project-overview.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProjectOverviewComponent implements OnInit {
 
