@@ -13,8 +13,8 @@ import { SharedService } from '../shared/services/shared.service';
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.scss']
-  // encapsulation: ViewEncapsulation.None
+  styleUrls: ['./projects.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProjectsComponent implements OnInit {
   // dataSource: any;

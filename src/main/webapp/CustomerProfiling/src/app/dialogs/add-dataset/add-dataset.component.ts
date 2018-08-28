@@ -8,8 +8,8 @@ import { SnackBarService } from '../../shared/services/snackbar.service';
 @Component({
   selector: 'app-add-dataset',
   templateUrl: './add-dataset.component.html',
-  styleUrls: ['./add-dataset.component.scss']
-  // encapsulation: ViewEncapsulation.None
+  styleUrls: ['./add-dataset.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AddDatasetComponent implements OnInit {
 

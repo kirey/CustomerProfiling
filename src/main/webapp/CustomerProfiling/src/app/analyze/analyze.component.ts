@@ -13,8 +13,8 @@ import { interval, UnsubscriptionError, Subscription } from 'rxjs';
 @Component({
   selector: 'app-analyze',
   templateUrl: './analyze.component.html',
-  styleUrls: ['./analyze.component.scss']
-  // encapsulation: ViewEncapsulation.None
+  styleUrls: ['./analyze.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AnalyzeComponent implements OnInit {
 

@@ -4,8 +4,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '../../../../node_modules/@angular
 @Component({
   selector: 'app-view-algorithm',
   templateUrl: './view-algorithm.component.html',
-  styleUrls: ['./view-algorithm.component.scss']
-  // encapsulation: ViewEncapsulation.None
+  styleUrls: ['./view-algorithm.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ViewAlgorithmComponent implements OnInit {
 

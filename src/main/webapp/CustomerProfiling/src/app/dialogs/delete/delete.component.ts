@@ -4,8 +4,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 @Component({
   selector: 'app-delete',
   templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.scss']
-  // encapsulation: ViewEncapsulation.None
+  styleUrls: ['./delete.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DeleteComponent {
 

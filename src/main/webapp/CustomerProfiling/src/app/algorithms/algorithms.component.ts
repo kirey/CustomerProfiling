@@ -9,8 +9,8 @@ import { EditAlgorithmComponent } from '../dialogs/edit-algorithm/edit-algorithm
 @Component({
   selector: 'app-algorithms',
   templateUrl: './algorithms.component.html',
-  styleUrls: ['./algorithms.component.scss']
-  // encapsulation: ViewEncapsulation.None
+  styleUrls: ['./algorithms.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AlgorithmsComponent implements OnInit {
 

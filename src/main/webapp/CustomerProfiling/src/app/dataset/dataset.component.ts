@@ -10,8 +10,8 @@ import { SnackBarService } from '../shared/services/snackbar.service';
 @Component({
   selector: 'app-dataset',
   templateUrl: './dataset.component.html',
-  styleUrls: ['./dataset.component.scss']
-  // encapsulation: ViewEncapsulation.None
+  styleUrls: ['./dataset.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DatasetComponent implements OnInit {
 

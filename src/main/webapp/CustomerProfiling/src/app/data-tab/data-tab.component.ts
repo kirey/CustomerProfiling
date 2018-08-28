@@ -10,8 +10,8 @@ import { SnackBarService } from '../shared/services/snackbar.service';
 @Component({
   selector: 'app-data-tab',
   templateUrl: './data-tab.component.html',
-  styleUrls: ['./data-tab.component.scss']
-  // encapsulation: ViewEncapsulation.None
+  styleUrls: ['./data-tab.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DataTabComponent implements OnInit {
 
