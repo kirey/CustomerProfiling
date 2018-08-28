@@ -108,7 +108,7 @@
         <div>
           <!-- Numeric -->
           <mat-form-field *ngIf="variables[i].typeOfData == 'NUMERIC'">
-            <mat-select [(ngModel)]="variables[i].typeOfOperation" (selectionChange)="setParams($event, i)" placeholder="Operation Type">
+            <mat-select [(ngModel)]="variables[i].typeOfOperation" (selectionChange)="setParams($event.value, i)" placeholder="Operation Type">
               <mat-option *ngFor="let type of numericOperationTypes" [value]="type">
                 {{type}}
               </mat-option>
@@ -116,7 +116,7 @@
           </mat-form-field>
           <!-- Text -->
           <mat-form-field *ngIf="variables[i].typeOfData == 'TEXT'">
-            <mat-select [(ngModel)]="variables[i].typeOfOperation" (selectionChange)="setParams($event, i)" placeholder="Operation Type">
+            <mat-select [(ngModel)]="variables[i].typeOfOperation" (selectionChange)="setParams($event.value, i)" placeholder="Operation Type">
               <mat-option *ngFor="let type of textOperationTypes" [value]="type">
                 {{type}}
               </mat-option>
@@ -130,16 +130,16 @@
           <div *ngIf="variablesHelperArr[i]['params']; else noData">
             <span *ngIf="variablesHelperArr[i]['params']['minmax'] == true">
               <mat-form-field class="small-input">
-                <input type="number" (change)="paramsChanged($event, i, 'scaleMin')" matInput placeholder="Min">
+                <input [(ngModel)]="variables[i].scaleMin" type="number" (change)="paramsChanged($event, i, 'scaleMin')" matInput placeholder="Min">
               </mat-form-field>
               <mat-form-field class="small-input">
-                <input type="number" (change)="paramsChanged($event, i, 'scaleMax')" matInput placeholder="Max">
+                <input [(ngModel)]="variables[i].scaleMax" type="number" (change)="paramsChanged($event, i, 'scaleMax')" matInput placeholder="Max">
               </mat-form-field>
             </span>
             <!-- Bins -->
             <span *ngIf="variablesHelperArr[i]['params']['bins'] == true">
               <mat-form-field class="small-input">
-                <input type="number" (change)="paramsChanged($event, i, 'bins')" matInput placeholder="Bins">
+                <input [(ngModel)]="variables[i].bins" type="number" (change)="paramsChanged($event, i, 'bins')" matInput placeholder="Bins">
               </mat-form-field>
             </span>
           </div>

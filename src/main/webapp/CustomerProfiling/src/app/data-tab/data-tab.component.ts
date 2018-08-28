@@ -95,7 +95,7 @@ export class DataTabComponent implements OnInit {
     this.dataTabService.getOperationTypes('NUMERIC')
       .subscribe(
         res => {
-          console.log(res);
+          // console.log(res);
           this.numericOperationTypes = res['data'];
           // this.variables[index]['operationTypes'] = res['data'];
         },
@@ -107,7 +107,7 @@ export class DataTabComponent implements OnInit {
     this.dataTabService.getOperationTypes('TEXT')
       .subscribe(
         res => {
-          console.log(res);
+          // console.log(res);
           this.textOperationTypes = res['data'];
           // this.variables[index]['operationTypes'] = res['data'];
         },
@@ -135,24 +135,21 @@ export class DataTabComponent implements OnInit {
   }
 
   setTypeOfOperation() {
-    console.log("f-ja");
     for (let i = 0; i < this.variables.length; i++) {
       if (this.variables[i].distinct) {
-        console.log("1");
         this.variables[i]['typeOfOperation'] = 'Unfolding with distinct categories';
       }
       else if (this.variables[i].leaveAsItIs) {
-        console.log("2");
         this.variables[i]['typeOfOperation'] = 'Live as it is';
       }
       else if (this.variables[i].bins != null) {
-        console.log("3");
         this.variables[i]['typeOfOperation'] = 'Binning operation';
       }
       else if (this.variables[i].scaleMin != null || this.variables[i].scaleMax != null) {
-        console.log("4");
         this.variables[i]['typeOfOperation'] = 'Scaling operation';
       }
+
+      this.setParams(this.variables[i]['typeOfOperation'], i);
     }
   }
 
@@ -162,8 +159,8 @@ export class DataTabComponent implements OnInit {
     // console.log(this.variables);
   }
 
-  setParams(ev, index) {
-    switch (ev.value) {
+  setParams(value, index) {
+    switch (value) {
       case 'Scaling operation':
         this.variablesHelperArr[index]['params'] = { 'minmax': true, 'bins': false };
         if (this.variables[index]['bins']) this.variables[index]['bins'] = null;
