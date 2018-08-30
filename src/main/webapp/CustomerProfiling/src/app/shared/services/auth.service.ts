@@ -17,9 +17,10 @@ export class AuthService {
     return this._http.post('logout', {});
   }
   isLoggedIn() {
-    if (localStorage.getItem('username') != null) {
+    if (localStorage.getItem('username') != null && localStorage.getItem('username').length > 0) {
       return true;
-    } else {
+    }
+    else {
       return false;
     }
   }

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, OnChanges } from '@angular/core';
 import { AuthService } from './shared/services/auth.service';
 import { Router } from '@angular/router';
 
@@ -12,6 +12,7 @@ export class AppComponent {
 
   title = 'CustomerProfiling';
   private user;
+  username: String = localStorage.getItem('username');
 
   constructor(private _auth: AuthService, private _router: Router) {
   }
@@ -25,6 +26,4 @@ export class AppComponent {
         err => console.log(err)
       );
   }
-
-
 }

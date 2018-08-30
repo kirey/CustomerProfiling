@@ -1,7 +1,8 @@
-<div class="header">
+<div class="header flex space-between">
     <a routerLink="/dashboard" class="logo">Customer Profiling</a>
+    <p *ngIf="_auth.isLoggedIn()" class="header-username"> Welcome, {{username}}</p>
 </div>
-<mat-sidenav-container  class="navContainer">
+<mat-sidenav-container class="navContainer">
     <mat-sidenav class="sideContent" *ngIf="_auth.isLoggedIn()" mode="side" opened>
         <mat-nav-list>
             <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
@@ -33,7 +34,7 @@
                 <span>Logout</span>
             </a>
         </mat-nav-list>
-      </mat-sidenav>
+    </mat-sidenav>
     <mat-sidenav-content class="mainContent">
         <router-outlet></router-outlet>
     </mat-sidenav-content>
