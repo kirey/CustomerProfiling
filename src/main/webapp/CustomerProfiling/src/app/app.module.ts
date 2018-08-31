@@ -51,6 +51,7 @@ import { AddValueComponent } from './dialogs/add-value/add-value.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { POGuard } from './shared/guards/project-ovierview.guard';
 import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
+import { SignUpService } from './shared/services/sign-up.service';
 
 @NgModule({
   declarations: [
@@ -104,7 +105,8 @@ import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
     AnalyzeService,
     SharedService,
     EditAlgorithmService,
-    Dashboardervice
+    Dashboardervice,
+    SignUpService
   ],
   entryComponents: [
     AddComponent,
