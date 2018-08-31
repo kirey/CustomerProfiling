@@ -1,12 +1,21 @@
 #one-project {
-    padding: 50px 0;
-
-    mat-tab-group {
-        width: 90%;
-    }
-    button {
-        align-self: flex-start;
-        margin-left: 5%;
-        margin-bottom: 25px;
-    }
+  padding: 50px 0;
+  mat-tab-group {
+    width: 90%;
+  }
+  // button {
+  //   align-self: flex-end;
+  //   margin-left: 5%;
+  //   margin-bottom: 25px;
+  // }
+  .mat-stroked-button {
+    align-self: flex-start;
+    margin-left: 5%;
+    margin-bottom: 25px;
+  }
+  .mat-raised-button {
+    align-self: flex-end;
+    margin-left: 5%;
+    margin-bottom: 25px;
+  }
 }
