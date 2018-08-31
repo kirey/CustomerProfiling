@@ -7,11 +7,14 @@
   width: 90%;
   margin-left: 5%;
 }
-
+.signupFormField {
+  width: 40%;
+  margin-left: 5%;
+}
 .loginCard {
-  min-width: 150px;
-  max-width: 350px;
-  width: 90%;
+  min-width: 190px;
+  max-width: 400px;
+  width: 100%;
   padding: 50px 10px;
   background: white;
   color: $primary;
@@ -23,10 +26,10 @@
 
 #loginBgr {
   margin-top: 10%;
-  height: 50%;
+  height: 65%;
   display: flex;
   flex-direction: row;
-  width: 70%;
+  width: 80%;
   min-width: 60%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   // background-color: $primary;
@@ -65,3 +68,12 @@ mat-error {
 .mat-card-actions {
   margin-left: 0px !important;
 }
+.signupCard {
+  min-width: 190px;
+  max-width: 700px;
+  width: 100%;
+  padding: 50px 10px;
+  background: white;
+  color: #00897B;
+}
+
