@@ -75,6 +75,11 @@ mat-nav-list a mat-icon {
     margin-top: 45vh;
 }
 
+.header-username {
+    color: #fff;
+    font-size: 17px;
+    padding-right: 100px;
+}
 .header {
     overflow: hidden;
     background: linear-gradient(to right, $primary, $accent);
