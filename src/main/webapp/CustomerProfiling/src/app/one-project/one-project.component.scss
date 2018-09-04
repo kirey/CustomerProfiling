@@ -9,12 +9,12 @@
   //   margin-bottom: 25px;
   // }
   .mat-stroked-button {
-    align-self: flex-start;
+    align-self: flex-start !important;
     margin-left: 5%;
     margin-bottom: 25px;
   }
   .mat-raised-button {
-    align-self: flex-end;
+    align-self: flex-end !important;
     margin-left: 5%;
     margin-bottom: 25px;
   }
