@@ -7,6 +7,7 @@
 .signupForm {
   height: 85%!important;
   justify-content: space-between;
+  margin-left: 2% !important;
 }
 
 .signupFormField {
@@ -65,6 +66,7 @@ mat-error {
 }
 .mat-card-actions {
   margin-left: 0px !important;
+  margin-bottom: 50px !important;
 }
 .signupCard {
   min-width: 190px;
