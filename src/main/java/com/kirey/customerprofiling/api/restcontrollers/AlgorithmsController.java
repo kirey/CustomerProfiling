@@ -1,6 +1,7 @@
 package com.kirey.customerprofiling.api.restcontrollers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -19,12 +20,14 @@ import com.kirey.customerprofiling.api.dto.RestResponseDto;
 import com.kirey.customerprofiling.common.constants.AppConstants;
 import com.kirey.customerprofiling.data.dao.AlgorithmsDao;
 import com.kirey.customerprofiling.data.dao.DatasetsDao;
+import com.kirey.customerprofiling.data.dao.DicStatusesDao;
 import com.kirey.customerprofiling.data.dao.ParameterValuesDao;
 import com.kirey.customerprofiling.data.dao.ParametersDao;
 import com.kirey.customerprofiling.data.dao.ProjectAlgorithmsDao;
 import com.kirey.customerprofiling.data.dao.ProjectsDao;
 import com.kirey.customerprofiling.data.entity.Algorithms;
 import com.kirey.customerprofiling.data.entity.Datasets;
+import com.kirey.customerprofiling.data.entity.DicStatuses;
 import com.kirey.customerprofiling.data.entity.ParameterValues;
 import com.kirey.customerprofiling.data.entity.Parameters;
 import com.kirey.customerprofiling.data.entity.Projects;
@@ -51,6 +54,9 @@ public class AlgorithmsController {
 	
 	@Autowired
 	private DatasetsDao datasetsDao;
+	
+	@Autowired
+	private DicStatusesDao dicStatusesDao;
 
 	/**
 	 * Get list of all algorithms
@@ -271,7 +277,7 @@ public class AlgorithmsController {
 	
 	@RequestMapping(value = "/save/project/{projectId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> addAlgorithmToProject(@PathVariable Integer projectId, @RequestBody Algorithms algorithm){
-		
+		DicStatuses dicStatuses = dicStatusesDao.findByStatus(AppConstants.ALGORITHM_STATUS_INITIALIZED);
 		Projects project = projectsDao.findById(projectId);
 		project.setStatus(AppConstants.ALGORITHM_STATUS_NOT_TRAINED);
 		projectsDao.merge(project);
@@ -281,7 +287,7 @@ public class AlgorithmsController {
 		}
 		projectsAlgorithms.setAlgorithm(algorithm);
 		projectsAlgorithms.setProject(project);
-		projectsAlgorithms.setStatus(AppConstants.ALGORITHM_STATUS_NOT_TRAINED);
+		projectsAlgorithms.setStatus(dicStatuses);
 		projectsAlgorithms = (ProjectsAlgorithms) projectAlgorithmsDao.merge(projectsAlgorithms);
 		List<Parameters> parameters = algorithm.getParameters();
 		for (Parameters parameter : parameters) {
@@ -307,6 +313,7 @@ public class AlgorithmsController {
 	 * @return ResponseEntity containing the analyzed algorithm along with HTTP status
 	 * @throws InterruptedException 
 	 */
+	/*
 	@RequestMapping(value = "/analyze", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> analizeAlgorithm(@RequestBody List<Algorithms> algorithms, @RequestParam Integer projectId) throws InterruptedException{
 		Projects project = projectsDao.findById(projectId);
@@ -331,7 +338,7 @@ public class AlgorithmsController {
 		}
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.OK.value(), "Allgorithms trained"), HttpStatus.OK);
-	}
+	}*/
 	
 	/**
 	 * Method for getting status of algorithm that is in relation with given project
@@ -340,8 +347,15 @@ public class AlgorithmsController {
 	 */
 	@RequestMapping(value = "/status", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> algorithmStatus(@RequestParam Integer projectId) {
-		Projects project = projectsDao.findById(projectId);		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto(project.getStatus(), HttpStatus.OK.value()), HttpStatus.OK);
+		HashMap<Object, Object> responseMap = new HashMap<>();
+		
+		List<ProjectsAlgorithms> listProjectAlgorithms = projectAlgorithmsDao.findByProject(projectId);
+		for (ProjectsAlgorithms projectsAlgorithms : listProjectAlgorithms) {
+			responseMap.put(projectsAlgorithms.getAlgorithm().getAlgorithmName(), projectsAlgorithms.getStatus().getStatus());
+		}
+		
+//		Projects project = projectsDao.findById(projectId);		
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(responseMap, HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
 	/**

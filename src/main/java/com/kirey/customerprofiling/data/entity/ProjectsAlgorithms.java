@@ -29,7 +29,7 @@ public class ProjectsAlgorithms implements Serializable {
 	private Integer id;
 	private Projects project;
 	private Algorithms algorithm;
-	private String status;
+	private DicStatuses status;
 
 	
 	@Id
@@ -64,12 +64,14 @@ public class ProjectsAlgorithms implements Serializable {
 		this.algorithm = algorithm;
 	}
 
-	@Column(name = "status", nullable=true)
-	public String getStatus() {
+	
+	@ManyToOne()
+	@JoinColumn(name = "status", nullable = true)
+	public DicStatuses getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(DicStatuses status) {
 		this.status = status;
 	}
 	

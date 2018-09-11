@@ -258,7 +258,7 @@ public class AppConstants {
 	public static final String OPERATION_TYPE_SCALING_OPERATION = "Scaling operation";
 	public static final String OPERATION_TYPE_BINNING_OPERATION = "Binning operation";
 	public static final String OPERATION_TYPE_UNFOLDING_DISTINCT = "Unfolding with distinct categories";
-	public static final String OPERATION_TYPE_LIVE_AS_IT_IS = "Live as it is";
+	public static final String OPERATION_TYPE_LEAVE_AS_IT_IS = "Leave as it is";
 	public static final String HEADERS_KEY = "headers";
 	public static final String ROWS_KEY = "rows";
 	public static final String DERIVED = "Derived";
@@ -266,6 +266,7 @@ public class AppConstants {
 	public static final String ALGORITHM_STATUS_NOT_TRAINED = "Not trained";
 	public static final String ALGORITHM_STATUS_TRAINED = "Trained";
 	public static final String ALGORITHM_STATUS_LEARNING = "Learning";
+	public static final String ALGORITHM_STATUS_INITIALIZED = "Initialized";
 	
 	
 	/**
