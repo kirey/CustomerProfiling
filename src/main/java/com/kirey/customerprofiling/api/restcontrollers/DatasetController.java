@@ -282,9 +282,13 @@ public class DatasetController {
 		
 		Map<Object, Object> responseMap = new HashMap<>();
 		Datasets originalDataset = datasetsDao.findOriginalByProject(projectId);
-		if(originalDataset != null) {
+		Datasets derivedDataset = datasetsDao.getDerivedFromProject(projectId);
+		if(originalDataset != null && derivedDataset != null && derivedDataset.getFlagFinal() != null && derivedDataset.getFlagFinal()) {
 			responseMap.put(true, originalDataset.getId());
-		}else {
+		}else if(originalDataset != null && derivedDataset != null && derivedDataset.getFlagFinal() != null && !derivedDataset.getFlagFinal()) {
+			responseMap.put(false, originalDataset.getId());
+		}
+		else {
 			responseMap.put(false, null);
 		}
 		
