@@ -73,7 +73,7 @@ public class ProjectsController {
 		
 		UserAccounts user = SecurityUtils.getUserFromContext();
 		if(user == null) {
-			return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.BAD_REQUEST.value(), "You need to be logged to access projects"), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.UNAUTHORIZED.value(), "You need to be logged to access projects"), HttpStatus.UNAUTHORIZED);
 		}
 		
 		List<Projects> listProjects = projectsDao.findFilteredByUser(user.getId());
@@ -95,7 +95,7 @@ public class ProjectsController {
 		HashMap<String, Object> responeseMap = new HashMap<>();
 		boolean belong = projectsDao.belongToLoggedUser(id);
 		if(!belong) {
-			return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.BAD_REQUEST.value(), "You are not authorized to view details for this project"), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.UNAUTHORIZED.value(), "You are not authorized to view details for this project"), HttpStatus.UNAUTHORIZED);
 		}else {
 			Projects project = projectsDao.findById(id);
 			responeseMap.put("project", project);
