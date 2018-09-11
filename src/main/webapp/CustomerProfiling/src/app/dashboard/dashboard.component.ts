@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { Dashboardervice } from './dashboard.service';
 import { SharedService } from '../shared/services/shared.service';
+import { interval, UnsubscriptionError, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +21,8 @@ export class DashboardComponent implements OnInit {
   panelProject = false;
   panelData = false;
   panelAlgo = false;
+  private refreshInterval$ = interval(10000);
+  subscription: Subscription;
   // Columns for variable table
   displayedColumns: string[] = ['Name', 'Average', 'Distinct Count', 'Minimum', 'Maximum'];
   // Columns for algorithms param.table
@@ -36,6 +39,7 @@ export class DashboardComponent implements OnInit {
       res => {
         // console.log(res);
         this.projectsArr = res['data'];
+        console.log('refresh status');
       },
       err => {
         console.log(err);
@@ -140,5 +144,9 @@ export class DashboardComponent implements OnInit {
     this.getAllProjects();
     this.getAllDatasets();
     this.getAllAlgorithms();
+     // Get Status every 10 seconds
+     this.subscription = this.refreshInterval$.subscribe(() =>
+     this.getAllProjects()
+   );
   }
 }
