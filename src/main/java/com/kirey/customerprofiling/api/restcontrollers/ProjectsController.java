@@ -18,6 +18,7 @@ import com.kirey.customerprofiling.api.dto.RestResponseDto;
 import com.kirey.customerprofiling.common.constants.AppConstants;
 import com.kirey.customerprofiling.data.dao.DatasetsDao;
 import com.kirey.customerprofiling.data.dao.DerivedVariableValuesDao;
+import com.kirey.customerprofiling.data.dao.DicStatusesDao;
 import com.kirey.customerprofiling.data.dao.ParameterValuesDao;
 import com.kirey.customerprofiling.data.dao.ProjectAlgorithmsDao;
 import com.kirey.customerprofiling.data.dao.ProjectsDao;
@@ -25,6 +26,7 @@ import com.kirey.customerprofiling.data.dao.VariablesDao;
 import com.kirey.customerprofiling.data.entity.Algorithms;
 import com.kirey.customerprofiling.data.entity.Datasets;
 import com.kirey.customerprofiling.data.entity.DerivedVariableValue;
+import com.kirey.customerprofiling.data.entity.DicStatuses;
 import com.kirey.customerprofiling.data.entity.ParameterValues;
 import com.kirey.customerprofiling.data.entity.Projects;
 import com.kirey.customerprofiling.data.entity.ProjectsAlgorithms;
@@ -59,7 +61,8 @@ public class ProjectsController {
 	@Autowired
 	private ParameterValuesDao parameterValuesDao;
 	
-
+	@Autowired
+	private DicStatusesDao dicStatusesDao;
 	
 	/**
 	 * Method for getting list of filtered projects by given user
@@ -211,12 +214,13 @@ public class ProjectsController {
 		}
 		
 		//connect with copied project algorithms from original project
+		DicStatuses dicStatuses = dicStatusesDao.findByStatus(AppConstants.ALGORITHM_STATUS_INITIALIZED);
 		List<Algorithms> connectedAlgorithms = projectAlgorithmsDao.findAlgorithmsByProject(project.getId());
 		for (Algorithms algorithm : connectedAlgorithms) {
 			ProjectsAlgorithms projectAlgorithm = new ProjectsAlgorithms();
 			projectAlgorithm.setAlgorithm(algorithm);
 			projectAlgorithm.setProject(copiedProject);
-			projectAlgorithm.setStatus(AppConstants.ALGORITHM_STATUS_NOT_TRAINED);
+			projectAlgorithm.setStatus(dicStatuses);
 			projectAlgorithmsDao.attachDirty(projectAlgorithm);
 		}
 		

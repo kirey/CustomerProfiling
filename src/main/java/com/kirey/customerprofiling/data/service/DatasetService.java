@@ -811,11 +811,10 @@ public class DatasetService {
 					double[] valuesArrPrimitive = ArrayUtils.toPrimitive(valuesArr);
 					double varianceValue = variance.evaluate(valuesArrPrimitive);
 					variable.setVariance(Utilities.round(varianceValue, 2));
-				} else {
-					// find distinct count
-					List<String> distinctList = variableValues.stream().distinct().collect(Collectors.toList());
-					variable.setDistinctCount(distinctList.size());
-				}
+				} 
+				// find distinct count
+				List<String> distinctList = variableValues.stream().distinct().collect(Collectors.toList());
+				variable.setDistinctCount(distinctList.size());
 			}
 
 		}

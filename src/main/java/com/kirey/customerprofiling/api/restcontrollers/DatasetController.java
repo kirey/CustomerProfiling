@@ -124,11 +124,11 @@ public class DatasetController {
 		if(dataType.equals(DataType.NUMERIC)) {
 			possibleValues.add(AppConstants.OPERATION_TYPE_SCALING_OPERATION);
 			possibleValues.add(AppConstants.OPERATION_TYPE_BINNING_OPERATION);
-			possibleValues.add(AppConstants.OPERATION_TYPE_LIVE_AS_IT_IS);
+			possibleValues.add(AppConstants.OPERATION_TYPE_LEAVE_AS_IT_IS);
 			possibleValues.add(AppConstants.OPERATION_TYPE_UNFOLDING_DISTINCT);
 		}else if(dataType.equals(DataType.TEXT)) {
 			possibleValues.add(AppConstants.OPERATION_TYPE_UNFOLDING_DISTINCT);
-			possibleValues.add(AppConstants.OPERATION_TYPE_LIVE_AS_IT_IS);
+			possibleValues.add(AppConstants.OPERATION_TYPE_LEAVE_AS_IT_IS);
 		}
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(possibleValues, HttpStatus.OK.value()), HttpStatus.OK);
@@ -309,7 +309,7 @@ public class DatasetController {
 		Datasets derivedDataset = datasetsDao.getDerivedFromProject(projectId);
 		if(derivedDataset == null) {
 			derivedDataset = new Datasets();
-		}else if(derivedDataset.getFlagFinal()) {
+		}else if(derivedDataset.getFlagFinal() != null && derivedDataset.getFlagFinal()) {
 			return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.BAD_REQUEST.value(), "Dataset can't be changed"), HttpStatus.BAD_REQUEST);
 		}
 		derivedDataset.setOriginalDataset(dataset);
