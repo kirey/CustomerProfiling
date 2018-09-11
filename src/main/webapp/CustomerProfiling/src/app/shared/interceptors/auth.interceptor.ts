@@ -16,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
             }
         }, (err: any) => {
             if (err instanceof HttpErrorResponse) {
-                if (err.status === 401 || err.status === 400 || err.status === 403) {
+                if (err.status === 401 || err.status === 403) {
                     this._router.navigate(['/login']);
                     localStorage.removeItem('username');
                 }
