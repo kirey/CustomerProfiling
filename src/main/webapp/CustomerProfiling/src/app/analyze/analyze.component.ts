@@ -155,7 +155,7 @@ export class AnalyzeComponent implements OnInit {
     this._analyzeService.status(this.projectId)
       .subscribe(
         res => {
-          // console.log(res);
+          console.log(res);
           this.status = res['data'];
         },
         err => console.log(err)

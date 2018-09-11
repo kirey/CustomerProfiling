@@ -175,14 +175,15 @@ export class DataTabComponent implements OnInit {
         this.variables[index]['leaveAsItIs'] = false;
         break;
       case 'Unfolding with distinct categories':
+        delete this.variablesHelperArr[index]['params'];
         this.variables[index]['distinct'] = true;
         this.variables[index]['leaveAsItIs'] = false;
-
         if (this.variables[index]['bins']) this.variables[index]['bins'] = null;
         if (this.variables[index]['scaleMin']) this.variables[index]['scaleMin'] = null;
         if (this.variables[index]['scaleMax']) this.variables[index]['scaleMax'] = null;
         break;
       case 'Live as it is':
+        delete this.variablesHelperArr[index]['params'];
         this.variables[index]['leaveAsItIs'] = true;
         this.variables[index]['distinct'] = false;
         if (this.variables[index]['bins']) this.variables[index]['bins'] = null;
