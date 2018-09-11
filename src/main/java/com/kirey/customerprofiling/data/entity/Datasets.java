@@ -49,6 +49,7 @@ public class Datasets implements Serializable{
 	private String description;
 	private Double datasetSize;
 	private Integer noOfRows;
+	private Boolean flagFinal;
 	@JsonIgnore
 	private List<Variables> variables = new ArrayList<>();
 	
@@ -73,7 +74,7 @@ public class Datasets implements Serializable{
 		this.name = name;
 	}
 	
-	@Column(name = "filename", nullable = false)
+	@Column(name = "filename", nullable = true)
 	public String getFilename() {
 		return filename;
 	}
@@ -168,6 +169,16 @@ public class Datasets implements Serializable{
 	public void setNoOfRows(Integer noOfRows) {
 		this.noOfRows = noOfRows;
 	}
+	
+	@Column(name = "flag_final")
+	public Boolean getFlagFinal() {
+		return flagFinal;
+	}
+	public void setFlagFinal(Boolean flagFinal) {
+		this.flagFinal = flagFinal;
+	}
+	
+	
 	
 
 }

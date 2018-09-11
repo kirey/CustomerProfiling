@@ -187,6 +187,7 @@ public class ProjectsController {
 	@RequestMapping(value = "/copy", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RestResponseDto> copyProjectDetail( @RequestBody Projects project) {
 		//TODO check copy just project detail or relation with algorithms and dataset
+		//copy project details
 		Projects newProject = new Projects();
 		UserAccounts user = SecurityUtils.getUserFromContext();
 		newProject.setProjectName(project.getProjectName());
@@ -196,7 +197,28 @@ public class ProjectsController {
 		newProject.setLastOpened(new Date());
 		newProject.setUserAccount(user);
 		
-		projectsDao.attachDirty(newProject);
+		Projects copiedProject = (Projects) projectsDao.merge(newProject);
+		
+		//create empty derived dataset from given dataset and connect with copied project 
+		Datasets dataset = datasetsDao.findOriginalByProject(project.getId());
+		if(dataset != null) {
+			Datasets derivedDataset = new Datasets();
+			derivedDataset.setOriginalDataset(dataset);
+			derivedDataset.setName(dataset.getName() + AppConstants.DERIVED + copiedProject.getId());
+			derivedDataset.setFlagFinal(false);
+			derivedDataset.setProject(copiedProject);
+			datasetsDao.attachDirty(derivedDataset);
+		}
+		
+		//connect with copied project algorithms from original project
+		List<Algorithms> connectedAlgorithms = projectAlgorithmsDao.findAlgorithmsByProject(project.getId());
+		for (Algorithms algorithm : connectedAlgorithms) {
+			ProjectsAlgorithms projectAlgorithm = new ProjectsAlgorithms();
+			projectAlgorithm.setAlgorithm(algorithm);
+			projectAlgorithm.setProject(copiedProject);
+			projectAlgorithm.setStatus(AppConstants.ALGORITHM_STATUS_NOT_TRAINED);
+			projectAlgorithmsDao.attachDirty(projectAlgorithm);
+		}
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.OK.value(), "Successfully copied"), HttpStatus.OK);
 	}

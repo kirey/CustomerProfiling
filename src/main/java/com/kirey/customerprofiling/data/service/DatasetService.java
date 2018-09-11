@@ -143,15 +143,14 @@ public class DatasetService {
 				listRows.add(stringValues);
 				this.createDerivedVariableAndPutInHolder(variable, variable.getVariableName());
 			}
-			if(variable.getTypeOfData().equals(DataType.TEXT)) {
-				if(variable.isDistinct()) {
-					List<String> distinctHeaders = this.findDistinctFromCSV(variable, processor);
-					List<String[]> values = this.getValuesDistinctTransformed(variable, processor, distinctHeaders);
-					listRows.add(values);
-					//add to headers
-					derivedHeaders.addAll(distinctHeaders);
-				}
-			} else if(variable.getTypeOfData().equals(DataType.NUMERIC)) {
+			if(variable.isDistinct()) {
+				List<String> distinctHeaders = this.findDistinctFromCSV(variable, processor);
+				List<String[]> values = this.getValuesDistinctTransformed(variable, processor, distinctHeaders);
+				listRows.add(values);
+				//add to headers
+				derivedHeaders.addAll(distinctHeaders);
+			}
+			if(variable.getTypeOfData().equals(DataType.NUMERIC)) {
 				if(variable.getBins() != null) {
 					//binning operation
 					HashMap<String, Object> binningMap = this.binningOperation(variable, processor);
@@ -591,7 +590,8 @@ public class DatasetService {
 	 * @return saved derived {@link Datasets}
 	 */
 	public Datasets saveDerivedDatasetFromOriginal(Datasets originalDataset, Projects project) {
-		Datasets derivedDataset = new Datasets();
+//		Datasets derivedDataset = new Datasets();
+		Datasets derivedDataset = datasetsDao.getDerivedFromProject(project.getId());
 		derivedDataset.setName(originalDataset.getName() + AppConstants.DERIVED + project.getId());
 		
 		String originalFilename = originalDataset.getFilename();
@@ -601,6 +601,7 @@ public class DatasetService {
 		derivedDataset.setFilename(derivedFilename);
 		derivedDataset.setOriginalDataset(originalDataset);
 		derivedDataset.setProject(project);
+		derivedDataset.setFlagFinal(true);
 		Datasets savedDerivedDataset = (Datasets) datasetsDao.merge(derivedDataset);//new Datasets()
 		return savedDerivedDataset;
 	}

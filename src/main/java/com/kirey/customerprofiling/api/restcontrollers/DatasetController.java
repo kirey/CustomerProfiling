@@ -125,6 +125,7 @@ public class DatasetController {
 			possibleValues.add(AppConstants.OPERATION_TYPE_SCALING_OPERATION);
 			possibleValues.add(AppConstants.OPERATION_TYPE_BINNING_OPERATION);
 			possibleValues.add(AppConstants.OPERATION_TYPE_LIVE_AS_IT_IS);
+			possibleValues.add(AppConstants.OPERATION_TYPE_UNFOLDING_DISTINCT);
 		}else if(dataType.equals(DataType.TEXT)) {
 			possibleValues.add(AppConstants.OPERATION_TYPE_UNFOLDING_DISTINCT);
 			possibleValues.add(AppConstants.OPERATION_TYPE_LIVE_AS_IT_IS);
@@ -165,7 +166,7 @@ public class DatasetController {
 			return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.BAD_REQUEST.value(), "You are not authorized to view details for this project"), HttpStatus.BAD_REQUEST);
 		}
 		Datasets derivedDatast = datasetsDao.getDerivedFromProject(projectId);
-		if(derivedDatast != null) {
+		if(derivedDatast != null && derivedDatast.getFlagFinal() != null && derivedDatast.getFlagFinal()) {
 			return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.BAD_REQUEST.value(), "Derived dataset already exist for current project"), HttpStatus.BAD_REQUEST);
 		}
 		Datasets originalDataset = datasetsDao.findById(datasetId);
@@ -289,6 +290,30 @@ public class DatasetController {
 		
 		
 		return new ResponseEntity<RestResponseDto>(new RestResponseDto(responseMap, HttpStatus.OK.value()), HttpStatus.OK);
+	}
+	
+	/**
+	 * Method for creating/updating empty derived dataset with relation with chosen original dataset and chosen project
+	 * @param projectId
+	 * @param datasetId - of original dataset
+	 * @return ResponseEntity containing the status message along with HTTP status
+	 */
+	@RequestMapping(value = "/link", method = RequestMethod.GET)
+	public ResponseEntity<RestResponseDto> linkDatasetToProject(@RequestParam Integer projectId, @RequestParam Integer datasetId){
+		Datasets dataset = datasetsDao.findById(datasetId);
+		Projects project = projectDao.findById(projectId);
+		Datasets derivedDataset = datasetsDao.getDerivedFromProject(projectId);
+		if(derivedDataset == null) {
+			derivedDataset = new Datasets();
+		}else if(derivedDataset.getFlagFinal()) {
+			return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.BAD_REQUEST.value(), "Dataset can't be changed"), HttpStatus.BAD_REQUEST);
+		}
+		derivedDataset.setOriginalDataset(dataset);
+		derivedDataset.setName(dataset.getName() + AppConstants.DERIVED + projectId);
+		derivedDataset.setFlagFinal(false);
+		derivedDataset.setProject(project);
+		datasetsDao.attachDirty(derivedDataset);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(HttpStatus.OK.value(), "Dataset successfully linked"), HttpStatus.OK);
 	}
 	
 	/**
