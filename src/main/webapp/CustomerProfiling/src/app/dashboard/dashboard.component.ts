@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Dashboardervice } from './dashboard.service';
 import { SharedService } from '../shared/services/shared.service';
@@ -10,7 +10,7 @@ import { interval, UnsubscriptionError, Subscription } from 'rxjs';
   styleUrls: ['./dashboard.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   data: any;
   dataset: any;
   algorithm: any;
@@ -148,5 +148,9 @@ export class DashboardComponent implements OnInit {
      this.subscription = this.refreshInterval$.subscribe(() =>
      this.getAllProjects()
    );
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    // Stop getting Status every 5 seconds
   }
 }
