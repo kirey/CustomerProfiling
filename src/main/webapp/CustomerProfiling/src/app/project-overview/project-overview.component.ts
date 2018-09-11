@@ -55,6 +55,7 @@ export class ProjectOverviewComponent implements OnInit {
         res => {
           // console.log(res);
           if (res['data']['true'] && this.dataset) {
+            // console.log('true');
             this.datasetId = res['data']['true'];
 
             for (let i = 0; i < this.dataset.length; i++) {
@@ -75,12 +76,28 @@ export class ProjectOverviewComponent implements OnInit {
               }
             }
           }
-          else {
+          else if (res['data']['false'] == null) {
             // Link Dataset to SHARED service
             this.sharedService.setDatasetName(null);
             this.sharedService.setDatasetId(null);
             this.sharedService.setDatasetLink(false);
             this.linked = true;
+            this.disableSelect = false;
+            // console.log('false');
+          }
+          else {
+            // console.log('false with id');
+            for (let i = 0; i < this.dataset.length; i++) {
+              if (this.dataset[i].id == res['data']['false']) {
+                console.log("found it!");
+                this.datasetName = this.dataset[i].name;
+                this.selectedDatasetId = this.dataset[i].id;
+                this.linked = true;
+                // Enable Tabs
+                this.disableTabsChange.emit(false);
+                this.getDatasetDetails(this.selectedDatasetId);
+              }
+            }
             this.disableSelect = false;
           }
         },
