@@ -109,6 +109,11 @@ export class ProjectOverviewComponent implements OnInit {
           this.selectedDatasetId = this.dataset[i].id;
           this.datasetName = this.dataset[i].name;
         }
+        this.projectOverviewService.linkDatasetProject(this.projectId, this.datasetId)
+          .subscribe(
+            res => console.log(res),
+            err => console.log(err)
+          )
       }
       this.details = {};
       this.showDetails = false;

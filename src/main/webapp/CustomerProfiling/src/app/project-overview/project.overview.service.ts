@@ -29,4 +29,8 @@ export class ProjectOverviewService {
   isLinked(projectId) {
     return this._http.get(this.baseUrl + 'dataset/linkDataset?projectId=' + projectId);
   }
+
+  linkDatasetProject(projectId, datasetId) {
+    return this._http.get(this.baseUrl + 'dataset/link?projectId=' + projectId + '&datasetId=' + datasetId);
+  }
 }
