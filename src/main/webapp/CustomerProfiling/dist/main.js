@@ -3262,8 +3262,8 @@ var ProjectOverviewComponent = /** @class */ (function () {
                     this.datasetName = this.dataset[i].name;
                 }
             }
-            this.projectOverviewService.linkDatasetProject(this.projectId, this.datasetId)
-                .subscribe(function (res) { return console.log(res); }, function (err) { return console.log(err); });
+            this.projectOverviewService.linkDatasetProject(this.projectId, this.selectedDatasetId)
+                .subscribe(function (res) { return console.log(res); }, function (err) { return console.log; });
             this.details = {};
             this.showDetails = false;
             // this.selectedDatasetId = ev.value.id;
