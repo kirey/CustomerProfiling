@@ -33,6 +33,10 @@ import { DatasetComponent } from './dataset/dataset.component';
 import { DataTabComponent } from './data-tab/data-tab.component';
 import { DataTabService } from './data-tab/data-tab.service';
 import { EditAlgorithmComponent } from './dialogs/edit-algorithm/edit-algorithm.component';
+import { QueryComponent } from './query/query.component';
+import { NewQueryComponent } from './new-query/new-query.component';
+import { QueryResultComponent } from './query-result/query-result.component';
+import { QueryResultDetailsComponent } from './query-result-details/query-result-details.component';
 
 // import { ProjectOverviewComponent } from './project-overview/project-overview.component';
 import { ProjectOverviewComponent } from './project-overview/project-overview.component';
@@ -52,6 +56,8 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { POGuard } from './shared/guards/project-ovierview.guard';
 import { AuthInterceptor } from './shared/interceptors/auth.interceptor';
 import { SignUpService } from './shared/services/sign-up.service';
+
+
 
 @NgModule({
   declarations: [
@@ -74,7 +80,11 @@ import { SignUpService } from './shared/services/sign-up.service';
     OneProjectComponent,
     AnalyzeComponent,
     AddValueComponent,
-    EditAlgorithmComponent
+    EditAlgorithmComponent,
+    QueryComponent,
+    NewQueryComponent,
+    QueryResultComponent,
+    QueryResultDetailsComponent
   ],
   imports: [
     BrowserModule,

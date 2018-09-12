@@ -151,6 +151,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
-    // Stop getting Status every 5 seconds
+    // Stop getting Status every 10 seconds
   }
 }
