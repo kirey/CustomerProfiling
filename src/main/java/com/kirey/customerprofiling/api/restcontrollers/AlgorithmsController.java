@@ -343,19 +343,21 @@ public class AlgorithmsController {
 	/**
 	 * Method for getting status of algorithm that is in relation with given project
 	 * @param projectId
-	 * @return ResponseEntity containing the HashMap with algorithm id as key and status as value along with HTTP status
+	 * @return ResponseEntity containing the List of HashMaps along with HTTP status
 	 */
 	@RequestMapping(value = "/status", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<RestResponseDto> algorithmStatus(@RequestParam Integer projectId) {
-		HashMap<Object, Object> responseMap = new HashMap<>();
+		List<HashMap<Object, Object>> responseList = new ArrayList<>();
 		
 		List<ProjectsAlgorithms> listProjectAlgorithms = projectAlgorithmsDao.findByProject(projectId);
 		for (ProjectsAlgorithms projectsAlgorithms : listProjectAlgorithms) {
-			responseMap.put(projectsAlgorithms.getAlgorithm().getAlgorithmName(), projectsAlgorithms.getStatus().getStatus());
+			HashMap<Object, Object> responseMap = new HashMap<>();
+			responseMap.put("algorithmName", projectsAlgorithms.getAlgorithm().getAlgorithmName());
+			responseMap.put("status", projectsAlgorithms.getStatus().getStatus());
+			responseList.add(responseMap);
 		}
 		
-//		Projects project = projectsDao.findById(projectId);		
-		return new ResponseEntity<RestResponseDto>(new RestResponseDto(responseMap, HttpStatus.OK.value()), HttpStatus.OK);
+		return new ResponseEntity<RestResponseDto>(new RestResponseDto(responseList, HttpStatus.OK.value()), HttpStatus.OK);
 	}
 	
 	/**
