@@ -24,10 +24,10 @@ export class AnalyzeComponent implements OnInit {
   private projectId: number;
   private initialAlgorithm;
   private parameters = [];
-  private listOfAlgorithms: any;
+  private listOfAlgorithms: any = [];
   private displayedColumns: string[] = ['parameterName', 'parameterValueType', 'parameterValue', 'actions'];
   private selectedAlgorithms = [];
-  private status: String;
+  private statusList: String;
   private refreshInterval$ = interval(5000);
   subscription: Subscription;
 
@@ -62,11 +62,55 @@ export class AnalyzeComponent implements OnInit {
     this._analyzeService.getListOfAlgorithms(this.projectId)
       .subscribe(
         res => {
-          // console.log(res);
+          console.log(res);
           this.listOfAlgorithms = res['data'];
+          this.getStatus();
         },
         err => console.log(err)
       )
+  }
+  getColor(status) {
+    switch (status) {
+      case 'Not trained':
+        return '#FF3D00';
+      case 'Trained':
+        return '#00897B';
+      case 'Learning':
+        return '#4DB6AC';
+      default:
+        return '#424242';
+    }
+  }
+
+  findAlgorithm(algorithmName, typeOfAction) {
+    let selectedAlgorithm;
+
+    for (let i = 0; i < this.listOfAlgorithms.length; i++) {
+      if (this.listOfAlgorithms[i].algorithmName == algorithmName) {
+        selectedAlgorithm = this.listOfAlgorithms[i];
+      }
+    }
+    switch (typeOfAction) {
+      case 'edit':
+        this.editParams(selectedAlgorithm.parameters, selectedAlgorithm.id);
+        break;
+      case 'delete':
+        this.deleteAlgorithm(selectedAlgorithm.id, selectedAlgorithm.algorithmName);
+        break;
+    }
+  }
+
+  setAlgorithmStatus() {
+    // console.log("u func. wtf");
+    // if (this.listOfAlgorithms && this.statusList && this.listOfAlgorithms.length > 0 && this.statusList.length > 0) {
+    //   for (let i = 0; i < this.listOfAlgorithms.length; i++) {
+    //     for (let y = 0; y < this.statusList.length; y++) {
+    //       if (this.listOfAlgorithms[i] == this.statusList[y]) {
+    //         console.log(this.statusList[y]);
+    //       }
+    //     }
+    //   }
+    // }
   }
 
   addValue(element, i) {
@@ -81,29 +125,39 @@ export class AnalyzeComponent implements OnInit {
     });
   }
 
-  editParams(params, algorithmIndex) {
+  editParams(params, algorithm) {
     let paramsOld = params;
     const dialogRef = this._dialog.open(AddValueComponent, {
       data: { type: 'editParams', data: params }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // this.listOfAlgorithms[algorithmIndex]['parameters'] = result;
 
-        this._analyzeService.saveParams(this.listOfAlgorithms[algorithmIndex])
-          .subscribe(
-            res => {
-              console.log(res);
-              this.snackbar.openSnackBar(JSON.parse(res.text()).message, 'Success');
-            },
-            err => {
-              console.log(err);
-              this.snackbar.openSnackBar(JSON.parse(err.text()).message, 'Error');
-            }
-          );
+        for (let i = 0; i < this.listOfAlgorithms.length; i++) {
+          if (this.listOfAlgorithms[i].id == algorithm.id) {
+            this.listOfAlgorithms[i]['parameters'] = result;
+            console.log("nesto");
+            this._analyzeService.saveParams(this.listOfAlgorithms[i])
+              .subscribe(
+                res => {
+                  console.log(res);
+                  this.snackbar.openSnackBar(JSON.parse(res.text()).message, 'Success');
+                },
+                err => {
+                  console.log(err);
+                  this.snackbar.openSnackBar(JSON.parse(err.text()).message, 'Error');
+                }
+              );
+          }
+        }
       }
       else {
-        this.algorithms[algorithmIndex]['parameters'] = paramsOld;
+        for (let i = 0; i < this.algorithms.length; i++) {
+          if (this.algorithms[i].id == algorithm.id) {
+            this.algorithms[i]['parameters'] = paramsOld;
+            this.listOfAlgorithms[i]['parameters'] = paramsOld;
+          }
+        }
       }
     });
   }
@@ -111,7 +165,7 @@ export class AnalyzeComponent implements OnInit {
   deleteAlgorithm(id, name) {
     const dialogRef = this._dialog.open(DeleteComponent, {
       width: '500px',
-      data: { type: "algorithm", value: name }
+      data: { type: "algorithm", name: name }
     });
     dialogRef.afterClosed().subscribe(res => {
       if (res == true) {
@@ -151,12 +205,12 @@ export class AnalyzeComponent implements OnInit {
   }
 
   getStatus() {
-    // console.log("lala");
     this._analyzeService.status(this.projectId)
       .subscribe(
         res => {
           console.log(res);
-          this.status = res['data'];
+          this.statusList = res['data'];
+          this.setAlgorithmStatus();
         },
         err => console.log(err)
       );
@@ -183,9 +237,9 @@ export class AnalyzeComponent implements OnInit {
     this.getStatus();
 
     // Get Status every 5 seconds
-    this.subscription = this.refreshInterval$.subscribe(() =>
-      this.getStatus()
-    );
+    // this.subscription = this.refreshInterval$.subscribe(() =>
+    //   this.getStatus()
+    // );
   }
 
   ngOnDestroy() {

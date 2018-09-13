@@ -55,6 +55,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
         return '#00897B';
       case 'Learning':
         return '#4DB6AC';
+      default:
+        return '#424242';
     }
 
   }
@@ -144,10 +146,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.getAllProjects();
     this.getAllDatasets();
     this.getAllAlgorithms();
-     // Get Status every 10 seconds
-     this.subscription = this.refreshInterval$.subscribe(() =>
-     this.getAllProjects()
-   );
+    // Get Status every 10 seconds
+    this.subscription = this.refreshInterval$.subscribe(() =>
+      this.getAllProjects()
+    );
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();

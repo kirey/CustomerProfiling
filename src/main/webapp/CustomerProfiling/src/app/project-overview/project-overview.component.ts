@@ -53,9 +53,9 @@ export class ProjectOverviewComponent implements OnInit {
     this.projectOverviewService.isLinked(this.projectId)
       .subscribe(
         res => {
-          // console.log(res);
+          console.log(res);
           if (res['data']['true'] && this.dataset) {
-            // console.log('true');
+            console.log('true');
             this.datasetId = res['data']['true'];
 
             for (let i = 0; i < this.dataset.length; i++) {
@@ -83,10 +83,10 @@ export class ProjectOverviewComponent implements OnInit {
             this.sharedService.setDatasetLink(false);
             this.linked = true;
             this.disableSelect = false;
-            // console.log('false');
+            console.log('false');
           }
           else {
-            // console.log('false with id');
+            console.log('false with id');
             for (let i = 0; i < this.dataset.length; i++) {
               if (this.dataset[i].id == res['data']['false']) {
                 console.log("found it!");

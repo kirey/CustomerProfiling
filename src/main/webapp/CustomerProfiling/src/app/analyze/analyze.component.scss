@@ -72,6 +72,18 @@
         border-radius: 3px;
     }
     .list-box>* {
-        width: 50%;
+        width: 80%;
+    }
+    .list-wrapper {
+        width: 100%;
+        align-items: center;
+    }
+    .actions {
+        width: 60%;
+        margin-left: 20px;
+        align-items: center;
+    }
+    .list-name {
+        width: 20%;
     }
 }

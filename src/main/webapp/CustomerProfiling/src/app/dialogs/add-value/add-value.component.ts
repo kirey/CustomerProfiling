@@ -19,7 +19,7 @@ export class AddValueComponent implements OnInit {
 
   ngOnInit() {
 
-    // console.log(this.data);
+    console.log(this.data);
     if (this.data.type == 'addValueDialog') {
       this.addValueForm = this._formBuilder.group({
         value: ['', Validators.required]
@@ -30,9 +30,9 @@ export class AddValueComponent implements OnInit {
     }
   }
   inputChanged(ev, i) {
-    // if (ev.length > 0) {
-    //   this.valuesData[i].parameterValues[0].value = ev;
-    // }
+    if (ev.length > 0) {
+      this.valuesData[i].parameterValues[0].value = ev;
+    }
   }
 
   // MULTIPLE VALUES CANCEL
@@ -54,6 +54,7 @@ export class AddValueComponent implements OnInit {
     }
     if (checkArray.length == this.data.data.length) {
       this.error = false;
+      console.log(this.data.data);
       this.dialogRef.close(this.data.data);
     }
   }
