@@ -53,7 +53,7 @@
                     <mat-list-item class="flex space-around list-wrapper" *ngFor="let item of statusList; let i = index">
                         <span class="list-name"> {{item.algorithmName}}</span>
                         <span class="flex space-around actions">
-                            <mat-chip-list>
+                            <mat-chip-list class="chip-list">
                                 <mat-chip [ngStyle]="{'backgroundColor':getColor(item.status)}" selected>{{item.status}}</mat-chip>
                             </mat-chip-list>
                             <span>

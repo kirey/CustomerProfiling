@@ -72,6 +72,11 @@
         background-color: $warn;
         border-radius: 3px;
     }
+    .chip-list {
+        width: 150px;
+        display: flex;
+        justify-content: flex-start;
+    }
     .list-box>* {
         width: 80%;
     }
