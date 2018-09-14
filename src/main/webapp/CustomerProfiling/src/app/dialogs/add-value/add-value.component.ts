@@ -16,16 +16,17 @@ export class AddValueComponent implements OnInit {
   private displayedColumns: string[] = ['parameterName', 'parameterValueType', 'parameterValue'];
   private error: boolean = false;
   private valuesData: any;
+  private valuesDataOld: any;
 
   ngOnInit() {
-
-    console.log(this.data);
+    // console.log(this.data);
     if (this.data.type == 'addValueDialog') {
       this.addValueForm = this._formBuilder.group({
         value: ['', Validators.required]
       });
     }
     if (this.data.type == 'editParams') {
+      this.valuesDataOld = this.data.data;
       this.valuesData = this.data.data;
     }
   }
@@ -37,6 +38,7 @@ export class AddValueComponent implements OnInit {
 
   // MULTIPLE VALUES CANCEL
   cancel() {
+    this.data.data = this.valuesDataOld;
     this.dialogRef.close();
   }
 
@@ -45,7 +47,7 @@ export class AddValueComponent implements OnInit {
     let checkArray = [];
 
     for (let i = 0; i < this.valuesData.length; i++) {
-      if (!this.valuesData[i].parameterValues[0].value) {
+      if (!this.valuesData[i].parameterValues[0].value || this.valuesData[i].parameterValues[0].value.length == 0) {
         this.error = true;
       }
       else {
@@ -54,7 +56,7 @@ export class AddValueComponent implements OnInit {
     }
     if (checkArray.length == this.data.data.length) {
       this.error = false;
-      console.log(this.data.data);
+      // console.log(this.data.data);
       this.dialogRef.close(this.data.data);
     }
   }

@@ -20,7 +20,7 @@
 
 <!-- MULTIPLE VALUES -->
 <div id="editParams" class="flex column center dialog" *ngIf="valuesData && data.type == 'editParams'">
-    <h1 class="subtitle" mat-dialog-title>Edit Values</h1>
+    <h1 class="subtitle" mat-dialog-title *ngIf="data">Edit Values for {{data.title}}</h1>
     <table *ngIf="valuesData.length > 0; else noData" mat-table [dataSource]="valuesData" class="params-table mat-elevation-z8">
         <ng-container matColumnDef="parameterName">
             <th mat-header-cell *matHeaderCellDef> Parameter Name </th>

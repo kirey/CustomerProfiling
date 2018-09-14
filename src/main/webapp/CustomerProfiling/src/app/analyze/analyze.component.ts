@@ -62,7 +62,7 @@ export class AnalyzeComponent implements OnInit {
     this._analyzeService.getListOfAlgorithms(this.projectId)
       .subscribe(
         res => {
-          console.log(res);
+          // console.log(res);
           this.listOfAlgorithms = res['data'];
           this.getStatus();
         },
@@ -92,7 +92,8 @@ export class AnalyzeComponent implements OnInit {
     }
     switch (typeOfAction) {
       case 'edit':
-        this.editParams(selectedAlgorithm.parameters, selectedAlgorithm.id);
+        // console.log(selectedAlgorithm);
+        this.editParams(selectedAlgorithm.parameters, selectedAlgorithm);
         break;
       case 'delete':
         this.deleteAlgorithm(selectedAlgorithm.id, selectedAlgorithm.algorithmName);
@@ -128,19 +129,21 @@ export class AnalyzeComponent implements OnInit {
   editParams(params, algorithm) {
     let paramsOld = params;
     const dialogRef = this._dialog.open(AddValueComponent, {
-      data: { type: 'editParams', data: params }
+      data: { type: 'editParams', data: params, title: algorithm.algorithmName }
     });
+    // console.log(algorithm.algorithmName);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-
         for (let i = 0; i < this.listOfAlgorithms.length; i++) {
+          // console.log(this.listOfAlgorithms[i]);
+          // console.log(algorithm);
           if (this.listOfAlgorithms[i].id == algorithm.id) {
             this.listOfAlgorithms[i]['parameters'] = result;
-            console.log("nesto");
+            // console.log("nesto");
             this._analyzeService.saveParams(this.listOfAlgorithms[i])
               .subscribe(
                 res => {
-                  console.log(res);
+                  // console.log(res);
                   this.snackbar.openSnackBar(JSON.parse(res.text()).message, 'Success');
                 },
                 err => {
@@ -208,7 +211,7 @@ export class AnalyzeComponent implements OnInit {
     this._analyzeService.status(this.projectId)
       .subscribe(
         res => {
-          console.log(res);
+          // console.log(res);
           this.statusList = res['data'];
           this.setAlgorithmStatus();
         },
@@ -217,17 +220,18 @@ export class AnalyzeComponent implements OnInit {
   }
 
   analyze() {
-    this._analyzeService.analyze(this.projectId, this.listOfAlgorithms)
-      .subscribe(
-        res => {
-          // console.log(res)
-          this.snackbar.openSnackBar(res['message'], 'Success');
-        },
-        err => {
-          console.log(err);
-          this.snackbar.openSnackBar(err['message'], 'Error');
-        }
-      );
+    console.log("Analyze");
+    // this._analyzeService.analyze(this.projectId, this.listOfAlgorithms)
+    //   .subscribe(
+    //     res => {
+    //       // console.log(res)
+    //       this.snackbar.openSnackBar(res['message'], 'Success');
+    //     },
+    //     err => {
+    //       console.log(err);
+    //       this.snackbar.openSnackBar(err['message'], 'Error');
+    //     }
+    //   );
   }
 
   ngOnInit() {
@@ -237,15 +241,14 @@ export class AnalyzeComponent implements OnInit {
     this.getStatus();
 
     // Get Status every 5 seconds
-    // this.subscription = this.refreshInterval$.subscribe(() =>
-    //   this.getStatus()
-    // );
+    this.subscription = this.refreshInterval$.subscribe(() =>
+      this.getStatus()
+    );
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
-    // TO DO
     // Stop getting Status every 5 seconds
+    this.subscription.unsubscribe();
   }
 }
 

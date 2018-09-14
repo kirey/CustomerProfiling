@@ -53,5 +53,8 @@
         color: $gray;
         
     }
+    tr.mat-footer-row, tr.mat-row {
+        height: 90px!important;
+    }
 }
 

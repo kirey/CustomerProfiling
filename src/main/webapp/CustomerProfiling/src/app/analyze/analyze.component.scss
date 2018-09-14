@@ -51,6 +51,7 @@
     }
     .list-icons {
         margin-right: 10px;
+        color: $primary;
     }
     .list-icons:hover {
         color: $warn;
@@ -85,5 +86,10 @@
     }
     .list-name {
         width: 20%;
+    }
+    .button-line {
+        align-items: center;
+        justify-content: flex-end;
+        margin-top: 30px;
     }
 }

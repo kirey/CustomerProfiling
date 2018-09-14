@@ -45,7 +45,7 @@
         </div>
     </div>
     <!-- LIST -->
-    <div class="border" *ngIf="this.listOfAlgorithms">
+    <div class="border" *ngIf="this.listOfAlgorithms && statusList">
         <h2 class="a-title">Selected Algorithms</h2>
         <div class="flex list-box">
             <div class="flex column" *ngIf="statusList.length>0; else noData">
@@ -63,26 +63,13 @@
                         </span>
                     </mat-list-item>
                 </mat-nav-list>
-                <!-- <div class="algorithm-list" *ngFor="let algorithm of listOfAlgorithms; let i = index">
-                    <div class="flex space-between algorithm-list-item">
-                        <span>{{algorithm.algorithmName}}</span>
-                        <span>
-                            <i matTooltip="Edit Parameters" matTooltipPosition="above" (click)="editParams(algorithm.parameters, i)" class="list-icons material-icons">border_color</i>
-                            <i matTooltip="Delete Algorithm" matTooltipPosition="above" (click)="deleteAlgorithm(algorithm.id, algorithm.algorithmName)"
-                                class=" list-icons material-icons">delete</i>
-                        </span>
-                    </div>
-                </div> -->
             </div>
             <ng-template #noData>
                 <i>No selected algorithms.</i>
             </ng-template>
-            <!-- <div class="flex column status-container"> -->
-            <!-- <div *ngIf="status" class="status-box flex center">
-                    {{status}}
-                </div> -->
-            <!-- <button mat-raised-button color="primary" (click)="analyze()">Analyze</button>
-            </div> -->
+        </div>
+        <div class="flex button-line">
+            <button mat-raised-button color="warn" (click)="analyze()">Analyze</button>
         </div>
     </div>
 </div>
