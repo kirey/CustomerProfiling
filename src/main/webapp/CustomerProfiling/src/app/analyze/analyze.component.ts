@@ -81,8 +81,6 @@ export class AnalyzeComponent implements OnInit {
         return '#FF3D00';
       case 'Notified Completion':
         return '#004D40';
-      case 'Initialized':
-        return '#EF5350';
       default:
         return '#424242';
     }
@@ -247,9 +245,9 @@ export class AnalyzeComponent implements OnInit {
     this.getStatus();
 
     // Get Status every 5 seconds
-    // this.subscription = this.refreshInterval$.subscribe(() =>
-    //   this.getStatus()
-    // );
+    this.subscription = this.refreshInterval$.subscribe(() =>
+      this.getStatus()
+    );
   }
 
   ngOnDestroy() {
