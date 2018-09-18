@@ -197,7 +197,7 @@ var AlgorithmsService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"analyze\">\r\n    <div *ngIf=\"initialAlgorithm != null\" class=\"flex column border\">\r\n        <!-- Name & Description -->\r\n        <h2 class=\"a-title\">Algorithm Details</h2>\r\n        <div class=\" flex space-around align-items-center\">\r\n            <mat-form-field class=\"a-input\">\r\n                <mat-select [(ngModel)]=\"initialAlgorithm\" [ngModelOptions]=\"{standalone: true}\" placeholder=\"Select Algorithm\" (selectionChange)=\"getParameters($event.value)\">\r\n                    <mat-option *ngFor=\"let algorithm of algorithms\" [value]=\"algorithm\">\r\n                        {{algorithm.algorithmName}}\r\n                    </mat-option>\r\n                </mat-select>\r\n            </mat-form-field>\r\n            <div class=\"description-box\">\r\n                <strong>Description</strong>\r\n                <br> {{initialAlgorithm.description}}\r\n            </div>\r\n        </div>\r\n        <!-- TABLE -->\r\n        <div class=\"algorithmDetails\">\r\n            <table *ngIf=\"parameters.length != 0\" mat-table [dataSource]=\"parameters\" class=\"mat-elevation-z8\">\r\n                <ng-container matColumnDef=\"parameterName\">\r\n                    <th mat-header-cell *matHeaderCellDef> Parameter Name </th>\r\n                    <td mat-cell *matCellDef=\"let element\"> {{element.parameterName}} </td>\r\n                </ng-container>\r\n                <ng-container matColumnDef=\"parameterValueType\">\r\n                    <th mat-header-cell *matHeaderCellDef> Parameter Value Type </th>\r\n                    <td mat-cell *matCellDef=\"let element\"> {{element.parameterValueType}} </td>\r\n                </ng-container>\r\n                <ng-container matColumnDef=\"parameterValue\">\r\n                    <th mat-header-cell *matHeaderCellDef> Parameter Value </th>\r\n                    <td mat-cell *matCellDef=\"let element\"> {{element.parameterValues[0] != null ? element.parameterValues[0].value\r\n                        : element.parameterValues[0].value}}\r\n                    </td>\r\n                </ng-container>\r\n                <ng-container matColumnDef=\"actions\">\r\n                    <th mat-header-cell *matHeaderCellDef> Edit Value</th>\r\n                    <td mat-cell *matCellDef=\"let element let i = index\">\r\n                        <i matTooltip=\"Edit value\" (click)=\"addValue(element, i)\" matTooltipPosition=\"above\" class=\"material-icons table-icons edit-icon\">edit</i>\r\n                    </td>\r\n                </ng-container>\r\n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n            </table>\r\n            <button class=\"add\" mat-raised-button color=\"primary\" (click)=\"addAlgorithm()\">Add</button>\r\n        </div>\r\n    </div>\r\n    <!-- LIST -->\r\n    <div class=\"border\" *ngIf=\"this.listOfAlgorithms\">\r\n        <h2 class=\"a-title\">Selected Algorithms</h2>\r\n        <div class=\"flex list-box\">\r\n            <div class=\"flex column\" *ngIf=\"listOfAlgorithms.length>0; else noData\">\r\n                <div class=\"algorithm-list\" *ngFor=\"let algorithm of listOfAlgorithms; let i = index\">\r\n                    <div class=\"flex space-between algorithm-list-item\">\r\n                        <span>{{algorithm.algorithmName}}</span>\r\n                        <span>\r\n                            <i matTooltip=\"Edit Parameters\" matTooltipPosition=\"above\" (click)=\"editParams(algorithm.parameters, i)\" class=\"list-icons material-icons\">border_color</i>\r\n                            <i matTooltip=\"Delete Algorithm\" matTooltipPosition=\"above\" (click)=\"deleteAlgorithm(algorithm.id, algorithm.algorithmName)\" class=\" list-icons material-icons\">delete</i>\r\n                        </span>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <ng-template #noData>\r\n                <i>No selected algorithms.</i>\r\n            </ng-template>\r\n            <div class=\"flex column status-container\">\r\n                <div *ngIf=\"status\" class=\"status-box flex center\">\r\n                    {{status}}\r\n                </div>\r\n                <button mat-raised-button color=\"primary\" (click)=\"analyze()\">Analyze</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
+module.exports = "<div id=\"analyze\">\r\n    <div *ngIf=\"initialAlgorithm != null\" class=\"flex column border\">\r\n        <!-- Name & Description -->\r\n        <h2 class=\"a-title\">Algorithm Details</h2>\r\n        <div class=\" flex space-around align-items-center\">\r\n            <mat-form-field class=\"a-input\">\r\n                <mat-select [(ngModel)]=\"initialAlgorithm\" [ngModelOptions]=\"{standalone: true}\" placeholder=\"Select Algorithm\" (selectionChange)=\"getParameters($event.value)\">\r\n                    <mat-option *ngFor=\"let algorithm of algorithms\" [value]=\"algorithm\">\r\n                        {{algorithm.algorithmName}}\r\n                    </mat-option>\r\n                </mat-select>\r\n            </mat-form-field>\r\n            <div class=\"description-box\">\r\n                <strong>Description</strong>\r\n                <br> {{initialAlgorithm.description}}\r\n            </div>\r\n        </div>\r\n        <!-- TABLE -->\r\n        <div class=\"algorithmDetails\">\r\n            <table *ngIf=\"parameters.length != 0\" mat-table [dataSource]=\"parameters\" class=\"mat-elevation-z8\">\r\n                <ng-container matColumnDef=\"parameterName\">\r\n                    <th mat-header-cell *matHeaderCellDef> Parameter Name </th>\r\n                    <td mat-cell *matCellDef=\"let element\"> {{element.parameterName}} </td>\r\n                </ng-container>\r\n                <ng-container matColumnDef=\"parameterValueType\">\r\n                    <th mat-header-cell *matHeaderCellDef> Parameter Value Type </th>\r\n                    <td mat-cell *matCellDef=\"let element\"> {{element.parameterValueType}} </td>\r\n                </ng-container>\r\n                <ng-container matColumnDef=\"parameterValue\">\r\n                    <th mat-header-cell *matHeaderCellDef> Parameter Value </th>\r\n                    <td mat-cell *matCellDef=\"let element\"> {{element.parameterValues[0] != null ? element.parameterValues[0].value\r\n                        : element.parameterValues[0].value}}\r\n                    </td>\r\n                </ng-container>\r\n                <ng-container matColumnDef=\"actions\">\r\n                    <th mat-header-cell *matHeaderCellDef> Edit Value</th>\r\n                    <td mat-cell *matCellDef=\"let element let i = index\">\r\n                        <i matTooltip=\"Edit value\" (click)=\"addValue(element, i)\" matTooltipPosition=\"above\" class=\"material-icons table-icons edit-icon\">edit</i>\r\n                    </td>\r\n                </ng-container>\r\n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n            </table>\r\n            <button class=\"add\" mat-raised-button color=\"primary\" (click)=\"addAlgorithm()\">Add</button>\r\n        </div>\r\n    </div>\r\n    <!-- LIST -->\r\n    <div class=\"border\" *ngIf=\"this.listOfAlgorithms && statusList\">\r\n        <h2 class=\"a-title\">Selected Algorithms</h2>\r\n        <div class=\"flex list-box\">\r\n            <div class=\"flex column\" *ngIf=\"statusList.length>0; else noData\">\r\n                <mat-nav-list>\r\n                    <mat-list-item class=\"flex space-around list-wrapper\" *ngFor=\"let item of statusList; let i = index\">\r\n                        <span class=\"list-name\"> {{item.algorithmName}}</span>\r\n                        <span class=\"flex space-around actions\">\r\n                            <mat-chip-list class=\"chip-list\">\r\n                                <mat-chip [ngStyle]=\"{'backgroundColor':getColor(item.status)}\" selected>{{item.status}}</mat-chip>\r\n                            </mat-chip-list>\r\n                            <span>\r\n                                <i matTooltip=\"Edit Parameters\" matTooltipPosition=\"above\" (click)=\"findAlgorithm(item.algorithmName, 'edit')\" class=\"list-icons material-icons\">border_color</i>\r\n                                <i matTooltip=\"Delete Algorithm\" matTooltipPosition=\"above\" (click)=\"findAlgorithm(item.algorithmName, 'delete')\" class=\" list-icons material-icons\">delete</i>\r\n                            </span>\r\n                        </span>\r\n                    </mat-list-item>\r\n                </mat-nav-list>\r\n            </div>\r\n            <ng-template #noData>\r\n                <i>No selected algorithms.</i>\r\n            </ng-template>\r\n        </div>\r\n        <div class=\"flex button-line\">\r\n            <button mat-raised-button color=\"warn\" (click)=\"analyze()\">Analyze</button>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -208,7 +208,7 @@ module.exports = "<div id=\"analyze\">\r\n    <div *ngIf=\"initialAlgorithm != n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%;\n  padding-top: 35px; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header-username {\n  color: #fff;\n  font-size: 17px;\n  padding-right: 100px; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #00897B, #4DB6AC);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #00897B; }\n\n.add-mini-fab-btn {\n  color: #fff; }\n\n#analyze .a-title {\n  color: #757575;\n  margin: 30px 0; }\n\n#analyze .a-input {\n  width: 40%; }\n\n#analyze .description-box {\n  margin: 10px 0;\n  padding: 25px 20px;\n  color: #757575;\n  font-size: 17px;\n  border: 2px dotted #FF3D00;\n  border-radius: 3px;\n  width: 40%; }\n\n#analyze .edit-icon {\n  color: #00897B; }\n\n#analyze .edit-icon:hover {\n  color: #FF3D00;\n  cursor: pointer; }\n\n#analyze .border {\n  border: 1px solid #E0E0E0;\n  padding: 50px;\n  margin: 50px; }\n\n#analyze button.add {\n  float: right;\n  margin: 20px 40px 0 0; }\n\n#analyze table {\n  border-spacing: 0;\n  margin: 40px;\n  width: 90%; }\n\n#analyze .algorithm-list {\n  padding: 20px; }\n\n#analyze .algorithm-list-item {\n  color: #00897B;\n  font-weight: bold;\n  display: flex;\n  align-items: center; }\n\n#analyze .list-icons {\n  margin-right: 10px; }\n\n#analyze .list-icons:hover {\n  color: #FF3D00;\n  cursor: pointer; }\n\n#analyze .status-container {\n  justify-content: center;\n  align-items: flex-end;\n  padding-right: 20px; }\n\n#analyze .status-box {\n  padding: 15px;\n  width: 50%;\n  height: 25px;\n  margin-bottom: 30px;\n  font-weight: bold;\n  color: #fff;\n  background-color: #FF3D00;\n  border-radius: 3px; }\n\n#analyze .list-box > * {\n  width: 50%; }\n"
+module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%;\n  padding-top: 35px; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header-username {\n  color: #fff;\n  font-size: 17px;\n  padding-right: 100px; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #00897B, #4DB6AC);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #00897B; }\n\n.add-mini-fab-btn {\n  color: #fff; }\n\n#analyze .a-title {\n  color: #757575;\n  margin: 30px 0; }\n\n#analyze .a-input {\n  width: 40%; }\n\n#analyze .description-box {\n  margin: 10px 0;\n  padding: 25px 20px;\n  color: #757575;\n  font-size: 17px;\n  border: 2px dotted #FF3D00;\n  border-radius: 3px;\n  width: 40%; }\n\n#analyze .edit-icon {\n  color: #00897B; }\n\n#analyze .edit-icon:hover {\n  color: #FF3D00;\n  cursor: pointer; }\n\n#analyze .border {\n  border: 1px solid #E0E0E0;\n  padding: 50px;\n  margin: 50px; }\n\n#analyze button.add {\n  float: right;\n  margin: 20px 40px 0 0; }\n\n#analyze table {\n  border-spacing: 0;\n  margin: 40px;\n  width: 90%; }\n\n#analyze .algorithm-list {\n  padding: 20px; }\n\n#analyze .algorithm-list-item {\n  color: #00897B;\n  font-weight: bold;\n  display: flex;\n  align-items: center; }\n\n#analyze .list-icons {\n  margin-right: 10px;\n  color: #00897B; }\n\n#analyze .list-icons:hover {\n  color: #FF3D00;\n  cursor: pointer; }\n\n#analyze .status-container {\n  justify-content: center;\n  align-items: flex-end;\n  padding-right: 20px; }\n\n#analyze .status-box {\n  padding: 15px;\n  width: 50%;\n  height: 25px;\n  margin-bottom: 30px;\n  font-weight: bold;\n  color: #fff;\n  background-color: #FF3D00;\n  border-radius: 3px; }\n\n#analyze .chip-list {\n  width: 150px;\n  display: flex;\n  justify-content: flex-start; }\n\n#analyze .list-box > * {\n  width: 80%; }\n\n#analyze .list-wrapper {\n  width: 100%;\n  align-items: center; }\n\n#analyze .actions {\n  width: 60%;\n  margin-left: 20px;\n  align-items: center; }\n\n#analyze .list-name {\n  width: 20%; }\n\n#analyze .button-line {\n  align-items: center;\n  justify-content: flex-end;\n  margin-top: 30px; }\n"
 
 /***/ }),
 
@@ -257,6 +257,7 @@ var AnalyzeComponent = /** @class */ (function () {
         this.sharedService = sharedService;
         this.snackbar = snackbar;
         this.parameters = [];
+        this.listOfAlgorithms = [];
         this.displayedColumns = ['parameterName', 'parameterValueType', 'parameterValue', 'actions'];
         this.selectedAlgorithms = [];
         this.refreshInterval$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_8__["interval"])(5000);
@@ -293,7 +294,55 @@ var AnalyzeComponent = /** @class */ (function () {
             .subscribe(function (res) {
             // console.log(res);
             _this.listOfAlgorithms = res['data'];
+            _this.getStatus();
         }, function (err) { return console.log(err); });
+    };
+    AnalyzeComponent.prototype.getColor = function (status) {
+        switch (status) {
+            case 'Training':
+                return '#4DB6AC';
+            case 'Trained':
+                return '#00897B';
+            case 'Error':
+                return '#B71C1C';
+            case 'Notified Error':
+                return '#FF3D00';
+            case 'Notified Completion':
+                return '#004D40';
+            case 'Initialized':
+                return '#EF5350';
+            default:
+                return '#424242';
+        }
+    };
+    AnalyzeComponent.prototype.findAlgorithm = function (algorithmName, typeOfAction) {
+        var selectedAlgorithm;
+        for (var i = 0; i < this.listOfAlgorithms.length; i++) {
+            if (this.listOfAlgorithms[i].algorithmName == algorithmName) {
+                selectedAlgorithm = this.listOfAlgorithms[i];
+            }
+        }
+        switch (typeOfAction) {
+            case 'edit':
+                // console.log(selectedAlgorithm);
+                this.editParams(selectedAlgorithm.parameters, selectedAlgorithm);
+                break;
+            case 'delete':
+                this.deleteAlgorithm(selectedAlgorithm.id, selectedAlgorithm.algorithmName);
+                break;
+        }
+    };
+    AnalyzeComponent.prototype.setAlgorithmStatus = function () {
+        // console.log("u func. wtf");
+        // if (this.listOfAlgorithms && this.statusList && this.listOfAlgorithms.length > 0 && this.statusList.length > 0) {
+        //   for (let i = 0; i < this.listOfAlgorithms.length; i++) {
+        //     for (let y = 0; y < this.statusList.length; y++) {
+        //       if (this.listOfAlgorithms[i] == this.statusList[y]) {
+        //         console.log(this.statusList[y]);
+        //       }
+        //     }
+        //   }
+        // }
     };
     AnalyzeComponent.prototype.addValue = function (element, i) {
         var _this = this;
@@ -307,26 +356,39 @@ var AnalyzeComponent = /** @class */ (function () {
             }
         });
     };
-    AnalyzeComponent.prototype.editParams = function (params, algorithmIndex) {
+    AnalyzeComponent.prototype.editParams = function (params, algorithm) {
         var _this = this;
         var paramsOld = params;
         var dialogRef = this._dialog.open(_dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_1__["AddValueComponent"], {
-            data: { type: 'editParams', data: params }
+            data: { type: 'editParams', data: params, title: algorithm.algorithmName }
         });
+        // console.log(algorithm.algorithmName);
         dialogRef.afterClosed().subscribe(function (result) {
             if (result) {
-                // this.listOfAlgorithms[algorithmIndex]['parameters'] = result;
-                _this._analyzeService.saveParams(_this.listOfAlgorithms[algorithmIndex])
-                    .subscribe(function (res) {
-                    console.log(res);
-                    _this.snackbar.openSnackBar(JSON.parse(res.text()).message, 'Success');
-                }, function (err) {
-                    console.log(err);
-                    _this.snackbar.openSnackBar(JSON.parse(err.text()).message, 'Error');
-                });
+                for (var i = 0; i < _this.listOfAlgorithms.length; i++) {
+                    // console.log(this.listOfAlgorithms[i]);
+                    // console.log(algorithm);
+                    if (_this.listOfAlgorithms[i].id == algorithm.id) {
+                        _this.listOfAlgorithms[i]['parameters'] = result;
+                        // console.log("nesto");
+                        _this._analyzeService.saveParams(_this.listOfAlgorithms[i])
+                            .subscribe(function (res) {
+                            // console.log(res);
+                            _this.snackbar.openSnackBar(JSON.parse(res.text()).message, 'Success');
+                        }, function (err) {
+                            console.log(err);
+                            _this.snackbar.openSnackBar(JSON.parse(err.text()).message, 'Error');
+                        });
+                    }
+                }
             }
             else {
-                _this.algorithms[algorithmIndex]['parameters'] = paramsOld;
+                for (var i = 0; i < _this.algorithms.length; i++) {
+                    if (_this.algorithms[i].id == algorithm.id) {
+                        _this.algorithms[i]['parameters'] = paramsOld;
+                        _this.listOfAlgorithms[i]['parameters'] = paramsOld;
+                    }
+                }
             }
         });
     };
@@ -334,7 +396,7 @@ var AnalyzeComponent = /** @class */ (function () {
         var _this = this;
         var dialogRef = this._dialog.open(_dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_7__["DeleteComponent"], {
             width: '500px',
-            data: { type: "algorithm", value: name }
+            data: { type: "algorithm", name: name }
         });
         dialogRef.afterClosed().subscribe(function (res) {
             if (res == true) {
@@ -368,39 +430,40 @@ var AnalyzeComponent = /** @class */ (function () {
     };
     AnalyzeComponent.prototype.getStatus = function () {
         var _this = this;
-        // console.log("lala");
         this._analyzeService.status(this.projectId)
             .subscribe(function (res) {
             // console.log(res);
-            _this.status = res['data'];
+            _this.statusList = res['data'];
+            _this.setAlgorithmStatus();
         }, function (err) { return console.log(err); });
     };
     AnalyzeComponent.prototype.analyze = function () {
-        var _this = this;
-        this._analyzeService.analyze(this.projectId, this.listOfAlgorithms)
-            .subscribe(function (res) {
-            // console.log(res)
-            _this.snackbar.openSnackBar(res['message'], 'Success');
-        }, function (err) {
-            console.log(err);
-            _this.snackbar.openSnackBar(err['message'], 'Error');
-        });
+        console.log("Analyze");
+        // this._analyzeService.analyze(this.projectId, this.listOfAlgorithms)
+        //   .subscribe(
+        //     res => {
+        //       // console.log(res)
+        //       this.snackbar.openSnackBar(res['message'], 'Success');
+        //     },
+        //     err => {
+        //       console.log(err);
+        //       this.snackbar.openSnackBar(err['message'], 'Error');
+        //     }
+        //   );
     };
     AnalyzeComponent.prototype.ngOnInit = function () {
-        var _this = this;
         this.projectId = this.sharedService.getProjectId();
         this.getAlgorithms();
         this.getListOfAlgorithms();
         this.getStatus();
         // Get Status every 5 seconds
-        this.subscription = this.refreshInterval$.subscribe(function () {
-            return _this.getStatus();
-        });
+        // this.subscription = this.refreshInterval$.subscribe(() =>
+        //   this.getStatus()
+        // );
     };
     AnalyzeComponent.prototype.ngOnDestroy = function () {
-        this.subscription.unsubscribe();
-        // TO DO
         // Stop getting Status every 5 seconds
+        this.subscription.unsubscribe();
     };
     AnalyzeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["Component"])({
@@ -604,22 +667,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _data_tab_data_tab_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./data-tab/data-tab.component */ "./src/app/data-tab/data-tab.component.ts");
 /* harmony import */ var _data_tab_data_tab_service__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./data-tab/data-tab.service */ "./src/app/data-tab/data-tab.service.ts");
 /* harmony import */ var _dialogs_edit_algorithm_edit_algorithm_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./dialogs/edit-algorithm/edit-algorithm.component */ "./src/app/dialogs/edit-algorithm/edit-algorithm.component.ts");
-/* harmony import */ var _project_overview_project_overview_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./project-overview/project-overview.component */ "./src/app/project-overview/project-overview.component.ts");
-/* harmony import */ var _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./dialogs/add-dataset/add-dataset.component */ "./src/app/dialogs/add-dataset/add-dataset.component.ts");
-/* harmony import */ var _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./dialogs/dataset-detail/dataset-detail.component */ "./src/app/dialogs/dataset-detail/dataset-detail.component.ts");
-/* harmony import */ var _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./dialogs/data-tab-view/data-tab-view.component */ "./src/app/dialogs/data-tab-view/data-tab-view.component.ts");
-/* harmony import */ var _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./algorithms/algorithms.component */ "./src/app/algorithms/algorithms.component.ts");
-/* harmony import */ var _dialogs_addProject_addProject_service__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./dialogs/addProject/addProject.service */ "./src/app/dialogs/addProject/addProject.service.ts");
-/* harmony import */ var _dialogs_copyProject_copyProject_service__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./dialogs/copyProject/copyProject.service */ "./src/app/dialogs/copyProject/copyProject.service.ts");
-/* harmony import */ var _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./dialogs/add-algorithm/add-algorithm.component */ "./src/app/dialogs/add-algorithm/add-algorithm.component.ts");
-/* harmony import */ var _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./dialogs/view-algorithm/view-algorithm.component */ "./src/app/dialogs/view-algorithm/view-algorithm.component.ts");
-/* harmony import */ var _one_project_one_project_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./one-project/one-project.component */ "./src/app/one-project/one-project.component.ts");
-/* harmony import */ var _analyze_analyze_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./analyze/analyze.component */ "./src/app/analyze/analyze.component.ts");
-/* harmony import */ var _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./dialogs/add-value/add-value.component */ "./src/app/dialogs/add-value/add-value.component.ts");
-/* harmony import */ var _shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./shared/guards/auth.guard */ "./src/app/shared/guards/auth.guard.ts");
-/* harmony import */ var _shared_guards_project_ovierview_guard__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./shared/guards/project-ovierview.guard */ "./src/app/shared/guards/project-ovierview.guard.ts");
-/* harmony import */ var _shared_interceptors_auth_interceptor__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./shared/interceptors/auth.interceptor */ "./src/app/shared/interceptors/auth.interceptor.ts");
-/* harmony import */ var _shared_services_sign_up_service__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./shared/services/sign-up.service */ "./src/app/shared/services/sign-up.service.ts");
+/* harmony import */ var _query_query_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./query/query.component */ "./src/app/query/query.component.ts");
+/* harmony import */ var _new_query_new_query_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./new-query/new-query.component */ "./src/app/new-query/new-query.component.ts");
+/* harmony import */ var _query_result_query_result_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./query-result/query-result.component */ "./src/app/query-result/query-result.component.ts");
+/* harmony import */ var _query_result_details_query_result_details_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./query-result-details/query-result-details.component */ "./src/app/query-result-details/query-result-details.component.ts");
+/* harmony import */ var _project_overview_project_overview_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./project-overview/project-overview.component */ "./src/app/project-overview/project-overview.component.ts");
+/* harmony import */ var _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./dialogs/add-dataset/add-dataset.component */ "./src/app/dialogs/add-dataset/add-dataset.component.ts");
+/* harmony import */ var _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./dialogs/dataset-detail/dataset-detail.component */ "./src/app/dialogs/dataset-detail/dataset-detail.component.ts");
+/* harmony import */ var _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./dialogs/data-tab-view/data-tab-view.component */ "./src/app/dialogs/data-tab-view/data-tab-view.component.ts");
+/* harmony import */ var _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./algorithms/algorithms.component */ "./src/app/algorithms/algorithms.component.ts");
+/* harmony import */ var _dialogs_addProject_addProject_service__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./dialogs/addProject/addProject.service */ "./src/app/dialogs/addProject/addProject.service.ts");
+/* harmony import */ var _dialogs_copyProject_copyProject_service__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./dialogs/copyProject/copyProject.service */ "./src/app/dialogs/copyProject/copyProject.service.ts");
+/* harmony import */ var _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./dialogs/add-algorithm/add-algorithm.component */ "./src/app/dialogs/add-algorithm/add-algorithm.component.ts");
+/* harmony import */ var _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./dialogs/view-algorithm/view-algorithm.component */ "./src/app/dialogs/view-algorithm/view-algorithm.component.ts");
+/* harmony import */ var _one_project_one_project_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./one-project/one-project.component */ "./src/app/one-project/one-project.component.ts");
+/* harmony import */ var _analyze_analyze_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./analyze/analyze.component */ "./src/app/analyze/analyze.component.ts");
+/* harmony import */ var _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./dialogs/add-value/add-value.component */ "./src/app/dialogs/add-value/add-value.component.ts");
+/* harmony import */ var _shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./shared/guards/auth.guard */ "./src/app/shared/guards/auth.guard.ts");
+/* harmony import */ var _shared_guards_project_ovierview_guard__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./shared/guards/project-ovierview.guard */ "./src/app/shared/guards/project-ovierview.guard.ts");
+/* harmony import */ var _shared_interceptors_auth_interceptor__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./shared/interceptors/auth.interceptor */ "./src/app/shared/interceptors/auth.interceptor.ts");
+/* harmony import */ var _shared_services_sign_up_service__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./shared/services/sign-up.service */ "./src/app/shared/services/sign-up.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -647,6 +714,10 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 // Components
+
+
+
+
 
 
 
@@ -689,17 +760,21 @@ var AppModule = /** @class */ (function () {
                 _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_22__["CopyComponent"],
                 _dataset_dataset_component__WEBPACK_IMPORTED_MODULE_23__["DatasetComponent"],
                 _data_tab_data_tab_component__WEBPACK_IMPORTED_MODULE_24__["DataTabComponent"],
-                _project_overview_project_overview_component__WEBPACK_IMPORTED_MODULE_27__["ProjectOverviewComponent"],
-                _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_28__["AddDatasetComponent"],
-                _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_29__["DatasetDetailComponent"],
-                _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_30__["DataTabViewComponent"],
-                _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_31__["AlgorithmsComponent"],
-                _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_34__["AddAlgorithmComponent"],
-                _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_35__["ViewAlgorithmComponent"],
-                _one_project_one_project_component__WEBPACK_IMPORTED_MODULE_36__["OneProjectComponent"],
-                _analyze_analyze_component__WEBPACK_IMPORTED_MODULE_37__["AnalyzeComponent"],
-                _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_38__["AddValueComponent"],
-                _dialogs_edit_algorithm_edit_algorithm_component__WEBPACK_IMPORTED_MODULE_26__["EditAlgorithmComponent"]
+                _project_overview_project_overview_component__WEBPACK_IMPORTED_MODULE_31__["ProjectOverviewComponent"],
+                _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_32__["AddDatasetComponent"],
+                _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_33__["DatasetDetailComponent"],
+                _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_34__["DataTabViewComponent"],
+                _algorithms_algorithms_component__WEBPACK_IMPORTED_MODULE_35__["AlgorithmsComponent"],
+                _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_38__["AddAlgorithmComponent"],
+                _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_39__["ViewAlgorithmComponent"],
+                _one_project_one_project_component__WEBPACK_IMPORTED_MODULE_40__["OneProjectComponent"],
+                _analyze_analyze_component__WEBPACK_IMPORTED_MODULE_41__["AnalyzeComponent"],
+                _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_42__["AddValueComponent"],
+                _dialogs_edit_algorithm_edit_algorithm_component__WEBPACK_IMPORTED_MODULE_26__["EditAlgorithmComponent"],
+                _query_query_component__WEBPACK_IMPORTED_MODULE_27__["QueryComponent"],
+                _new_query_new_query_component__WEBPACK_IMPORTED_MODULE_28__["NewQueryComponent"],
+                _query_result_query_result_component__WEBPACK_IMPORTED_MODULE_29__["QueryResultComponent"],
+                _query_result_details_query_result_details_component__WEBPACK_IMPORTED_MODULE_30__["QueryResultDetailsComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
@@ -715,35 +790,35 @@ var AppModule = /** @class */ (function () {
             providers: [
                 {
                     provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HTTP_INTERCEPTORS"],
-                    useClass: _shared_interceptors_auth_interceptor__WEBPACK_IMPORTED_MODULE_41__["AuthInterceptor"],
+                    useClass: _shared_interceptors_auth_interceptor__WEBPACK_IMPORTED_MODULE_45__["AuthInterceptor"],
                     multi: true
                 },
                 _shared_services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"],
-                _shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_39__["AuthGuard"],
-                _shared_guards_project_ovierview_guard__WEBPACK_IMPORTED_MODULE_40__["POGuard"],
+                _shared_guards_auth_guard__WEBPACK_IMPORTED_MODULE_43__["AuthGuard"],
+                _shared_guards_project_ovierview_guard__WEBPACK_IMPORTED_MODULE_44__["POGuard"],
                 _projects_projects_service__WEBPACK_IMPORTED_MODULE_11__["ProjectsService"],
                 _data_tab_data_tab_service__WEBPACK_IMPORTED_MODULE_25__["DataTabService"],
                 _algorithms_algorithms_service__WEBPACK_IMPORTED_MODULE_12__["AlgorithmsService"],
-                _dialogs_addProject_addProject_service__WEBPACK_IMPORTED_MODULE_32__["AddProjectService"],
-                _dialogs_copyProject_copyProject_service__WEBPACK_IMPORTED_MODULE_33__["CopyProjectService"],
+                _dialogs_addProject_addProject_service__WEBPACK_IMPORTED_MODULE_36__["AddProjectService"],
+                _dialogs_copyProject_copyProject_service__WEBPACK_IMPORTED_MODULE_37__["CopyProjectService"],
                 _project_overview_project_overview_service__WEBPACK_IMPORTED_MODULE_13__["ProjectOverviewService"],
                 _analyze_analyze_service__WEBPACK_IMPORTED_MODULE_0__["AnalyzeService"],
                 _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_14__["SharedService"],
                 _dialogs_edit_algorithm_edit_algorithm_service__WEBPACK_IMPORTED_MODULE_15__["EditAlgorithmService"],
                 _dashboard_dashboard_service__WEBPACK_IMPORTED_MODULE_16__["Dashboardervice"],
-                _shared_services_sign_up_service__WEBPACK_IMPORTED_MODULE_42__["SignUpService"]
+                _shared_services_sign_up_service__WEBPACK_IMPORTED_MODULE_46__["SignUpService"]
             ],
             entryComponents: [
                 _dialogs_addProject_add_component__WEBPACK_IMPORTED_MODULE_18__["AddComponent"],
                 _dialogs_delete_delete_component__WEBPACK_IMPORTED_MODULE_21__["DeleteComponent"],
                 _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_22__["CopyComponent"],
-                _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_28__["AddDatasetComponent"],
-                _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_29__["DatasetDetailComponent"],
-                _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_30__["DataTabViewComponent"],
+                _dialogs_add_dataset_add_dataset_component__WEBPACK_IMPORTED_MODULE_32__["AddDatasetComponent"],
+                _dialogs_dataset_detail_dataset_detail_component__WEBPACK_IMPORTED_MODULE_33__["DatasetDetailComponent"],
+                _dialogs_data_tab_view_data_tab_view_component__WEBPACK_IMPORTED_MODULE_34__["DataTabViewComponent"],
                 _dialogs_copyProject_copy_component__WEBPACK_IMPORTED_MODULE_22__["CopyComponent"],
-                _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_34__["AddAlgorithmComponent"],
-                _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_35__["ViewAlgorithmComponent"],
-                _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_38__["AddValueComponent"],
+                _dialogs_add_algorithm_add_algorithm_component__WEBPACK_IMPORTED_MODULE_38__["AddAlgorithmComponent"],
+                _dialogs_view_algorithm_view_algorithm_component__WEBPACK_IMPORTED_MODULE_39__["ViewAlgorithmComponent"],
+                _dialogs_add_value_add_value_component__WEBPACK_IMPORTED_MODULE_42__["AddValueComponent"],
                 _dialogs_edit_algorithm_edit_algorithm_component__WEBPACK_IMPORTED_MODULE_26__["EditAlgorithmComponent"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]],
@@ -842,6 +917,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _dashboard_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dashboard.service */ "./src/app/dashboard/dashboard.service.ts");
 /* harmony import */ var _shared_services_shared_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/services/shared.service */ "./src/app/shared/services/shared.service.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -855,6 +931,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var DashboardComponent = /** @class */ (function () {
     function DashboardComponent(dashboardService, _router, sharedService) {
         this.dashboardService = dashboardService;
@@ -863,6 +940,7 @@ var DashboardComponent = /** @class */ (function () {
         this.panelProject = false;
         this.panelData = false;
         this.panelAlgo = false;
+        this.refreshInterval$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["interval"])(10000);
         // Columns for variable table
         this.displayedColumns = ['Name', 'Average', 'Distinct Count', 'Minimum', 'Maximum'];
         // Columns for algorithms param.table
@@ -874,6 +952,7 @@ var DashboardComponent = /** @class */ (function () {
         this.dashboardService.getProjects().subscribe(function (res) {
             // console.log(res);
             _this.projectsArr = res['data'];
+            console.log('refresh status');
         }, function (err) {
             console.log(err);
         });
@@ -887,6 +966,8 @@ var DashboardComponent = /** @class */ (function () {
                 return '#00897B';
             case 'Learning':
                 return '#4DB6AC';
+            default:
+                return '#424242';
         }
     };
     // get All Datasets - second tab
@@ -962,9 +1043,18 @@ var DashboardComponent = /** @class */ (function () {
         });
     };
     DashboardComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.getAllProjects();
         this.getAllDatasets();
         this.getAllAlgorithms();
+        // Get Status every 10 seconds
+        this.subscription = this.refreshInterval$.subscribe(function () {
+            return _this.getAllProjects();
+        });
+    };
+    DashboardComponent.prototype.ngOnDestroy = function () {
+        this.subscription.unsubscribe();
+        // Stop getting Status every 10 seconds
     };
     DashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1232,6 +1322,7 @@ var DataTabComponent = /** @class */ (function () {
                 this.variables[index]['leaveAsItIs'] = false;
                 break;
             case 'Unfolding with distinct categories':
+                delete this.variablesHelperArr[index]['params'];
                 this.variables[index]['distinct'] = true;
                 this.variables[index]['leaveAsItIs'] = false;
                 if (this.variables[index]['bins'])
@@ -1242,6 +1333,7 @@ var DataTabComponent = /** @class */ (function () {
                     this.variables[index]['scaleMax'] = null;
                 break;
             case 'Live as it is':
+                delete this.variablesHelperArr[index]['params'];
                 this.variables[index]['leaveAsItIs'] = true;
                 this.variables[index]['distinct'] = false;
                 if (this.variables[index]['bins'])
@@ -1975,7 +2067,7 @@ var AddDatasetComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ONE VALUE -->\r\n<div *ngIf=\"data && data.type == 'addValueDialog'\" id=\"addValue\">\r\n    <h1 class=\"subtitle\" mat-dialog-title>Edit Value</h1>\r\n    <mat-divider></mat-divider>\r\n    <mat-dialog-content>\r\n        <form [formGroup]=\"addValueForm\" (ngSubmit)=\"addValue()\">\r\n            <mat-form-field>\r\n                <input matInput formControlName=\"value\" type=\"text\" placeholder=\"Enter value\" autocomplete=\"off\" [(ngModel)]=\"data.value\">\r\n            </mat-form-field>\r\n            <mat-error *ngIf=\"addValueForm.get('value').touched && addValueForm.get('value').hasError('required')\">\r\n                Value is required!\r\n            </mat-error>\r\n            <mat-dialog-actions>\r\n                <button mat-dialog-close mat-stroked-button color=\"warn\">Cancel</button>\r\n                <button mat-raised-button color=\"primary\" type=\"submit\" mat-raised-button [disabled]=\"addValueForm.invalid\">Save</button>\r\n            </mat-dialog-actions>\r\n        </form>\r\n    </mat-dialog-content>\r\n</div>\r\n\r\n<!-- MULTIPLE VALUES -->\r\n<div id=\"editParams\" class=\"flex column center dialog\" *ngIf=\"valuesData && data.type == 'editParams'\">\r\n    <h1 class=\"subtitle\" mat-dialog-title>Edit Values</h1>\r\n    <table *ngIf=\"valuesData.length > 0; else noData\" mat-table [dataSource]=\"valuesData\" class=\"params-table mat-elevation-z8\">\r\n        <ng-container matColumnDef=\"parameterName\">\r\n            <th mat-header-cell *matHeaderCellDef> Parameter Name </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.parameterName}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"parameterValueType\">\r\n            <th mat-header-cell *matHeaderCellDef> Parameter Value Type </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.parameterValueType}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"parameterValue\">\r\n            <th mat-header-cell *matHeaderCellDef> Parameter Value </th>\r\n            <td mat-cell *matCellDef=\"let element; let i = index\">\r\n                <mat-form-field>\r\n                    <input (ngModelChange)=\"inputChanged($event, i)\" matInput type=\"text\" placeholder=\"Enter value\" autocomplete=\"off\" [(ngModel)]=\"element.parameterValues[0].value\">\r\n                </mat-form-field>\r\n            </td>\r\n        </ng-container>\r\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n    </table>\r\n    <ng-template class=\"no-data\" #noData>\r\n        No parameters.\r\n    </ng-template>\r\n    <mat-error *ngIf=\"error\">\r\n        Value is required.\r\n    </mat-error>\r\n    <mat-dialog-actions>\r\n        <button mat-stroked-button color=\"warn\" (click)=\"cancel()\">Cancel</button>\r\n        <button mat-raised-button color=\"primary\" (click)=\"saveParams()\" mat-raised-button>Save</button>\r\n    </mat-dialog-actions>\r\n</div>"
+module.exports = "<!-- ONE VALUE -->\r\n<div *ngIf=\"data && data.type == 'addValueDialog'\" id=\"addValue\">\r\n    <h1 class=\"subtitle\" mat-dialog-title>Edit Value</h1>\r\n    <mat-divider></mat-divider>\r\n    <mat-dialog-content>\r\n        <form [formGroup]=\"addValueForm\" (ngSubmit)=\"addValue()\">\r\n            <mat-form-field>\r\n                <input matInput formControlName=\"value\" type=\"text\" placeholder=\"Enter value\" autocomplete=\"off\" [(ngModel)]=\"data.value\">\r\n            </mat-form-field>\r\n            <mat-error *ngIf=\"addValueForm.get('value').touched && addValueForm.get('value').hasError('required')\">\r\n                Value is required!\r\n            </mat-error>\r\n            <mat-dialog-actions>\r\n                <button mat-dialog-close mat-stroked-button color=\"warn\">Cancel</button>\r\n                <button mat-raised-button color=\"primary\" type=\"submit\" mat-raised-button [disabled]=\"addValueForm.invalid\">Save</button>\r\n            </mat-dialog-actions>\r\n        </form>\r\n    </mat-dialog-content>\r\n</div>\r\n\r\n<!-- MULTIPLE VALUES -->\r\n<div id=\"editParams\" class=\"flex column center dialog\" *ngIf=\"valuesData && data.type == 'editParams'\">\r\n    <h1 class=\"subtitle\" mat-dialog-title *ngIf=\"data\">Edit Values for {{data.title}}</h1>\r\n    <table *ngIf=\"valuesData.length > 0; else noData\" mat-table [dataSource]=\"valuesData\" class=\"params-table mat-elevation-z8\">\r\n        <ng-container matColumnDef=\"parameterName\">\r\n            <th mat-header-cell *matHeaderCellDef> Parameter Name </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.parameterName}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"parameterValueType\">\r\n            <th mat-header-cell *matHeaderCellDef> Parameter Value Type </th>\r\n            <td mat-cell *matCellDef=\"let element\"> {{element.parameterValueType}} </td>\r\n        </ng-container>\r\n        <ng-container matColumnDef=\"parameterValue\">\r\n            <th mat-header-cell *matHeaderCellDef> Parameter Value </th>\r\n            <td mat-cell *matCellDef=\"let element; let i = index\">\r\n                <mat-form-field>\r\n                    <input (ngModelChange)=\"inputChanged($event, i)\" matInput type=\"text\" placeholder=\"Enter value\" autocomplete=\"off\" [(ngModel)]=\"element.parameterValues[0].value\">\r\n                </mat-form-field>\r\n            </td>\r\n        </ng-container>\r\n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n    </table>\r\n    <ng-template class=\"no-data\" #noData>\r\n        No parameters.\r\n    </ng-template>\r\n    <mat-error *ngIf=\"error\">\r\n        Value is required.\r\n    </mat-error>\r\n    <mat-dialog-actions>\r\n        <button mat-stroked-button color=\"warn\" (click)=\"cancel()\">Cancel</button>\r\n        <button mat-raised-button color=\"primary\" (click)=\"saveParams()\" mat-raised-button>Save</button>\r\n    </mat-dialog-actions>\r\n</div>"
 
 /***/ }),
 
@@ -1986,7 +2078,7 @@ module.exports = "<!-- ONE VALUE -->\r\n<div *ngIf=\"data && data.type == 'addVa
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%;\n  padding-top: 35px; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header-username {\n  color: #fff;\n  font-size: 17px;\n  padding-right: 100px; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #00897B, #4DB6AC);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #00897B; }\n\n.add-mini-fab-btn {\n  color: #fff; }\n\n#addValue {\n  display: flex;\n  flex-direction: column;\n  padding-right: 20px; }\n\n#addValue .mat-form-field {\n    width: 100%;\n    padding: 10px 10px 10px 10px; }\n\n#addValue .mat-error {\n    padding-left: 10px;\n    margin-top: -20px; }\n\n#addValue .mat-dialog-content {\n    margin-top: 50px;\n    margin-bottom: 20px;\n    display: block;\n    padding: 0 24px;\n    max-height: 65vh;\n    overflow: auto;\n    -webkit-overflow-scrolling: touch; }\n\n#addValue .dialog {\n    padding: 30px; }\n\n#addValue mat-dialog-actions {\n    float: right;\n    margin: 10px 30px 0 !important; }\n\n#addValue mat-dialog-actions > button {\n    margin: 0 5px !important; }\n\n#editParams mat-dialog-actions {\n  align-self: flex-end !important;\n  margin: 10px 30px 0 !important; }\n\n#editParams mat-dialog-actions > button {\n  margin: 0 5px !important; }\n\n#editParams .params-table {\n  margin: 45px; }\n\n#editParams .no-data {\n  padding: 50px 100px;\n  color: #757575; }\n"
+module.exports = ".flex {\n  display: flex; }\n\n.column {\n  flex-direction: column; }\n\n.center {\n  align-items: center;\n  justify-content: center; }\n\n.space-around {\n  justify-content: space-around; }\n\n.space-between {\n  justify-content: space-between; }\n\n.wrap {\n  flex-wrap: wrap; }\n\n.align-items-center {\n  align-items: center; }\n\n.justify {\n  text-align: justify; }\n\n.subtitle {\n  color: #757575; }\n\n.warn-message {\n  color: #FF3D00;\n  margin-top: 30px;\n  font-size: 18px; }\n\n.navContainer {\n  width: 100%;\n  height: 89vh; }\n\n.sideContent {\n  width: 20%;\n  padding-top: 35px; }\n\nmat-nav-list a mat-icon {\n  padding-left: 25px; }\n\n.userDetail {\n  padding-left: 40px;\n  margin-bottom: 40px; }\n\n.logout {\n  margin-top: 45vh; }\n\n.header-username {\n  color: #fff;\n  font-size: 17px;\n  padding-right: 100px; }\n\n.header {\n  overflow: hidden;\n  background: linear-gradient(to right, #00897B, #4DB6AC);\n  padding: 20px 10px; }\n\n.header a {\n  float: left;\n  color: white;\n  text-align: center;\n  padding: 12px;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 25px;\n  border-radius: 4px; }\n\n.header a.logo {\n  font-size: 25px;\n  font-weight: bold; }\n\n.mat-nav-list a.active {\n  background: #EAFFD1; }\n\n.mat-nav-list a span {\n  padding-left: 12px; }\n\nmat-icon {\n  color: #00897B; }\n\n.add-mini-fab-btn {\n  color: #fff; }\n\n#addValue {\n  display: flex;\n  flex-direction: column;\n  padding-right: 20px; }\n\n#addValue .mat-form-field {\n    width: 100%;\n    padding: 10px 10px 10px 10px; }\n\n#addValue .mat-error {\n    padding-left: 10px;\n    margin-top: -20px; }\n\n#addValue .mat-dialog-content {\n    margin-top: 50px;\n    margin-bottom: 20px;\n    display: block;\n    padding: 0 24px;\n    max-height: 65vh;\n    overflow: auto;\n    -webkit-overflow-scrolling: touch; }\n\n#addValue .dialog {\n    padding: 30px; }\n\n#addValue mat-dialog-actions {\n    float: right;\n    margin: 10px 30px 0 !important; }\n\n#addValue mat-dialog-actions > button {\n    margin: 0 5px !important; }\n\n#editParams mat-dialog-actions {\n  align-self: flex-end !important;\n  margin: 10px 30px 0 !important; }\n\n#editParams mat-dialog-actions > button {\n  margin: 0 5px !important; }\n\n#editParams .params-table {\n  margin: 45px; }\n\n#editParams .no-data {\n  padding: 50px 100px;\n  color: #757575; }\n\n#editParams tr.mat-footer-row, #editParams tr.mat-row {\n  height: 90px !important; }\n"
 
 /***/ }),
 
@@ -2034,23 +2126,25 @@ var AddValueComponent = /** @class */ (function () {
             });
         }
         if (this.data.type == 'editParams') {
+            this.valuesDataOld = this.data.data;
             this.valuesData = this.data.data;
         }
     };
     AddValueComponent.prototype.inputChanged = function (ev, i) {
-        // if (ev.length > 0) {
-        //   this.valuesData[i].parameterValues[0].value = ev;
-        // }
+        if (ev.length > 0) {
+            this.valuesData[i].parameterValues[0].value = ev;
+        }
     };
     // MULTIPLE VALUES CANCEL
     AddValueComponent.prototype.cancel = function () {
+        this.data.data = this.valuesDataOld;
         this.dialogRef.close();
     };
     // MULTIPLE VALUES
     AddValueComponent.prototype.saveParams = function () {
         var checkArray = [];
         for (var i = 0; i < this.valuesData.length; i++) {
-            if (!this.valuesData[i].parameterValues[0].value) {
+            if (!this.valuesData[i].parameterValues[0].value || this.valuesData[i].parameterValues[0].value.length == 0) {
                 this.error = true;
             }
             else {
@@ -2059,6 +2153,7 @@ var AddValueComponent = /** @class */ (function () {
         }
         if (checkArray.length == this.data.data.length) {
             this.error = false;
+            // console.log(this.data.data);
             this.dialogRef.close(this.data.data);
         }
     };
@@ -3064,6 +3159,69 @@ var LoginComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/new-query/new-query.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/new-query/new-query.component.html ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\r\n  new-query works!\r\n</p>\r\n"
+
+/***/ }),
+
+/***/ "./src/app/new-query/new-query.component.scss":
+/*!****************************************************!*\
+  !*** ./src/app/new-query/new-query.component.scss ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/new-query/new-query.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/new-query/new-query.component.ts ***!
+  \**************************************************/
+/*! exports provided: NewQueryComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NewQueryComponent", function() { return NewQueryComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var NewQueryComponent = /** @class */ (function () {
+    function NewQueryComponent() {
+    }
+    NewQueryComponent.prototype.ngOnInit = function () {
+    };
+    NewQueryComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-new-query',
+            template: __webpack_require__(/*! ./new-query.component.html */ "./src/app/new-query/new-query.component.html"),
+            styles: [__webpack_require__(/*! ./new-query.component.scss */ "./src/app/new-query/new-query.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], NewQueryComponent);
+    return NewQueryComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/one-project/one-project.component.html":
 /*!********************************************************!*\
   !*** ./src/app/one-project/one-project.component.html ***!
@@ -3071,7 +3229,7 @@ var LoginComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"one-project\" class=\"flex column center\">\r\n    <button (click)=\"backBtn()\" routerLink=\"/projects\" mat-stroked-button color=\"primary\" matTooltip=\"Back to list of projects\"\r\n        matTooltipPosition=\"right\">Back to Projects</button>\r\n    <mat-tab-group color=\"warn\" mat-stretch-tabs class=\"mat-elevation-z4\">\r\n        <mat-tab label=\"Project Overview\">\r\n            <ng-template matTabContent>\r\n                <app-project-overview (disableTabsChange)=\"disableTabsChange($event)\"></app-project-overview>\r\n            </ng-template>\r\n        </mat-tab>\r\n        <mat-tab [disabled]=\"disableTabs\" label=\"Data\">\r\n            <ng-template matTabContent>\r\n                <app-data-tab></app-data-tab>\r\n            </ng-template>\r\n        </mat-tab>\r\n        <mat-tab [disabled]=\"disableTabs\" label=\"Analyze\">\r\n            <ng-template matTabContent>\r\n                <app-analyze></app-analyze>\r\n            </ng-template>\r\n        </mat-tab>\r\n        <mat-tab [disabled]=\"disableTabs\" label=\"Question\">\r\n            <ng-template matTabContent>\r\n                <h1>Question</h1>\r\n                <p>...</p>\r\n            </ng-template>\r\n        </mat-tab>\r\n    </mat-tab-group>\r\n</div>"
+module.exports = "<div id=\"one-project\" class=\"flex column center\">\r\n    <button (click)=\"backBtn()\" routerLink=\"/projects\" mat-stroked-button color=\"primary\" matTooltip=\"Back to list of projects\"\r\n        matTooltipPosition=\"right\">Back to Projects</button>\r\n    <mat-tab-group color=\"warn\" mat-stretch-tabs class=\"mat-elevation-z4\">\r\n        <mat-tab label=\"Project Overview\">\r\n            <ng-template matTabContent>\r\n                <app-project-overview (disableTabsChange)=\"disableTabsChange($event)\"></app-project-overview>\r\n            </ng-template>\r\n        </mat-tab>\r\n        <mat-tab [disabled]=\"disableTabs\" label=\"Data\">\r\n            <ng-template matTabContent>\r\n                <app-data-tab></app-data-tab>\r\n            </ng-template>\r\n        </mat-tab>\r\n        <mat-tab [disabled]=\"disableTabs\" label=\"Analyze\">\r\n            <ng-template matTabContent>\r\n                <app-analyze></app-analyze>\r\n            </ng-template>\r\n        </mat-tab>\r\n        <mat-tab [disabled]=\"disableTabs\" label=\"Query\">\r\n            <ng-template matTabContent>\r\n               <app-query></app-query>\r\n            </ng-template>\r\n        </mat-tab>\r\n    </mat-tab-group>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -3214,8 +3372,9 @@ var ProjectOverviewComponent = /** @class */ (function () {
         var _this = this;
         this.projectOverviewService.isLinked(this.projectId)
             .subscribe(function (res) {
-            // console.log(res);
+            console.log(res);
             if (res['data']['true'] && _this.dataset) {
+                console.log('true');
                 _this.datasetId = res['data']['true'];
                 for (var i = 0; i < _this.dataset.length; i++) {
                     if (_this.dataset[i].id == _this.datasetId) {
@@ -3233,12 +3392,28 @@ var ProjectOverviewComponent = /** @class */ (function () {
                     }
                 }
             }
-            else {
+            else if (res['data']['false'] == null) {
                 // Link Dataset to SHARED service
                 _this.sharedService.setDatasetName(null);
                 _this.sharedService.setDatasetId(null);
                 _this.sharedService.setDatasetLink(false);
                 _this.linked = true;
+                _this.disableSelect = false;
+                console.log('false');
+            }
+            else {
+                console.log('false with id');
+                for (var i = 0; i < _this.dataset.length; i++) {
+                    if (_this.dataset[i].id == res['data']['false']) {
+                        console.log("found it!");
+                        _this.datasetName = _this.dataset[i].name;
+                        _this.selectedDatasetId = _this.dataset[i].id;
+                        _this.linked = true;
+                        // Enable Tabs
+                        _this.disableTabsChange.emit(false);
+                        _this.getDatasetDetails(_this.selectedDatasetId);
+                    }
+                }
                 _this.disableSelect = false;
             }
         }, function (err) { return console.log(err); });
@@ -3585,6 +3760,197 @@ var ProjectsService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/query-result-details/query-result-details.component.html":
+/*!**************************************************************************!*\
+  !*** ./src/app/query-result-details/query-result-details.component.html ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\r\n  query-result-details works!\r\n</p>\r\n"
+
+/***/ }),
+
+/***/ "./src/app/query-result-details/query-result-details.component.scss":
+/*!**************************************************************************!*\
+  !*** ./src/app/query-result-details/query-result-details.component.scss ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/query-result-details/query-result-details.component.ts":
+/*!************************************************************************!*\
+  !*** ./src/app/query-result-details/query-result-details.component.ts ***!
+  \************************************************************************/
+/*! exports provided: QueryResultDetailsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QueryResultDetailsComponent", function() { return QueryResultDetailsComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var QueryResultDetailsComponent = /** @class */ (function () {
+    function QueryResultDetailsComponent() {
+    }
+    QueryResultDetailsComponent.prototype.ngOnInit = function () {
+    };
+    QueryResultDetailsComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-query-result-details',
+            template: __webpack_require__(/*! ./query-result-details.component.html */ "./src/app/query-result-details/query-result-details.component.html"),
+            styles: [__webpack_require__(/*! ./query-result-details.component.scss */ "./src/app/query-result-details/query-result-details.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], QueryResultDetailsComponent);
+    return QueryResultDetailsComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/query-result/query-result.component.html":
+/*!**********************************************************!*\
+  !*** ./src/app/query-result/query-result.component.html ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\r\n  query-result works!\r\n</p>\r\n"
+
+/***/ }),
+
+/***/ "./src/app/query-result/query-result.component.scss":
+/*!**********************************************************!*\
+  !*** ./src/app/query-result/query-result.component.scss ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/query-result/query-result.component.ts":
+/*!********************************************************!*\
+  !*** ./src/app/query-result/query-result.component.ts ***!
+  \********************************************************/
+/*! exports provided: QueryResultComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QueryResultComponent", function() { return QueryResultComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var QueryResultComponent = /** @class */ (function () {
+    function QueryResultComponent() {
+    }
+    QueryResultComponent.prototype.ngOnInit = function () {
+    };
+    QueryResultComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-query-result',
+            template: __webpack_require__(/*! ./query-result.component.html */ "./src/app/query-result/query-result.component.html"),
+            styles: [__webpack_require__(/*! ./query-result.component.scss */ "./src/app/query-result/query-result.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], QueryResultComponent);
+    return QueryResultComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/query/query.component.html":
+/*!********************************************!*\
+  !*** ./src/app/query/query.component.html ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div id=\"query\" >\n    <form>\n        <mat-form-field>\n          <mat-select [(value)]=\"selected\">\n              <mat-option>None</mat-option>\n              <mat-option value=\"option1\">Option 1</mat-option>\n              <mat-option value=\"option2\">Option 2</mat-option>\n              <mat-option value=\"option3\">Option 3</mat-option>\n          </mat-select>\n        </mat-form-field>\n\n        <p> Selected value: {{selected}} </p>\n      </form>\n<div class=\"queryTabs\">\n  <mat-tab-group color=\"warn\" mat-stretch-tabs class=\"mat-elevation-z4\">\n      <mat-tab label=\"New Query\">\n          <ng-template matTabContent>\n              <app-new-query></app-new-query>\n          </ng-template>\n      </mat-tab>\n      <mat-tab label=\"Query Result\">\n          <ng-template matTabContent>\n              <app-query-result></app-query-result>\n          </ng-template>\n      </mat-tab>\n      <mat-tab label=\"Query Result Details\">\n          <ng-template matTabContent>\n             <app-query-result-details></app-query-result-details>\n          </ng-template>\n      </mat-tab>\n  </mat-tab-group>\n</div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/query/query.component.scss":
+/*!********************************************!*\
+  !*** ./src/app/query/query.component.scss ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "#query {\n  padding-left: 7%; }\n  #query .queryTabs {\n    width: 100%;\n    float: right; }\n  #query form {\n    float: left; }\n"
+
+/***/ }),
+
+/***/ "./src/app/query/query.component.ts":
+/*!******************************************!*\
+  !*** ./src/app/query/query.component.ts ***!
+  \******************************************/
+/*! exports provided: QueryComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QueryComponent", function() { return QueryComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var QueryComponent = /** @class */ (function () {
+    function QueryComponent() {
+        this.selected = 'option2';
+    }
+    QueryComponent.prototype.ngOnInit = function () {
+    };
+    QueryComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-query',
+            template: __webpack_require__(/*! ./query.component.html */ "./src/app/query/query.component.html"),
+            styles: [__webpack_require__(/*! ./query.component.scss */ "./src/app/query/query.component.scss")],
+            encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None
+        }),
+        __metadata("design:paramtypes", [])
+    ], QueryComponent);
+    return QueryComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/shared/guards/auth.guard.ts":
 /*!*********************************************!*\
   !*** ./src/app/shared/guards/auth.guard.ts ***!
@@ -3723,7 +4089,7 @@ var AuthInterceptor = /** @class */ (function () {
             }
         }, function (err) {
             if (err instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpErrorResponse"]) {
-                if (err.status === 401 || err.status === 400 || err.status === 403) {
+                if (err.status === 401 || err.status === 403) {
                     _this._router.navigate(['/login']);
                     localStorage.removeItem('username');
                 }
@@ -4164,7 +4530,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Projects\CustomerProfiling\src\main\webapp\CustomerProfiling\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! D:\Eclipse projects\CustomerProfiling\src\main\webapp\CustomerProfiling\src\main.ts */"./src/main.ts");
 
 
 /***/ })
