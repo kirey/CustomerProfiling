@@ -580,8 +580,8 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Projects\CustomerProfiling\src\main\webapp\CustomerProfiling\src\styles.css */"./src/styles.css");
-module.exports = __webpack_require__(/*! D:\Projects\CustomerProfiling\src\main\webapp\CustomerProfiling\src\custom-theme.scss */"./src/custom-theme.scss");
+__webpack_require__(/*! D:\Eclipse projects\CustomerProfiling\src\main\webapp\CustomerProfiling\src\styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! D:\Eclipse projects\CustomerProfiling\src\main\webapp\CustomerProfiling\src\custom-theme.scss */"./src/custom-theme.scss");
 
 
 /***/ })

@@ -1,10 +1,11 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-query-result-details',
   templateUrl: './query-result-details.component.html',
-  styleUrls: ['./query-result-details.component.scss']
+  styleUrls: ['./query-result-details.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class QueryResultDetailsComponent implements AfterViewInit {
 
